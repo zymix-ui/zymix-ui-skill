@@ -1,6 +1,5 @@
 ---
 name: zymix-ui-prototype
-version: 1.0.0
 description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 单文件,Light/Dark 双模式,内置 Button/Toast/玻璃材质组件层与合规检查)。凡是用户要画界面、出原型、做 mockup、设计某个页面/弹窗/组件效果图,或提到 ZYMIX/ZymixUI/设计规范/设计系统相关的界面产出时,务必使用本技能——哪怕用户没说"原型"二字,只要产出物是一个界面的样子,就用它。不用它生成的界面必然偏离设计规范。
 ---
 
@@ -28,7 +27,7 @@ description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 
    - `references/components.css` — 组件层:按钮 7 变体×3 尺寸、Toast、玻璃材质 .glass、导航、气泡、列表(注释即文档)
    - `references/color-rules.md` — 用色铁律;`references/typography.md` — 文字角色表
    - 布局惯例见 `references/patterns.md`
-3. **组装页面**:tokens.css + components.css 全文内嵌到 assets/template.html 骨架;**只生成一个页面(单台手机)**——手机上打开即全屏预览,桌面浏览器自动居中带壳;深浅色跟随系统(prefers-color-scheme),不要输出两份内容;用户明确要强制某模式时才给 .phone 加 data-theme。
+3. **组装页面**:tokens.css + components.css 全文内嵌到 assets/template.html 骨架;**只生成一个页面(单台手机),画布基准 375×812(设计稿尺寸)**——手机上打开即全屏预览,桌面浏览器自动居中带壳;深浅色跟随系统(prefers-color-scheme),不要输出两份内容;用户明确要强制某模式时才给 .phone 加 data-theme。
 4. **跑合规检查(必须)**:`python3 scripts/check_compliance.py <生成的.html>`,**全部 PASS 才能交付**;FAIL 就按报错修正后重跑。
 5. **配图**:头像用 `https://i.pravatar.cc/{尺寸}?img={1-70}`,通用图用 `https://picsum.photos/seed/{种子}/{w}/{h}`(每图不同种子),弃用 loremflickr。**所有 <img>/媒体容器必须加品牌渐变或 `surface-secondary` 兜底底色 + `onerror` 隐藏**,图挂了也不留空。参见 scripts/pick_images.py。
 6. 交付单个自包含 .html。

@@ -56,6 +56,10 @@
 
 > 锁定版本可把 `main` 换成 `v1.0.0`。能跑命令行的工具也可直接 `git clone https://github.com/zymix-ui/zymix-ui-skill.git`。
 
+### 方式五：Google Stitch / 设计 AI(DESIGN.md)
+
+仓库里的 [`DESIGN.md`](DESIGN.md) 是 [Google Stitch DESIGN.md 规范](https://stitch.withgoogle.com/docs/design-md/overview/)格式的设计系统文档。把它丢进 Stitch 项目或发给任意设计 AI,说「按 DESIGN.md 生成页面」,即可产出符合 ZymixUI 视觉语言的界面(颜色/字号/组件/布局全带上)。
+
 ### 方式四：直接给 AI 读（离线/贴内容）
 
 把 `SKILL.md` 的内容贴给任意 AI 对话，让它「按这份规范生成页面」，也能用（效果取决于该 AI 能否读取 references 里的文件）。
