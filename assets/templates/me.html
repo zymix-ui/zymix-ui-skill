@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Me Page · ZymixUI Prototype</title>
+<style>
+/* ===== 1. tokens(整段替换为 references/tokens.css 内容,含跟随系统深色) ===== */
+/* ZymixUI tokens 快照 — 由 sync_tokens.py 生成,勿手改 */
+:root, [data-theme="light"] {
+  --accent-base: #26D93E;
+  --accent-pressed: #1FB432;
+  --accent-foreground: #FFFFFF;
+  --accent-soft: rgba(38, 217, 62, 0.15);
+  --accent-soft-pressed: rgba(38, 217, 62, 0.20);
+  --accent-soft-foreground: #0F7A23;
+  --accent-soft-subtle: rgba(38, 217, 62, 0.08);
+  --default-base: #EBEBEC;
+  --default-pressed: #D4D4D6;
+  --default-foreground: #000000;
+  --default-soft: rgba(235, 235, 236, 0.50);
+  --default-soft-pressed: rgba(235, 235, 236, 0.65);
+  --default-soft-foreground: #18181B;
+  --default-white: #FFFFFF;
+  --default-black: #000000;
+  --success-base: #26D93E;
+  --success-pressed: #1FB432;
+  --success-foreground: #FFFFFF;
+  --success-soft: rgba(38, 217, 62, 0.15);
+  --success-soft-pressed: rgba(38, 217, 62, 0.20);
+  --success-soft-foreground: #0F7A23;
+  --danger-base: #EA4B46;
+  --danger-pressed: #C53936;
+  --danger-foreground: #FFFFFF;
+  --danger-soft: rgba(235, 235, 236, 0.50);
+  --danger-soft-pressed: #D4D4D6;
+  --danger-soft-foreground: #AE0800;
+  --info-base: #007AFF;
+  --info-pressed: #006FE6;
+  --info-foreground: #FFFFFF;
+  --info-soft: rgba(0, 122, 255, 0.15);
+  --info-soft-pressed: rgba(0, 122, 255, 0.20);
+  --info-soft-foreground: #0057B8;
+  --foreground-base: #000000;
+  --foreground-muted: rgba(0, 0, 0, 0.55);
+  --foreground-subtle: rgba(0, 0, 0, 0.40);
+  --foreground-disabled: rgba(0, 0, 0, 0.26);
+  --foreground-inverse: #FFFFFF;
+  --foreground-link: #0F7A23;
+  --foreground-brand: #26D93E;
+  --foreground-placeholder: rgba(0, 0, 0, 0.30);
+  --foreground-faint: rgba(0, 0, 0, 0.15);
+  --foreground-ghost: rgba(0, 0, 0, 0.08);
+  --background-base: #FFFFFF;
+  --background-secondary: #FCFCFC;
+  --background-tertiary: #F5F5F5;
+  --background-inverse: #18181B;
+  --surface-base: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-tertiary: #EBEBEB;
+  --surface-pressed: rgba(0, 0, 0, 0.08);
+  --surface-inverse: #000000;
+  --surface-glass: rgba(250, 250, 250, 0.20);
+  --border-base: #DEDEE0;
+  --border-subtle: #EBEBEC;
+  --border-width: 1px;
+  --border-width-none: 0px;
+  --separator-base: rgba(0, 0, 0, 0.10);
+  --separator-subtle: rgba(0, 0, 0, 0.05);
+  --separator-strong: rgba(0, 0, 0, 0.40);
+  --separator-width: 0.5px;
+  --separator-width-strong: 1px;
+  --backdrop-base: rgba(0, 0, 0, 0.40);
+  --backdrop-glass: rgba(255, 255, 255, 0.90);
+  --skeleton-base: #EBEBEC;
+  --skeleton-highlight: #F5F5F5;
+  --feature-like-base: #FF3B64;
+  --feature-im-bubble-friend: #E1FFBF;
+  --feature-im-bubble-stranger: #C9FAFF;
+  --feature-im-bubble-friend-foreground: #274700;
+  --feature-im-bubble-friend-muted: rgba(0, 0, 0, 0.55);
+  --feature-im-bubble-stranger-foreground: #006673;
+  --feature-im-read-friend: #58C138;
+  --feature-im-read-stranger: #00BAD2;
+  --feature-im-add-stranger: #26D9F0;
+  --feature-nav-background: rgba(250, 250, 250, 0.66);
+  --feature-nav-fade-solid: #FCFCFC;
+  --feature-nav-fade-transparent: rgba(252, 252, 252, 0);
+  --radius-none: 0px;
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 22px;
+  --radius-3xl: 24px;
+  --radius-4xl: 28px;
+  --radius-5xl: 32px;
+  --radius-6xl: 36px;
+  --radius-round: 9999px;
+  --size-0: 0px;
+  --size-4: 4px;
+  --size-6: 6px;
+  --size-8: 8px;
+  --size-12: 12px;
+  --size-16: 16px;
+  --size-20: 20px;
+  --size-24: 24px;
+  --size-28: 28px;
+  --size-32: 32px;
+  --size-36: 36px;
+  --size-40: 40px;
+  --size-44: 44px;
+  --size-48: 48px;
+  --size-56: 56px;
+  --size-64: 64px;
+  --size-72: 72px;
+  --size-96: 96px;
+  --size-128: 128px;
+  --family-base: "SF Pro";
+  --weight-regular: "Regular";
+  --weight-semibold: "Semibold";
+  --weight-black: "Black";
+  --weight-bold: "Bold";
+  --size-display: 36px;
+  --size-title-lg: 30px;
+  --size-title-md: 24px;
+  --size-title-sm: 20px;
+  --size-label-lg: 18px;
+  --size-label-base: 16px;
+  --size-label-sm: 14px;
+  --size-label-footnote: 13px;
+  --size-label-xs: 12px;
+  --size-body-lg: 17px;
+  --size-body-base: 16px;
+  --size-body-md: 15px;
+  --size-body-sm: 14px;
+  --size-body-xs: 12px;
+  --size-body-2xs: 11px;
+  --size-link-base: 16px;
+  --size-link-sm: 14px;
+  --size-field-base: 16px;
+  --size-field-sm: 14px;
+  --size-button-base: 17px;
+  --size-button-sm: 14px;
+  --size-number-base: 18px;
+  --size-scene-header-title: 34px;
+  --size-scene-tab: 24px;
+  --size-scene-tab-inactive: 18px;
+  --size-body-caption: 13px;
+  --size-label-caption: 13px;
+  --size-button-text: 15px;
+  --size-title-xs: 15px;
+  --size-scene-list: 14px;
+  --size-scene-nav-title: 17px;
+  --size-scene-bubble: 17px;
+  --size-number-md: 24px;
+  --leading-display: 40px;
+  --leading-title-lg: 36px;
+  --leading-title-md: 32px;
+  --leading-title-sm: 28px;
+  --leading-label-lg: 28px;
+  --leading-label-base: 24px;
+  --leading-label-sm: 20px;
+  --leading-label-footnote: 16px;
+  --leading-label-xs: 16px;
+  --leading-body-lg: 22px;
+  --leading-body-base: 24px;
+  --leading-body-md: 20px;
+  --leading-body-sm: 20px;
+  --leading-body-xs: 16px;
+  --leading-link-base: 24px;
+  --leading-link-sm: 20px;
+  --leading-field-base: 24px;
+  --leading-field-sm: 20px;
+  --leading-button-base: 22px;
+  --leading-button-sm: 20px;
+  --leading-number-base: 20px;
+  --leading-scene-header-title: 40px;
+  --leading-scene-tab: 19px;
+  --leading-scene-list: 17px;
+  --leading-number-md: 32px;
+}
+[data-theme="dark"] {
+  --accent-base: #26D93E;
+  --accent-pressed: #1FB432;
+  --accent-foreground: #FFFFFF;
+  --accent-soft: rgba(38, 217, 62, 0.12);
+  --accent-soft-pressed: rgba(38, 217, 62, 0.16);
+  --accent-soft-foreground: #74D88F;
+  --accent-soft-subtle: rgba(38, 217, 62, 0.06);
+  --default-base: #27272A;
+  --default-pressed: #3A3A40;
+  --default-foreground: #FFFFFF;
+  --default-soft: rgba(39, 39, 42, 0.60);
+  --default-soft-pressed: rgba(51, 51, 56, 0.70);
+  --default-soft-foreground: #FCFCFC;
+  --default-white: #FFFFFF;
+  --default-black: #000000;
+  --success-base: #26D93E;
+  --success-pressed: #1FB432;
+  --success-foreground: #FFFFFF;
+  --success-soft: rgba(38, 217, 62, 0.12);
+  --success-soft-pressed: rgba(38, 217, 62, 0.16);
+  --success-soft-foreground: #74D88F;
+  --danger-base: #EA4B46;
+  --danger-pressed: #C53936;
+  --danger-foreground: #FFFFFF;
+  --danger-soft: rgba(39, 39, 42, 0.60);
+  --danger-soft-pressed: #3A3A40;
+  --danger-soft-foreground: #FF9A96;
+  --info-base: #007AFF;
+  --info-pressed: #006FE6;
+  --info-foreground: #FFFFFF;
+  --info-soft: rgba(0, 122, 255, 0.12);
+  --info-soft-pressed: rgba(0, 122, 255, 0.16);
+  --info-soft-foreground: #8EC5FF;
+  --foreground-base: #FFFFFF;
+  --foreground-muted: rgba(255, 255, 255, 0.55);
+  --foreground-subtle: rgba(255, 255, 255, 0.35);
+  --foreground-disabled: rgba(255, 255, 255, 0.22);
+  --foreground-inverse: #000000;
+  --foreground-link: #74D88F;
+  --foreground-brand: #26D93E;
+  --foreground-placeholder: rgba(255, 255, 255, 0.30);
+  --foreground-faint: rgba(255, 255, 255, 0.15);
+  --foreground-ghost: rgba(255, 255, 255, 0.08);
+  --background-base: #0B0B0D;
+  --background-secondary: #09090B;
+  --background-tertiary: #060607;
+  --background-inverse: #FFFFFF;
+  --surface-base: #18181B;
+  --surface-secondary: #232327;
+  --surface-tertiary: #2F2F34;
+  --surface-pressed: rgba(255, 255, 255, 0.08);
+  --surface-inverse: #FFFFFF;
+  --surface-glass: rgba(24, 24, 27, 0.20);
+  --border-base: #3A3A40;
+  --border-subtle: #27272A;
+  --border-width: 1px;
+  --border-width-none: 0px;
+  --separator-base: rgba(255, 255, 255, 0.10);
+  --separator-subtle: rgba(255, 255, 255, 0.05);
+  --separator-strong: rgba(255, 255, 255, 0.40);
+  --separator-width: 0.5px;
+  --separator-width-strong: 1px;
+  --backdrop-base: rgba(0, 0, 0, 0.60);
+  --backdrop-glass: rgba(0, 0, 0, 0.60);
+  --skeleton-base: #27272A;
+  --skeleton-highlight: #333338;
+  --feature-like-base: #FF3B64;
+  --feature-im-bubble-friend: #2E4212;
+  --feature-im-bubble-stranger: #123C42;
+  --feature-im-bubble-friend-foreground: #D7F5B8;
+  --feature-im-bubble-friend-muted: rgba(255, 255, 255, 0.55);
+  --feature-im-bubble-stranger-foreground: #9FE8F2;
+  --feature-im-read-friend: #58C138;
+  --feature-im-read-stranger: #00BAD2;
+  --feature-im-add-stranger: #26D9F0;
+  --feature-nav-background: rgba(24, 24, 27, 0.66);
+  --feature-nav-fade-solid: #09090B;
+  --feature-nav-fade-transparent: rgba(9, 9, 11, 0);
+}
+/* 跟随系统:未显式指定 data-theme 时自动深色 */
+@media (prefers-color-scheme: dark) {
+:root:not([data-theme="light"]) {
+  --accent-base: #26D93E;
+  --accent-pressed: #1FB432;
+  --accent-foreground: #FFFFFF;
+  --accent-soft: rgba(38, 217, 62, 0.12);
+  --accent-soft-pressed: rgba(38, 217, 62, 0.16);
+  --accent-soft-foreground: #74D88F;
+  --accent-soft-subtle: rgba(38, 217, 62, 0.06);
+  --default-base: #27272A;
+  --default-pressed: #3A3A40;
+  --default-foreground: #FFFFFF;
+  --default-soft: rgba(39, 39, 42, 0.60);
+  --default-soft-pressed: rgba(51, 51, 56, 0.70);
+  --default-soft-foreground: #FCFCFC;
+  --default-white: #FFFFFF;
+  --default-black: #000000;
+  --success-base: #26D93E;
+  --success-pressed: #1FB432;
+  --success-foreground: #FFFFFF;
+  --success-soft: rgba(38, 217, 62, 0.12);
+  --success-soft-pressed: rgba(38, 217, 62, 0.16);
+  --success-soft-foreground: #74D88F;
+  --danger-base: #EA4B46;
+  --danger-pressed: #C53936;
+  --danger-foreground: #FFFFFF;
+  --danger-soft: rgba(39, 39, 42, 0.60);
+  --danger-soft-pressed: #3A3A40;
+  --danger-soft-foreground: #FF9A96;
+  --info-base: #007AFF;
+  --info-pressed: #006FE6;
+  --info-foreground: #FFFFFF;
+  --info-soft: rgba(0, 122, 255, 0.12);
+  --info-soft-pressed: rgba(0, 122, 255, 0.16);
+  --info-soft-foreground: #8EC5FF;
+  --foreground-base: #FFFFFF;
+  --foreground-muted: rgba(255, 255, 255, 0.55);
+  --foreground-subtle: rgba(255, 255, 255, 0.35);
+  --foreground-disabled: rgba(255, 255, 255, 0.22);
+  --foreground-inverse: #000000;
+  --foreground-link: #74D88F;
+  --foreground-brand: #26D93E;
+  --foreground-placeholder: rgba(255, 255, 255, 0.30);
+  --foreground-faint: rgba(255, 255, 255, 0.15);
+  --foreground-ghost: rgba(255, 255, 255, 0.08);
+  --background-base: #0B0B0D;
+  --background-secondary: #09090B;
+  --background-tertiary: #060607;
+  --background-inverse: #FFFFFF;
+  --surface-base: #18181B;
+  --surface-secondary: #232327;
+  --surface-tertiary: #2F2F34;
+  --surface-pressed: rgba(255, 255, 255, 0.08);
+  --surface-inverse: #FFFFFF;
+  --surface-glass: rgba(24, 24, 27, 0.20);
+  --border-base: #3A3A40;
+  --border-subtle: #27272A;
+  --border-width: 1px;
+  --border-width-none: 0px;
+  --separator-base: rgba(255, 255, 255, 0.10);
+  --separator-subtle: rgba(255, 255, 255, 0.05);
+  --separator-strong: rgba(255, 255, 255, 0.40);
+  --separator-width: 0.5px;
+  --separator-width-strong: 1px;
+  --backdrop-base: rgba(0, 0, 0, 0.60);
+  --backdrop-glass: rgba(0, 0, 0, 0.60);
+  --skeleton-base: #27272A;
+  --skeleton-highlight: #333338;
+  --feature-like-base: #FF3B64;
+  --feature-im-bubble-friend: #2E4212;
+  --feature-im-bubble-stranger: #123C42;
+  --feature-im-bubble-friend-foreground: #D7F5B8;
+  --feature-im-bubble-friend-muted: rgba(255, 255, 255, 0.55);
+  --feature-im-bubble-stranger-foreground: #9FE8F2;
+  --feature-im-read-friend: #58C138;
+  --feature-im-read-stranger: #00BAD2;
+  --feature-im-add-stranger: #26D9F0;
+  --feature-nav-background: rgba(24, 24, 27, 0.66);
+  --feature-nav-fade-solid: #09090B;
+  --feature-nav-fade-transparent: rgba(9, 9, 11, 0);
+}
+}
+
+/* ===== 2. 基础:单页面;手机全屏预览,桌面居中带壳 ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:var(--background-base)}
+.phone{width:100%;height:100dvh;background:var(--background-base);color:var(--foreground-base);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.statusbar{display:none}
+.home-indicator{display:none}
+.screen{flex:1;overflow-y:auto;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+/* 桌面预览:居中手机壳 + 模拟状态栏 */
+@media (min-width:600px){
+  body{display:flex;justify-content:center;align-items:center;background:#8E8E93;padding:40px 0}
+  .phone{width:390px;height:844px;border-radius:54px;box-shadow:0 0 0 10px #1C1C1E}
+  .statusbar{display:flex;height:47px;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;flex-shrink:0}
+  .statusbar .time{font-size:15px;font-weight:600}
+  .home-indicator{display:block;position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:var(--foreground-base);opacity:.9}
+  .screen{padding-top:0;padding-bottom:0}
+}
+
+/* ===== 3. 文字角色 ===== */
+.t-display{font-size:36px;line-height:40px;font-weight:900}
+.t-title-lg{font-size:30px;line-height:36px;font-weight:900}
+.t-title-md{font-size:24px;line-height:32px;font-weight:900}
+.t-title-sm{font-size:20px;line-height:28px;font-weight:600}
+.t-title-xs{font-size:15px;line-height:normal;font-weight:600}
+.t-label-lg{font-size:18px;line-height:28px;font-weight:600}
+.t-label-base{font-size:16px;line-height:24px;font-weight:600}
+.t-label-sm{font-size:14px;line-height:20px;font-weight:600}
+.t-label-caption{font-size:13px;line-height:normal;font-weight:600}
+.t-label-xs{font-size:12px;line-height:16px;font-weight:600}
+.t-body-lg{font-size:17px;line-height:22px;font-weight:400}
+.t-body-base{font-size:16px;line-height:24px;font-weight:400}
+.t-body-md{font-size:15px;line-height:20px;font-weight:400}
+.t-body-sm{font-size:14px;line-height:20px;font-weight:400}
+.t-body-caption{font-size:13px;line-height:normal;font-weight:400}
+.t-body-xs{font-size:12px;line-height:16px;font-weight:400}
+.t-body-2xs{font-size:11px;line-height:normal;font-weight:400}
+.t-button-base{font-size:17px;line-height:22px;font-weight:600}
+.t-button-sm{font-size:14px;line-height:20px;font-weight:600}
+.t-button-text{font-size:15px;line-height:normal;font-weight:600}
+.t-number-base{font-size:18px;line-height:20px;font-weight:900}
+.t-number-md{font-size:24px;line-height:32px;font-weight:600}
+.t-scene-header{font-size:34px;line-height:40px;font-weight:900;text-transform:capitalize}
+.t-scene-tab-active{font-size:24px;line-height:19px;font-weight:900;text-transform:capitalize}
+.t-scene-tab{font-size:18px;line-height:19px;font-weight:700;text-transform:capitalize}
+.t-scene-list{font-size:14px;line-height:17px;font-weight:600;text-transform:capitalize}
+.t-scene-nav{font-size:17px;line-height:normal;font-weight:600}
+.t-scene-bubble{font-size:17px;line-height:normal;font-weight:400}
+
+/* ===== 4. 组件层(整段替换为 references/components.css 内容) ===== */
+/* ===== ZymixUI 组件层(与 Figma 组件一一对应,只用 tokens.css 变量) ===== */
+
+/* --- 材质 Materials:液态玻璃(CSS 近似 Figma GLASS 效果) --- */
+.glass{
+  background:rgba(255,255,255,0.65);
+  backdrop-filter:blur(4px) saturate(1.6);-webkit-backdrop-filter:blur(4px) saturate(1.6);
+  box-shadow:0 8px 40px rgba(0,0,0,0.10),inset 0 1px 1px rgba(255,255,255,0.80),inset 0 -1px 1px rgba(255,255,255,0.30);
+}
+[data-theme="dark"] .glass{
+  background:rgba(24,24,27,0.65);
+  box-shadow:0 8px 40px rgba(0,0,0,0.35),inset 0 1px 1px rgba(255,255,255,0.12),inset 0 -1px 1px rgba(255,255,255,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .glass{
+    background:rgba(24,24,27,0.65);
+    box-shadow:0 8px 40px rgba(0,0,0,0.35),inset 0 1px 1px rgba(255,255,255,0.12),inset 0 -1px 1px rgba(255,255,255,0.06);
+  }
+}
+.glass-primary{background:color-mix(in srgb,var(--accent-base) 55%,rgba(255,255,255,0.45))} /* 材质 Primary 着色 */
+.glass-clear{background:rgba(255,255,255,0.20);backdrop-filter:blur(2px);box-shadow:inset 0 1px 1px rgba(255,255,255,0.60)}
+
+/* --- Button 组件(7 变体 × 3 尺寸;状态 default/pressed/disabled) --- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font-family:inherit;border-radius:var(--radius-round);position:relative}
+.btn-sm{height:32px;padding:6px 12px;border-radius:var(--radius-lg);font-size:14px;line-height:20px;font-weight:600}
+.btn-md{height:36px;padding:8px 16px;font-size:14px;line-height:20px;font-weight:600}
+.btn-lg{height:48px;padding:8px 16px;font-size:17px;line-height:22px;font-weight:600}
+.btn-sm.icon-only{width:32px;padding:0}.btn-md.icon-only{width:36px;padding:0}.btn-lg.icon-only{width:48px;padding:0}
+/* 44pt 热区:视觉高度<44 的按钮用伪元素扩展点击区 */
+.btn-sm::after,.btn-md::after{content:'';position:absolute;inset:-6px;border-radius:inherit}
+/* 变体(底色与文字必须同组配对——铁律) */
+.btn-primary{background:var(--accent-base);color:var(--accent-foreground)}
+.btn-primary:active{background:var(--accent-pressed)}
+.btn-secondary{background:var(--default-base);color:var(--accent-soft-foreground)}
+.btn-secondary:active{background:var(--default-pressed)}
+.btn-tertiary{background:var(--default-base);color:var(--default-foreground)}
+.btn-tertiary:active{background:var(--default-pressed)}
+.btn-outline{background:transparent;color:var(--default-foreground);box-shadow:inset 0 0 0 1px var(--border-base)}
+.btn-ghost{background:transparent;color:var(--default-foreground)}
+.btn-ghost:active,.btn-outline:active{background:var(--surface-pressed)}
+.btn-danger{background:var(--danger-base);color:var(--danger-foreground)}
+.btn-danger:active{background:var(--danger-pressed)}
+.btn-danger-soft{background:var(--danger-soft);color:var(--danger-soft-foreground)}
+.btn-danger-soft:active{background:var(--danger-soft-pressed)}
+.btn:disabled{opacity:.5;pointer-events:none}
+/* 液态玻璃按钮(Text 85×48 胶囊 / Symbol 48×48 圆) */
+.btn-glass{height:48px;padding:0 20px;font-size:17px;line-height:22px;font-weight:600;color:var(--foreground-base)}
+.btn-glass.icon-only{width:48px;padding:0}
+.btn-glass.tinted{color:var(--foreground-inverse)}
+/* 页头玻璃圆钮 42px(Zymix 页头右上) */
+.btn-glass-42{width:42px;height:42px;padding:0}
+
+/* --- Toast(343×66 胶囊,底=液态玻璃材质;图标文字一律中性黑,不用状态色) --- */
+.toast{display:flex;align-items:center;gap:8px;width:343px;min-height:66px;padding:0 16px;border-radius:var(--radius-round);color:var(--foreground-base)}
+.toast .toast-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.toast .toast-text{font-size:14px;line-height:20px;font-weight:600}
+/* 用法:<div class="toast glass">…</div>;类型(default/accent/info/success/danger)只换图标图形,不换颜色
+   位置铁律:Toast 永远出现在屏幕顶部,距手机顶 60px、水平居中(.phone 内默认绝对定位,已内置) */
+.phone .toast{position:absolute;top:60px;left:50%;transform:translateX(-50%);z-index:99}
+
+/* --- 底部导航(玻璃) --- */
+.nav-bar{background:var(--feature-nav-background);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-around;min-height:56px}
+.nav-fade{background:linear-gradient(to top,var(--feature-nav-fade-solid),var(--feature-nav-fade-transparent));height:40px;pointer-events:none}
+
+/* --- 页头 --- */
+.header-brand{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;min-height:58px} /* 标题用 .t-scene-header */
+.header-nav{display:flex;align-items:center;justify-content:center;position:relative;min-height:58px;padding:8px 16px} /* 标题用 .t-scene-nav */
+/* 返回按钮与页头右侧操作钮同规格:42px 玻璃圆钮,写法 <button class="back btn btn-glass-42 glass"> */
+.header-nav .back{position:absolute;left:16px}
+
+/* --- IM 聊天 --- */
+.bubble{max-width:70%;padding:14px 16px;border-radius:var(--radius-2xl);font-size:17px;font-weight:400}
+.bubble-friend{background:var(--feature-im-bubble-friend);color:var(--feature-im-bubble-friend-foreground)}
+.bubble-stranger{background:var(--feature-im-bubble-stranger);color:var(--feature-im-bubble-stranger-foreground)}
+.bubble-other{background:var(--surface-secondary);color:var(--foreground-base)}
+.bubble.pill{border-radius:var(--radius-round)} /* 短消息胶囊形 */
+.read-friend{color:var(--feature-im-read-friend)}.read-stranger{color:var(--feature-im-read-stranger)}
+.input-bar{display:flex;align-items:center;gap:10px;padding:8px 16px;height:60px}
+.input-bar .input-field{flex:1;height:40px;border-radius:var(--radius-round);padding:0 12px;display:flex;align-items:center;font-size:14px;color:var(--foreground-placeholder)}
+
+/* --- 列表 --- */
+.list-row{display:flex;align-items:center;gap:12px;min-height:64px;padding:0 16px}
+.list-row .avatar{width:48px;height:48px}
+.list-row .title{font-size:14px;line-height:17px;font-weight:600;text-transform:capitalize}
+.list-row .sub{font-size:14px;line-height:20px;font-weight:400;color:var(--foreground-muted)}
+.list-row .trailing{margin-left:auto;font-size:12px;line-height:16px;color:var(--foreground-subtle)}
+.badge{min-width:18px;height:18px;border-radius:var(--radius-round);background:var(--accent-base);color:var(--accent-foreground);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:0 5px}
+
+</style>
+</head>
+<body>
+<!-- 单页面:深浅色跟随系统;需强制模式时给 .phone 加 data-theme="light|dark" -->
+<div class="phone">
+  <div class="statusbar"><span class="time">9:41</span><span class="icons"></span></div>
+  <div class="screen">
+    
+    
+    <!-- 品牌页头:ZYMIX 34 Black + 玻璃圆钮 -->
+    <div class="header-brand">
+      <div class="t-scene-header" style="color:var(--foreground-base);text-transform:uppercase">Me</div>
+      <button class="btn btn-glass-42 glass" style="border-radius:var(--radius-round);border:none;cursor:pointer;color:var(--foreground-base)">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M10 7 v3 l2 2"/></svg>
+      </button>
+    </div>
+    <!-- 资料区 -->
+    <div style="display:flex;align-items:center;gap:16px;padding:12px 16px">
+      <div class="avatar" style="width:72px;height:72px;background:linear-gradient(135deg,var(--accent-soft),var(--accent-base))"></div>
+      <div style="flex:1">
+        <div class="t-title-sm" style="color:var(--foreground-base)">Wen Chang</div>
+        <div class="t-body-md" style="color:var(--foreground-muted)">@wenchang · ZYMIX ID 100244</div>
+      </div>
+      <svg width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="var(--foreground-subtle)" stroke-width="2" stroke-linecap="round"><path d="M1 1 l6 6 -6 6"/></svg>
+    </div>
+    <!-- 统计栏:数字角色 + 强分隔竖线 -->
+    <div style="display:flex;padding:12px 16px;align-items:center">
+      <div style="flex:1;text-align:center"><div class="t-number-base" style="color:var(--foreground-base)">128</div><div class="t-body-xs" style="color:var(--foreground-muted)">Friends</div></div>
+      <div style="width:1px;height:24px;background:var(--separator-strong)"></div>
+      <div style="flex:1;text-align:center"><div class="t-number-base" style="color:var(--foreground-base)">32</div><div class="t-body-xs" style="color:var(--foreground-muted)">Groups</div></div>
+      <div style="width:1px;height:24px;background:var(--separator-strong)"></div>
+      <div style="flex:1;text-align:center"><div class="t-number-base" style="color:var(--foreground-base)">6</div><div class="t-body-xs" style="color:var(--foreground-muted)">Moments</div></div>
+    </div>
+    <!-- 列表卡片:surface 底 -->
+    <div style="margin:8px 16px;background:var(--surface-base);border-radius:var(--radius-lg);overflow:hidden">
+      <div class="list-row" style="min-height:56px">
+        <span class="title" style="color:var(--foreground-base)">My wallet</span>
+        <span class="trailing">¥1,280.00</span>
+        <svg width="7" height="12" viewBox="0 0 8 14" fill="none" stroke="var(--foreground-subtle)" stroke-width="2" stroke-linecap="round"><path d="M1 1 l6 6 -6 6"/></svg>
+      </div>
+      <div style="height:0.5px;background:var(--separator-base);margin-left:16px"></div>
+      <div class="list-row" style="min-height:56px">
+        <span class="title" style="color:var(--foreground-base)">Favorites</span>
+        <svg width="7" height="12" viewBox="0 0 8 14" fill="none" stroke="var(--foreground-subtle)" stroke-width="2" stroke-linecap="round" style="margin-left:auto"><path d="M1 1 l6 6 -6 6"/></svg>
+      </div>
+      <div style="height:0.5px;background:var(--separator-base);margin-left:16px"></div>
+      <div class="list-row" style="min-height:56px">
+        <span class="title" style="color:var(--foreground-base)">Settings</span>
+        <svg width="7" height="12" viewBox="0 0 8 14" fill="none" stroke="var(--foreground-subtle)" stroke-width="2" stroke-linecap="round" style="margin-left:auto"><path d="M1 1 l6 6 -6 6"/></svg>
+      </div>
+    </div>
+    <!-- 主按钮 + 文字按钮 -->
+    <div style="margin:auto 16px 12px;display:flex;flex-direction:column;gap:8px;align-items:center">
+      <button class="btn btn-lg btn-primary" style="width:100%">Share profile</button>
+      <button class="btn btn-ghost t-button-text" style="height:44px;color:var(--danger-soft-foreground)">Log out</button>
+    </div>
+    <!-- 底部导航:玻璃 -->
+    <div style="position:relative">
+      <div class="nav-fade" style="position:absolute;top:-40px;left:0;right:0"></div>
+      <div class="nav-bar" style="padding-bottom:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--foreground-subtle)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 11 L12 4 L20 11 V20 H14 V15 H10 V20 H4 Z"/></svg><span class="t-body-2xs">Home</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--foreground-subtle)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="M8 10 h8 M8 14 h5"/></svg><span class="t-body-2xs">Chats</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--foreground-base)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20 c1.5-4 6-5 8-5 s6.5 1 8 5"/></svg><span class="t-body-2xs" style="font-weight:600">Me</span></div>
+      </div>
+    </div>
+
+  
+  </div>
+  <div class="home-indicator"></div>
+</div>
+</body>
+</html>

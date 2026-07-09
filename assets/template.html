@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>{{PAGE_TITLE}} · ZymixUI Prototype</title>
+<style>
+/* ===== 1. tokens(整段替换为 references/tokens.css 内容,含跟随系统深色) ===== */
+{{TOKENS_CSS}}
+
+/* ===== 2. 基础:单页面;手机全屏预览,桌面居中带壳 ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:var(--background-base)}
+.phone{width:100%;height:100dvh;background:var(--background-base);color:var(--foreground-base);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.statusbar{display:none}
+.home-indicator{display:none}
+.screen{flex:1;overflow-y:auto;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+  .screen>*{flex-shrink:0}
+/* 桌面预览:居中手机壳 + 模拟状态栏 */
+@media (min-width:600px){
+  body{display:flex;justify-content:center;align-items:center;background:#8E8E93;padding:40px 0}
+  .phone{width:390px;height:844px;border-radius:54px;box-shadow:0 0 0 10px #1C1C1E}
+  .statusbar{display:flex;height:47px;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;flex-shrink:0}
+  .statusbar .time{font-size:15px;font-weight:600}
+  .home-indicator{display:block;position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:var(--foreground-base);opacity:.9}
+  .screen{padding-top:0;padding-bottom:0}
+}
+
+/* ===== 3. 文字角色 ===== */
+.t-display{font-size:36px;line-height:40px;font-weight:900}
+.t-title-lg{font-size:30px;line-height:36px;font-weight:900}
+.t-title-md{font-size:24px;line-height:32px;font-weight:900}
+.t-title-sm{font-size:20px;line-height:28px;font-weight:600}
+.t-title-xs{font-size:15px;line-height:normal;font-weight:600}
+.t-label-lg{font-size:18px;line-height:28px;font-weight:600}
+.t-label-base{font-size:16px;line-height:24px;font-weight:600}
+.t-label-sm{font-size:14px;line-height:20px;font-weight:600}
+.t-label-caption{font-size:13px;line-height:normal;font-weight:600}
+.t-label-xs{font-size:12px;line-height:16px;font-weight:600}
+.t-body-lg{font-size:17px;line-height:22px;font-weight:400}
+.t-body-base{font-size:16px;line-height:24px;font-weight:400}
+.t-body-md{font-size:15px;line-height:20px;font-weight:400}
+.t-body-sm{font-size:14px;line-height:20px;font-weight:400}
+.t-body-caption{font-size:13px;line-height:normal;font-weight:400}
+.t-body-xs{font-size:12px;line-height:16px;font-weight:400}
+.t-body-2xs{font-size:11px;line-height:normal;font-weight:400}
+.t-button-base{font-size:17px;line-height:22px;font-weight:600}
+.t-button-sm{font-size:14px;line-height:20px;font-weight:600}
+.t-button-text{font-size:15px;line-height:normal;font-weight:600}
+.t-number-base{font-size:18px;line-height:20px;font-weight:900}
+.t-number-md{font-size:24px;line-height:32px;font-weight:600}
+.t-scene-header{font-size:34px;line-height:40px;font-weight:900;text-transform:capitalize}
+.t-scene-tab-active{font-size:24px;line-height:19px;font-weight:900;text-transform:capitalize}
+.t-scene-tab{font-size:18px;line-height:19px;font-weight:700;text-transform:capitalize}
+.t-scene-list{font-size:14px;line-height:17px;font-weight:600;text-transform:capitalize}
+.t-scene-nav{font-size:17px;line-height:normal;font-weight:600}
+.t-scene-bubble{font-size:17px;line-height:normal;font-weight:400}
+
+/* ===== 4. 组件层(整段替换为 references/components.css 内容) ===== */
+{{COMPONENTS_CSS}}
+</style>
+</head>
+<body>
+<!-- 单页面:深浅色跟随系统;需强制模式时给 .phone 加 data-theme="light|dark" -->
+<div class="phone">
+  <div class="statusbar"><span class="time">9:41</span><span class="icons"></span></div>
+  <div class="screen">
+    {{CONTENT}}
+  </div>
+  <div class="home-indicator"></div>
+</div>
+</body>
+</html>

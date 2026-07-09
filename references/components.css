@@ -1,0 +1,107 @@
+/* ===== ZymixUI 组件层(与 Figma 组件一一对应,只用 tokens.css 变量) ===== */
+
+/* --- 材质 Materials:液态玻璃(CSS 近似 Figma GLASS 效果) --- */
+.glass{
+  background:rgba(255,255,255,0.65);
+  backdrop-filter:blur(4px) saturate(1.6);-webkit-backdrop-filter:blur(4px) saturate(1.6);
+  box-shadow:0 8px 40px rgba(0,0,0,0.10),inset 0 1px 1px rgba(255,255,255,0.80),inset 0 -1px 1px rgba(255,255,255,0.30);
+}
+[data-theme="dark"] .glass{
+  background:rgba(24,24,27,0.65);
+  box-shadow:0 8px 40px rgba(0,0,0,0.35),inset 0 1px 1px rgba(255,255,255,0.12),inset 0 -1px 1px rgba(255,255,255,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .glass{
+    background:rgba(24,24,27,0.65);
+    box-shadow:0 8px 40px rgba(0,0,0,0.35),inset 0 1px 1px rgba(255,255,255,0.12),inset 0 -1px 1px rgba(255,255,255,0.06);
+  }
+}
+.glass-primary{background:color-mix(in srgb,var(--accent-base) 55%,rgba(255,255,255,0.45))} /* 材质 Primary 着色 */
+.glass-clear{background:rgba(255,255,255,0.20);backdrop-filter:blur(2px);box-shadow:inset 0 1px 1px rgba(255,255,255,0.60)}
+
+/* --- Button 组件(7 变体 × 3 尺寸;状态 default/pressed/disabled) --- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font-family:inherit;border-radius:var(--radius-round);position:relative}
+.btn-sm{height:32px;padding:6px 12px;border-radius:var(--radius-lg);font-size:14px;line-height:20px;font-weight:600}
+.btn-md{height:36px;padding:8px 16px;font-size:14px;line-height:20px;font-weight:600}
+.btn-lg{height:48px;padding:8px 16px;font-size:17px;line-height:22px;font-weight:600}
+.btn-sm.icon-only{width:32px;padding:0}.btn-md.icon-only{width:36px;padding:0}.btn-lg.icon-only{width:48px;padding:0}
+/* 44pt 热区:视觉高度<44 的按钮用伪元素扩展点击区 */
+.btn-sm::after,.btn-md::after{content:'';position:absolute;inset:-6px;border-radius:inherit}
+/* 变体(底色与文字必须同组配对——铁律) */
+.btn-primary{background:var(--accent-base);color:var(--accent-foreground)}
+.btn-primary:active{background:var(--accent-pressed)}
+.btn-secondary{background:var(--default-base);color:var(--accent-soft-foreground)}
+.btn-secondary:active{background:var(--default-pressed)}
+.btn-tertiary{background:var(--default-base);color:var(--default-foreground)}
+.btn-tertiary:active{background:var(--default-pressed)}
+.btn-outline{background:transparent;color:var(--default-foreground);box-shadow:inset 0 0 0 1px var(--border-base)}
+.btn-ghost{background:transparent;color:var(--default-foreground)}
+.btn-ghost:active,.btn-outline:active{background:var(--surface-pressed)}
+.btn-danger{background:var(--danger-base);color:var(--danger-foreground)}
+.btn-danger:active{background:var(--danger-pressed)}
+.btn-danger-soft{background:var(--danger-soft);color:var(--danger-soft-foreground)}
+.btn-danger-soft:active{background:var(--danger-soft-pressed)}
+.btn:disabled{opacity:.5;pointer-events:none}
+/* 液态玻璃按钮(Text 85×48 胶囊 / Symbol 48×48 圆) */
+.btn-glass{height:48px;padding:0 20px;font-size:17px;line-height:22px;font-weight:600;color:var(--foreground-base)}
+.btn-glass.icon-only{width:48px;padding:0}
+.btn-glass.tinted{color:var(--foreground-inverse)}
+/* 页头玻璃圆钮 42px(Zymix 页头右上) */
+.btn-glass-42{width:42px;height:42px;padding:0}
+
+/* --- Toast(343×66 胶囊,底=液态玻璃材质;图标文字一律中性黑,不用状态色) --- */
+.toast{display:flex;align-items:center;gap:8px;width:343px;min-height:66px;padding:0 16px;border-radius:var(--radius-round);color:var(--foreground-base)}
+.toast .toast-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.toast .toast-text{font-size:14px;line-height:20px;font-weight:600}
+/* 用法:<div class="toast glass">…</div>;类型(default/accent/info/success/danger)只换图标图形,不换颜色
+   位置铁律:Toast 永远出现在屏幕顶部,距手机顶 60px、水平居中(.phone 内默认绝对定位,已内置) */
+.phone .toast{position:absolute;top:60px;left:50%;transform:translateX(-50%) translateY(-8px);z-index:99;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+.phone .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* 触发:给 toast 加 id="toast",按钮 onclick="showToast()",页面尾部带 showToast 脚本(见 SKILL.md) */
+
+/* --- 底部导航(玻璃) --- */
+.nav-bar{background:var(--feature-nav-background);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-around;min-height:56px}
+.nav-fade{background:linear-gradient(to top,var(--feature-nav-fade-solid),var(--feature-nav-fade-transparent));height:40px;pointer-events:none}
+
+/* --- Scroll Edge Effect - Soft(Materials 组件的 CSS 近似):吸顶层,下方内容滚入时被渐隐+模糊遮住 --- */
+.scroll-edge-top{position:sticky;top:0;z-index:50}
+.scroll-edge-top::before{content:'';position:absolute;left:0;right:0;top:0;height:108px; /* 填充容器宽,高 108(Figma Scroll Edge Effect - Soft) */
+  background:linear-gradient(to bottom,var(--background-base) 45%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  mask-image:linear-gradient(to bottom,#000 55%,transparent);-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);
+  pointer-events:none;z-index:-1}
+
+/* --- 页头 --- */
+.header-brand{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;min-height:58px} /* 标题用 .t-scene-header */
+.header-nav{display:flex;align-items:center;justify-content:center;position:relative;min-height:58px;padding:8px 16px} /* 标题用 .t-scene-nav */
+/* 返回按钮与页头右侧操作钮同规格:42px 玻璃圆钮,写法 <button class="back btn btn-glass-42 glass"> */
+.header-nav .back{position:absolute;left:16px}
+
+/* --- IM 聊天 --- */
+.bubble{max-width:70%;padding:14px 16px;border-radius:var(--radius-2xl);font-size:17px;font-weight:400}
+.bubble-friend{background:var(--feature-im-bubble-friend);color:var(--feature-im-bubble-friend-foreground)}
+.bubble-stranger{background:var(--feature-im-bubble-stranger);color:var(--feature-im-bubble-stranger-foreground)}
+.bubble-other{background:var(--surface-secondary);color:var(--foreground-base)}
+.bubble.pill{border-radius:var(--radius-round)} /* 短消息胶囊形 */
+.read-friend{color:var(--feature-im-read-friend)}.read-stranger{color:var(--feature-im-read-stranger)}
+.input-bar{display:flex;align-items:center;gap:10px;padding:8px 16px;height:60px}
+.input-bar .input-field{flex:1;height:40px;border-radius:var(--radius-round);padding:0 12px;display:flex;align-items:center;font-size:14px;color:var(--foreground-placeholder)}
+
+/* --- 列表 --- */
+.list-row{display:flex;align-items:center;gap:12px;min-height:64px;padding:0 16px}
+.list-row .avatar{width:48px;height:48px}
+.list-row .title{font-size:14px;line-height:17px;font-weight:600;text-transform:capitalize}
+.list-row .sub{font-size:14px;line-height:20px;font-weight:400;color:var(--foreground-muted)}
+.list-row .trailing{margin-left:auto;font-size:12px;line-height:16px;color:var(--foreground-subtle)}
+.badge{min-width:18px;height:18px;border-radius:var(--radius-round);background:var(--accent-base);color:var(--accent-foreground);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:0 5px}
+
+/* --- 图标(CDN 长尾,内置 icons-bundled.json 没有的才用) --- */
+/* base: https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.0/svgs */
+.zi{display:inline-block;width:24px;height:24px;background:currentColor;
+  -webkit-mask:var(--zi) center/contain no-repeat;mask:var(--zi) center/contain no-repeat}
+/* 用法: <i class="zi" style="--zi:url(https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.0/svgs/NAME.svg);width:24px;height:24px"></i> */
+
+/* --- 媒体遮罩(图上叠字用,恒黑渐变,与主题无关) --- */
+.media{position:relative;overflow:hidden}
+.scrim-b{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65),rgba(0,0,0,0) 55%);pointer-events:none}
+/* 图上文字一律 var(--default-white)(恒白,不随深浅色翻转);.scrim-b 的 rgba 是媒体遮罩,合规豁免 */
