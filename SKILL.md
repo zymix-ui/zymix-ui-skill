@@ -1,5 +1,6 @@
 ---
 name: zymix-ui-prototype
+version: 1.0.0
 description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 单文件,Light/Dark 双模式,内置 Button/Toast/玻璃材质组件层与合规检查)。凡是用户要画界面、出原型、做 mockup、设计某个页面/弹窗/组件效果图,或提到 ZYMIX/ZymixUI/设计规范/设计系统相关的界面产出时,务必使用本技能——哪怕用户没说"原型"二字,只要产出物是一个界面的样子,就用它。不用它生成的界面必然偏离设计规范。
 ---
 
