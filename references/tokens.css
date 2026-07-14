@@ -24,9 +24,10 @@
   --danger-base: #EA4B46;
   --danger-pressed: #C53936;
   --danger-foreground: #FFFFFF;
-  --danger-soft: rgba(235, 235, 236, 0.50);
-  --danger-soft-pressed: #D4D4D6;
+  --danger-soft: rgba(234, 75, 70, 0.15);
+  --danger-soft-pressed: rgba(234, 75, 70, 0.20);
   --danger-soft-foreground: #AE0800;
+  --danger-soft-subtle: rgba(234, 75, 70, 0.08);
   --info-base: #007AFF;
   --info-pressed: #006FE6;
   --info-foreground: #FFFFFF;
@@ -67,6 +68,7 @@
   --skeleton-base: #EBEBEC;
   --skeleton-highlight: #F5F5F5;
   --feature-like-base: #FF3B64;
+  --feature-wallet-unverified: #FD7C02;
   --feature-im-bubble-friend: #E1FFBF;
   --feature-im-bubble-stranger: #C9FAFF;
   --feature-im-bubble-friend-foreground: #274700;
@@ -102,8 +104,10 @@
   --size-32: 32px;
   --size-36: 36px;
   --size-40: 40px;
+  --size-42: 42px;
   --size-44: 44px;
   --size-48: 48px;
+  --size-54: 54px;
   --size-56: 56px;
   --size-64: 64px;
   --size-72: 72px;
@@ -128,7 +132,7 @@
   --size-body-md: 15px;
   --size-body-sm: 14px;
   --size-body-xs: 12px;
-  --size-body-2xs: 11px;
+  --size-body-2xs: 10px;
   --size-link-base: 16px;
   --size-link-sm: 14px;
   --size-field-base: 16px;
@@ -161,6 +165,7 @@
   --leading-body-md: 20px;
   --leading-body-sm: 20px;
   --leading-body-xs: 16px;
+  --leading-body-2xs: 12px;
   --leading-link-base: 24px;
   --leading-link-sm: 20px;
   --leading-field-base: 24px;
@@ -172,6 +177,17 @@
   --leading-scene-tab: 19px;
   --leading-scene-list: 17px;
   --leading-number-md: 32px;
+  /* --- Motion(时长/缓动;spring 与 gesture 见 motion.md) --- */
+  --duration-instant: 0ms;
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-moderate: 240ms;
+  --duration-slow: 300ms;
+  --duration-drawer: 400ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 [data-theme="dark"] {
   --accent-base: #26D93E;
@@ -198,9 +214,10 @@
   --danger-base: #EA4B46;
   --danger-pressed: #C53936;
   --danger-foreground: #FFFFFF;
-  --danger-soft: rgba(39, 39, 42, 0.60);
-  --danger-soft-pressed: #3A3A40;
+  --danger-soft: rgba(234, 75, 70, 0.12);
+  --danger-soft-pressed: rgba(234, 75, 70, 0.16);
   --danger-soft-foreground: #FF9A96;
+  --danger-soft-subtle: rgba(234, 75, 70, 0.06);
   --info-base: #007AFF;
   --info-pressed: #006FE6;
   --info-foreground: #FFFFFF;
@@ -241,6 +258,7 @@
   --skeleton-base: #27272A;
   --skeleton-highlight: #333338;
   --feature-like-base: #FF3B64;
+  --feature-wallet-unverified: #F79E68;
   --feature-im-bubble-friend: #2E4212;
   --feature-im-bubble-stranger: #123C42;
   --feature-im-bubble-friend-foreground: #D7F5B8;
@@ -280,9 +298,10 @@
   --danger-base: #EA4B46;
   --danger-pressed: #C53936;
   --danger-foreground: #FFFFFF;
-  --danger-soft: rgba(39, 39, 42, 0.60);
-  --danger-soft-pressed: #3A3A40;
+  --danger-soft: rgba(234, 75, 70, 0.12);
+  --danger-soft-pressed: rgba(234, 75, 70, 0.16);
   --danger-soft-foreground: #FF9A96;
+  --danger-soft-subtle: rgba(234, 75, 70, 0.06);
   --info-base: #007AFF;
   --info-pressed: #006FE6;
   --info-foreground: #FFFFFF;
@@ -323,6 +342,7 @@
   --skeleton-base: #27272A;
   --skeleton-highlight: #333338;
   --feature-like-base: #FF3B64;
+  --feature-wallet-unverified: #F79E68;
   --feature-im-bubble-friend: #2E4212;
   --feature-im-bubble-stranger: #123C42;
   --feature-im-bubble-friend-foreground: #D7F5B8;

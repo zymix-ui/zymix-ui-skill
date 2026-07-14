@@ -52,6 +52,16 @@ def main(tok):
         n='--'+k.replace('.','-')
         if isinstance(v,(int,float)):out.append(f'  {n}: {v}px;')
         else:out.append(f'  {n}: "{v}";')
+    # Motion(平台无关值 → Web CSS 映射;spring/gesture 不进 CSS,见 motion.md 的 SwiftUI 映射)
+    mpath=os.path.join(tok,'motion.json')
+    if os.path.exists(mpath):
+        m=json.load(open(mpath))
+        out.append('  /* --- Motion(时长/缓动;spring 与 gesture 见 motion.md) --- */')
+        for k,v in m.get('duration',{}).items():
+            if isinstance(v,dict) and '$value' in v:out.append(f'  --duration-{k}: {v["$value"]};')
+        for k,v in m.get('ease',{}).items():
+            if isinstance(v,dict) and isinstance(v.get('$value'),list):
+                a,b,c,d=v['$value'];out.append(f'  --ease-{k}: cubic-bezier({a}, {b}, {c}, {d});')
     out.append('}')
     out.append('[data-theme="dark"] {\n'+block(D)+'\n}')
     out.append('/* 跟随系统:未显式指定 data-theme 时自动深色 */')

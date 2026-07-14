@@ -45,7 +45,7 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;-webk
 .t-body-sm{font-size:14px;line-height:20px;font-weight:400}
 .t-body-caption{font-size:13px;line-height:normal;font-weight:400}
 .t-body-xs{font-size:12px;line-height:16px;font-weight:400}
-.t-body-2xs{font-size:11px;line-height:normal;font-weight:400}
+.t-body-2xs{font-size:10px;line-height:12px;font-weight:400}
 .t-button-base{font-size:17px;line-height:22px;font-weight:600}
 .t-button-sm{font-size:14px;line-height:20px;font-weight:600}
 .t-button-text{font-size:15px;line-height:normal;font-weight:600}
@@ -60,6 +60,11 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;-webk
 
 /* ===== 4. 组件层(整段替换为 references/components.css 内容) ===== */
 {{COMPONENTS_CSS}}
+/* === 骨架标配(2026-07):移动端满屏 + 隐藏原生滚动条 + 去点按高亮 === */
+.screen{scrollbar-width:none}
+.screen::-webkit-scrollbar{display:none}
+html{-webkit-tap-highlight-color:transparent}
+@media (max-width:440px){body{padding:0}.phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}}
 </style>
 </head>
 <body>

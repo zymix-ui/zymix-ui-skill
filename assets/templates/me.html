@@ -1,556 +1,233 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<title>Me Page · ZymixUI Prototype</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Me · ZymixUI</title>
 <style>
-/* ===== 1. tokens(整段替换为 references/tokens.css 内容,含跟随系统深色) ===== */
-/* ZymixUI tokens 快照 — 由 sync_tokens.py 生成,勿手改 */
-:root, [data-theme="light"] {
-  --accent-base: #26D93E;
-  --accent-pressed: #1FB432;
-  --accent-foreground: #FFFFFF;
-  --accent-soft: rgba(38, 217, 62, 0.15);
-  --accent-soft-pressed: rgba(38, 217, 62, 0.20);
-  --accent-soft-foreground: #0F7A23;
-  --accent-soft-subtle: rgba(38, 217, 62, 0.08);
-  --default-base: #EBEBEC;
-  --default-pressed: #D4D4D6;
-  --default-foreground: #000000;
-  --default-soft: rgba(235, 235, 236, 0.50);
-  --default-soft-pressed: rgba(235, 235, 236, 0.65);
-  --default-soft-foreground: #18181B;
-  --default-white: #FFFFFF;
-  --default-black: #000000;
-  --success-base: #26D93E;
-  --success-pressed: #1FB432;
-  --success-foreground: #FFFFFF;
-  --success-soft: rgba(38, 217, 62, 0.15);
-  --success-soft-pressed: rgba(38, 217, 62, 0.20);
-  --success-soft-foreground: #0F7A23;
-  --danger-base: #EA4B46;
-  --danger-pressed: #C53936;
-  --danger-foreground: #FFFFFF;
-  --danger-soft: rgba(235, 235, 236, 0.50);
-  --danger-soft-pressed: #D4D4D6;
-  --danger-soft-foreground: #AE0800;
-  --info-base: #007AFF;
-  --info-pressed: #006FE6;
-  --info-foreground: #FFFFFF;
-  --info-soft: rgba(0, 122, 255, 0.15);
-  --info-soft-pressed: rgba(0, 122, 255, 0.20);
-  --info-soft-foreground: #0057B8;
-  --foreground-base: #000000;
-  --foreground-muted: rgba(0, 0, 0, 0.55);
-  --foreground-subtle: rgba(0, 0, 0, 0.40);
-  --foreground-disabled: rgba(0, 0, 0, 0.26);
-  --foreground-inverse: #FFFFFF;
-  --foreground-link: #0F7A23;
-  --foreground-brand: #26D93E;
-  --foreground-placeholder: rgba(0, 0, 0, 0.30);
-  --foreground-faint: rgba(0, 0, 0, 0.15);
-  --foreground-ghost: rgba(0, 0, 0, 0.08);
-  --background-base: #FFFFFF;
-  --background-secondary: #FCFCFC;
-  --background-tertiary: #F5F5F5;
-  --background-inverse: #18181B;
-  --surface-base: #FFFFFF;
-  --surface-secondary: #F5F5F5;
-  --surface-tertiary: #EBEBEB;
-  --surface-pressed: rgba(0, 0, 0, 0.08);
-  --surface-inverse: #000000;
-  --surface-glass: rgba(250, 250, 250, 0.20);
-  --border-base: #DEDEE0;
-  --border-subtle: #EBEBEC;
-  --border-width: 1px;
-  --border-width-none: 0px;
-  --separator-base: rgba(0, 0, 0, 0.10);
-  --separator-subtle: rgba(0, 0, 0, 0.05);
-  --separator-strong: rgba(0, 0, 0, 0.40);
-  --separator-width: 0.5px;
-  --separator-width-strong: 1px;
-  --backdrop-base: rgba(0, 0, 0, 0.40);
-  --backdrop-glass: rgba(255, 255, 255, 0.90);
-  --skeleton-base: #EBEBEC;
-  --skeleton-highlight: #F5F5F5;
-  --feature-like-base: #FF3B64;
-  --feature-im-bubble-friend: #E1FFBF;
-  --feature-im-bubble-stranger: #C9FAFF;
-  --feature-im-bubble-friend-foreground: #274700;
-  --feature-im-bubble-friend-muted: rgba(0, 0, 0, 0.55);
-  --feature-im-bubble-stranger-foreground: #006673;
-  --feature-im-read-friend: #58C138;
-  --feature-im-read-stranger: #00BAD2;
-  --feature-im-add-stranger: #26D9F0;
-  --feature-nav-background: rgba(250, 250, 250, 0.66);
-  --feature-nav-fade-solid: #FCFCFC;
-  --feature-nav-fade-transparent: rgba(252, 252, 252, 0);
-  --radius-none: 0px;
-  --radius-xs: 6px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --radius-2xl: 22px;
-  --radius-3xl: 24px;
-  --radius-4xl: 28px;
-  --radius-5xl: 32px;
-  --radius-6xl: 36px;
-  --radius-round: 9999px;
-  --size-0: 0px;
-  --size-4: 4px;
-  --size-6: 6px;
-  --size-8: 8px;
-  --size-12: 12px;
-  --size-16: 16px;
-  --size-20: 20px;
-  --size-24: 24px;
-  --size-28: 28px;
-  --size-32: 32px;
-  --size-36: 36px;
-  --size-40: 40px;
-  --size-44: 44px;
-  --size-48: 48px;
-  --size-56: 56px;
-  --size-64: 64px;
-  --size-72: 72px;
-  --size-96: 96px;
-  --size-128: 128px;
-  --family-base: "SF Pro";
-  --weight-regular: "Regular";
-  --weight-semibold: "Semibold";
-  --weight-black: "Black";
-  --weight-bold: "Bold";
-  --size-display: 36px;
-  --size-title-lg: 30px;
-  --size-title-md: 24px;
-  --size-title-sm: 20px;
-  --size-label-lg: 18px;
-  --size-label-base: 16px;
-  --size-label-sm: 14px;
-  --size-label-footnote: 13px;
-  --size-label-xs: 12px;
-  --size-body-lg: 17px;
-  --size-body-base: 16px;
-  --size-body-md: 15px;
-  --size-body-sm: 14px;
-  --size-body-xs: 12px;
-  --size-body-2xs: 11px;
-  --size-link-base: 16px;
-  --size-link-sm: 14px;
-  --size-field-base: 16px;
-  --size-field-sm: 14px;
-  --size-button-base: 17px;
-  --size-button-sm: 14px;
-  --size-number-base: 18px;
-  --size-scene-header-title: 34px;
-  --size-scene-tab: 24px;
-  --size-scene-tab-inactive: 18px;
-  --size-body-caption: 13px;
-  --size-label-caption: 13px;
-  --size-button-text: 15px;
-  --size-title-xs: 15px;
-  --size-scene-list: 14px;
-  --size-scene-nav-title: 17px;
-  --size-scene-bubble: 17px;
-  --size-number-md: 24px;
-  --leading-display: 40px;
-  --leading-title-lg: 36px;
-  --leading-title-md: 32px;
-  --leading-title-sm: 28px;
-  --leading-label-lg: 28px;
-  --leading-label-base: 24px;
-  --leading-label-sm: 20px;
-  --leading-label-footnote: 16px;
-  --leading-label-xs: 16px;
-  --leading-body-lg: 22px;
-  --leading-body-base: 24px;
-  --leading-body-md: 20px;
-  --leading-body-sm: 20px;
-  --leading-body-xs: 16px;
-  --leading-link-base: 24px;
-  --leading-link-sm: 20px;
-  --leading-field-base: 24px;
-  --leading-field-sm: 20px;
-  --leading-button-base: 22px;
-  --leading-button-sm: 20px;
-  --leading-number-base: 20px;
-  --leading-scene-header-title: 40px;
-  --leading-scene-tab: 19px;
-  --leading-scene-list: 17px;
-  --leading-number-md: 32px;
+:root{
+  --accent-base:#26D93E;--accent-pressed:#1FB432;--accent-foreground:#FFFFFF;
+  --accent-soft:rgba(38,217,62,0.15);--accent-soft-foreground:#0F7A23;--accent-soft-subtle:rgba(38,217,62,0.08);
+  --default-base:#EBEBEC;--default-foreground:#000000;--default-white:#FFFFFF;--default-black:#000000;
+  --foreground-base:#000000;--foreground-muted:rgba(0,0,0,0.55);--foreground-subtle:rgba(0,0,0,0.40);--foreground-inverse:#FFFFFF;--foreground-faint:rgba(0,0,0,0.15);--foreground-ghost:rgba(0,0,0,0.08);
+  --background-base:#FFFFFF;--background-secondary:#FCFCFC;--background-tertiary:#F5F5F5;
+  --surface-base:#FFFFFF;--surface-secondary:#F5F5F5;--surface-tertiary:#EBEBEB;
+  --border-subtle:#EBEBEC;--separator-base:rgba(0,0,0,0.10);--separator-strong:rgba(0,0,0,0.40);
+  --skeleton-base:#EBEBEC;
+  --feature-nav-fade-solid:#FCFCFC;--feature-nav-fade-transparent:rgba(252,252,252,0);
+  --radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:20px;--radius-3xl:24px;--radius-5xl:32px;--radius-round:9999px;
 }
-[data-theme="dark"] {
-  --accent-base: #26D93E;
-  --accent-pressed: #1FB432;
-  --accent-foreground: #FFFFFF;
-  --accent-soft: rgba(38, 217, 62, 0.12);
-  --accent-soft-pressed: rgba(38, 217, 62, 0.16);
-  --accent-soft-foreground: #74D88F;
-  --accent-soft-subtle: rgba(38, 217, 62, 0.06);
-  --default-base: #27272A;
-  --default-pressed: #3A3A40;
-  --default-foreground: #FFFFFF;
-  --default-soft: rgba(39, 39, 42, 0.60);
-  --default-soft-pressed: rgba(51, 51, 56, 0.70);
-  --default-soft-foreground: #FCFCFC;
-  --default-white: #FFFFFF;
-  --default-black: #000000;
-  --success-base: #26D93E;
-  --success-pressed: #1FB432;
-  --success-foreground: #FFFFFF;
-  --success-soft: rgba(38, 217, 62, 0.12);
-  --success-soft-pressed: rgba(38, 217, 62, 0.16);
-  --success-soft-foreground: #74D88F;
-  --danger-base: #EA4B46;
-  --danger-pressed: #C53936;
-  --danger-foreground: #FFFFFF;
-  --danger-soft: rgba(39, 39, 42, 0.60);
-  --danger-soft-pressed: #3A3A40;
-  --danger-soft-foreground: #FF9A96;
-  --info-base: #007AFF;
-  --info-pressed: #006FE6;
-  --info-foreground: #FFFFFF;
-  --info-soft: rgba(0, 122, 255, 0.12);
-  --info-soft-pressed: rgba(0, 122, 255, 0.16);
-  --info-soft-foreground: #8EC5FF;
-  --foreground-base: #FFFFFF;
-  --foreground-muted: rgba(255, 255, 255, 0.55);
-  --foreground-subtle: rgba(255, 255, 255, 0.35);
-  --foreground-disabled: rgba(255, 255, 255, 0.22);
-  --foreground-inverse: #000000;
-  --foreground-link: #74D88F;
-  --foreground-brand: #26D93E;
-  --foreground-placeholder: rgba(255, 255, 255, 0.30);
-  --foreground-faint: rgba(255, 255, 255, 0.15);
-  --foreground-ghost: rgba(255, 255, 255, 0.08);
-  --background-base: #0B0B0D;
-  --background-secondary: #09090B;
-  --background-tertiary: #060607;
-  --background-inverse: #FFFFFF;
-  --surface-base: #18181B;
-  --surface-secondary: #232327;
-  --surface-tertiary: #2F2F34;
-  --surface-pressed: rgba(255, 255, 255, 0.08);
-  --surface-inverse: #FFFFFF;
-  --surface-glass: rgba(24, 24, 27, 0.20);
-  --border-base: #3A3A40;
-  --border-subtle: #27272A;
-  --border-width: 1px;
-  --border-width-none: 0px;
-  --separator-base: rgba(255, 255, 255, 0.10);
-  --separator-subtle: rgba(255, 255, 255, 0.05);
-  --separator-strong: rgba(255, 255, 255, 0.40);
-  --separator-width: 0.5px;
-  --separator-width-strong: 1px;
-  --backdrop-base: rgba(0, 0, 0, 0.60);
-  --backdrop-glass: rgba(0, 0, 0, 0.60);
-  --skeleton-base: #27272A;
-  --skeleton-highlight: #333338;
-  --feature-like-base: #FF3B64;
-  --feature-im-bubble-friend: #2E4212;
-  --feature-im-bubble-stranger: #123C42;
-  --feature-im-bubble-friend-foreground: #D7F5B8;
-  --feature-im-bubble-friend-muted: rgba(255, 255, 255, 0.55);
-  --feature-im-bubble-stranger-foreground: #9FE8F2;
-  --feature-im-read-friend: #58C138;
-  --feature-im-read-stranger: #00BAD2;
-  --feature-im-add-stranger: #26D9F0;
-  --feature-nav-background: rgba(24, 24, 27, 0.66);
-  --feature-nav-fade-solid: #09090B;
-  --feature-nav-fade-transparent: rgba(9, 9, 11, 0);
+/* 深色变量:系统深色(未被岛强制浅色时)或岛强制 data-theme=dark 时生效 */
+@media (prefers-color-scheme:dark){:root:not(.lite){
+  --accent-soft:rgba(38,217,62,0.12);--accent-soft-foreground:#74D88F;--accent-soft-subtle:rgba(38,217,62,0.06);
+  --default-base:#27272A;--default-foreground:#FFFFFF;
+  --foreground-base:#FFFFFF;--foreground-muted:rgba(255,255,255,0.55);--foreground-subtle:rgba(255,255,255,0.35);--foreground-inverse:#000000;--foreground-faint:rgba(255,255,255,0.15);--foreground-ghost:rgba(255,255,255,0.08);
+  --background-base:#0B0B0D;--background-secondary:#09090B;--background-tertiary:#161619;
+  --surface-base:#18181B;--surface-secondary:#232327;--surface-tertiary:#2F2F34;
+  --border-subtle:#27272A;--separator-base:rgba(255,255,255,0.10);--separator-strong:rgba(255,255,255,0.40);
+  --skeleton-base:#27272A;
+  --feature-nav-fade-solid:#09090B;--feature-nav-fade-transparent:rgba(9,9,11,0);
+}}
+[data-theme="dark"]{
+  --accent-soft:rgba(38,217,62,0.12);--accent-soft-foreground:#74D88F;--accent-soft-subtle:rgba(38,217,62,0.06);
+  --default-base:#27272A;--default-foreground:#FFFFFF;
+  --foreground-base:#FFFFFF;--foreground-muted:rgba(255,255,255,0.55);--foreground-subtle:rgba(255,255,255,0.35);--foreground-inverse:#000000;--foreground-faint:rgba(255,255,255,0.15);--foreground-ghost:rgba(255,255,255,0.08);
+  --background-base:#0B0B0D;--background-secondary:#09090B;--background-tertiary:#161619;
+  --surface-base:#18181B;--surface-secondary:#232327;--surface-tertiary:#2F2F34;
+  --border-subtle:#27272A;--separator-base:rgba(255,255,255,0.10);--separator-strong:rgba(255,255,255,0.40);
+  --skeleton-base:#27272A;
+  --feature-nav-fade-solid:#09090B;--feature-nav-fade-transparent:rgba(9,9,11,0);
 }
-/* 跟随系统:未显式指定 data-theme 时自动深色 */
-@media (prefers-color-scheme: dark) {
-:root:not([data-theme="light"]) {
-  --accent-base: #26D93E;
-  --accent-pressed: #1FB432;
-  --accent-foreground: #FFFFFF;
-  --accent-soft: rgba(38, 217, 62, 0.12);
-  --accent-soft-pressed: rgba(38, 217, 62, 0.16);
-  --accent-soft-foreground: #74D88F;
-  --accent-soft-subtle: rgba(38, 217, 62, 0.06);
-  --default-base: #27272A;
-  --default-pressed: #3A3A40;
-  --default-foreground: #FFFFFF;
-  --default-soft: rgba(39, 39, 42, 0.60);
-  --default-soft-pressed: rgba(51, 51, 56, 0.70);
-  --default-soft-foreground: #FCFCFC;
-  --default-white: #FFFFFF;
-  --default-black: #000000;
-  --success-base: #26D93E;
-  --success-pressed: #1FB432;
-  --success-foreground: #FFFFFF;
-  --success-soft: rgba(38, 217, 62, 0.12);
-  --success-soft-pressed: rgba(38, 217, 62, 0.16);
-  --success-soft-foreground: #74D88F;
-  --danger-base: #EA4B46;
-  --danger-pressed: #C53936;
-  --danger-foreground: #FFFFFF;
-  --danger-soft: rgba(39, 39, 42, 0.60);
-  --danger-soft-pressed: #3A3A40;
-  --danger-soft-foreground: #FF9A96;
-  --info-base: #007AFF;
-  --info-pressed: #006FE6;
-  --info-foreground: #FFFFFF;
-  --info-soft: rgba(0, 122, 255, 0.12);
-  --info-soft-pressed: rgba(0, 122, 255, 0.16);
-  --info-soft-foreground: #8EC5FF;
-  --foreground-base: #FFFFFF;
-  --foreground-muted: rgba(255, 255, 255, 0.55);
-  --foreground-subtle: rgba(255, 255, 255, 0.35);
-  --foreground-disabled: rgba(255, 255, 255, 0.22);
-  --foreground-inverse: #000000;
-  --foreground-link: #74D88F;
-  --foreground-brand: #26D93E;
-  --foreground-placeholder: rgba(255, 255, 255, 0.30);
-  --foreground-faint: rgba(255, 255, 255, 0.15);
-  --foreground-ghost: rgba(255, 255, 255, 0.08);
-  --background-base: #0B0B0D;
-  --background-secondary: #09090B;
-  --background-tertiary: #060607;
-  --background-inverse: #FFFFFF;
-  --surface-base: #18181B;
-  --surface-secondary: #232327;
-  --surface-tertiary: #2F2F34;
-  --surface-pressed: rgba(255, 255, 255, 0.08);
-  --surface-inverse: #FFFFFF;
-  --surface-glass: rgba(24, 24, 27, 0.20);
-  --border-base: #3A3A40;
-  --border-subtle: #27272A;
-  --border-width: 1px;
-  --border-width-none: 0px;
-  --separator-base: rgba(255, 255, 255, 0.10);
-  --separator-subtle: rgba(255, 255, 255, 0.05);
-  --separator-strong: rgba(255, 255, 255, 0.40);
-  --separator-width: 0.5px;
-  --separator-width-strong: 1px;
-  --backdrop-base: rgba(0, 0, 0, 0.60);
-  --backdrop-glass: rgba(0, 0, 0, 0.60);
-  --skeleton-base: #27272A;
-  --skeleton-highlight: #333338;
-  --feature-like-base: #FF3B64;
-  --feature-im-bubble-friend: #2E4212;
-  --feature-im-bubble-stranger: #123C42;
-  --feature-im-bubble-friend-foreground: #D7F5B8;
-  --feature-im-bubble-friend-muted: rgba(255, 255, 255, 0.55);
-  --feature-im-bubble-stranger-foreground: #9FE8F2;
-  --feature-im-read-friend: #58C138;
-  --feature-im-read-stranger: #00BAD2;
-  --feature-im-add-stranger: #26D9F0;
-  --feature-nav-background: rgba(24, 24, 27, 0.66);
-  --feature-nav-fade-solid: #09090B;
-  --feature-nav-fade-transparent: rgba(9, 9, 11, 0);
+.glass{background:rgba(255,255,255,0.65);backdrop-filter:blur(4px) saturate(1.6);-webkit-backdrop-filter:blur(4px) saturate(1.6);box-shadow:0 8px 40px rgba(0,0,0,0.10),inset 0 1px 1px rgba(255,255,255,0.80),inset 0 -1px 1px rgba(255,255,255,0.30)}
+@media (prefers-color-scheme:dark){:root:not(.lite) .glass{background:rgba(24,24,27,0.65);box-shadow:0 8px 40px rgba(0,0,0,0.35),inset 0 1px 1px rgba(255,255,255,0.12),inset 0 -1px 1px rgba(255,255,255,0.06)}}
+[data-theme="dark"] .glass{background:rgba(24,24,27,0.65);box-shadow:0 8px 40px rgba(0,0,0,0.35),inset 0 1px 1px rgba(255,255,255,0.12),inset 0 -1px 1px rgba(255,255,255,0.06)}
+/* 灵动岛(演示预览控件:切页面状态 + 深/浅色切换;真实交付移除) */
+.island{position:absolute;top:11px;left:0;right:0;z-index:60;display:flex;justify-content:center;pointer-events:none}
+.island-appear{pointer-events:auto;display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px;border:none;cursor:pointer;font-family:inherit;font-size:12px;line-height:16px;font-weight:600;color:var(--default-white);background:var(--default-black);border-radius:var(--radius-round);box-shadow:0 6px 20px rgba(0,0,0,0.28);-webkit-tap-highlight-color:transparent;-webkit-appearance:none;appearance:none;outline:none}
+.island-dot{width:7px;height:7px;border-radius:var(--radius-round);background:var(--accent-base);flex-shrink:0}
+.island-ic{display:none;color:var(--default-white)}
+.island-ic svg{display:block}
+.island-appear[data-mode=""] .ic-sys{display:block}
+.island-appear[data-mode="light"] .ic-light{display:block}
+.island-appear[data-mode="dark"] .ic-dark{display:block}
+/* 移动端:满屏铺满,去掉桌面舞台留白与手机边框 */
+@media (max-width:440px){
+  body{padding:0;background:var(--background-base)}
+  .phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
 }
-}
-
-/* ===== 2. 基础:单页面;手机全屏预览,桌面居中带壳 ===== */
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
-body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:var(--background-base)}
-.phone{width:100%;height:100dvh;background:var(--background-base);color:var(--foreground-base);display:flex;flex-direction:column;position:relative;overflow:hidden}
-.statusbar{display:none}
-.home-indicator{display:none}
-.screen{flex:1;overflow-y:auto;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
-/* 桌面预览:居中手机壳 + 模拟状态栏 */
-@media (min-width:600px){
-  body{display:flex;justify-content:center;align-items:center;background:#8E8E93;padding:40px 0}
-  .phone{width:375px;height:812px;border-radius:52px;box-shadow:0 0 0 10px #1C1C1E}
-  .statusbar{display:flex;height:47px;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;flex-shrink:0}
-  .statusbar .time{font-size:15px;font-weight:600}
-  .home-indicator{display:block;position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:var(--foreground-base);opacity:.9}
-  .screen{padding-top:0;padding-bottom:0}
-}
-
-/* ===== 3. 文字角色 ===== */
-.t-display{font-size:36px;line-height:40px;font-weight:900}
-.t-title-lg{font-size:30px;line-height:36px;font-weight:900}
-.t-title-md{font-size:24px;line-height:32px;font-weight:900}
-.t-title-sm{font-size:20px;line-height:28px;font-weight:600}
-.t-title-xs{font-size:15px;line-height:normal;font-weight:600}
-.t-label-lg{font-size:18px;line-height:28px;font-weight:600}
-.t-label-base{font-size:16px;line-height:24px;font-weight:600}
-.t-label-sm{font-size:14px;line-height:20px;font-weight:600}
-.t-label-caption{font-size:13px;line-height:normal;font-weight:600}
-.t-label-xs{font-size:12px;line-height:16px;font-weight:600}
-.t-body-lg{font-size:17px;line-height:22px;font-weight:400}
-.t-body-base{font-size:16px;line-height:24px;font-weight:400}
-.t-body-md{font-size:15px;line-height:20px;font-weight:400}
-.t-body-sm{font-size:14px;line-height:20px;font-weight:400}
-.t-body-caption{font-size:13px;line-height:normal;font-weight:400}
+body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;background:#8E8E93;display:flex;justify-content:center;align-items:flex-start;padding:40px;min-height:100vh;-webkit-font-smoothing:antialiased}
+.phone{width:375px;height:812px;border-radius:54px;overflow:hidden;position:relative;background:var(--background-base);color:var(--foreground-base);box-shadow:0 0 0 10px #1c1c1e;display:flex;flex-direction:column}
+.statusbar{height:44px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 24px 6px;flex-shrink:0}
+.statusbar .time{font-size:14px;font-weight:600;letter-spacing:-0.28px}
+.statusbar .icons{display:flex;gap:6px;align-items:center}
+.screen{flex:1;overflow-y:auto;display:flex;flex-direction:column;position:relative;scrollbar-width:none}
+.screen::-webkit-scrollbar{display:none}
+.screen>*{flex-shrink:0}
+.home-indicator{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:var(--foreground-base);opacity:.9}
+.ic{display:block;flex-shrink:0}
+/* 文字角色 */
+.t-scene-header{font-size:34px;line-height:40px;font-weight:900}
+.t-title-sm{font-size:20px;line-height:normal;font-weight:600}
+.t-body-md{font-size:15px;line-height:normal;font-weight:400}
+.t-body-sm{font-size:14px;line-height:normal;font-weight:400}
 .t-body-xs{font-size:12px;line-height:16px;font-weight:400}
-.t-body-2xs{font-size:11px;line-height:normal;font-weight:400}
-.t-button-base{font-size:17px;line-height:22px;font-weight:600}
-.t-button-sm{font-size:14px;line-height:20px;font-weight:600}
-.t-button-text{font-size:15px;line-height:normal;font-weight:600}
-.t-number-base{font-size:18px;line-height:20px;font-weight:900}
-.t-number-md{font-size:24px;line-height:32px;font-weight:600}
-.t-scene-header{font-size:34px;line-height:40px;font-weight:900;text-transform:capitalize}
-.t-scene-tab-active{font-size:24px;line-height:19px;font-weight:900;text-transform:capitalize}
-.t-scene-tab{font-size:18px;line-height:19px;font-weight:700;text-transform:capitalize}
+.t-label-xs{font-size:12px;line-height:normal;font-weight:600}
+.t-number{font-size:18px;line-height:20px;font-weight:900}
 .t-scene-list{font-size:14px;line-height:17px;font-weight:600;text-transform:capitalize}
-.t-scene-nav{font-size:17px;line-height:normal;font-weight:600}
-.t-scene-bubble{font-size:17px;line-height:normal;font-weight:400}
-
-/* ===== 4. 组件层(整段替换为 references/components.css 内容) ===== */
-/* ===== ZymixUI 组件层(与 Figma 组件一一对应,只用 tokens.css 变量) ===== */
-
-/* --- 材质 Materials:液态玻璃(CSS 近似 Figma GLASS 效果) --- */
-.glass{
-  background:rgba(255,255,255,0.65);
-  backdrop-filter:blur(4px) saturate(1.6);-webkit-backdrop-filter:blur(4px) saturate(1.6);
-  box-shadow:0 8px 40px rgba(0,0,0,0.10),inset 0 1px 1px rgba(255,255,255,0.80),inset 0 -1px 1px rgba(255,255,255,0.30);
-}
-[data-theme="dark"] .glass{
-  background:rgba(24,24,27,0.65);
-  box-shadow:0 8px 40px rgba(0,0,0,0.35),inset 0 1px 1px rgba(255,255,255,0.12),inset 0 -1px 1px rgba(255,255,255,0.06);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .glass{
-    background:rgba(24,24,27,0.65);
-    box-shadow:0 8px 40px rgba(0,0,0,0.35),inset 0 1px 1px rgba(255,255,255,0.12),inset 0 -1px 1px rgba(255,255,255,0.06);
-  }
-}
-.glass-primary{background:color-mix(in srgb,var(--accent-base) 55%,rgba(255,255,255,0.45))} /* 材质 Primary 着色 */
-.glass-clear{background:rgba(255,255,255,0.20);backdrop-filter:blur(2px);box-shadow:inset 0 1px 1px rgba(255,255,255,0.60)}
-
-/* --- Button 组件(7 变体 × 3 尺寸;状态 default/pressed/disabled) --- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font-family:inherit;border-radius:var(--radius-round);position:relative}
-.btn-sm{height:32px;padding:6px 12px;border-radius:var(--radius-lg);font-size:14px;line-height:20px;font-weight:600}
-.btn-md{height:36px;padding:8px 16px;font-size:14px;line-height:20px;font-weight:600}
-.btn-lg{height:48px;padding:8px 16px;font-size:17px;line-height:22px;font-weight:600}
-.btn-sm.icon-only{width:32px;padding:0}.btn-md.icon-only{width:36px;padding:0}.btn-lg.icon-only{width:48px;padding:0}
-/* 44pt 热区:视觉高度<44 的按钮用伪元素扩展点击区 */
-.btn-sm::after,.btn-md::after{content:'';position:absolute;inset:-6px;border-radius:inherit}
-/* 变体(底色与文字必须同组配对——铁律) */
-.btn-primary{background:var(--accent-base);color:var(--accent-foreground)}
-.btn-primary:active{background:var(--accent-pressed)}
-.btn-secondary{background:var(--default-base);color:var(--accent-soft-foreground)}
-.btn-secondary:active{background:var(--default-pressed)}
-.btn-tertiary{background:var(--default-base);color:var(--default-foreground)}
-.btn-tertiary:active{background:var(--default-pressed)}
-.btn-outline{background:transparent;color:var(--default-foreground);box-shadow:inset 0 0 0 1px var(--border-base)}
-.btn-ghost{background:transparent;color:var(--default-foreground)}
-.btn-ghost:active,.btn-outline:active{background:var(--surface-pressed)}
-.btn-danger{background:var(--danger-base);color:var(--danger-foreground)}
-.btn-danger:active{background:var(--danger-pressed)}
-.btn-danger-soft{background:var(--danger-soft);color:var(--danger-soft-foreground)}
-.btn-danger-soft:active{background:var(--danger-soft-pressed)}
-.btn:disabled{opacity:.5;pointer-events:none}
-/* 液态玻璃按钮(Text 85×48 胶囊 / Symbol 48×48 圆) */
-.btn-glass{height:48px;padding:0 20px;font-size:17px;line-height:22px;font-weight:600;color:var(--foreground-base)}
-.btn-glass.icon-only{width:48px;padding:0}
-.btn-glass.tinted{color:var(--foreground-inverse)}
-/* 页头玻璃圆钮 42px(Zymix 页头右上) */
-.btn-glass-42{width:42px;height:42px;padding:0}
-
-/* --- Toast(343×66 胶囊,底=液态玻璃材质;图标文字一律中性黑,不用状态色) --- */
-.toast{display:flex;align-items:center;gap:8px;width:343px;min-height:66px;padding:0 16px;border-radius:var(--radius-round);color:var(--foreground-base)}
-.toast .toast-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.toast .toast-text{font-size:14px;line-height:20px;font-weight:600}
-/* 用法:<div class="toast glass">…</div>;类型(default/accent/info/success/danger)只换图标图形,不换颜色
-   位置铁律:Toast 永远出现在屏幕顶部,距手机顶 60px、水平居中(.phone 内默认绝对定位,已内置) */
-.phone .toast{position:absolute;top:60px;left:50%;transform:translateX(-50%);z-index:99}
-
-/* --- 底部导航(玻璃) --- */
-.nav-bar{background:var(--feature-nav-background);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-around;min-height:56px}
-.nav-fade{background:linear-gradient(to top,var(--feature-nav-fade-solid),var(--feature-nav-fade-transparent));height:40px;pointer-events:none}
-
-/* --- 页头 --- */
-.header-brand{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;min-height:58px} /* 标题用 .t-scene-header */
-.header-nav{display:flex;align-items:center;justify-content:center;position:relative;min-height:58px;padding:8px 16px} /* 标题用 .t-scene-nav */
-/* 返回按钮与页头右侧操作钮同规格:42px 玻璃圆钮,写法 <button class="back btn btn-glass-42 glass"> */
-.header-nav .back{position:absolute;left:16px}
-
-/* --- IM 聊天 --- */
-.bubble{max-width:70%;padding:14px 16px;border-radius:var(--radius-2xl);font-size:17px;font-weight:400}
-.bubble-friend{background:var(--feature-im-bubble-friend);color:var(--feature-im-bubble-friend-foreground)}
-.bubble-stranger{background:var(--feature-im-bubble-stranger);color:var(--feature-im-bubble-stranger-foreground)}
-.bubble-other{background:var(--surface-secondary);color:var(--foreground-base)}
-.bubble.pill{border-radius:var(--radius-round)} /* 短消息胶囊形 */
-.read-friend{color:var(--feature-im-read-friend)}.read-stranger{color:var(--feature-im-read-stranger)}
-.input-bar{display:flex;align-items:center;gap:10px;padding:8px 16px;height:60px}
-.input-bar .input-field{flex:1;height:40px;border-radius:var(--radius-round);padding:0 12px;display:flex;align-items:center;font-size:14px;color:var(--foreground-placeholder)}
-
-/* --- 列表 --- */
-.list-row{display:flex;align-items:center;gap:12px;min-height:64px;padding:0 16px}
-.list-row .avatar{width:48px;height:48px}
-.list-row .title{font-size:14px;line-height:17px;font-weight:600;text-transform:capitalize}
-.list-row .sub{font-size:14px;line-height:20px;font-weight:400;color:var(--foreground-muted)}
-.list-row .trailing{margin-left:auto;font-size:12px;line-height:16px;color:var(--foreground-subtle)}
-.badge{min-width:18px;height:18px;border-radius:var(--radius-round);background:var(--accent-base);color:var(--accent-foreground);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:0 5px}
-
+/* 件 */
+.header-brand{display:flex;align-items:center;padding:8px 16px;min-height:58px}
+.avatar{background:var(--skeleton-base);flex-shrink:0;background-size:cover;background-position:center;position:relative}
+.grp{background:var(--surface-secondary);border-radius:var(--radius-lg);overflow:hidden}
+.row{display:flex;align-items:center;gap:8px;padding:10px 12px;min-height:44px}
+.row .cap{flex:1;min-width:0}
+.chev{color:var(--foreground-faint)}
+.entry{flex:1;background:var(--surface-secondary);border-radius:var(--radius-lg);display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px 12px}
+.entry .art{font-size:30px;line-height:1;height:34px;display:flex;align-items:center;justify-content:center}
+.seg-line{height:0.5px;background:var(--separator-base);margin-left:44px}
+/* TabBar 组件 */
+.tabbar{position:relative;padding:0 8px 20px}
+.tabbar::before{content:'';position:absolute;left:0;right:0;bottom:0;height:104px;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  background:linear-gradient(to top,var(--background-base) 10%,transparent 65%);
+  mask-image:linear-gradient(to top,#000 45%,transparent);-webkit-mask-image:linear-gradient(to top,#000 45%,transparent);
+  pointer-events:none}
+.tabbar.no-edge::before{display:none}
+.tabbar .pill{position:relative;display:flex;align-items:stretch;padding:4px;border-radius:var(--radius-round)}
+.tab{flex:1;height:54px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-round);color:var(--foreground-base)}
+.tab.active{background:var(--accent-soft-subtle);color:var(--accent-base)}
 </style>
 </head>
 <body>
-<!-- 单页面:深浅色跟随系统;需强制模式时给 .phone 加 data-theme="light|dark" -->
 <div class="phone">
-  <div class="statusbar"><span class="time">9:41</span><span class="icons"></span></div>
+  <!-- 灵动岛:演示预览控件(单状态页 → 深/浅色切换;真实交付删除整块) -->
+  <div class="island" id="island">
+    <button class="island-appear" id="islandTheme" data-mode="" aria-label="外观:跟随系统">
+      <span class="island-dot"></span><span id="islandLabel">系统</span><span class="island-ic ic-sys"><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M28 11H20C19.1716 11 18.5 11.6716 18.5 12.5V16.5C18.5 17.3284 19.1716 18 20 18H28C28.8284 18 29.5 17.3284 29.5 16.5V12.5C29.5 11.6716 28.8284 11 28 11ZM20 9.5C18.3431 9.5 17 10.8431 17 12.5V16.5C17 18.1569 18.3431 19.5 20 19.5H23.25V21H20.75C20.3358 21 20 21.3358 20 21.75C20 22.1642 20.3358 22.5 20.75 22.5H27.25C27.6642 22.5 28 22.1642 28 21.75C28 21.3358 27.6642 21 27.25 21H24.75V19.5H28C29.6569 19.5 31 18.1569 31 16.5V12.5C31 10.8431 29.6569 9.5 28 9.5H20Z" fill="currentColor"/></g></svg></span><span class="island-ic ic-light"><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M24 11C23.5858 11 23.25 10.6642 23.25 10.25V8.75C23.25 8.33579 23.5858 8 24 8C24.4142 8 24.75 8.33579 24.75 8.75V10.25C24.75 10.6642 24.4142 11 24 11ZM24 18.5C25.3807 18.5 26.5 17.3807 26.5 16C26.5 14.6193 25.3807 13.5 24 13.5C22.6193 13.5 21.5 14.6193 21.5 16C21.5 17.3807 22.6193 18.5 24 18.5ZM24 20C26.2091 20 28 18.2091 28 16C28 13.7909 26.2091 12 24 12C21.7909 12 20 13.7909 20 16C20 18.2091 21.7909 20 24 20ZM23.25 23.25C23.25 23.6642 23.5858 24 24 24C24.4142 24 24.75 23.6642 24.75 23.25V21.75C24.75 21.3358 24.4142 21 24 21C23.5858 21 23.25 21.3358 23.25 21.75V23.25ZM29 16C29 15.5858 29.3358 15.25 29.75 15.25H31.25C31.6642 15.25 32 15.5858 32 16C32 16.4142 31.6642 16.75 31.25 16.75H29.75C29.3358 16.75 29 16.4142 29 16ZM16.75 15.25C16.3358 15.25 16 15.5858 16 16C16 16.4142 16.3358 16.75 16.75 16.75H18.25C18.6642 16.75 19 16.4142 19 16C19 15.5858 18.6642 15.25 18.25 15.25H16.75ZM27.5356 12.4645C27.2427 12.1716 27.2427 11.6967 27.5356 11.4038L28.5962 10.3431C28.8891 10.0503 29.364 10.0503 29.6569 10.3431C29.9498 10.636 29.9498 11.1109 29.6569 11.4038L28.5962 12.4645C28.3034 12.7574 27.8285 12.7574 27.5356 12.4645ZM18.3432 20.5962C18.0503 20.8891 18.0503 21.364 18.3432 21.6569C18.6361 21.9497 19.111 21.9497 19.4039 21.6569L20.4645 20.5962C20.7574 20.3033 20.7574 19.8284 20.4645 19.5355C20.1716 19.2426 19.6968 19.2426 19.4039 19.5355L18.3432 20.5962ZM27.5356 19.5355C27.8285 19.2426 28.3034 19.2426 28.5962 19.5355L29.6569 20.5962C29.9498 20.8891 29.9498 21.364 29.6569 21.6569C29.364 21.9497 28.8891 21.9497 28.5962 21.6569L27.5356 20.5962C27.2427 20.3033 27.2427 19.8284 27.5356 19.5355ZM19.4039 10.3431C19.111 10.0503 18.6361 10.0503 18.3432 10.3431C18.0503 10.636 18.0503 11.1109 18.3432 11.4038L19.4039 12.4645C19.6968 12.7574 20.1716 12.7574 20.4645 12.4645C20.7574 12.1716 20.7574 11.6967 20.4645 11.4038L19.4039 10.3431Z" fill="currentColor"/></g></svg></span><span class="island-ic ic-dark"><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M24 21.5C27.0376 21.5 29.5 19.0376 29.5 16C29.5 13.7693 28.172 11.8487 26.2634 10.9859C26.5758 11.6763 26.75 12.443 26.75 13.25C26.75 16.2876 24.2876 18.75 21.25 18.75C20.443 18.75 19.6763 18.5758 18.9859 18.2635C19.8487 20.172 21.7693 21.5 24 21.5ZM17.0446 16.7948C17.4393 20.2866 20.4028 23 24 23C27.866 23 31 19.866 31 16C31 12.4028 28.2866 9.43927 24.7948 9.04463C24.7947 9.04461 24.7946 9.0446 24.7944 9.04458C24.7852 9.04355 24.7761 9.04253 24.7669 9.04152C24.515 9.01408 24.2591 9 24 9C23.4727 9 23.4101 9.84189 23.8146 10.1802C23.8781 10.2333 23.9399 10.2884 24 10.3452C24.0496 10.3922 24.0979 10.4404 24.1451 10.4898C24.149 10.4939 24.1529 10.4981 24.1568 10.5022C24.8345 11.2188 25.25 12.1859 25.25 13.25C25.25 15.4591 23.4591 17.25 21.25 17.25C20.1859 17.25 19.2188 16.8345 18.5022 16.1568C18.4981 16.1529 18.4939 16.149 18.4898 16.1451C18.4404 16.0979 18.3922 16.0496 18.3452 16C18.2884 15.9399 18.2333 15.8781 18.1802 15.8146C17.8419 15.4101 17 15.4727 17 16C17 16.2591 17.0141 16.515 17.0415 16.7669C17.0425 16.7761 17.0435 16.7852 17.0446 16.7944C17.0446 16.7946 17.0446 16.7947 17.0446 16.7948Z" fill="currentColor"/></g></svg></span>
+    </button>
+  </div>
+  <div class="statusbar"><span class="time">9:41</span><span class="icons">
+    <svg width="18" height="12" viewBox="0 0 18 12" fill="var(--foreground-base)"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="var(--foreground-base)" stroke-width="1.5" stroke-linecap="round"><path d="M1 4 C4 1 12 1 15 4 M3.5 6.5 C6 4.3 10 4.3 12.5 6.5 M6 9 C7.2 8 8.8 8 10 9"/></svg>
+    <svg width="26" height="12" viewBox="0 0 26 12" fill="none"><rect x="0.5" y="0.5" width="22" height="11" rx="3" stroke="var(--foreground-base)" opacity="0.4"/><rect x="2" y="2" width="17" height="8" rx="1.5" fill="var(--foreground-base)"/><rect x="24" y="4" width="2" height="4" rx="1" fill="var(--foreground-base)" opacity="0.4"/></svg>
+  </span></div>
   <div class="screen">
-    
-    
-    <!-- 品牌页头:ZYMIX 34 Black + 玻璃圆钮 -->
-    <div class="header-brand">
-      <div class="t-scene-header" style="color:var(--foreground-base);text-transform:uppercase">Me</div>
-      <button class="btn btn-glass-42 glass" style="border-radius:var(--radius-round);border:none;cursor:pointer;color:var(--foreground-base)">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M10 7 v3 l2 2"/></svg>
-      </button>
-    </div>
-    <!-- 资料区 -->
-    <div style="display:flex;align-items:center;gap:16px;padding:12px 16px">
-      <div class="avatar" style="width:72px;height:72px;background:linear-gradient(135deg,var(--accent-soft),var(--accent-base))"></div>
-      <div style="flex:1">
-        <div class="t-title-sm" style="color:var(--foreground-base)">Wen Chang</div>
-        <div class="t-body-md" style="color:var(--foreground-muted)">@wenchang · ZYMIX ID 100244</div>
+
+    <!-- NavBar Brand -->
+    <div class="header-brand"><div class="t-scene-header" style="color:var(--foreground-base)">Me</div></div>
+
+    <!-- 资料区(头像:背景图 + skeleton 兜底色块) -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:2px 16px 16px">
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="avatar" role="img" aria-label="Charlotte" style="width:68px;height:68px;border-radius:var(--radius-3xl);background-image:url(https://i.pravatar.cc/136?img=5)"></div>
+        <div>
+          <div class="t-title-sm" style="color:var(--foreground-base)">Charlotte</div>
+          <div class="t-body-md" style="color:var(--foreground-base)">@Charlo37</div>
+        </div>
       </div>
-      <svg width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="var(--foreground-subtle)" stroke-width="2" stroke-linecap="round"><path d="M1 1 l6 6 -6 6"/></svg>
-    </div>
-    <!-- 统计栏:数字角色 + 强分隔竖线 -->
-    <div style="display:flex;padding:12px 16px;align-items:center">
-      <div style="flex:1;text-align:center"><div class="t-number-base" style="color:var(--foreground-base)">128</div><div class="t-body-xs" style="color:var(--foreground-muted)">Friends</div></div>
-      <div style="width:1px;height:24px;background:var(--separator-strong)"></div>
-      <div style="flex:1;text-align:center"><div class="t-number-base" style="color:var(--foreground-base)">32</div><div class="t-body-xs" style="color:var(--foreground-muted)">Groups</div></div>
-      <div style="width:1px;height:24px;background:var(--separator-strong)"></div>
-      <div style="flex:1;text-align:center"><div class="t-number-base" style="color:var(--foreground-base)">6</div><div class="t-body-xs" style="color:var(--foreground-muted)">Moments</div></div>
-    </div>
-    <!-- 列表卡片:surface 底 -->
-    <div style="margin:8px 16px;background:var(--surface-base);border-radius:var(--radius-lg);overflow:hidden">
-      <div class="list-row" style="min-height:56px">
-        <span class="title" style="color:var(--foreground-base)">My wallet</span>
-        <span class="trailing">¥1,280.00</span>
-        <svg width="7" height="12" viewBox="0 0 8 14" fill="none" stroke="var(--foreground-subtle)" stroke-width="2" stroke-linecap="round"><path d="M1 1 l6 6 -6 6"/></svg>
-      </div>
-      <div style="height:0.5px;background:var(--separator-base);margin-left:16px"></div>
-      <div class="list-row" style="min-height:56px">
-        <span class="title" style="color:var(--foreground-base)">Favorites</span>
-        <svg width="7" height="12" viewBox="0 0 8 14" fill="none" stroke="var(--foreground-subtle)" stroke-width="2" stroke-linecap="round" style="margin-left:auto"><path d="M1 1 l6 6 -6 6"/></svg>
-      </div>
-      <div style="height:0.5px;background:var(--separator-base);margin-left:16px"></div>
-      <div class="list-row" style="min-height:56px">
-        <span class="title" style="color:var(--foreground-base)">Settings</span>
-        <svg width="7" height="12" viewBox="0 0 8 14" fill="none" stroke="var(--foreground-subtle)" stroke-width="2" stroke-linecap="round" style="margin-left:auto"><path d="M1 1 l6 6 -6 6"/></svg>
-      </div>
-    </div>
-    <!-- 主按钮 + 文字按钮 -->
-    <div style="margin:auto 16px 12px;display:flex;flex-direction:column;gap:8px;align-items:center">
-      <button class="btn btn-lg btn-primary" style="width:100%">Share profile</button>
-      <button class="btn btn-ghost t-button-text" style="height:44px;color:var(--danger-soft-foreground)">Log out</button>
-    </div>
-    <!-- 底部导航:玻璃 -->
-    <div style="position:relative">
-      <div class="nav-fade" style="position:absolute;top:-40px;left:0;right:0"></div>
-      <div class="nav-bar" style="padding-bottom:12px">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--foreground-subtle)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 11 L12 4 L20 11 V20 H14 V15 H10 V20 H4 Z"/></svg><span class="t-body-2xs">Home</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--foreground-subtle)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="M8 10 h8 M8 14 h5"/></svg><span class="t-body-2xs">Chats</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--foreground-base)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20 c1.5-4 6-5 8-5 s6.5 1 8 5"/></svg><span class="t-body-2xs" style="font-weight:600">Me</span></div>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--surface-secondary);display:flex;align-items:center;justify-content:center;color:var(--foreground-base)">
+        <svg class="ic" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M24.75 10.25C24.75 9.83579 24.4142 9.5 24 9.5C23.5858 9.5 23.25 9.83579 23.25 10.25V15.25H18.25C17.8358 15.25 17.5 15.5858 17.5 16C17.5 16.4142 17.8358 16.75 18.25 16.75H23.75C24.3023 16.75 24.75 16.3023 24.75 15.75V10.25ZM23.25 19C23.25 18.4477 23.6977 18 24.25 18H27C27.4142 18 27.75 18.3358 27.75 18.75C27.75 19.1642 27.4142 19.5 27 19.5H24.75V21.75C24.75 22.1642 24.4142 22.5 24 22.5C23.5858 22.5 23.25 22.1642 23.25 21.75V19ZM29 21H26.75C26.3358 21 26 21.3358 26 21.75C26 22.1642 26.3358 22.5 26.75 22.5H29.5C30.0523 22.5 30.5 22.0523 30.5 21.5V16.25C30.5 15.6977 30.0523 15.25 29.5 15.25L26.75 15.25C26.3358 15.25 26 15.5858 26 16C26 16.4142 26.3358 16.75 26.75 16.75L29 16.75V21ZM19 12.5V11H20.5V12.5H19ZM17.5 10.5C17.5 9.94772 17.9477 9.5 18.5 9.5H21C21.5523 9.5 22 9.94772 22 10.5V13C22 13.5523 21.5523 14 21 14H18.5C17.9477 14 17.5 13.5523 17.5 13V10.5ZM19 19.5V21H20.5V19.5H19ZM18.5 18C17.9477 18 17.5 18.4477 17.5 19V21.5C17.5 22.0523 17.9477 22.5 18.5 22.5H21C21.5523 22.5 22 22.0523 22 21.5V19C22 18.4477 21.5523 18 21 18H18.5ZM27.5 12.5V11H29V12.5H27.5ZM26 10.5C26 9.94772 26.4477 9.5 27 9.5H29.5C30.0523 9.5 30.5 9.94772 30.5 10.5V13C30.5 13.5523 30.0523 14 29.5 14H27C26.4477 14 26 13.5523 26 13V10.5Z" fill="currentColor"/></g></svg>
       </div>
     </div>
 
-  
+    <!-- 统计 -->
+    <div style="padding:0 16px 20px">
+      <div class="t-body-sm" style="color:var(--foreground-muted);margin-bottom:8px">5 followers · 5 following</div>
+      <div style="display:flex;align-items:center;gap:20px">
+        <div><div class="t-number" style="color:var(--foreground-base)">6</div><div class="t-body-xs" style="color:var(--foreground-base)">Karma</div></div>
+        <div style="width:1px;height:20px;background:var(--separator-strong)"></div>
+        <div><div class="t-number" style="color:var(--foreground-base)">232</div><div class="t-body-xs" style="color:var(--foreground-base)">Contributions</div></div>
+        <div style="width:1px;height:20px;background:var(--separator-strong)"></div>
+        <div><div class="t-number" style="color:var(--foreground-base)">4mo</div><div class="t-body-xs" style="color:var(--foreground-base)">account age</div></div>
+      </div>
+    </div>
+
+    <!-- 三入口卡(3D 品牌插画:真机用导出 PNG,此处 emoji 占位) -->
+    <div style="display:flex;gap:10px;padding:0 16px 20px">
+      <div class="entry"><div class="art">🎡</div><div class="t-label-xs" style="color:var(--foreground-base)">Lucky Spin</div></div>
+      <div class="entry"><div class="art">🗓️</div><div class="t-label-xs" style="color:var(--foreground-base)">Daily Check-in</div></div>
+      <div class="entry"><div class="art">🎁</div><div class="t-label-xs" style="color:var(--foreground-base)">Invite &amp; Earn</div></div>
+    </div>
+
+    <!-- Wallet(单行胶囊;图标=credit-card) -->
+    <div style="padding:0 16px 16px">
+      <div style="background:var(--surface-secondary);border-radius:var(--radius-round);display:flex;align-items:center;gap:8px;padding:10px 12px;min-height:44px;color:var(--foreground-base)">
+        <svg class="ic" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M28.5 12H19.5C18.6716 12 18 12.6716 18 13.5L30 13.5C30 12.6716 29.3284 12 28.5 12ZM18 18.5V15H30V18.5C30 19.3284 29.3284 20 28.5 20H19.5C18.6716 20 18 19.3284 18 18.5ZM19.5 10.5C17.8431 10.5 16.5 11.8431 16.5 13.5V18.5C16.5 20.1569 17.8431 21.5 19.5 21.5H28.5C30.1569 21.5 31.5 20.1569 31.5 18.5V13.5C31.5 11.8431 30.1569 10.5 28.5 10.5H19.5ZM20.25 17C19.8358 17 19.5 17.3358 19.5 17.75C19.5 18.1642 19.8358 18.5 20.25 18.5H22.75C23.1642 18.5 23.5 18.1642 23.5 17.75C23.5 17.3358 23.1642 17 22.75 17H20.25Z" fill="currentColor"/></g></svg>
+        <span class="t-scene-list cap" style="color:var(--foreground-base)">Wallet</span>
+        <svg class="ic chev" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.4697 21.0303C21.1768 20.7374 21.1768 20.2626 21.4697 19.9697L25.4393 16L21.4697 12.0303C21.1768 11.7374 21.1768 11.2626 21.4697 10.9697C21.7626 10.6768 22.2374 10.6768 22.5303 10.9697L27.0303 15.4697C27.3232 15.7626 27.3232 16.2374 27.0303 16.5303L22.5303 21.0303C22.2374 21.3232 21.7626 21.3232 21.4697 21.0303Z" fill="currentColor"/></g></svg>
+      </div>
+    </div>
+
+    <!-- 分组:The Mix / My Friends -->
+    <div style="padding:0 16px 16px">
+      <div class="grp">
+        <div class="row" style="color:var(--foreground-base)">
+          <svg class="ic" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M25.2078 20.3458C24.723 21.3463 24.2549 21.5 24 21.5C23.7451 21.5 23.277 21.3463 22.7922 20.3458C22.4199 19.5776 22.1449 18.4877 22.0431 17.1586C22.6763 17.2186 23.331 17.25 24 17.25C24.669 17.25 25.3237 17.2186 25.9569 17.1586C25.8551 18.4877 25.5801 19.5776 25.2078 20.3458ZM25.9961 15.6473C25.358 15.7142 24.6897 15.75 24 15.75C23.3103 15.75 22.642 15.7142 22.0039 15.6473C22.0412 13.9505 22.3471 12.5725 22.7922 11.6542C23.277 10.6537 23.7451 10.5 24 10.5C24.2549 10.5 24.723 10.6537 25.2078 11.6542C25.6529 12.5725 25.9588 13.9505 25.9961 15.6473ZM27.4737 16.9535C27.3885 18.4685 27.0989 19.8012 26.6384 20.8271C28.216 19.9629 29.3237 18.3479 29.4808 16.4629C28.8595 16.6617 28.1863 16.8267 27.4737 16.9535ZM29.3919 14.9095C28.8199 15.1145 28.1813 15.2886 27.4905 15.4243C27.435 13.753 27.1368 12.2833 26.6384 11.1729C28.0378 11.9395 29.0675 13.2969 29.3919 14.9095ZM20.5095 15.4243C20.565 13.753 20.8632 12.2833 21.3616 11.1729C19.9622 11.9395 18.9325 13.2969 18.6081 14.9095C19.1801 15.1145 19.8187 15.2886 20.5095 15.4243ZM18.5192 16.4629C18.6763 18.3479 19.784 19.9629 21.3616 20.8271C20.9011 19.8012 20.6115 18.4685 20.5263 16.9535C19.8137 16.8267 19.1405 16.6617 18.5192 16.4629ZM31 16C31 12.134 27.866 9 24 9C20.134 9 17 12.134 17 16C17 19.866 20.134 23 24 23C27.866 23 31 19.866 31 16Z" fill="currentColor"/></g></svg>
+          <span class="t-scene-list cap" style="color:var(--foreground-base)">The Mix</span>
+          <svg class="ic chev" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.4697 21.0303C21.1768 20.7374 21.1768 20.2626 21.4697 19.9697L25.4393 16L21.4697 12.0303C21.1768 11.7374 21.1768 11.2626 21.4697 10.9697C21.7626 10.6768 22.2374 10.6768 22.5303 10.9697L27.0303 15.4697C27.3232 15.7626 27.3232 16.2374 27.0303 16.5303L22.5303 21.0303C22.2374 21.3232 21.7626 21.3232 21.4697 21.0303Z" fill="currentColor"/></g></svg>
+        </div>
+        <div class="seg-line"></div>
+        <div class="row" style="color:var(--foreground-base)">
+          <svg class="ic" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.5 14C22.3284 14 23 13.3284 23 12.5C23 11.6716 22.3284 11 21.5 11C20.6716 11 20 11.6716 20 12.5C20 13.3284 20.6716 14 21.5 14ZM21.5 15.5C23.1569 15.5 24.5 14.1569 24.5 12.5C24.5 10.8431 23.1569 9.5 21.5 9.5C19.8431 9.5 18.5 10.8431 18.5 12.5C18.5 14.1569 19.8431 15.5 21.5 15.5ZM18.4712 18.3859C17.6942 18.9255 17.5 19.4485 17.5 19.6923C17.5 20.1384 17.8616 20.5 18.3077 20.5H24.6923C25.1384 20.5 25.5 20.1384 25.5 19.6923C25.5 19.4485 25.3058 18.9255 24.5288 18.3859C23.7925 17.8746 22.7183 17.5 21.5 17.5C20.2817 17.5 19.2075 17.8746 18.4712 18.3859ZM16 19.6923C16 17.8462 18.475 16 21.5 16C22.6809 16 23.778 16.2813 24.6767 16.7342C25.4501 16.2858 26.4333 16 27.5 16C29.975 16 32 17.5385 32 19.0769C32 20.139 31.139 21 30.0769 21H26.594C26.1778 21.604 25.4813 22 24.6923 22H18.3077C17.0332 22 16 20.9668 16 19.6923ZM26.9911 19.5H30.0769C30.3106 19.5 30.5 19.3106 30.5 19.0769C30.5 18.9743 30.4039 18.6048 29.8119 18.1861C29.2575 17.794 28.437 17.5 27.5 17.5C26.9828 17.5 26.5012 17.5895 26.0802 17.7357C26.6064 18.2701 26.9342 18.8815 26.9911 19.5ZM28.5 13C28.5 13.5523 28.0523 14 27.5 14C26.9477 14 26.5 13.5523 26.5 13C26.5 12.4477 26.9477 12 27.5 12C28.0523 12 28.5 12.4477 28.5 13ZM30 13C30 14.3807 28.8807 15.5 27.5 15.5C26.1193 15.5 25 14.3807 25 13C25 11.6193 26.1193 10.5 27.5 10.5C28.8807 10.5 30 11.6193 30 13Z" fill="currentColor"/></g></svg>
+          <span class="t-scene-list cap" style="color:var(--foreground-base)">My Friends</span>
+          <span style="display:flex;align-items:center;margin-right:6px">
+            <span class="avatar" style="width:26px;height:26px;border-radius:var(--radius-sm);background-image:url(https://i.pravatar.cc/52?img=32)"></span>
+            <span class="avatar" style="width:26px;height:26px;border-radius:var(--radius-sm);margin-left:-6px;box-shadow:0 0 0 1px var(--surface-secondary);background-image:url(https://i.pravatar.cc/52?img=15)"></span>
+            <span class="avatar" style="width:26px;height:26px;border-radius:var(--radius-sm);margin-left:-6px;box-shadow:0 0 0 1px var(--surface-secondary);background-image:url(https://i.pravatar.cc/52?img=48)"></span>
+          </span>
+          <svg class="ic chev" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.4697 21.0303C21.1768 20.7374 21.1768 20.2626 21.4697 19.9697L25.4393 16L21.4697 12.0303C21.1768 11.7374 21.1768 11.2626 21.4697 10.9697C21.7626 10.6768 22.2374 10.6768 22.5303 10.9697L27.0303 15.4697C27.3232 15.7626 27.3232 16.2374 27.0303 16.5303L22.5303 21.0303C22.2374 21.3232 21.7626 21.3232 21.4697 21.0303Z" fill="currentColor"/></g></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 分组:Account / Privacy -->
+    <div style="padding:0 16px 16px">
+      <div class="grp">
+        <div class="row" style="color:var(--foreground-base)">
+          <svg class="ic" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M23 14.5C24.1046 14.5 25 13.6046 25 12.5C25 11.3954 24.1046 10.5 23 10.5C21.8954 10.5 21 11.3954 21 12.5C21 13.6046 21.8954 14.5 23 14.5ZM23 16C24.933 16 26.5 14.433 26.5 12.5C26.5 10.567 24.933 9 23 9C21.067 9 19.5 10.567 19.5 12.5C19.5 14.433 21.067 16 23 16ZM22.5 17.2986C22.5 16.8696 22.1409 16.5249 21.7149 16.5749C18.4731 16.9557 16 18.7279 16 20.5C16 21.8807 17.1193 23 18.5 23H21.75C22.1642 23 22.5 22.6642 22.5 22.25C22.5 21.8358 22.1642 21.5 21.75 21.5H18.5C17.9477 21.5 17.5 21.0523 17.5 20.5C17.5 20.2954 17.7203 19.6911 18.8196 19.0412C19.5846 18.589 20.612 18.2283 21.7886 18.0771C22.1857 18.026 22.5 17.699 22.5 17.2986ZM30.5025 19.189C29.5246 18.9381 28.8445 18.0425 28.8425 17.0506L28.162 16.7954C27.5367 17.6557 26.398 17.9793 25.4153 17.6114L25.0092 18.18C25.5783 18.9676 25.5783 20.0496 25.0092 20.8372L25.4153 21.4058C26.398 21.0379 27.5367 21.3615 28.162 22.2218L28.8425 21.9666C28.8445 20.9747 29.5246 20.0791 30.5025 19.8282V19.189ZM30.39 16.7925C30.5287 16.4228 30.3413 16.0107 29.9716 15.872L28.1739 15.1979C27.7266 15.0301 27.2279 15.2568 27.0602 15.7041C26.8605 16.2366 26.2026 16.4295 25.7398 16.0989C25.3454 15.8172 24.7913 15.9043 24.5096 16.2988L23.4337 17.805C23.1861 18.1516 23.2664 18.6333 23.613 18.8809C24.0437 19.1886 24.0437 19.8286 23.613 20.1362C23.2664 20.3838 23.1861 20.8656 23.4337 21.2122L24.5096 22.7184C24.7913 23.1129 25.3454 23.2 25.7398 22.9183C26.2026 22.5877 26.8605 22.7806 27.0602 23.3131C27.2279 23.7604 27.7266 23.9871 28.1739 23.8193L29.9716 23.1452C30.3413 23.0065 30.5287 22.5944 30.39 22.2247C30.2147 21.7572 30.5603 21.2586 31.0595 21.2586H31.1942C31.6406 21.2586 32.0025 20.8967 32.0025 20.4503V18.5669C32.0025 18.1205 31.6406 17.7586 31.1942 17.7586H31.0595C30.5603 17.7586 30.2147 17.26 30.39 16.7925ZM28.557 19.4516C28.557 20.0325 28.0862 20.5033 27.5054 20.5033C26.9246 20.5033 26.4537 20.0325 26.4537 19.4516C26.4537 18.8708 26.9246 18.4 27.5054 18.4C28.0862 18.4 28.557 18.8708 28.557 19.4516Z" fill="currentColor"/></g></svg>
+          <span class="t-scene-list cap" style="color:var(--foreground-base)">Account</span>
+          <svg class="ic chev" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.4697 21.0303C21.1768 20.7374 21.1768 20.2626 21.4697 19.9697L25.4393 16L21.4697 12.0303C21.1768 11.7374 21.1768 11.2626 21.4697 10.9697C21.7626 10.6768 22.2374 10.6768 22.5303 10.9697L27.0303 15.4697C27.3232 15.7626 27.3232 16.2374 27.0303 16.5303L22.5303 21.0303C22.2374 21.3232 21.7626 21.3232 21.4697 21.0303Z" fill="currentColor"/></g></svg>
+        </div>
+        <div class="seg-line"></div>
+        <div class="row" style="color:var(--foreground-base)">
+          <svg class="ic" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.5 14V13C26.5 11.6193 25.3807 10.5 24 10.5C22.6193 10.5 21.5 11.6193 21.5 13V14H26.5ZM20 13V14C18.3431 14 17 15.3431 17 17V20C17 21.6569 18.3431 23 20 23H28C29.6569 23 31 21.6569 31 20V17C31 15.3431 29.6569 14 28 14V13C28 10.7909 26.2091 9 24 9C21.7909 9 20 10.7909 20 13ZM26.5 15.5H28C28.8284 15.5 29.5 16.1716 29.5 17V20C29.5 20.8284 28.8284 21.5 28 21.5H20C19.1716 21.5 18.5 20.8284 18.5 20V17C18.5 16.1716 19.1716 15.5 20 15.5H21.5H26.5ZM24.75 17.5C24.75 17.0858 24.4142 16.75 24 16.75C23.5858 16.75 23.25 17.0858 23.25 17.5V19.5C23.25 19.9142 23.5858 20.25 24 20.25C24.4142 20.25 24.75 19.9142 24.75 19.5V17.5Z" fill="currentColor"/></g></svg>
+          <span class="t-scene-list cap" style="color:var(--foreground-base)">Privacy</span>
+          <svg class="ic chev" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.4697 21.0303C21.1768 20.7374 21.1768 20.2626 21.4697 19.9697L25.4393 16L21.4697 12.0303C21.1768 11.7374 21.1768 11.2626 21.4697 10.9697C21.7626 10.6768 22.2374 10.6768 22.5303 10.9697L27.0303 15.4697C27.3232 15.7626 27.3232 16.2374 27.0303 16.5303L22.5303 21.0303C22.2374 21.3232 21.7626 21.3232 21.4697 21.0303Z" fill="currentColor"/></g></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- TabBar(玻璃胶囊 + 内置 Scroll Edge;图标=zymix 图标库,Me 激活) -->
+    <div style="position:sticky;bottom:0;margin-top:auto">
+      <div class="tabbar">
+        <div class="pill glass">
+          <div class="tab"><svg class="ic" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.68643 21.8877L9.29725 26.5578C9.27741 26.7958 9.46528 27 9.70416 27C9.80416 27 9.90069 26.9633 9.97543 26.8969L14.3943 22.969L15.5731 22.9953C15.7145 22.9984 15.8568 23 16 23C19.3896 23 22.1736 22.1192 24.0406 20.6453C25.8188 19.2416 27 17.1269 27 14C27 10.8731 25.8188 8.75844 24.0406 7.35471C22.1736 5.88083 19.3896 5 16 5C12.6104 5 9.8264 5.88083 7.95936 7.35471C6.18118 8.75844 5 10.8731 5 14C5 17.2954 6.31186 19.4849 8.29501 20.8969L9.68643 21.8877ZM11.9685 29.1391L15.5062 25.9945C15.6701 25.9982 15.8347 26 16 26C23.732 26 30 22 30 14C30 6 23.732 2 16 2C8.26801 2 2 6 2 14C2 18.234 3.75571 21.3476 6.55494 23.3407L6.30761 26.3086C6.14202 28.2958 7.71016 30 9.70416 30C10.5389 30 11.3446 29.6937 11.9685 29.1391Z" fill="currentColor"/></svg></div>
+          <div class="tab"><svg class="ic" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 27C19.2595 27 22.1879 25.5823 24.2021 23.3299C22.0699 22.7584 20.5 20.8125 20.5 18.5V18C20.5 17.1716 19.8284 16.5 19 16.5C16.5147 16.5 14.5 14.4853 14.5 12C14.5 9.51472 16.5147 7.5 19 7.5C19.8284 7.5 20.5 6.82843 20.5 6V5.95958C19.1264 5.34299 17.6032 5 16 5C11.1358 5 7.00904 8.1572 5.55713 12.5341C7.77953 12.8086 9.5 14.7034 9.5 17C9.5 17.8284 10.1716 18.5 11 18.5C13.4853 18.5 15.5 20.5147 15.5 23C15.5 24.547 14.7193 25.9118 13.5304 26.7217C14.3243 26.9038 15.1509 27 16 27ZM9.01738 24.5H11C11.8284 24.5 12.5 23.8284 12.5 23C12.5 22.1716 11.8284 21.5 11 21.5C8.51472 21.5 6.5 19.4853 6.5 17C6.5 16.1753 5.83445 15.506 5.01116 15.5C5.00375 15.6658 5 15.8324 5 16C5 19.424 6.56438 22.4826 9.01738 24.5ZM25.5 20.5H26.0404C26.657 19.1264 27 17.6032 27 16C27 12.6693 25.5197 9.68433 23.1811 7.66715C22.5186 9.32707 20.8963 10.5 19 10.5C18.1716 10.5 17.5 11.1716 17.5 12C17.5 12.8284 18.1716 13.5 19 13.5C21.4853 13.5 23.5 15.5147 23.5 18V18.5C23.5 19.6046 24.3954 20.5 25.5 20.5ZM16 30C23.732 30 30 23.732 30 16C30 8.26801 23.732 2 16 2C8.26801 2 2 8.26801 2 16C2 23.732 8.26801 30 16 30Z" fill="currentColor"/></svg></div>
+          <div class="tab"><svg class="ic" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M27 16C27 22.0751 22.0751 27 16 27C9.92487 27 5 22.0751 5 16C5 9.92487 9.92487 5 16 5C22.0751 5 27 9.92487 27 16ZM30 16C30 23.732 23.732 30 16 30C8.26801 30 2 23.732 2 16C2 8.26801 8.26801 2 16 2C23.732 2 30 8.26801 30 16ZM14.5 22.0622L22 17.732C23.3333 16.9622 23.3333 15.0377 22 14.2679L14.5 9.93782C13.1667 9.16802 11.5 10.1303 11.5 11.6699L11.5 20.3301C11.5 21.8697 13.1667 22.832 14.5 22.0622Z" fill="currentColor"/></svg></div>
+          <div class="tab"><svg class="ic" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 6H11C11.5523 6 12 6.44772 12 7V11C12 11.5523 11.5523 12 11 12H7C6.44772 12 6 11.5523 6 11V7C6 6.44772 6.44772 6 7 6ZM3 7C3 4.79086 4.79086 3 7 3H11C13.2091 3 15 4.79086 15 7V11C15 13.2091 13.2091 15 11 15H7C4.79086 15 3 13.2091 3 11V7ZM21 6H25C25.5523 6 26 6.44772 26 7V11C26 11.5523 25.5523 12 25 12H21C20.4477 12 20 11.5523 20 11V7C20 6.44772 20.4477 6 21 6ZM17 7C17 4.79086 18.7909 3 21 3H25C27.2091 3 29 4.79086 29 7V11C29 13.2091 27.2091 15 25 15H21C18.7909 15 17 13.2091 17 11V7ZM11 20H7C6.44772 20 6 20.4477 6 21V25C6 25.5523 6.44772 26 7 26H11C11.5523 26 12 25.5523 12 25V21C12 20.4477 11.5523 20 11 20ZM7 17C4.79086 17 3 18.7909 3 21V25C3 27.2091 4.79086 29 7 29H11C13.2091 29 15 27.2091 15 25V21C15 18.7909 13.2091 17 11 17H7ZM21 20H25C25.5523 20 26 20.4477 26 21V25C26 25.5523 25.5523 26 25 26H21C20.4477 26 20 25.5523 20 25V21C20 20.4477 20.4477 20 21 20ZM17 21C17 18.7909 18.7909 17 21 17H25C27.2091 17 29 18.7909 29 21V25C29 27.2091 27.2091 29 25 29H21C18.7909 29 17 27.2091 17 25V21Z" fill="currentColor"/></svg></div>
+          <div class="tab active"><svg class="ic" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M20 9C20 11.2091 18.2091 13 16 13C13.7909 13 12 11.2091 12 9C12 6.79086 13.7909 5 16 5C18.2091 5 20 6.79086 20 9ZM23 9C23 12.866 19.866 16 16 16C12.134 16 9 12.866 9 9C9 5.13401 12.134 2 16 2C19.866 2 23 5.13401 23 9ZM5 25C5 24.5909 5.44054 23.3822 7.63912 22.0825C9.67505 20.879 12.6396 20 16 20C19.3604 20 22.3249 20.879 24.3609 22.0825C26.5595 23.3822 27 24.5909 27 25C27 26.1046 26.1046 27 25 27H7C5.89543 27 5 26.1046 5 25ZM16 17C8.3 17 2 21 2 25C2 27.7614 4.23858 30 7 30H25C27.7614 30 30 27.7614 30 25C30 21 23.7 17 16 17Z" fill="currentColor"/></svg></div>
+        </div>
+      </div>
+    </div>
+
   </div>
   <div class="home-indicator"></div>
 </div>
+<script>
+(function(){
+  var b=document.getElementById('islandTheme'),lab=document.getElementById('islandLabel'),root=document.documentElement;
+  if(!b) return;
+  var modes=['','light','dark'],names={'':'系统',light:'浅色',dark:'深色'},i=0;
+  b.addEventListener('click',function(e){
+    e.stopPropagation();
+    i=(i+1)%3; var m=modes[i];
+    root.classList.remove('lite'); root.removeAttribute('data-theme');
+    if(m==='light'){ root.classList.add('lite'); root.setAttribute('data-theme','light'); }
+    else if(m==='dark'){ root.setAttribute('data-theme','dark'); }
+    b.setAttribute('data-mode',m); lab.textContent=names[m];
+    b.setAttribute('aria-label','外观:'+(m===''?'跟随系统':names[m]));
+  });
+})();
+</script>
 </body>
 </html>

@@ -42,6 +42,10 @@
 - **页头**:Tab 双标题(选中 24 Black/未选中 18 Bold muted);右侧玻璃圆钮=编辑笔
 - **Scroll Edge Effect - Soft(吸顶渐隐层)**:sticky 容器 top:0,`::before` 铺满容器宽、**高 108px**,从顶 `linear-gradient(bg 45%→transparent)` + `blur(8px)` + mask 渐隐,z-index:-1 垫页头下、pointer-events:none;内容上滑被顶部渐隐模糊遮住
 
+## 2026-07-09 · IM 一对一聊天页
+- **气泡圆角统一 radius-2xl(22px),禁止用 `.pill`(全圆)**:pill 让单行短消息变成全椭圆、多行又回到 22px,同一串对话圆角不一致很扎眼。所有聊天气泡固定 22px,不管一行还是多行。(`.pill` 只留给非气泡的独立胶囊标签,别套到 bubble 上)
+- **底部输入条/固定底栏必须留安全距离**:底栏下方垫 `height:max(24px, env(safe-area-inset-bottom))`——浏览器/预览得 24px,真机取系统安全区(约 34px,**用 max 不是相加**,相加真机会太厚)。否则底栏贴屏幕底、和 home indicator/手势条打架。顶部同理 `env(safe-area-inset-top)`。
+
 ## 2026-07-09 · 通用
 - **图标一律用 ZymixUI 图标库**(内置 icons-bundled.json 按名取,别手绘);内置无的走 CDN;图标从 Figma Icons 页导出(展示单元 48×32 紫底,需清洗:去紫底 rect、translate(-16,-8) 裁到 16×16、fill→currentColor)
 - 玻璃圆钮图标随页面语义变:聊天页=返回/更多,动态页=编辑,Me页=时钟/设置
@@ -58,6 +62,22 @@
 - **图片必须有兜底底色**(铁律):所有 <img> 或媒体容器加 `background:var(--surface-secondary)`。否则图慢/被墙/失败时,透明卡+白字压白底=整块隐形(事件卡就这么消失过)。图上叠字的沉浸卡尤其要给容器兜底
 - **入口卡图标带徽底**:重要入口(Wallet 等)图标放 40px accent-soft 圆形徽底(圆底 accent-soft + 图标 accent-soft-foreground),比裸图标更醒目,符合原型意图
 - **底部导航激活态用胶囊**:当前 tab 不只是变色,用 accent 胶囊(accent-base 底+accent-foreground 字/图 + 标签),其余竖排 subtle;对齐 iOS 社交产品惯例
+
+## 2026-07-14 · Discover 改版 + 四模板统一(多轮返工,优先内化)
+- **英文铁律**:输出页一切**可见**文案永远英文(面向英国市场)——标题/正文/占位符/`aria-label`/按钮/toast/状态标签/JS 展示字符串全英文;示例地点人名用伦敦语境(Shoreditch、Victoria Park)。代码注释可留中文,渲染出来一个中文都不能有。生成后必查:去注释后 grep `[一-鿿]` 应为空。
+- **配图铁律**:一切"照片/配图"(hero、卡片图、缩略图、封面)= 免版权图 `picsum.photos/seed/<种子>/W/H`(每图不同种子)+ 容器 `background-image` + `--skeleton-base` 兜底底色。**严禁手绘 SVG 线条画/插画当配图**(之前 hero 用线条画被打回)。图标归图标库,照片归 picsum,不混。
+- **头像铁律**:头像也走 `background-image` + 骨架底色,**别用裸 `<img>`**(加载失败=空白,预览器/被墙都挂)。圆头像 `--radius-round`;`--radius-md` 那种圆角方块不是"圆"。
+- **图标行/金刚区尺寸要拉齐**:库图标字形在 16 格里视觉大小不一(有的撑满 16、有的才 13),同排直接放会一大一小="没对齐"。按最大边把每个 svg 尺寸归一(如最大边→~23px 渲染),别都写死同一 width。
+- **图标行多行标签会偏左**:标签换行(如 "Board Games")在 flex 列里默认左对齐,看着偏。标签加 `width:100%;text-align:center`。
+- **灵动岛投影别被盖**:岛 `z-index` 要够高(用 **60**),盖过页面里的 sticky 顶栏(如 `.scroll-edge-top` z-50),否则药丸投影被遮挡。
+- **灵动岛两型(按角色)**:A 型=有多状态的页(展开选 状态胶囊)+ 外观图标叠状态标签右侧;B 型=无状态静态页(药丸本身即外观开关,点击循环)。**外观切换统一=单图标循环** 系统`display`/浅`sun`/深`dark→moon`(全取自图标库)。强制浅=JS 同时加 `.lite`+`data-theme="light"`,强制深=`data-theme="dark"`,系统=都清空;**静态 HTML 里绝不写死 data-theme 属性**(只在 CSS 选择器和运行时 JS 用),否则合规判双模式 FAIL。
+- **气泡 `.pill` 只给超短消息**(如 "OK"):多行长句用常规 `--radius-2xl`,别整句套全圆角。
+- **NavBar 42 玻璃圆钮要显式上色**:`.btn-glass-42` 记得 `color:var(--foreground-base)`,否则图标靠继承、某些主题下发虚/取错色。
+- **标题别重复**:NavBar 品牌标题已经是页名(如 "Discover"),别紧跟着再来一个同名 30px 大标题——两个大标题打架、没主次。一个页面一个主标题。
+- **tap 高亮**:所有可点元件(尤其岛内按钮)加 `-webkit-tap-highlight-color:transparent`,免移动端点击闪灰块。
+- **骨架标配每页必带**:移动端满屏 `@media(max-width:440px)`、隐藏原生滚动条 `.screen{scrollbar-width:none}`+`::-webkit-scrollbar{display:none}`、需要滚动反馈用悬浮 `.scroll-ind`。base 骨架已内置。
+- **全量图标库 721 个在 `dsv2/zymix-icons/svgs/`**,`icons-bundled.json` 只是常用子集(~69)。库里"没有"先去全量库找(sun/moon/display/lock/heart/comment/share/paper-plane 都有),取到后补进 bundled;确实没有才回报缺失,**绝不手绘**。
+- **编辑陷阱(结构性改动必查配平)**:用正则替换带嵌套 `</div>` 的整块(如换灵动岛 markup),非贪婪很容易匹配到里层的 `</div></div>` 而**漏掉一个闭合标签**,留下孤儿 `</div>` 提前关掉 `.phone`,导致内容整块跑到手机框外。任何结构性替换后,立刻核对 body 内 `<div` 与 `</div>` 数量相等。
 
 ## 2026-07-09 · Me 个人主页(异形快捷卡 + 统计)
 - **快捷卡是"异形",不是方卡**:灰圆角矩形(surface-secondary,radius-md)只占卡下部(111×88 卡里灰块 106×66、离顶 22px),**3D 图标探出在灰块上方**(72px 图标 top:0,盖过灰块顶缘),标签 Xs(12) 在灰块底部。做法:卡 position:relative;灰块 absolute top:22;图标 absolute top:0 居中;标签 absolute bottom。别做成"方卡里居中图标+文字"

@@ -1,6 +1,6 @@
 ---
 name: zymix-ui-prototype
-description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 单文件,Light/Dark 双模式,内置 Button/Toast/玻璃材质组件层与合规检查)。凡是用户要画界面、出原型、做 mockup、设计某个页面/弹窗/组件效果图,或提到 ZYMIX/ZymixUI/设计规范/设计系统相关的界面产出时,务必使用本技能——哪怕用户没说"原型"二字,只要产出物是一个界面的样子,就用它。不用它生成的界面必然偏离设计规范。
+description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 单文件,单页面输出、深浅色跟随系统自动切换,内置 Button/Toast/玻璃材质组件层与合规检查)。凡是用户要画界面、出原型、做 mockup、设计某个页面/弹窗/组件效果图,或提到 ZYMIX/ZymixUI/设计规范/设计系统相关的界面产出时,务必使用本技能——哪怕用户没说"原型"二字,只要产出物是一个界面的样子,就用它。不用它生成的界面必然偏离设计规范。
 ---
 
 # ZymixUI 界面原型生成(一期:tokens + Button/Toast/Materials)
@@ -26,10 +26,13 @@ description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 
    - `references/tokens.css` — 全部变量(颜色 Light/Dark、圆角、尺寸、字号)
    - `references/components.css` — 组件层:按钮 7 变体×3 尺寸、Toast、玻璃材质 .glass、导航、气泡、列表(注释即文档)
    - `references/color-rules.md` — 用色铁律;`references/typography.md` — 文字角色表
+   - `references/motion.md` — **动效规范**(平台中立 token + Web/iOS 双映射):要不要动、缓动、时长、弹簧、按压/入场/stagger、reduced-motion。凡做交互/过渡先读它;时长用 `--duration-*`、缓动用 `--ease-*`,别写魔法数。动效值源 `tokens/motion.json`,同时服务真机(含 iOS/SwiftUI),不止 HTML。
+   - `references/craft.md` — **工艺层(反 AI 味)**:把"高级/克制"翻成可执行规则 + 反面;合规查"对不对",craft 查"平庸不平庸"(禁渐变铺底/彩虹圈/等大白卡墙、accent 预算制、真实图片位、留白节奏)。**含多状态页面用「灵动岛切换器」单页演示的约定**(除非用户要求铺开多页)。
+   - `references/spec.md` — **功能状态声明**:一页除主流程外必须定义的空/加载/失败/权限/成功反馈等状态(附四页型矩阵 + 阻断项)。有多状态的页面先按它过一遍,缺阻断项=没做完。
    - 布局惯例见 `references/patterns.md`
 3. **组装页面**:tokens.css + components.css 全文内嵌到 assets/template.html 骨架;**只生成一个页面(单台手机),画布基准 375×812(设计稿尺寸)**——手机上打开即全屏预览,桌面浏览器自动居中带壳;深浅色跟随系统(prefers-color-scheme),不要输出两份内容;用户明确要强制某模式时才给 .phone 加 data-theme。
 4. **跑合规检查(必须)**:`python3 scripts/check_compliance.py <生成的.html>`,**全部 PASS 才能交付**;FAIL 就按报错修正后重跑。
-5. **配图**:头像用 `https://i.pravatar.cc/{尺寸}?img={1-70}`,通用图用 `https://picsum.photos/seed/{种子}/{w}/{h}`(每图不同种子),弃用 loremflickr。**所有 <img>/媒体容器必须加品牌渐变或 `surface-secondary` 兜底底色 + `onerror` 隐藏**,图挂了也不留空。参见 scripts/pick_images.py。
+5. **配图**:头像用 `https://i.pravatar.cc/{尺寸}?img={1-70}`,通用图用 `https://picsum.photos/seed/{种子}/{w}/{h}`(每图不同种子),弃用 loremflickr。**占位铁律**:每个图位必须留**兜底色块**(`--skeleton-base` / `--surface-secondary`)表达"此处有图"——首选用容器 `background-image` + 底色(图加载不出时自动露底色,预览器/离线都有占位);若用 `<img>`,`onerror` 只清 `src` 保留容器底色,**严禁 `visibility:hidden`/`display:none` 把整块藏没**(图挂了也不能变空白)。参见 scripts/pick_images.py。
 6. 交付单个自包含 .html。
 
 ## 组件使用规则
@@ -43,11 +46,19 @@ description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 
 
 ## 硬规则(违反=不合格,checker 会拦)
 
+- **单页面铁律**:一个 HTML 只输出**一台手机(一个 `.phone`)**。深浅色靠 `prefers-color-scheme` 跟随系统自动切换——**绝不并排画"浅色一台+深色一台"两份**,也不要在同一文件里同时用 `data-theme="light"` 和 `data-theme="dark"` 造双份。要给用户看深色,让他切系统外观或口头说"锁定深色"(那时才给唯一的 `.phone` 加 `data-theme="dark"`)。checker 检测到多个 `.phone` 或双 data-theme 直接 FAIL。
 - 颜色一律 `var(--xxx)`,禁止裸 hex/裸 rgba
-- 字号只能是 36/34/30/24/20/18/17/16/15/14/13/12/11;字重只有 400/600/900(场景 Tab 700)
+- 字号只能是 36/34/30/24/20/18/17/16/15/14/13/12/11/10(10=Body/2xs,行高 12,TabBar 底部文字等极小字专用;一般不用);字重只有 400/600/900(场景 Tab 700)
 - 圆角用 `var(--radius-*)`,不写硬值
 - 分隔线 0.5px `var(--separator-base)`;强分隔 1px `var(--separator-strong)`
 - Dark 模式必须同时正确——只用语义变量自然双模(跟随系统切换,交付前脑内过一遍深色:黑底黑字/白底白字都是错)
+- **动效**(详见 motion.md):时长用 `--duration-*`、缓动用 `--ease-*`;禁 `transition:all`、禁 UI 用 `ease-in`;只动 transform/opacity;UI 过渡 ≤300ms;禁从 `scale(0)` 入场(用 scale(0.95)+opacity);高频/键盘操作不加动画;加 `prefers-reduced-motion` 兜底。checker 会拦 transition:all 与 ease-in。
+- **TabBar(底部导航)**:玻璃胶囊 `.tabbar > .pill.glass`,`.tab` 等分,激活位加 `.active`(=accent/soft-subtle 底 + accent 图标),**有且只有一个激活位**;五 tab Chat/Mix/Video/Discover/Me;图标槽 32/字形 24;底部模糊**已内置** `.tabbar::before`(等效 Figma Show Scroll Edge,`.no-edge` 可关),勿再叠任何渐变层;旧 `.nav-bar`(accent 底白图)与 `.nav-fade`(线性渐变)均已删除作废。
+- **NavBar(页头)**:用 `.header-brand`/`.header-tabs`/`.header-nav`/`.header-chat` 四变体;圆钮一律 `.btn-glass-42 .glass`(Button-Liquid-Glass-Symbol 42),禁手绘;**一级页页头不放返回按钮**;Nav-Center 标题绝对居中,不受右侧动作显隐影响。
+- **组件宽度**:一律「左右边距 + 拉伸」,禁写死 343/360 等画布衍生固定宽(基准规则见 patterns.md)。
+- **图标铁律**:**只用 ZymixUI 图标库**——内置 `icons-bundled.json` 按名内联,库里没有的走 CDN `.zi` mask;**严禁手绘/自造任何图标 SVG**(几何拼凑也算),仅状态栏信号/WiFi/电池等系统 chrome 例外。库里无 wallet→用 credit-card;3D 彩色品牌插画(转盘/礼包等)不在库,用导出的 PNG,不用手绘。
+- **配图铁律**:一切"配图/照片"(hero、卡片图、缩略图、封面)都用**免版权图**(`picsum.photos` 每图不同种子 + 容器 `background-image` + `--skeleton-base` 兜底),**严禁用手绘 SVG 插画/线条画当配图**。图标归图标库,照片归 picsum,两者不混。
+- **英文铁律**:**输出页面的一切可见文案一律英文**(面向英国市场)——标题、正文、占位符、按钮、`aria-label`、toast、状态标签、JS 里参与展示的字符串全部英文;示例地点/人名用英国/伦敦语境(如 Shoreditch、Victoria Park)。代码注释可留中文,但**渲染出来的一个中文字都不能有**。
 
 ## 图标库(CDN)
 

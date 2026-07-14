@@ -60,8 +60,12 @@
 | separator/base | `rgba(0,0,0,.10)` | `rgba(255,255,255,.10)` | 常规分隔线（0.5px） |
 | separator/strong | `rgba(0,0,0,.40)` | `rgba(255,255,255,.40)` | 强分隔（1px，统计分栏竖线） |
 
-### 场景专用（feature/im · 聊天）
+### 场景专用（feature · 聊天 / 钱包）
 好友气泡 `#E1FFBF`/暗 `#2E4212`；非好友气泡 `#C9FAFF`/暗 `#123C42`；已读 好友 `#58C138`、非好友 `#00BAD2`；非好友 Add 按钮 `#26D9F0`。气泡圆角 22px。
+
+| 角色 | Light | Dark | 用途 |
+|---|---|---|---|
+| feature/wallet/unverified | `#FD7C02` | `#F79E68` | 钱包/资产「未验证 Unverified」状态色（橙）。**仅钱包/资产场景**，不参与通用状态色 |
 
 ---
 
@@ -104,11 +108,11 @@
 ### 输入框 Input
 底 surface/base 或 surface/secondary；占位 foreground/placeholder；文字 Field 角色（16/24）；圆角 md~lg。
 
-### 页头 Header
-① 品牌页头：大标题（Scene 34 Black）+ 右侧 42px 玻璃圆钮。② 导航页头：居中标题（17 Semibold）+ 左返回（42px 玻璃圆钮）。
+### 页头 NavBar（透明底 375×58，内容行 42，从状态栏下沿拼页；4 变体）
+① Brand：大标题（Scene 34 Black）+ 可选右侧 42px 玻璃圆钮。② Brand-Tabs：选中 24 Black + 未选中 18 Bold muted，间距 20。③ Nav-Center：左返回 42 + 绝对居中标题 17 Semibold + 右侧 42 常驻占位（保居中，不受动作显隐影响）。④ Nav-Chat：返回 + 头像 36（兜底 surface/secondary）+ 昵称 17 SB + 副标题 13 muted + 右侧 1–2 个 42 圆钮。圆钮一律 Button-Liquid-Glass-Symbol(42)，禁手绘；一级页页头不放返回按钮。
 
-### 底部导航 Nav
-玻璃底（feature/nav/background + blur 20）；图标 24；激活态用 accent 胶囊（底 accent/base + 白字/图）；未激活 foreground/subtle。
+### 底部导航 TabBar
+玻璃胶囊（Liquid Glass Regular Small；高 62=4+54+4、左右边距 8、圆角 round）；五 tab Chat/Mix/Video/Discover/Me；图标槽 32/字形 24；**激活位单选互斥 = accent/soft-subtle(8%) 底 + accent/base 图标；未激活 = 透明底 + foreground/base 图标**（旧「accent 底白图 / subtle 40%」作废）；带底部文字为特殊场景（10/12，激活字色 accent）；底部模糊用 Scroll Edge Soft(Edge=Bottom)，勿手动叠层。
 
 ### 列表 List / 卡片 Card
 行高 ≥56、图标 24、标题 Body/Lg、右 chevron；组内 0.5px separator/base 左缩进；卡片 surface/base 圆角 lg(16)、无阴影（靠层级色区分）。
@@ -123,6 +127,7 @@
 - **间距刻度**（size token，px）：0 4 6 8 12 16 20 24 28 32 36 40 44 48 56 64 72 96 128。页面左右边距通常 16。
 - **圆角刻度**（radius）：none 0 · xs 6 · sm 8 · md 12 · lg 16 · xl 20 · 2xl 22 · 3xl 24 · 4xl 28 · 5xl 32 · 6xl 36 · round 9999。
 - **画布**：iPhone 375 宽；内容单列纵向滚动；卡片/组卡分区。
+- **基准规则**（2026-07-10）：尺寸均 1x 逻辑 pt，与画布无关；组件宽度一律「左右边距 + 拉伸」，**禁写死画布衍生固定宽**（Toast 343、底导 360 属遗留待治理）；375 仅协作约定，大屏走查用 402/440；玻璃按钮 48=lg 玻璃版、42=玻璃圆钮(NavBar/TabBar)。
 - **对齐**：横向按钮组三选一——固定间距靠左 `gap`、固定间距整组靠右 `flex-end+gap`、两端均分 `space-between`；勿用 space-between 凑固定间距。
 
 ---
@@ -139,6 +144,21 @@
               inset 0 -1px 1px rgba(255,255,255,.3);
   ```
 - **图上叠字**：底部黑渐变遮罩保证可读，文字用 default/white（恒白）。
+
+---
+
+## 6.5 Motion（动效 · 平台中立）
+
+> 动效 token 平台无关，同一套值映射 Web(CSS) 与 iOS(SwiftUI)。
+
+- **该不该动**：高频/键盘操作（100+次/天）永不加动画；偶发（模态/抽屉/Toast）标准动画；罕见/首次可加惊喜。每个动画都要有明确目的（反馈/空间一致/避免突兀），不为"酷"而动。
+- **缓动**：入场/退场用强 ease-out `cubic-bezier(0.23,1,0.32,1)`；屏内移动用 ease-in-out `cubic-bezier(0.77,0,0.175,1)`；抽屉用 `cubic-bezier(0.32,0.72,0,1)`。**UI 禁用 ease-in**（起步慢=迟钝）。
+- **时长**（UI 铁律 ≤300ms）：按压 120ms、下拉/tooltip 180ms、模态/抽屉 400ms（退场更快）。
+- **弹簧**（拖拽/可打断手势）：Apple 语义 `duration + bounce`，直接对应 SwiftUI `.spring(duration:bounce:)`；bounce 保守 0.1-0.3。
+- **组件**：可按压元素按下 `scale(0.97)`；禁从 `scale(0)` 入场（用 `scale(0.95)+opacity`）；弹层从触发点缩放（模态除外，居中）。
+- **性能**：只动 `transform`/`opacity`；动态 UI 用可打断的 transition，不用 keyframe；禁 `transition:all`。
+- **无障碍**：`prefers-reduced-motion` 下去掉位移、保留透明度/颜色。
+- **iOS 映射示例**：`.timingCurve(0.23,1,0.32,1, duration:0.2)`、`.spring(duration:0.5, bounce:0.2)`、`.scaleEffect(pressed ? 0.97 : 1)`。
 
 ---
 
