@@ -50,11 +50,6 @@
 .island-appear[data-mode=""] .ic-sys{display:block}
 .island-appear[data-mode="light"] .ic-light{display:block}
 .island-appear[data-mode="dark"] .ic-dark{display:block}
-/* 移动端:满屏铺满,去掉桌面舞台留白与手机边框 */
-@media (max-width:440px){
-  body{padding:0;background:var(--background-base)}
-  .phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
-}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;background:#8E8E93;display:flex;justify-content:center;align-items:flex-start;padding:40px;min-height:100vh;-webkit-font-smoothing:antialiased}
 .phone{width:375px;height:812px;border-radius:54px;overflow:hidden;position:relative;background:var(--background-base);color:var(--foreground-base);box-shadow:0 0 0 10px #1c1c1e;display:flex;flex-direction:column}
@@ -96,6 +91,11 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;backg
 .tabbar .pill{position:relative;display:flex;align-items:stretch;padding:4px;border-radius:var(--radius-round)}
 .tab{flex:1;height:54px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-round);color:var(--foreground-base)}
 .tab.active{background:var(--accent-soft-subtle);color:var(--accent-base)}
+/* 移动端:满屏铺满(必须放在基础 body/.phone 之后才能覆盖) */
+@media (max-width:440px){
+  body{padding:0;background:var(--background-base)}
+  .phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
+}
 </style>
 </head>
 <body>

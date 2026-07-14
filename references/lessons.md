@@ -77,6 +77,7 @@
 - **tap 高亮**:所有可点元件(尤其岛内按钮)加 `-webkit-tap-highlight-color:transparent`,免移动端点击闪灰块。
 - **骨架标配每页必带**:移动端满屏 `@media(max-width:440px)`、隐藏原生滚动条 `.screen{scrollbar-width:none}`+`::-webkit-scrollbar{display:none}`、需要滚动反馈用悬浮 `.scroll-ind`。base 骨架已内置。
 - **全量图标库 721 个在 `dsv2/zymix-icons/svgs/`**,`icons-bundled.json` 只是常用子集(~69)。库里"没有"先去全量库找(sun/moon/display/lock/heart/comment/share/paper-plane 都有),取到后补进 bundled;确实没有才回报缺失,**绝不手绘**。
+- **移动端满屏媒体查询的位置**:`@media(max-width:440px){body{padding:0}.phone{width:100vw;height:100dvh;...}}` **必须放在基础 `body{padding:40px}`/`.phone{width:375px}` 之后**(同优先级,靠源码顺序取胜)。写在前面会被后面的基础规则覆盖 → 手机上仍是 375 居中带边框、不满屏。放 `</style>` 前最稳。
 - **编辑陷阱(结构性改动必查配平)**:用正则替换带嵌套 `</div>` 的整块(如换灵动岛 markup),非贪婪很容易匹配到里层的 `</div></div>` 而**漏掉一个闭合标签**,留下孤儿 `</div>` 提前关掉 `.phone`,导致内容整块跑到手机框外。任何结构性替换后,立刻核对 body 内 `<div` 与 `</div>` 数量相等。
 
 ## 2026-07-09 · Me 个人主页(异形快捷卡 + 统计)
