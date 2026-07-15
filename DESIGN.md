@@ -73,6 +73,8 @@
 | border/base | `#DEDEE0` | `#3A3A40` | 组件描边（1px） |
 | separator/base | `rgba(0,0,0,.10)` | `rgba(255,255,255,.10)` | 常规分隔线（0.5px） |
 | separator/strong | `rgba(0,0,0,.40)` | `rgba(255,255,255,.40)` | 强分隔（1px，统计分栏竖线） |
+| backdrop/base | `rgba(0,0,0,.20)` | `rgba(0,0,0,.60)` | 普通压暗遮罩 |
+| backdrop/strong | `rgba(0,0,0,.60)` | `rgba(0,0,0,.75)` | 强压暗遮罩 |
 
 ### 场景专用（feature · 聊天 / 钱包）
 好友气泡 `#E1FFBF`/暗 `#2E4212`；非好友气泡 `#C9FAFF`/暗 `#123C42`；已读 好友 `#58C138`、非好友 `#00BAD2`；非好友 Add 按钮 `#26D9F0`。气泡圆角 22px。
