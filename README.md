@@ -1,22 +1,23 @@
 # ZYMIX-UI 原型技能
 
-**版本 v1.0.0** · tokens + Button/Toast/玻璃材质 + 图标库 + 4 页模板
+**版本 v1.1.0** · tokens + Button/Toast/玻璃材质 + 图标库 + 4 页模板
 
 > 一句话说清需求，AI 就给你一张**完全符合 ZYMIX 设计规范**的高保真手机页面。
 
 ---
 
-## 你是谁?按这里走 👇
+## 按角色查阅
 
-| 你是… | 想做什么 | 看这份 |
+| 角色 | 需求 | 文档 |
 |---|---|---|
-| 🎨 **设计师 / 产品** | 用技能做原型、出高保真页面 | **[PROTOTYPE-GUIDE.md](./PROTOTYPE-GUIDE.md)** — 三步上手、怎么下需求 |
-| 🛠 **技术 / 工程师** | 拿到并接入设计变量(tokens) | **[TOKENS-GUIDE.md](./TOKENS-GUIDE.md)** — 引入 / 变量表 / 代码示例 / Figma 同步 |
-| 🤖 **设计 AI(Stitch 等)** | 让 AI 按规范生成界面 | **[DESIGN.md](./DESIGN.md)** — 设计系统规范文档 |
+| 设计师 / 产品 | 用技能做原型、产出高保真页面 | **[PROTOTYPE-GUIDE.md](./PROTOTYPE-GUIDE.md)** — 上手步骤与需求写法 |
+| 技术 / 工程师 | 获取并接入设计变量(Tokens) | **[TOKENS-GUIDE.md](./TOKENS-GUIDE.md)** — 引入、变量表、代码示例、Figma 同步 |
+| 设计 AI(Stitch 等) | 按规范生成界面 | **[DESIGN.md](./DESIGN.md)** — 设计系统规范文档 |
 
-> **技术看这一眼就够**:最新 tokens 单一真源 = **[`references/tokens.css`](./references/tokens.css)**(347 个变量,含深浅色;由 `sync_tokens.py` 从 Figma 生成,勿手改)。
->
-> **设计/产品看这一眼就够**:装上 `.skill` → 说「用 ZYMIX 做个 XX 页」→ 拿到符合规范的 HTML 页面。详见 [PROTOTYPE-GUIDE](./PROTOTYPE-GUIDE.md)。
+**两个关键位置:**
+
+- **设计变量(Tokens)** 的单一真源为 **[`references/tokens.css`](./references/tokens.css)** —— 347 个变量、含深浅色,由 `sync_tokens.py` 从 Figma 生成,请勿手改。
+- **组件样式** 位于 **[`references/components.css`](./references/components.css)** —— Button / NavBar / TabBar / Toast / 玻璃材质等,依赖上述变量。
 
 ---
 
@@ -56,7 +57,7 @@
 `.skill` 本质是 zip,解压即本仓库文件。把 **`SKILL.md` + `references/` + `scripts/` + `assets/`** 放进工具的技能/规则/知识库目录;核心是让 AI 读到 `SKILL.md`(总入口)。
 
 ### 方式四:Google Stitch / 设计 AI
-[`DESIGN.md`](./DESIGN.md) 是 Stitch DESIGN.md 格式的设计系统文档,丢进 Stitch 或发给设计 AI,说「按 DESIGN.md 生成页面」即可。
+[`DESIGN.md`](./DESIGN.md) 是 Stitch DESIGN.md 格式的设计系统文档,导入 Stitch 项目或提供给设计 AI,注明「按 DESIGN.md 生成页面」即可。
 
 ---
 
@@ -69,7 +70,7 @@ TOKENS-GUIDE.md       🛠 技术:怎么拿 & 接入 tokens
 DESIGN.md             🤖 设计系统规范(Stitch 格式)
 references/           设计规范(真源)
   tokens.css            ⭐ 颜色/间距/字号/圆角变量(347 个,单一真源)
-  components.css        按钮/Toast/玻璃材质/导航等组件
+  components.css        ✅ 组件类:Button/NavBar/TabBar/Toast/玻璃材质/气泡/列表(依赖 tokens,见 TOKENS-GUIDE 组件层)
   color-rules.md        用色规则   typography.md 文字样式
   patterns.md           页面布局惯例(骨架标配、TabBar/NavBar)
   craft.md              工艺层(反 AI 味 + 灵动岛约定)
@@ -104,4 +105,4 @@ scripts/
 | 版本 | 日期 | 说明 |
 |---|---|---|
 | v1.0.0 | 2026-07-09 | 首发:全量 tokens、文字角色、Button(7×3)、Toast、液态玻璃、页面模板、图标库、合规检查、需求获取流程 |
-| — | 2026-07-14 | Discover 改版;四模板统一(纯库图标 / 圆头像 / 灵动岛外观切换 / 移动端满屏);输出页全英文(英国市场);文档按"设计-产品 / 技术"两类使用者重梳理 |
+| **v1.1.0** | 2026-07-14 | Discover 改版;四模板统一(纯库图标 / 圆头像 / 灵动岛外观切换 / 移动端满屏);输出页全英文(英国市场);文档按"设计-产品 / 技术"两类使用者重梳理 |
