@@ -81,6 +81,12 @@
 .tab .tab-label{font-size:10px;line-height:12px;font-weight:400}
 /* ⚠️ 旧 .nav-bar(accent 底白图)与 .nav-fade(线性渐变假 HDR)均已删除作废——底部模糊只用 .tabbar 内置 ::before */
 
+
+/* --- Backdrop 背景遮罩(2026-07-13):两档纯黑压暗,无模糊 --- */
+.backdrop{position:absolute;inset:0;background:var(--backdrop-base);z-index:80}        /* 一般情况默认(模态/抽屉/弹窗) */
+.backdrop.strong{background:var(--backdrop-strong)}                                    /* 特殊场景:活动运营等需强调弹层元素 */
+/* 判据:拿不准用默认;strong 仅当弹层要从页面里"跳出来"。与 --backdrop-glass(弹层自身玻璃底)不混用 */
+
 /* --- Scroll Edge Effect - Soft(Materials 组件的 CSS 近似):吸顶层,下方内容滚入时被渐隐+模糊遮住 --- */
 .scroll-edge-top{position:sticky;top:0;z-index:50}
 .scroll-edge-top::before{content:'';position:absolute;left:0;right:0;top:0;height:108px; /* 填充容器宽,高 108(Figma Scroll Edge Effect - Soft) */

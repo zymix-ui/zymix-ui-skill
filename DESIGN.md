@@ -46,6 +46,20 @@
 | foreground/inverse | `#FFFFFF` | `#000000` | 反色容器上的文字（随主题翻） |
 | default/white | `#FFFFFF` | `#FFFFFF` | 恒白（图上叠字，不随主题翻） |
 
+**foreground/on-dark**（固定白前景层级，Light=Dark 同值，**不随主题翻转**）：档位对齐 foreground 深色列，用于恒定深色表面上的文字/线——蒙层、媒体遮罩、深色玻璃、灵动岛。
+
+| 角色 | 值(Light=Dark) | 用途 |
+|---|---|---|
+| foreground/on-dark/base | `#FFFFFF` | 深底主文字 |
+| foreground/on-dark/muted | `rgba(255,255,255,.55)` | 深底次要文字 |
+| foreground/on-dark/subtle | `rgba(255,255,255,.35)` | 深底辅助信息 |
+| foreground/on-dark/placeholder | `rgba(255,255,255,.30)` | 深底占位 |
+| foreground/on-dark/disabled | `rgba(255,255,255,.22)` | 深底禁用 |
+| foreground/on-dark/faint | `rgba(255,255,255,.15)` | 深底分隔线/描边 |
+| foreground/on-dark/ghost | `rgba(255,255,255,.08)` | 深底极弱填充 |
+
+> 判据:文字所在表面**恒定为深**(与 app 主题无关)→用 `foreground/on-dark/*`;文字随主题翻转(普通页面)→用 `foreground/*`。切忌为此给模块单独切深色。
+
 ### 层面（background / surface / border / separator）
 | 角色 | Light | Dark | 用途 |
 |---|---|---|---|

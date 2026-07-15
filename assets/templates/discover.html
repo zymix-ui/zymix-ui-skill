@@ -22,6 +22,7 @@
   --foreground-disabled: rgba(0, 0, 0, 0.26); --foreground-inverse: #FFFFFF; --foreground-link: #0F7A23;
   --foreground-brand: #26D93E; --foreground-placeholder: rgba(0, 0, 0, 0.30); --foreground-faint: rgba(0, 0, 0, 0.15);
   --foreground-ghost: rgba(0, 0, 0, 0.08);
+  --foreground-on-dark-base: #FFFFFF; --foreground-on-dark-muted: rgba(255,255,255,0.55); --foreground-on-dark-subtle: rgba(255,255,255,0.35); --foreground-on-dark-placeholder: rgba(255,255,255,0.30); --foreground-on-dark-disabled: rgba(255,255,255,0.22); --foreground-on-dark-faint: rgba(255,255,255,0.15); --foreground-on-dark-ghost: rgba(255,255,255,0.08);
   --background-base: #FFFFFF; --background-secondary: #FCFCFC; --background-tertiary: #F5F5F5; --background-inverse: #18181B;
   --surface-base: #FFFFFF; --surface-secondary: #F5F5F5; --surface-tertiary: #EBEBEB; --surface-pressed: rgba(0, 0, 0, 0.08);
   --surface-inverse: #000000; --surface-glass: rgba(250, 250, 250, 0.20);
@@ -144,7 +145,7 @@
 .island.open .island-menu{opacity:1;transform:none;transition:opacity .26s ease .3s,transform .34s cubic-bezier(.32,.72,0,1) .28s}
 .island-menu button{border:none;cursor:pointer;font-family:inherit;font-size:13px;line-height:16px;font-weight:600;padding:8px 18px;border-radius:var(--radius-round);background:transparent;color:var(--default-white);opacity:.55}
 .island-menu button.on{background:var(--default-white);color:var(--default-black);opacity:1}
-.island-div{flex-basis:100%;height:1px;background:var(--default-white);opacity:0.14;margin:3px 12px 1px}
+.island-div{flex-basis:100%;height:1px;background:var(--foreground-on-dark-faint);margin:3px 12px 1px}
 .island-menu .tbtn{padding:5px 14px;font-size:12px;line-height:16px}
 .island button{-webkit-tap-highlight-color:transparent;-webkit-appearance:none;appearance:none;outline:none}
 .island-theme{position:absolute;top:6px;left:calc(50% + 30px);width:22px;height:22px;display:none;align-items:center;justify-content:center;border:none;border-radius:var(--radius-round);background:transparent;color:var(--default-white);opacity:.8;cursor:pointer;transition:opacity .2s ease}

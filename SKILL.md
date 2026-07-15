@@ -55,6 +55,7 @@ description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 
 - **动效**(详见 motion.md):时长用 `--duration-*`、缓动用 `--ease-*`;禁 `transition:all`、禁 UI 用 `ease-in`;只动 transform/opacity;UI 过渡 ≤300ms;禁从 `scale(0)` 入场(用 scale(0.95)+opacity);高频/键盘操作不加动画;加 `prefers-reduced-motion` 兜底。checker 会拦 transition:all 与 ease-in。
 - **TabBar(底部导航)**:玻璃胶囊 `.tabbar > .pill.glass`,`.tab` 等分,激活位加 `.active`(=accent/soft-subtle 底 + accent 图标),**有且只有一个激活位**;五 tab Chat/Mix/Video/Discover/Me;图标槽 32/字形 24;底部模糊**已内置** `.tabbar::before`(等效 Figma Show Scroll Edge,`.no-edge` 可关),勿再叠任何渐变层;旧 `.nav-bar`(accent 底白图)与 `.nav-fade`(线性渐变)均已删除作废。
 - **NavBar(页头)**:用 `.header-brand`/`.header-tabs`/`.header-nav`/`.header-chat` 四变体;圆钮一律 `.btn-glass-42 .glass`(Button-Liquid-Glass-Symbol 42),禁手绘;**一级页页头不放返回按钮**;Nav-Center 标题绝对居中,不受右侧动作显隐影响。
+- **Backdrop(遮罩)**:`.backdrop`(--backdrop-base,一般默认)/`.backdrop.strong`(--backdrop-strong,活动运营等强调弹层的特殊场景);纯黑压暗无模糊,弹层底下垫。
 - **组件宽度**:一律「左右边距 + 拉伸」,禁写死 343/360 等画布衍生固定宽(基准规则见 patterns.md)。
 - **图标铁律**:**只用 ZymixUI 图标库**——内置 `icons-bundled.json` 按名内联,库里没有的走 CDN `.zi` mask;**严禁手绘/自造任何图标 SVG**(几何拼凑也算),仅状态栏信号/WiFi/电池等系统 chrome 例外。库里无 wallet→用 credit-card;3D 彩色品牌插画(转盘/礼包等)不在库,用导出的 PNG,不用手绘。
 - **配图铁律**:一切"配图/照片"(hero、卡片图、缩略图、封面)都用**免版权图**(`picsum.photos` 每图不同种子 + 容器 `background-image` + `--skeleton-base` 兜底),**严禁用手绘 SVG 插画/线条画当配图**。图标归图标库,照片归 picsum,两者不混。

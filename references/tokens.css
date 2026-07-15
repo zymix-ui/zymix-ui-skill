@@ -44,6 +44,13 @@
   --foreground-placeholder: rgba(0, 0, 0, 0.30);
   --foreground-faint: rgba(0, 0, 0, 0.15);
   --foreground-ghost: rgba(0, 0, 0, 0.08);
+  --foreground-on-dark-base: #FFFFFF;
+  --foreground-on-dark-muted: rgba(255, 255, 255, 0.55);
+  --foreground-on-dark-subtle: rgba(255, 255, 255, 0.35);
+  --foreground-on-dark-placeholder: rgba(255, 255, 255, 0.30);
+  --foreground-on-dark-disabled: rgba(255, 255, 255, 0.22);
+  --foreground-on-dark-faint: rgba(255, 255, 255, 0.15);
+  --foreground-on-dark-ghost: rgba(255, 255, 255, 0.08);
   --background-base: #FFFFFF;
   --background-secondary: #FCFCFC;
   --background-tertiary: #F5F5F5;
@@ -64,6 +71,7 @@
   --separator-width: 0.5px;
   --separator-width-strong: 1px;
   --backdrop-base: rgba(0, 0, 0, 0.20);
+  --backdrop-strong: rgba(0, 0, 0, 0.60);
   --backdrop-glass: rgba(255, 255, 255, 0.90);
   --skeleton-base: #EBEBEC;
   --skeleton-highlight: #F5F5F5;
@@ -165,7 +173,6 @@
   --leading-body-md: 20px;
   --leading-body-sm: 20px;
   --leading-body-xs: 16px;
-  --leading-body-2xs: 12px;
   --leading-link-base: 24px;
   --leading-link-sm: 20px;
   --leading-field-base: 24px;
@@ -177,6 +184,9 @@
   --leading-scene-tab: 19px;
   --leading-scene-list: 17px;
   --leading-number-md: 32px;
+  --leading-body-2xs: 12px;
+  --leading-scene-nav-title: 20px;
+  --leading-scene-bubble: 20px;
   /* --- Motion(时长/缓动;spring 与 gesture 见 motion.md) --- */
   --duration-instant: 0ms;
   --duration-fast: 120ms;
@@ -234,6 +244,13 @@
   --foreground-placeholder: rgba(255, 255, 255, 0.30);
   --foreground-faint: rgba(255, 255, 255, 0.15);
   --foreground-ghost: rgba(255, 255, 255, 0.08);
+  --foreground-on-dark-base: #FFFFFF;
+  --foreground-on-dark-muted: rgba(255, 255, 255, 0.55);
+  --foreground-on-dark-subtle: rgba(255, 255, 255, 0.35);
+  --foreground-on-dark-placeholder: rgba(255, 255, 255, 0.30);
+  --foreground-on-dark-disabled: rgba(255, 255, 255, 0.22);
+  --foreground-on-dark-faint: rgba(255, 255, 255, 0.15);
+  --foreground-on-dark-ghost: rgba(255, 255, 255, 0.08);
   --background-base: #0B0B0D;
   --background-secondary: #09090B;
   --background-tertiary: #060607;
@@ -254,6 +271,7 @@
   --separator-width: 0.5px;
   --separator-width-strong: 1px;
   --backdrop-base: rgba(0, 0, 0, 0.60);
+  --backdrop-strong: rgba(0, 0, 0, 0.75);
   --backdrop-glass: rgba(0, 0, 0, 0.60);
   --skeleton-base: #27272A;
   --skeleton-highlight: #333338;
@@ -318,6 +336,13 @@
   --foreground-placeholder: rgba(255, 255, 255, 0.30);
   --foreground-faint: rgba(255, 255, 255, 0.15);
   --foreground-ghost: rgba(255, 255, 255, 0.08);
+  --foreground-on-dark-base: #FFFFFF;
+  --foreground-on-dark-muted: rgba(255, 255, 255, 0.55);
+  --foreground-on-dark-subtle: rgba(255, 255, 255, 0.35);
+  --foreground-on-dark-placeholder: rgba(255, 255, 255, 0.30);
+  --foreground-on-dark-disabled: rgba(255, 255, 255, 0.22);
+  --foreground-on-dark-faint: rgba(255, 255, 255, 0.15);
+  --foreground-on-dark-ghost: rgba(255, 255, 255, 0.08);
   --background-base: #0B0B0D;
   --background-secondary: #09090B;
   --background-tertiary: #060607;
@@ -338,6 +363,7 @@
   --separator-width: 0.5px;
   --separator-width-strong: 1px;
   --backdrop-base: rgba(0, 0, 0, 0.60);
+  --backdrop-strong: rgba(0, 0, 0, 0.75);
   --backdrop-glass: rgba(0, 0, 0, 0.60);
   --skeleton-base: #27272A;
   --skeleton-highlight: #333338;
