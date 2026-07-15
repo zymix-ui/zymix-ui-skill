@@ -515,6 +515,8 @@ html{-webkit-tap-highlight-color:transparent}
 .island-appear[data-mode=""] .ic-sys{display:block}
 .island-appear[data-mode="light"] .ic-light{display:block}
 .island-appear[data-mode="dark"] .ic-dark{display:block}
+.island{transition:opacity .35s ease}
+.island.idle{opacity:0}
 </style>
 </head>
 <body>
@@ -771,6 +773,20 @@ html{-webkit-tap-highlight-color:transparent}
     b.setAttribute('data-mode',m); lab.textContent=names[m];
     b.setAttribute('aria-label','外观:'+(m===''?'跟随系统':names[m]));
   });
+})();
+</script>
+<script>
+/* 灵动岛:闲置 3s 自动隐藏,点击岛区域先唤出(唤出的那次点击不触发内部动作) */
+(function(){
+  var isl=document.getElementById('island'); if(!isl) return;
+  var t;
+  function hide(){ isl.classList.add('idle'); isl.classList.remove('open'); }
+  function reset(){ clearTimeout(t); t=setTimeout(hide,3000); }
+  isl.addEventListener('click',function(e){
+    if(isl.classList.contains('idle')){ e.stopPropagation(); e.preventDefault(); isl.classList.remove('idle'); reset(); return; }
+    reset();
+  },true);
+  reset();
 })();
 </script>
 </body>

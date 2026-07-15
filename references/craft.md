@@ -78,6 +78,7 @@
 **外观切换(两型通用)= 单个图标点击循环**,图标取自图标库(**勿手绘**;库里没有从全量库 `zymix-icons/svgs` 取并补进 `icons-bundled.json`):系统=`display`、浅色=`sun`、深色=`moon`。整屏换肤即反馈,不放文字说明。A 型放状态标签右侧绝对定位(`left:calc(50% + 30px)`,不挤动标签,展开才显);B 型直接在药丸内。
 - 实现:JS 强制浅=同时 `root.classList.add('lite')` + `setAttribute('data-theme','light')`,强制深=`setAttribute('data-theme','dark')`,系统=两者都清空;CSS 用 `.lite` / `:root:not(.lite)` 或 `:root:not([data-theme="light"])` 门控系统深色 + `[data-theme="dark"]` 强制深。**静态 HTML 里绝不写死 data-theme 属性**(只在 CSS 选择器和运行时 JS 用),否则合规判双模式 FAIL。图标随 `data-mode` 用 `.ic-*{display:block}` 切换。
 - 岛始终黑底白字(不随页面主题翻转);白色半透明(分隔线等)用 `var(--default-white)` + `opacity`,勿写裸 rgba;岛内按钮加 `-webkit-tap-highlight-color:transparent` 防移动端点击闪块。
+- **闲置自动隐藏**:岛默认**闲置 3 秒无点击就淡出**(`.island{transition:opacity .35s} .island.idle{opacity:0}`);点击岛区域先"唤出"——用**捕获阶段**监听 `#island` 的 click:处于 `.idle` 时 `stopPropagation()+preventDefault()` 只移除 idle、重置计时,**不触发内部动作**;非 idle 时仅重置计时并放行。隐藏时一并 `remove('open')` 收起。药丸 `opacity:0` 仍可点(靠它当唤出热区)。
 - 演示脚手架真实交付时移除(外观开关可保留,便于走查两套色)。
 
 **例外**:仅当用户明确要求"铺开 / 并排多个页面"时,才平铺多个页面框。
