@@ -110,7 +110,9 @@
 /* ④ Nav-Chat:返回 + 头像36圆(兜底 surface/secondary)+ 昵称17SB + 副标题13 muted + 右侧1–2个42圆钮 */
 .header-chat{display:flex;align-items:center;gap:12px;padding:8px 16px;min-height:58px}
 .header-chat .avatar{width:36px;height:36px;background:var(--surface-secondary)}
-/* 页头背景透明,滚动遮罩由页面层(scroll-edge-top)处理;一级页页头不放返回按钮 */
+/* 页头背景透明,顶部滚动遮罩由页面层 .scroll-edge-top 统一处理(渐变绑 --background-base,浅→白/深→黑,随明暗自适应);
+   一级页页头不放返回按钮。
+   注:Figma 组件把 Scroll Edge 内置进 NavBar(Show Scroll Edge 默认开);skill 因 HTML 总是整页生成,改用页面层覆盖状态栏+页头,视觉一致——有意为之的架构差异,勿"修正"为 .header-*::before */
 
 /* --- IM 聊天 --- */
 .bubble{max-width:70%;padding:14px 16px;border-radius:var(--radius-2xl);font-size:17px;font-weight:400}
