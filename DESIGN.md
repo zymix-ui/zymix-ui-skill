@@ -130,7 +130,7 @@
 ① Brand：大标题（Scene 34 Black）+ 可选右侧 42px 玻璃圆钮。② Brand-Tabs：选中 24 Black + 未选中 18 Bold muted，间距 20。③ Nav-Center：左返回 42 + 绝对居中标题 17 Semibold + 右侧 42 常驻占位（保居中，不受动作显隐影响）。④ Nav-Chat：返回 + 头像 36（兜底 surface/secondary）+ 昵称 17 SB + 副标题 13 muted + 右侧 1–2 个 42 圆钮。圆钮一律 Button-Liquid-Glass-Symbol(42)，禁手绘；一级页页头不放返回按钮。**Scroll Edge（顶部渐隐模糊）= 半透明磨砂底（feature/nav-background ≈66%）+ backdrop-blur + 向下线性渐隐**，不是不透明纯白；状态栏须悬浮透明、内容滚到其下，才呈现 iOS 沉浸式的"内容从状态栏背后模糊滑过"。
 
 ### 底部导航 TabBar
-玻璃胶囊（Liquid Glass Regular Small；高 62=4+54+4、左右边距 8、圆角 round）；五 tab Chat/Mix/Video/Discover/Me；图标槽 32/字形 24；**激活位单选互斥 = accent/soft-subtle(8%) 底 + accent/base 图标；未激活 = 透明底 + foreground/base 图标**（旧「accent 底白图 / subtle 40%」作废）；带底部文字为特殊场景（10/12，激活字色 accent）；底部模糊用 Scroll Edge Soft(Edge=Bottom)，半透明磨砂底（feature/nav-background）+ backdrop-blur + 向上渐隐，勿手动叠层、勿用不透明纯白。**图标只用本地内置图标库（icons-bundled.json），禁止走 CDN**——底部导航是每页常驻元素，不能有离线/预览缺图的风险，CDN 长尾图标只给非导航区域用。**且只能用图标库里 `nav-` 前缀的专用导航图标**（`nav-chat`/`nav-mix`/`nav-video`/`nav-discover`/`nav-me`/`nav-ai`，各配 `-fill` 面性变体，未激活线性、激活切 fill + accent 着色），**不许拿普通图标（house/comments/person 等）顶替**；除非用户特殊要求，tab 图标只在这组 nav 图标里选。
+玻璃胶囊（Liquid Glass Regular Small；高 62=4+54+4、左右边距 8、圆角 round）；五 tab Chat/Mix/Video/Discover/Me；图标槽 32/字形 24；**激活位单选互斥 = accent/soft-subtle(8%) 底 + accent/base 图标；未激活 = 透明底 + foreground/base 图标**（旧「accent 底白图 / subtle 40%」作废）；带底部文字为特殊场景（10/12，激活字色 accent）；底部模糊用 Scroll Edge Soft(Edge=Bottom)，半透明磨砂底（feature/nav-background）+ backdrop-blur + 向上渐隐，勿手动叠层、勿用不透明纯白。**图标只用本地内置图标库（icons-bundled.json），禁止走 CDN**——底部导航是每页常驻元素，不能有离线/预览缺图的风险，CDN 长尾图标只给非导航区域用。**且只能用图标库里 `tab-` 前缀的专用标签栏图标**（`tab-chat`/`tab-mix`/`tab-video`/`tab-discover`/`tab-me`/`tab-ai`，各配 `-fill` 面性变体，未激活线性、激活切 fill + accent 着色），**不许拿普通图标（house/comments/person 等）顶替**；除非用户特殊要求，tab 图标只在这组 tab 图标里选。
 
 **默认套用**：任何页面只要有页头或底部导航，NavBar / TabBar 都**默认**直接照搬本规范整套写法与效果（含 Scroll Edge、玻璃材质、激活态着色），不需要用户特别点名要求；只有用户明确要求不同效果时才偏离。
 
@@ -206,7 +206,7 @@
 - ❌ 手绘风格不一的图标。
 - ❌ 没有用户明确要求就拿掉灵动岛。
 - ❌ TabBar（底部导航）图标走 CDN——必须用本地内置图标。
-- ❌ TabBar 用普通图标顶替——只用 `nav-` 前缀的专用导航图标（除非用户特殊要求）。
+- ❌ TabBar 用普通图标顶替——只用 `tab-` 前缀的专用标签栏图标（除非用户特殊要求）。
 
 ---
 

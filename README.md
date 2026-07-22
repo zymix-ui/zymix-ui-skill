@@ -1,6 +1,6 @@
 # ZYMIX-UI 原型技能
 
-**版本 v1.2.1** · tokens + Button/Toast/玻璃材质 + 图标库 + App(多屏外壳,含 Chat 会话列表→对话下钻)
+**版本 v1.2.2** · tokens + Button/Toast/玻璃材质 + 图标库 + App(多屏外壳,含 Chat 会话列表→对话下钻)
 
 > 一句话说清需求，AI 就给你一张**完全符合 ZYMIX 设计规范**的高保真手机页面。
 
@@ -76,7 +76,7 @@ references/           设计规范(真源)
   craft.md              工艺层(反 AI 味 + 灵动岛约定)
   spec.md               功能状态声明(空/加载/失败…)
   lessons.md            还原经验(避坑清单)
-  icons-bundled.json    81 个常用图标(离线可用,含 nav-* 导航图标)
+  icons-bundled.json    81 个常用图标(离线可用,含 tab-* 标签栏图标)
 assets/
   template.html         手机页面骨架
   templates/            标准模板:app(多屏应用外壳:Mix/Discover/Me 切换 + Chat 会话列表/对话下钻)
@@ -108,4 +108,5 @@ scripts/
 | **v1.1.0** | 2026-07-14 | Discover 改版;四模板统一(纯库图标 / 圆头像 / 灵动岛外观切换 / 移动端满屏);输出页全英文(英国市场);文档按"设计-产品 / 技术"两类使用者重梳理 |
 | **v1.1.1** | 2026-07-20 | NavBar 顶部模糊落地:页头区包进 `.scroll-edge-top`(渐变绑 `--background-base` 随明暗翻转,浅→白/深→黑),对应 Figma NavBar 内置 Scroll Edge;明确"skill 用页面层 / Figma 用组件内置"为有意为之的架构差异(SKILL.md · patterns.md · components.css);与 Figma Kit v0.7.0 对齐(NavBar 图标暗色翻白、Backdrop base/strong、Materials Scroll Edge 明暗自适应均已核对一致) |
 | **v1.2.0** | 2026-07-22 | 语义层新增 `foreground/emphasis`(黑/白 80%,填补 base↔muted 空档;含 `on-dark/emphasis`)+ 对应颜色样式;tokens 源(`dsv2/tokens`)、`tokens.css`、DESIGN、TOKENS-GUIDE、color-rules 同步。`app.html` 补齐 Chat 会话列表屏(搜索 + 会话行,复用 `.list-row`/`.header-brand`/`.tabbar` 规范类,头像圆角 24)。SKILL 强化 NavBar/TabBar 为**强制基线**(自然语言输入亦然,禁止临时手搓页头圆钮)+ 新增交付前基线组件自检 |
-| **v1.2.1** | 2026-07-22 | 系统状态栏统一为一套 iOS 标准(高 47、时间 15/600、信号+WiFi+电池全套图标、跟随主题),多屏 `app.html` 共用;TabBar 采用 nav 专用图标(本地化到 `icons-bundled.json`);灵动岛设为默认必备;补 iOS26 切屏动效;修正 Scroll Edge 渐隐磨砂;DESIGN 版本号同步 |
+| **v1.2.1** | 2026-07-22 | 系统状态栏统一为一套 iOS 标准(高 47、时间 15/600、信号+WiFi+电池全套图标、跟随主题),多屏 `app.html` 共用;TabBar 采用专用标签栏图标(本地化到 `icons-bundled.json`);灵动岛设为默认必备;补 iOS26 切屏动效;修正 Scroll Edge 渐隐磨砂;DESIGN 版本号同步 |
+| **v1.2.2** | 2026-07-22 | **命名修正**:底部标签栏(TabBar)图标此前误用 `nav-` 前缀(nav 应专指顶部 NavBar),统一改为 `tab-*`(tab-chat/mix/video/discover/me/ai + `-fill`)——含 Figma 图标库组件集 + 分类标签(navigation→tabbar)、`icons-bundled.json`、SKILL/DESIGN/icons.md 约定文本、Claude Design 同步。`feature-nav-*`(顶/底两栏共用的导航层玻璃底/渐隐)非图标、语义无误,保留不变 |
