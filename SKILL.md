@@ -15,13 +15,13 @@ description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 
 
     **B. 意图源(只取意图,用规范重建)**:PRD 文档、产品经理用 AI 生成的原型(**不符合本规范**)、竞品/参考截图、纯文案清单。→ **只提取信息架构、内容、交互意图,一律用 ZymixUI 的 token/组件/文字角色重新落地,绝不照搬来源的样式**(它们本就不合规,照搬=把脏样式带进来)。要跟设计师点明:"我不复刻它的外观,只取结构和内容,用规范重做"。**双重分析定夺**:意图源(尤其网页/原型链接)不能只读 HTML/文本——文本会漏掉视觉精髓(如相册网格 vs 细横条、图上叠字沉浸卡 vs 图上文下小卡)。要**同时截图看它长什么样**(用浏览器工具或让设计师贴图),代码看结构+截图看视觉,两者结合再定每个模块怎么用规范实现,保留模块的布局精髓。
 
-    **C. 自然语言 / 迭代反馈**:文字描述、"次要文字改 muted"这类调整。→ 按描述做,样式走规范。
+    **C. 自然语言 / 迭代反馈**:文字描述、"次要文字改 muted"这类调整。→ 按描述做,样式走规范。**基线 chrome 强制**:凡页面含页头 / 底部导航,NavBar 与 TabBar 一律直接套用标准组件写法(见「硬规则」的 NavBar / TabBar 两条),即使用户只用自然语言、没点名导航,也**不许临时手搓页头圆钮或导航条**。
 
     **PRD / 多屏输入的特别流程**:PRD 常描述整个流程(多个页面)。不要闷头一次全画。先**解析出它隐含的页面清单 + 每页要素**,列给设计师 → **确认范围、优先级、先做哪几屏** → 逐页生成、逐页过合规检查。
 
     **通用**:任何输入都先**分析布局结构 + 映射实现方案**(每区块用哪个组件/token/文字角色)。信息够→复述方案请设计师确认;不足(布局歧义、内容缺失、选型多解、资产不确定)→**主动提问或给选项**理清,别猜着生成。宁可多问一句。确认清楚才进下面的步骤。
 0. **有设计稿必须 1:1 还原**:用户给了 Figma 截图/链接时,精确还原每个细节(不对称圆角、描边宽、缩进、字重、图标形状),不是"功能近似"。没给设计稿才自由发挥。**先读 `references/lessons.md`(历次还原经验),做完新页面把新学到的模式追加进去**。**做完必须回头对比设计稿逐项自检**(圆角/间距/字重/图标/行宽核算),对不上就修,不要等用户指出。
-1. **从参考模板起步**:`assets/templates/discover.html`(发现流:金刚区分类/Hero 大图/活动卡/灵动岛多状态)、`assets/templates/chat.html`(IM 群聊)、`assets/templates/me.html`(个人主页)、`assets/templates/public.html`(公开动态流:Tab 页头/帖子卡片/点赞评论块/操作胶囊)是从 Figma 设计稿逐层转换的标准页面。新页面**复制最接近的模板改造**,不要白手起家——模板里的页头/导航/输入条/列表/气泡/灵动岛写法就是标准答案。
+1. **从参考模板起步**:`assets/templates/app.html` 是主参考——**多屏应用外壳**:单页 `.phone` 内多个 `.screen[data-tab]`,底部 `.tabbar-dock` 一键切换 **Mix(动态流)/ Discover(发现流)/ Me(个人主页)** 三屏(另含 Chat/Video 占位);激活态切 `.active` 自动线性→面性图标 + accent 着色;顶部 Scroll Edge 随激活屏滚动;灵动岛为 B 型外观切换(仅深浅色);移动端满屏。里面 Mix/Discover/Me 三屏就是发现流/帖子卡片/点赞评论/操作胶囊/个人主页/设置列表的标准写法,**要单页时直接抽对应 `.screen` 段改造**。`assets/templates/chat.html`(IM 群聊:Nav-Chat 页头/气泡/输入条)是聊天类页面的参考。新页面**复制最接近的模板/屏改造**,不要白手起家——模板里的页头/导航/输入条/列表/气泡/灵动岛/多屏切换写法就是标准答案。
 2. **读取规范**(模板没覆盖的部分再查):
    - `references/tokens.css` — 全部变量(颜色 Light/Dark、圆角、尺寸、字号)
    - `references/components.css` — 组件层:按钮 7 变体×3 尺寸、Toast、玻璃材质 .glass、导航、气泡、列表(注释即文档)
@@ -54,7 +54,8 @@ description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 
 - Dark 模式必须同时正确——只用语义变量自然双模(跟随系统切换,交付前脑内过一遍深色:黑底黑字/白底白字都是错)
 - **动效**(详见 motion.md):时长用 `--duration-*`、缓动用 `--ease-*`;禁 `transition:all`、禁 UI 用 `ease-in`;只动 transform/opacity;UI 过渡 ≤300ms;禁从 `scale(0)` 入场(用 scale(0.95)+opacity);高频/键盘操作不加动画;加 `prefers-reduced-motion` 兜底。checker 会拦 transition:all 与 ease-in。
 - **TabBar(底部导航)**:玻璃胶囊 `.tabbar > .pill.glass`,`.tab` 等分,激活位加 `.active`(=accent/soft-subtle 底 + accent 图标),**有且只有一个激活位**;五 tab Chat/Mix/Video/Discover/Me;图标槽 32/字形 24;底部模糊**已内置** `.tabbar::before`(等效 Figma Show Scroll Edge,`.no-edge` 可关),勿再叠任何渐变层;旧 `.nav-bar`(accent 底白图)与 `.nav-fade`(线性渐变)均已删除作废。
-- **NavBar(页头)**:用 `.header-brand`/`.header-tabs`/`.header-nav`/`.header-chat` 四变体;圆钮一律 `.btn-glass-42 .glass`(Button-Liquid-Glass-Symbol 42),禁手绘;**一级页页头不放返回按钮**;Nav-Center 标题绝对居中,不受右侧动作显隐影响;**页头区(含状态栏)必须包进 `.scroll-edge-top`**(顶部模糊,对应 Figma NavBar 内置 Scroll Edge),内容从其下滚过时正确渐隐。
+- **NavBar(页头)**:用 `.header-brand`/`.header-tabs`/`.header-nav`/`.header-chat` 四变体;圆钮一律 `.btn-glass-42 .glass`(Button-Liquid-Glass-Symbol 42),禁手绘;**页头里任何图标圆钮都必须是 `.btn-glass-42 .glass`——禁止用 `surface-secondary` / 纯色圆圈 / 自定尺寸等临时写法顶替,各页页头钮必须彼此一致**;**一级页页头不放返回按钮**;Nav-Center 标题绝对居中,不受右侧动作显隐影响;**页头区(含状态栏)必须包进 `.scroll-edge-top`**(顶部模糊,对应 Figma NavBar 内置 Scroll Edge),内容从其下滚过时正确渐隐。
+- **基线组件自检(交付前必过)**:每页的 NavBar 与 TabBar 逐项对照上面两条标准——页头 = 四变体之一(`.header-brand`/`.header-tabs`/`.header-nav`/`.header-chat`)+ 玻璃圆钮 `.btn-glass-42 .glass` + 包进 `.scroll-edge-top`;底部 = `.tabbar > .pill.glass` + 有且仅一个 `.active`。**这是最基础的规范,任何输入类型(尤其自然语言)都不例外**;凡发现临时手搓的页头钮 / 导航条,一律替换为标准写法后再交付。
 - **Backdrop(遮罩)**:`.backdrop`(--backdrop-base,一般默认)/`.backdrop.strong`(--backdrop-strong,活动运营等强调弹层的特殊场景);纯黑压暗无模糊,弹层底下垫。
 - **组件宽度**:一律「左右边距 + 拉伸」,禁写死 343/360 等画布衍生固定宽(基准规则见 patterns.md)。
 - **图标铁律**:**只用 ZymixUI 图标库**——内置 `icons-bundled.json` 按名内联,库里没有的走 CDN `.zi` mask;**严禁手绘/自造任何图标 SVG**(几何拼凑也算),仅状态栏信号/WiFi/电池等系统 chrome 例外。库里无 wallet→用 credit-card;3D 彩色品牌插画(转盘/礼包等)不在库,用导出的 PNG,不用手绘。

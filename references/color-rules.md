@@ -21,7 +21,7 @@
 点赞爱心→--feature-like-base(情感色);危险按钮填充→--danger-base;危险**文字/图标**→--danger-soft-foreground(danger-base 做文字对比度不达 AA,红色以文字形态出现必须用深红)。
 
 ## 文字梯子(foreground)
-base 主文字(纯黑/白)→muted 55% 次文字→subtle 40% 辅助(仅限辅助信息)→placeholder 30% 占位→disabled 26% 禁用→faint 15% 极弱→ghost 8% 最弱。
+base 主文字(纯黑/白)→emphasis 80% 强调文字(标题副文/强调正文)→muted 55% 次文字→subtle 40% 辅助(仅限辅助信息)→placeholder 30% 占位→disabled 26% 禁用→faint 15% 极弱→ghost 8% 最弱。
 链接→--foreground-link;品牌绿文字→--foreground-brand;反色容器(黑底药丸等)上的文字→--foreground-inverse,不要用 --default-white。
 
 ## 层面

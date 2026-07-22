@@ -35,6 +35,7 @@
   --info-soft-pressed: rgba(0, 122, 255, 0.20);
   --info-soft-foreground: #0057B8;
   --foreground-base: #000000;
+  --foreground-emphasis: rgba(0, 0, 0, 0.80);
   --foreground-muted: rgba(0, 0, 0, 0.55);
   --foreground-subtle: rgba(0, 0, 0, 0.40);
   --foreground-disabled: rgba(0, 0, 0, 0.26);
@@ -45,6 +46,7 @@
   --foreground-faint: rgba(0, 0, 0, 0.15);
   --foreground-ghost: rgba(0, 0, 0, 0.08);
   --foreground-on-dark-base: #FFFFFF;
+  --foreground-on-dark-emphasis: rgba(255, 255, 255, 0.80);
   --foreground-on-dark-muted: rgba(255, 255, 255, 0.55);
   --foreground-on-dark-subtle: rgba(255, 255, 255, 0.35);
   --foreground-on-dark-placeholder: rgba(255, 255, 255, 0.30);
@@ -235,6 +237,7 @@
   --info-soft-pressed: rgba(0, 122, 255, 0.16);
   --info-soft-foreground: #8EC5FF;
   --foreground-base: #FFFFFF;
+  --foreground-emphasis: rgba(255, 255, 255, 0.80);
   --foreground-muted: rgba(255, 255, 255, 0.55);
   --foreground-subtle: rgba(255, 255, 255, 0.35);
   --foreground-disabled: rgba(255, 255, 255, 0.22);
@@ -245,6 +248,7 @@
   --foreground-faint: rgba(255, 255, 255, 0.15);
   --foreground-ghost: rgba(255, 255, 255, 0.08);
   --foreground-on-dark-base: #FFFFFF;
+  --foreground-on-dark-emphasis: rgba(255, 255, 255, 0.80);
   --foreground-on-dark-muted: rgba(255, 255, 255, 0.55);
   --foreground-on-dark-subtle: rgba(255, 255, 255, 0.35);
   --foreground-on-dark-placeholder: rgba(255, 255, 255, 0.30);
@@ -327,6 +331,7 @@
   --info-soft-pressed: rgba(0, 122, 255, 0.16);
   --info-soft-foreground: #8EC5FF;
   --foreground-base: #FFFFFF;
+  --foreground-emphasis: rgba(255, 255, 255, 0.80);
   --foreground-muted: rgba(255, 255, 255, 0.55);
   --foreground-subtle: rgba(255, 255, 255, 0.35);
   --foreground-disabled: rgba(255, 255, 255, 0.22);
@@ -337,6 +342,7 @@
   --foreground-faint: rgba(255, 255, 255, 0.15);
   --foreground-ghost: rgba(255, 255, 255, 0.08);
   --foreground-on-dark-base: #FFFFFF;
+  --foreground-on-dark-emphasis: rgba(255, 255, 255, 0.80);
   --foreground-on-dark-muted: rgba(255, 255, 255, 0.55);
   --foreground-on-dark-subtle: rgba(255, 255, 255, 0.35);
   --foreground-on-dark-placeholder: rgba(255, 255, 255, 0.30);
