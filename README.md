@@ -1,6 +1,6 @@
 # ZYMIX-UI 原型技能
 
-**版本 v1.1.1** · tokens + Button/Toast/玻璃材质 + 图标库 + 4 页模板
+**版本 v1.2.0** · tokens + Button/Toast/玻璃材质 + 图标库 + App(多屏外壳)/ Chat 模板
 
 > 一句话说清需求，AI 就给你一张**完全符合 ZYMIX 设计规范**的高保真手机页面。
 
@@ -107,3 +107,4 @@ scripts/
 | v1.0.0 | 2026-07-09 | 首发:全量 tokens、文字角色、Button(7×3)、Toast、液态玻璃、页面模板、图标库、合规检查、需求获取流程 |
 | **v1.1.0** | 2026-07-14 | Discover 改版;四模板统一(纯库图标 / 圆头像 / 灵动岛外观切换 / 移动端满屏);输出页全英文(英国市场);文档按"设计-产品 / 技术"两类使用者重梳理 |
 | **v1.1.1** | 2026-07-20 | NavBar 顶部模糊落地:页头区包进 `.scroll-edge-top`(渐变绑 `--background-base` 随明暗翻转,浅→白/深→黑),对应 Figma NavBar 内置 Scroll Edge;明确"skill 用页面层 / Figma 用组件内置"为有意为之的架构差异(SKILL.md · patterns.md · components.css);与 Figma Kit v0.7.0 对齐(NavBar 图标暗色翻白、Backdrop base/strong、Materials Scroll Edge 明暗自适应均已核对一致) |
+| **v1.2.0** | 2026-07-22 | 语义层新增 `foreground/emphasis`(黑/白 80%,填补 base↔muted 空档;含 `on-dark/emphasis`)+ 对应颜色样式;tokens 源(`dsv2/tokens`)、`tokens.css`、DESIGN、TOKENS-GUIDE、color-rules 同步。`app.html` 补齐 Chat 会话列表屏(搜索 + 会话行,复用 `.list-row`/`.header-brand`/`.tabbar` 规范类,头像圆角 24)。SKILL 强化 NavBar/TabBar 为**强制基线**(自然语言输入亦然,禁止临时手搓页头圆钮)+ 新增交付前基线组件自检 |
