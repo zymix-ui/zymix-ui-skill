@@ -16,7 +16,7 @@
 
 **两个关键位置:**
 
-- **设计变量(Tokens)** 的单一真源为 **[`references/tokens.css`](./references/tokens.css)** —— 347 个变量、含深浅色,由 `sync_tokens.py` 从 Figma 生成,请勿手改。
+- **设计变量(Tokens)** 的单一真源为 **[`references/tokens.css`](./references/tokens.css)** —— 199 个变量、含深浅色,由 `sync_tokens.py` 从 Figma 生成,请勿手改。
 - **组件样式** 位于 **[`references/components.css`](./references/components.css)** —— Button / NavBar / TabBar / Toast / 玻璃材质等,依赖上述变量。
 
 ---
@@ -69,7 +69,7 @@ PROTOTYPE-GUIDE.md    🎨 设计/产品:怎么用技能做原型
 TOKENS-GUIDE.md       🛠 技术:怎么拿 & 接入 tokens
 DESIGN.md             🤖 设计系统规范(Stitch 格式)
 references/           设计规范(真源)
-  tokens.css            ⭐ 颜色/间距/字号/圆角变量(347 个,单一真源)
+  tokens.css            ⭐ 颜色/间距/字号/圆角变量(199 个,单一真源)
   components.css        ✅ 组件类:Button/NavBar/TabBar/Toast/玻璃材质/气泡/列表(依赖 tokens,见 TOKENS-GUIDE 组件层)
   color-rules.md        用色规则   typography.md 文字样式
   patterns.md           页面布局惯例(骨架标配、TabBar/NavBar)

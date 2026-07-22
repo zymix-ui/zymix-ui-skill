@@ -8,7 +8,7 @@
 
 设计变量的唯一真源为 **`references/tokens.css`**。
 
-- 共 **347 个 CSS 变量**,包含 Light / Dark 两套值。
+- 共 **199 个 CSS 变量**,包含 Light / Dark 两套值。
 - 该文件为 **Figma 变量的同步快照**,由 `scripts/sync_tokens.py` 生成,**不应手动修改**(改动会在下次同步时被覆盖)。变量值的调整需在 Figma 完成后重新同步。
 - 变量的语义定义与用途判据(如 accent 与 success 的区分、危险色的使用场景)见 `DESIGN.md` 第 2 节。
 
