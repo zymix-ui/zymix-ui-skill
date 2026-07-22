@@ -76,7 +76,7 @@ references/           设计规范(真源)
   craft.md              工艺层(反 AI 味 + 灵动岛约定)
   spec.md               功能状态声明(空/加载/失败…)
   lessons.md            还原经验(避坑清单)
-  icons-bundled.json    69 个常用图标(离线可用)
+  icons-bundled.json    81 个常用图标(离线可用,含 nav-* 导航图标)
 assets/
   template.html         手机页面骨架
   templates/            标准模板:app(多屏应用外壳:Mix/Discover/Me 切换)+ chat(IM 群聊)

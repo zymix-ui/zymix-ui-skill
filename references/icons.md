@@ -13,6 +13,6 @@ JSON 里存的就是含 `<g transform>` 的内部,直接塞进 `<svg viewBox="0 
 ## 长尾(721 个全量) CDN 引用
 内置里没有的图标走 CDN(mask 上色,见 SKILL.md「图标库(CDN)」的 .zi):
 ```html
-<i class="zi" style="--zi:url(https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.0/svgs/<name>.svg)"></i>
+<i class="zi" style="--zi:url(https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.1/svgs/<name>.svg)"></i>
 ```
 全部图标名见 CDN 仓库 svgs/ 或让用户提供清单。库里无 wallet(用 credit-card 代),share=arrow-shape-turn-up-right。

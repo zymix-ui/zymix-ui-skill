@@ -70,9 +70,9 @@ description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 
   -webkit-mask:var(--zi) center/contain no-repeat;mask:var(--zi) center/contain no-repeat}
 ```
 ```html
-<i class="zi" style="--zi:url(https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.0/svgs/rocket.svg)"></i>
+<i class="zi" style="--zi:url(https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.1/svgs/rocket.svg)"></i>
 ```
-base URL:`https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.0/svgs/<name>.svg`(`.zi` 已在 components.css)。⚠CDN 图标需联网,预览卡片不显示、真机/浏览器正常。全部图标名见图标仓库 svgs/。
+base URL:`https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.1/svgs/<name>.svg`(`.zi` 已在 components.css)。⚠CDN 图标需联网,预览卡片不显示、真机/浏览器正常。全部图标名见图标仓库 svgs/。
 
 ## 规范更新
 
