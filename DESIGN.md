@@ -1,7 +1,7 @@
 # DESIGN.md — ZymixUI
 
 > ZYMIX 移动端设计系统（iOS 风格社交 / IM 产品）。供 Google Stitch 及各类设计 AI 读取，生成符合规范的界面。
-> 版本 v1.1.0 · 单位默认 px · 目标画布 iPhone 375×812。
+> 版本 v1.2.1 · 单位默认 px · 目标画布 iPhone 375×812。
 
 ---
 
