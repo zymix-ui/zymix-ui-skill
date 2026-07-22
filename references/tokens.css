@@ -123,7 +123,7 @@
   --size-72: 72px;
   --size-96: 96px;
   --size-128: 128px;
-  --family-base: "SF Pro";
+  --family-base: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
   --weight-regular: "Regular";
   --weight-semibold: "Semibold";
   --weight-black: "Black";

@@ -51,6 +51,7 @@ def main(tok):
     for k,v in ty.items():
         n='--'+k.replace('.','-')
         if isinstance(v,(int,float)):out.append(f'  {n}: {v}px;')
+        elif k.startswith('family'):out.append(f'  {n}: {v};')  # 字族=CSS 字体栈,原样输出(不外包引号;栈内字体名已自带引号)
         else:out.append(f'  {n}: "{v}";')
     # Motion(平台无关值 → Web CSS 映射;spring/gesture 不进 CSS,见 motion.md 的 SwiftUI 映射)
     mpath=os.path.join(tok,'motion.json')
