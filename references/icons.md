@@ -1,6 +1,6 @@
 # 图标使用(ZymixUI 图标库)
 
-## 内置常用(离线,~66 个) references/icons-bundled.json
+## 内置常用(离线,81 个) references/icons-bundled.json
 name→SVG 内部。生成页面时按名取,内联:
 ```html
 <span style="display:inline-flex;width:24px;height:24px;color:var(--foreground-base)">

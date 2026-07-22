@@ -40,7 +40,7 @@ description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 
 - **按钮**:只用 `.btn .btn-{primary|secondary|tertiary|outline|ghost|danger|danger-soft} .btn-{sm|md|lg}` 组合;玻璃按钮 `.btn-glass`(胶囊)/`.btn-glass-42 .glass`(页头圆钮)。禁止自造按钮样式;底色与文字色已按状态组配对,不要覆盖 color。
 - **Toast**:`<div class="toast glass">` + 图标 + `.toast-text`。图标/文字一律中性黑(设计裁决:Toast 不用状态色的红绿),类型只换图标图形。**位置铁律:永远在屏幕顶部,距手机顶 60px 水平居中(样式已内置),不要放页面中间或底部**。**默认隐藏,点击触发**:toast 加 `id="toast"`,触发按钮加 `onclick="showToast()"`,页面 `</body>` 前带一段脚本:`<script>function showToast(){const t=document.getElementById('toast');t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),3000)}</script>`(显示 3 秒自动消失,方便预览真实交互)。
 - **页头返回按钮**:与右侧操作钮同规格,必须玻璃底:`<button class="back btn btn-glass-42 glass">`,禁止裸箭头。
-- **图标(ZymixUI 图标库,721 个)**:**禁止手绘 SVG**。常用 ~66 个已内置 `references/icons-bundled.json`(name→SVG内部),按名取、内联进 `<svg viewBox="0 0 16 16">`、用 currentColor 上色(用法见 references/icons.md);内置里没有的走 CDN 的 `.zi` mask 引用(见「图标库(CDN)」)。库里无 wallet(用 credit-card),share=arrow-shape-turn-up-right。3D 彩色图标(转盘/礼物等品牌插画)不在图标库,用 emoji 占位或让用户导出 PNG。
+- **图标(ZymixUI 图标库,721 个)**:**禁止手绘 SVG**。常用 81 个已内置 `references/icons-bundled.json`(name→SVG内部),按名取、内联进 `<svg viewBox="0 0 16 16">`、用 currentColor 上色(用法见 references/icons.md);内置里没有的走 CDN 的 `.zi` mask 引用(见「图标库(CDN)」)。库里无 wallet(用 credit-card),share=arrow-shape-turn-up-right。3D 彩色图标(转盘/礼物等品牌插画)不在图标库,用 emoji 占位或让用户导出 PNG。
 - **玻璃材质**:一切玻璃质感只用 `.glass`(Figma 液态玻璃的 CSS 近似,自带投影和内高光),着色玻璃加 `.glass-primary`。不要手写 backdrop-filter。
 - **状态**:按下 `:active` 已内置;禁用 `disabled` 属性(整体 50% 透明度);44pt 热区已由伪元素扩展。
 
