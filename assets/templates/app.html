@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>ZymixUI · App(TabBar 切换)</title>
+<title>ZymixUI · App (TabBar)</title>
 <style>
 :root {
   --accent-base: #26D93E; --accent-pressed: #1FB432; --accent-foreground: #FFFFFF;
@@ -1387,6 +1387,67 @@ html{-webkit-tap-highlight-color:transparent}
     <div style="height:100px"></div>
 
   </div>
+  <!-- Chat 对话屏(chat.html 融入):点会话行全屏打开,隐 TabBar,页头返回 -->
+  <div class="screen" data-tab="chatconvo" data-hide-tabbar>
+    <style>
+      .screen[data-tab="chatconvo"]{padding-bottom:0;overflow:hidden}
+      .chat-list .list-row{cursor:pointer}
+      .convo-stream{flex:1;min-height:0;flex-shrink:1;overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding:16px;scrollbar-width:none}
+      .convo-stream::-webkit-scrollbar{display:none}
+      .convo-safe{height:max(16px,env(safe-area-inset-bottom));flex-shrink:0}
+    </style>
+    <!-- NavBar Chat:返回 + 头像 + 群名/人数 + 更多 -->
+    <div class="scroll-edge-top">
+      <div style="display:flex;align-items:center;gap:12px;padding:8px 16px;min-height:58px">
+        <button class="btn btn-glass-42 glass" data-go="chat" aria-label="Back" style="color:var(--foreground-base)">
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.5303 10.9697C26.8232 11.2626 26.8232 11.7374 26.5303 12.0303L22.5607 16L26.5303 19.9697C26.8232 20.2626 26.8232 20.7374 26.5303 21.0303C26.2374 21.3232 25.7626 21.3232 25.4697 21.0303L20.9697 16.5303C20.6768 16.2374 20.6768 15.7626 20.9697 15.4697L25.4697 10.9697C25.7626 10.6768 26.2374 10.6768 26.5303 10.9697Z" fill="currentColor"/></g></svg>
+        </button>
+        <span class="avatar" role="img" aria-label="Vibe Tribe" style="width:36px;height:36px;border-radius:var(--radius-round);background-color:var(--skeleton-base);background-image:url(https://picsum.photos/seed/vibetribe/96);background-size:cover;background-position:center"></span>
+        <div style="flex:1;min-width:0">
+          <div class="t-scene-list" style="color:var(--foreground-base)">Vibe Tribe</div>
+          <div class="t-body-xs" style="color:var(--foreground-muted)">6 members</div>
+        </div>
+        <button class="btn btn-glass-42 glass" aria-label="More" style="color:var(--foreground-base)">
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M24 12.5C24.8284 12.5 25.5 11.8284 25.5 11C25.5 10.1716 24.8284 9.5 24 9.5C23.1716 9.5 22.5 10.1716 22.5 11C22.5 11.8284 23.1716 12.5 24 12.5ZM25.5 16C25.5 16.8284 24.8284 17.5 24 17.5C23.1716 17.5 22.5 16.8284 22.5 16C22.5 15.1716 23.1716 14.5 24 14.5C24.8284 14.5 25.5 15.1716 25.5 16ZM25.5 21C25.5 21.8284 24.8284 22.5 24 22.5C23.1716 22.5 22.5 21.8284 22.5 21C22.5 20.1716 23.1716 19.5 24 19.5C24.8284 19.5 25.5 20.1716 25.5 21Z" fill="currentColor"/></g></svg>
+        </button>
+      </div>
+    </div>
+    <!-- 消息流 -->
+    <div class="convo-stream">
+      <div style="display:flex;gap:8px;align-items:flex-end">
+        <span class="avatar" role="img" aria-label="Aki" style="width:32px;height:32px;border-radius:var(--radius-round);background-color:var(--skeleton-base);background-image:url(https://i.pravatar.cc/64?img=15);background-size:cover;background-position:center;flex-shrink:0"></span>
+        <div>
+          <div class="t-body-xs" style="font-weight:600;color:var(--foreground-base);margin:0 0 4px 4px">Aki</div>
+          <div class="bubble bubble-other">Hello? Anyone up for brunch?</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:flex-end">
+        <span class="avatar" role="img" aria-label="Aki" style="width:32px;height:32px;border-radius:var(--radius-round);background-color:var(--skeleton-base);background-image:url(https://i.pravatar.cc/64?img=15);background-size:cover;background-position:center;flex-shrink:0"></span>
+        <div class="bubble bubble-other">Saturday works for me, the new place near the park just opened.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+        <div class="bubble bubble-friend pill">OK</div>
+        <div style="display:flex;gap:4px;align-items:center">
+          <span class="read-friend" style="display:inline-flex;align-items:center"><svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M29.4881 11.4306C29.8026 11.7001 29.839 12.1736 29.5694 12.4881L23.5694 19.4881C23.4335 19.6467 23.2375 19.7414 23.0288 19.7495C22.82 19.7575 22.6174 19.6781 22.4697 19.5303L18.9697 16.0303C18.6768 15.7375 18.6768 15.2626 18.9697 14.9697C19.2626 14.6768 19.7374 14.6768 20.0303 14.9697L22.9576 17.897L28.4306 11.5119C28.7001 11.1974 29.1736 11.161 29.4881 11.4306Z" fill="currentColor"/></g></svg><svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor" style="margin-left:-9px"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M29.4881 11.4306C29.8026 11.7001 29.839 12.1736 29.5694 12.4881L23.5694 19.4881C23.4335 19.6467 23.2375 19.7414 23.0288 19.7495C22.82 19.7575 22.6174 19.6781 22.4697 19.5303L18.9697 16.0303C18.6768 15.7375 18.6768 15.2626 18.9697 14.9697C19.2626 14.6768 19.7374 14.6768 20.0303 14.9697L22.9576 17.897L28.4306 11.5119C28.7001 11.1974 29.1736 11.161 29.4881 11.4306Z" fill="currentColor"/></g></svg></span>
+          <span class="t-body-2xs" style="color:var(--foreground-subtle)">Read by all</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+        <div class="bubble bubble-friend">See you at 11, I will book a table by the window.</div>
+      </div>
+    </div>
+    <!-- 底部输入条:玻璃圆钮 + 胶囊输入 -->
+    <div class="input-bar">
+      <button class="btn glass icon-only" aria-label="Add" style="width:40px;height:40px;border-radius:var(--radius-round);color:var(--foreground-base)">
+        <svg viewBox="0 0 16 16" width="22" height="22" fill="currentColor"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M24 9.75C24.4142 9.75 24.75 10.0858 24.75 10.5V15.25H29.5C29.9142 15.25 30.25 15.5858 30.25 16C30.25 16.4142 29.9142 16.75 29.5 16.75H24.75V21.5C24.75 21.9142 24.4142 22.25 24 22.25C23.5858 22.25 23.25 21.9142 23.25 21.5V16.75H18.5C18.0858 16.75 17.75 16.4142 17.75 16C17.75 15.5858 18.0858 15.25 18.5 15.25H23.25V10.5C23.25 10.0858 23.5858 9.75 24 9.75Z" fill="currentColor"/></g></svg>
+      </button>
+      <div class="input-field glass">Message</div>
+      <button class="btn glass icon-only" aria-label="Voice" style="width:40px;height:40px;border-radius:var(--radius-round);color:var(--foreground-base)">
+        <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M25.5 15V11.5C25.5 10.6716 24.8284 10 24 10C23.1716 10 22.5 10.6716 22.5 11.5V15C22.5 15.8284 23.1716 16.5 24 16.5C24.8284 16.5 25.5 15.8284 25.5 15ZM24 8.5C22.3431 8.5 21 9.84315 21 11.5V15C21 16.6569 22.3431 18 24 18C25.6569 18 27 16.6569 27 15V11.5C27 9.84315 25.6569 8.5 24 8.5ZM24.75 20.9536C27.7097 20.5845 30 18.0597 30 15V14.75C30 14.3358 29.6642 14 29.25 14C28.8358 14 28.5 14.3358 28.5 14.75V15C28.5 17.4853 26.4853 19.5 24 19.5C21.5147 19.5 19.5 17.4853 19.5 15V14.75C19.5 14.3358 19.1642 14 18.75 14C18.3358 14 18 14.3358 18 14.75V15C18 18.0597 20.2903 20.5845 23.25 20.9536V22.75C23.25 23.1642 23.5858 23.5 24 23.5C24.4142 23.5 24.75 23.1642 24.75 22.75V20.9536Z" fill="currentColor"/></g></svg>
+      </button>
+    </div>
+    <div class="convo-safe"></div>
+  </div>
   <div class="screen" data-tab="video">
     <div class="scroll-edge-top"><div class="header-brand"><div class="t-scene-header" style="color:var(--foreground-base)">Video</div></div></div>
     <div class="tab-empty">
@@ -1453,17 +1514,31 @@ function showToast(msg){ var el=document.getElementById('toast'); if(!el) return
   var root=document.documentElement;
   var screens=[].slice.call(document.querySelectorAll('.phone .screen'));
   var tabs=[].slice.call(document.querySelectorAll('.tab[data-go]'));
+  var dock=document.querySelector('.tabbar-dock');
   function active(){ return document.querySelector('.phone .screen.is-active'); }
   function upd(){ var a=active(); root.classList.toggle('scrolled', !!a && a.scrollTop>4); }
   function show(tab){
     screens.forEach(function(s){ s.classList.toggle('is-active', s.getAttribute('data-tab')===tab); });
     tabs.forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-go')===tab); });
+    var a=active();
+    if(dock) dock.style.display=(a && a.hasAttribute('data-hide-tabbar'))?'none':''; /* 对话屏隐藏底部 TabBar */
+    if(a) a.scrollTop=0;
     upd();
   }
   screens.forEach(function(s){ s.addEventListener('scroll', upd, {passive:true}); });
   tabs.forEach(function(t){
     t.addEventListener('click', function(){ show(t.getAttribute('data-go')); });
     t.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); show(t.getAttribute('data-go')); } });
+  });
+  /* 非 tab 的下钻/返回入口(如对话屏返回钮 data-go="chat") */
+  [].slice.call(document.querySelectorAll('[data-go]:not(.tab)')).forEach(function(el){
+    el.addEventListener('click', function(){ show(el.getAttribute('data-go')); });
+  });
+  /* 会话列表任一行 → 打开全屏对话屏 */
+  [].slice.call(document.querySelectorAll('.chat-list .list-row')).forEach(function(r){
+    r.setAttribute('role','button'); r.setAttribute('tabindex','0');
+    r.addEventListener('click', function(){ show('chatconvo'); });
+    r.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); show('chatconvo'); } });
   });
   show('mix');
 })();

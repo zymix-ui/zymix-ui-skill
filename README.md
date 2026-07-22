@@ -1,6 +1,6 @@
 # ZYMIX-UI 原型技能
 
-**版本 v1.2.0** · tokens + Button/Toast/玻璃材质 + 图标库 + App(多屏外壳)/ Chat 模板
+**版本 v1.2.1** · tokens + Button/Toast/玻璃材质 + 图标库 + App(多屏外壳,含 Chat 会话列表→对话下钻)
 
 > 一句话说清需求，AI 就给你一张**完全符合 ZYMIX 设计规范**的高保真手机页面。
 
@@ -31,7 +31,7 @@
 
 **把"想法"变成"符合规范的界面",中间不用逐个像素去调。**
 
-技能自带样例页(`assets/templates/`):**App**(`app.html`:单页多屏外壳,底部 TabBar 一键切换 **Mix / Discover / Me** 三屏 + Chat/Video 占位;含状态栏、灵动岛外观切换、Scroll Edge、移动端满屏)· **Chat**(`chat.html`:IM 群聊页)。
+技能自带样例页(`assets/templates/`):**App**(`app.html`:单页多屏外壳,底部 TabBar 一键切换 **Mix / Discover / Me** 三屏 + **Chat**(会话列表→点行全屏对话:气泡/已读回执/输入条)+ Video 占位;含状态栏、灵动岛外观切换、Scroll Edge、移动端满屏)。IM 群聊已并入 app.html,不再单独出 chat.html。
 
 ---
 
@@ -79,7 +79,7 @@ references/           设计规范(真源)
   icons-bundled.json    81 个常用图标(离线可用,含 nav-* 导航图标)
 assets/
   template.html         手机页面骨架
-  templates/            标准模板:app(多屏应用外壳:Mix/Discover/Me 切换)+ chat(IM 群聊)
+  templates/            标准模板:app(多屏应用外壳:Mix/Discover/Me 切换 + Chat 会话列表/对话下钻)
 scripts/
   check_compliance.py   合规检查(拦不规范样式)
   sync_tokens.py        从 Figma 同步 tokens
