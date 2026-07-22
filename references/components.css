@@ -67,18 +67,19 @@
 /* 胶囊 高62(4+54+4)、左右边距8、圆角 round、玻璃底=Materials「Liquid Glass - Regular - Small」(叠 .glass)
    五 tab:Chat / Mix / Video / Discover / Me;激活位单选互斥;无 pressed/disabled;热区天然≥44;图标槽32(字形24)
    底部模糊已内置 .tabbar::before(2026-07-13 修复:此前无底部 Scroll Edge 类,生成会误用旧渐变) */
-.tabbar{position:relative;padding:0 8px 20px} /* 用法:包在 <div style="position:sticky;bottom:0;margin-top:auto"> 里贴底 */
-.tabbar::before{content:'';position:absolute;left:0;right:0;bottom:0;height:104px; /* 内置 Scroll Edge Effect - Soft(Edge=Bottom):等效 Figma 组件 Show Scroll Edge,单独调用即有底部模糊,勿再叠层 */
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  background:linear-gradient(to top,var(--background-base) 10%,transparent 65%);
-  mask-image:linear-gradient(to top,#000 45%,transparent);-webkit-mask-image:linear-gradient(to top,#000 45%,transparent);
-  pointer-events:none}
+.tabbar{position:relative;padding:0 8px 20px} /* 用法:包在 .tabbar-dock 里,作为 .phone 的绝对定位悬浮层贴底 */
+.tabbar::before{content:'';position:absolute;left:0;right:0;bottom:0;height:82px; /* 内置 Scroll Edge Effect - Soft(Edge=Bottom,Figma 82px):纯背景底+backdrop-blur+线性遮罩全程淡出,勿再叠层 */background:var(--background-base);opacity:.9;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);mask-image:linear-gradient(to top,#000,transparent);-webkit-mask-image:linear-gradient(to top,#000,transparent);pointer-events:none}
 .tabbar.no-edge::before{display:none} /* 等效 Show Scroll Edge=false:页面已有模糊层时用 */
 .tabbar .pill{position:relative;display:flex;align-items:stretch;padding:4px;border-radius:var(--radius-round)}
 .tab{flex:1;height:var(--size-54);display:flex;align-items:center;justify-content:center;border-radius:var(--radius-round);color:var(--foreground-base)} /* 未激活:透明底 + foreground/base 图标 */
 .tab.active{background:var(--accent-soft-subtle);color:var(--accent-base)}                        /* 激活:accent/soft-subtle(8%)底 + accent/base 图标 */
 .tab.labelled{flex-direction:column;gap:2px}                                                      /* Label=True 特殊场景:图标32顶 + 文字10/12,激活字色 accent */
 .tab .tab-label{font-size:10px;line-height:12px;font-weight:400}
+/* TabBar 悬浮层:.phone 底部绝对定位,不随内容滚动,渐隐带永远贴底;跨浏览器/移动端稳定。
+   ⚠️ 勿把 .tabbar 放进滚动容器 .screen(旧的 sticky;bottom:0;margin-top:auto 在 Safari/移动全屏会错位)。
+   .screen(或内容容器)需留 padding-bottom≈100px,让内容能滚动穿过 TabBar 下方(等效 Figma 悬浮胶囊 + Scroll Edge)。 */
+.tabbar-dock{position:absolute;left:0;right:0;bottom:0;z-index:40;pointer-events:none}
+.tabbar-dock .pill{pointer-events:auto}
 /* ⚠️ 旧 .nav-bar(accent 底白图)与 .nav-fade(线性渐变假 HDR)均已删除作废——底部模糊只用 .tabbar 内置 ::before */
 
 
@@ -89,11 +90,13 @@
 
 /* --- Scroll Edge Effect - Soft(Materials 组件的 CSS 近似):吸顶层,下方内容滚入时被渐隐+模糊遮住 --- */
 .scroll-edge-top{position:sticky;top:0;z-index:50}
-.scroll-edge-top::before{content:'';position:absolute;left:0;right:0;top:0;height:108px; /* 填充容器宽,高 108(Figma Scroll Edge Effect - Soft) */
-  background:linear-gradient(to bottom,var(--background-base) 45%,transparent);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  mask-image:linear-gradient(to bottom,#000 55%,transparent);-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);
-  pointer-events:none;z-index:-1}
+.scroll-edge-top::before{content:'';position:absolute;left:0;right:0;top:0;height:102px; /* 内置 Scroll Edge Effect - Soft(Edge=Top,Figma 102px):纯背景底+backdrop-blur+线性遮罩全程淡出;仅滚动时显(iOS 大标题) */background:var(--background-base);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);mask-image:linear-gradient(to bottom,#000,transparent);-webkit-mask-image:linear-gradient(to bottom,#000,transparent);pointer-events:none;z-index:-1;opacity:0;transition:opacity .2s ease}
+/* 顶部 Scroll Edge 仅在滚动时出现(iOS 大标题惯例):静止时透明,内容滑到导航栏下方才模糊。
+   否则 backdrop-filter 在静止时也会合成出一条发灰/模糊带盖住顶部内容(Safari 尤其明显)。
+   页面需给滚动容器加监听切换 :root.scrolled,例如:
+   var s=document.querySelector('.screen'),r=document.documentElement;
+   s.addEventListener('scroll',function(){r.classList.toggle('scrolled',s.scrollTop>4)},{passive:true}); */
+:root.scrolled .scroll-edge-top::before{opacity:1}
 
 /* --- NavBar 顶部导航栏(2026-07-10;透明底 375×58,内容行42,从状态栏下沿拼页;4 变体) --- */
 /* 圆钮一律 Button-Liquid-Glass-Symbol(Size=42)= .btn-glass-42 .glass,禁手绘;代码侧 hitSlop≥44 */

@@ -31,7 +31,7 @@
 
 **把"想法"变成"符合规范的界面",中间不用逐个像素去调。**
 
-技能自带 4 个真实样例页(`assets/templates/`):**Discover**(发现流)· **Chat**(群聊)· **Me**(个人主页)· **Public**(公开动态流)。
+技能自带样例页(`assets/templates/`):**App**(`app.html`:单页多屏外壳,底部 TabBar 一键切换 **Mix / Discover / Me** 三屏 + Chat/Video 占位;含状态栏、灵动岛外观切换、Scroll Edge、移动端满屏)· **Chat**(`chat.html`:IM 群聊页)。
 
 ---
 
@@ -79,7 +79,7 @@ references/           设计规范(真源)
   icons-bundled.json    69 个常用图标(离线可用)
 assets/
   template.html         手机页面骨架
-  templates/            4 个标准模板:discover / chat / me / public
+  templates/            标准模板:app(多屏应用外壳:Mix/Discover/Me 切换)+ chat(IM 群聊)
 scripts/
   check_compliance.py   合规检查(拦不规范样式)
   sync_tokens.py        从 Figma 同步 tokens

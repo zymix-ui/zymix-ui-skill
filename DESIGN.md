@@ -39,6 +39,7 @@
 | 角色 | Light | Dark | 用途 |
 |---|---|---|---|
 | foreground/base | `#000000` | `#FFFFFF` | 主文字/图标 |
+| foreground/emphasis | `rgba(0,0,0,.80)` | `rgba(255,255,255,.80)` | 强调文字 / 标题副文（次强，填补 100↔55） |
 | foreground/muted | `rgba(0,0,0,.55)` | `rgba(255,255,255,.55)` | 次要文字（达 AA） |
 | foreground/subtle | `rgba(0,0,0,.40)` | `rgba(255,255,255,.35)` | 辅助信息（仅小字，AA 豁免） |
 | foreground/placeholder | `rgba(0,0,0,.30)` | `rgba(255,255,255,.30)` | 输入占位 |
@@ -51,6 +52,7 @@
 | 角色 | 值(Light=Dark) | 用途 |
 |---|---|---|
 | foreground/on-dark/base | `#FFFFFF` | 深底主文字 |
+| foreground/on-dark/emphasis | `rgba(255,255,255,.80)` | 深底强调文字 |
 | foreground/on-dark/muted | `rgba(255,255,255,.55)` | 深底次要文字 |
 | foreground/on-dark/subtle | `rgba(255,255,255,.35)` | 深底辅助信息 |
 | foreground/on-dark/placeholder | `rgba(255,255,255,.30)` | 深底占位 |

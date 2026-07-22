@@ -40,7 +40,7 @@
 - **评论预览**:纯文本 Body/较小 Caption,人名不加粗;"N Comments ›" muted + 小箭头
 - **作者行**:头像 32 倒角方形(radius-md 近似 squircle);昵称+官方绿标(五瓣星形 accent/base + surface/base 对勾);@handle·时间 muted;隐私锁图标;Follow 胶囊 = surface/secondary 底 + default/foreground 14 Semibold
 - **页头**:Tab 双标题(选中 24 Black/未选中 18 Bold muted);右侧玻璃圆钮=编辑笔
-- **Scroll Edge Effect - Soft(吸顶渐隐层)**:sticky 容器 top:0,`::before` 铺满容器宽、**高 108px**,从顶 `linear-gradient(bg 45%→transparent)` + `blur(8px)` + mask 渐隐,z-index:-1 垫页头下、pointer-events:none;内容上滑被顶部渐隐模糊遮住
+- **Scroll Edge Effect - Soft(渐隐层,对齐 Figma)**:`::before` 铺满容器宽,**顶部(NavBar)102px / 底部(TabBar)82px**;做法=纯 `background:var(--background-base)` 底 + `backdrop-filter:blur(30px)` + **全程线性 alpha 遮罩** `mask-image:linear-gradient(#000→transparent)`(从贴边一侧不透明平滑淡到 0,无硬边)。顶部渐隐仅在**滚动时**出现(默认 `opacity:0`,滚动容器加监听切 `:root.scrolled`→`opacity:1`),避免静止时 backdrop-filter 合成出发灰带盖住大标题(Safari 尤甚);底部 TabBar 用 `.tabbar-dock` 绝对定位悬浮贴底(勿放进滚动容器),内容留 `padding-bottom≈100px` 穿过
 
 ## 2026-07-09 · IM 一对一聊天页
 - **气泡圆角统一 radius-2xl(22px),禁止用 `.pill`(全圆)**:pill 让单行短消息变成全椭圆、多行又回到 22px,同一串对话圆角不一致很扎眼。所有聊天气泡固定 22px,不管一行还是多行。(`.pill` 只留给非气泡的独立胶囊标签,别套到 bubble 上)
