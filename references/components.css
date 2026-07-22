@@ -144,10 +144,10 @@
 .badge{min-width:18px;height:18px;border-radius:var(--radius-round);background:var(--accent-base);color:var(--accent-foreground);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:0 5px}
 
 /* --- 图标(CDN 长尾,内置 icons-bundled.json 没有的才用) --- */
-/* base: https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.1/svgs */
+/* base: https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.2/svgs */
 .zi{display:inline-block;width:24px;height:24px;background:currentColor;
   -webkit-mask:var(--zi) center/contain no-repeat;mask:var(--zi) center/contain no-repeat}
-/* 用法: <i class="zi" style="--zi:url(https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.1/svgs/NAME.svg);width:24px;height:24px"></i> */
+/* 用法: <i class="zi" style="--zi:url(https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.0.2/svgs/NAME.svg);width:24px;height:24px"></i> */
 
 /* --- 媒体遮罩(图上叠字用,恒黑渐变,与主题无关) --- */
 .media{position:relative;overflow:hidden}
