@@ -10,6 +10,9 @@ name→SVG 内部。生成页面时按名取,内联:
 JSON 里存的就是含 `<g transform>` 的内部,直接塞进 `<svg viewBox="0 0 16 16">` 即可;色用 currentColor 跟随父级 color。
 内置清单(grep icons-bundled.json 取键名):magnifier bell gear house person persons person-gear person-plus plus minus xmark check chevron-* heart(-fill) comment(-fill) comments paper-plane camera picture envelope lock lock-open gift qr-code ellipsis(-vertical) arrow-left/right/up/down bookmark star(-fill) trash-bin pencil pencil-to-square eye eye-slash clock calendar map-pin planet-earth globe thumbs-up face-smile microphone video handset circle-plus/check/xmark/info sliders share credit-card shield key flag tag at ban
 
+## 底部导航(TabBar)专用图标
+TabBar 只能用 `nav-` 前缀的导航图标,**不用普通图标顶替**,且**只用本地内置、不走 CDN**。内置 nav 组:`nav-chat` `nav-mix` `nav-video` `nav-discover` `nav-me` `nav-ai`,每个都配 `-fill` 面性变体。未激活用线性、激活切 `-fill` + accent 着色(模板 `.ic-line`/`.ic-fill` 已内置这套切换)。需要新的 tab 图标时,从全量库补一个 `nav-xxx` 进 `icons-bundled.json`,别挑普通图标或接 CDN。除非用户特殊要求才可偏离。
+
 ## 长尾(721 个全量) CDN 引用
 内置里没有的图标走 CDN(mask 上色,见 SKILL.md「图标库(CDN)」的 .zi):
 ```html

@@ -15,7 +15,7 @@ description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 
 
     **B. 意图源(只取意图,用规范重建)**:PRD 文档、产品经理用 AI 生成的原型(**不符合本规范**)、竞品/参考截图、纯文案清单。→ **只提取信息架构、内容、交互意图,一律用 ZymixUI 的 token/组件/文字角色重新落地,绝不照搬来源的样式**(它们本就不合规,照搬=把脏样式带进来)。要跟设计师点明:"我不复刻它的外观,只取结构和内容,用规范重做"。**双重分析定夺**:意图源(尤其网页/原型链接)不能只读 HTML/文本——文本会漏掉视觉精髓(如相册网格 vs 细横条、图上叠字沉浸卡 vs 图上文下小卡)。要**同时截图看它长什么样**(用浏览器工具或让设计师贴图),代码看结构+截图看视觉,两者结合再定每个模块怎么用规范实现,保留模块的布局精髓。
 
-    **C. 自然语言 / 迭代反馈**:文字描述、"次要文字改 muted"这类调整。→ 按描述做,样式走规范。**基线 chrome 强制**:凡页面含页头 / 底部导航,NavBar 与 TabBar 一律直接套用标准组件写法(见「硬规则」的 NavBar / TabBar 两条),即使用户只用自然语言、没点名导航,也**不许临时手搓页头圆钮或导航条**。
+    **C. 自然语言 / 迭代反馈**:文字描述、"次要文字改 muted"这类调整。→ 按描述做,样式走规范。**基线 chrome 强制**:凡页面含页头 / 底部导航,NavBar 与 TabBar 一律直接套用标准组件写法(含 Scroll Edge、玻璃材质、图标规则,见「硬规则」的 NavBar / TabBar 两条),即使用户只用自然语言、没点名导航,也**不许临时手搓页头圆钮或导航条**——默认整套照搬模板效果,不是"用户提了才做"。同理,**灵动岛默认必带**(见「硬规则」灵动岛条),除非用户明确要求去掉。
 
     **PRD / 多屏输入的特别流程**:PRD 常描述整个流程(多个页面)。不要闷头一次全画。先**解析出它隐含的页面清单 + 每页要素**,列给设计师 → **确认范围、优先级、先做哪几屏** → 逐页生成、逐页过合规检查。
 
@@ -53,18 +53,20 @@ description: 按 ZymixUI 设计系统生成高保真手机 UI 界面原型(HTML 
 - 分隔线 0.5px `var(--separator-base)`;强分隔 1px `var(--separator-strong)`
 - Dark 模式必须同时正确——只用语义变量自然双模(跟随系统切换,交付前脑内过一遍深色:黑底黑字/白底白字都是错)
 - **动效**(详见 motion.md):时长用 `--duration-*`、缓动用 `--ease-*`;禁 `transition:all`、禁 UI 用 `ease-in`;只动 transform/opacity;UI 过渡 ≤300ms;禁从 `scale(0)` 入场(用 scale(0.95)+opacity);高频/键盘操作不加动画;加 `prefers-reduced-motion` 兜底。checker 会拦 transition:all 与 ease-in。
-- **TabBar(底部导航)**:玻璃胶囊 `.tabbar > .pill.glass`,`.tab` 等分,激活位加 `.active`(=accent/soft-subtle 底 + accent 图标),**有且只有一个激活位**;五 tab Chat/Mix/Video/Discover/Me;图标槽 32/字形 24;底部模糊**已内置** `.tabbar::before`(等效 Figma Show Scroll Edge,`.no-edge` 可关),勿再叠任何渐变层;旧 `.nav-bar`(accent 底白图)与 `.nav-fade`(线性渐变)均已删除作废。
-- **NavBar(页头)**:用 `.header-brand`/`.header-tabs`/`.header-nav`/`.header-chat` 四变体;圆钮一律 `.btn-glass-42 .glass`(Button-Liquid-Glass-Symbol 42),禁手绘;**页头里任何图标圆钮都必须是 `.btn-glass-42 .glass`——禁止用 `surface-secondary` / 纯色圆圈 / 自定尺寸等临时写法顶替,各页页头钮必须彼此一致**;**一级页页头不放返回按钮**;Nav-Center 标题绝对居中,不受右侧动作显隐影响;**页头区(含状态栏)必须包进 `.scroll-edge-top`**(顶部模糊,对应 Figma NavBar 内置 Scroll Edge),内容从其下滚过时正确渐隐。
-- **基线组件自检(交付前必过)**:每页的 NavBar 与 TabBar 逐项对照上面两条标准——页头 = 四变体之一(`.header-brand`/`.header-tabs`/`.header-nav`/`.header-chat`)+ 玻璃圆钮 `.btn-glass-42 .glass` + 包进 `.scroll-edge-top`;底部 = `.tabbar > .pill.glass` + 有且仅一个 `.active`。**这是最基础的规范,任何输入类型(尤其自然语言)都不例外**;凡发现临时手搓的页头钮 / 导航条,一律替换为标准写法后再交付。
+- **TabBar(底部导航)**:玻璃胶囊 `.tabbar > .pill.glass`,`.tab` 等分,激活位加 `.active`(=accent/soft-subtle 底 + accent 图标),**有且只有一个激活位**;五 tab Chat/Mix/Video/Discover/Me;图标槽 32/字形 24;底部模糊**已内置** `.tabbar::before`(等效 Figma Show Scroll Edge,`.no-edge` 可关),勿再叠任何渐变层;旧 `.nav-bar`(accent 底白图)与 `.nav-fade`(线性渐变)均已删除作废。**TabBar 图标一律用本地内置 `icons-bundled.json`,禁止走 CDN**(`.zi` mask 引用)——底部导航是常驻可视元素,CDN 需联网、预览卡片不显示,必须离线可用。**且只能用图标库里 `nav-` 前缀的专用导航图标,不许拿普通图标(house / comments / person 等)顶替**:内置的 nav 组为 `nav-chat` / `nav-mix` / `nav-video` / `nav-discover` / `nav-me` / `nav-ai`,每个都配 `-fill` 面性变体(未激活用线性、激活切 `-fill` + accent 着色,模板已内置这套 `.ic-line`/`.ic-fill` 写法)。**除非用户特殊要求**(如自定义的第 6 个 tab、库里没有对应 nav 图标的业务),否则 tab 图标只在这组 nav 图标里选;确需新 tab 图标时,应从全量库补一个 `nav-xxx` 进 `icons-bundled.json`,而不是随便挑个普通图标或接 CDN。**切换 tab 默认带 iOS 原生微动效**(模板已内置,参考 iOS 26):①**激活底板滑动(还原 iOS 26 TabBar 选中胶囊)**——激活色块用**一个共享的 `.tab-indicator` 指示条**平滑滑到选中 tab,**不是每个 tab 各自 toggle 背景硬切**。手感克制(iOS 26 原生风,非夸张橡皮筋):小幅方向性拉伸(前缘先到、后缘略滞后,`lean=min(|dist|*0.4,单宽*0.5)` **封顶不横跨整条**)+ spring 回弹落位(`cubic-bezier(.34,1.3,.64,1)`,`--duration-slow`)。`.tab.active` 背景透明,底色只由指示条承担。②**图标 pop**(scale .82→1.08→1,近似 SF Symbol bounce)。③**新屏轻推淡入**(opacity + translateY(6px),`--duration-base`)。②③只在跨屏切换时各放一次、同屏不重放;底板滑动用可打断 transition(首帧/resize 用 `.no-anim` 直接落位)。`prefers-reduced-motion` 下滑动/pop 全关、只保留淡入;除非用户明确要求瞬切/无动效才去掉。详见 motion.md「TabBar 切换」。
+- **NavBar(页头)**:用 `.header-brand`/`.header-tabs`/`.header-nav`/`.header-chat` 四变体;圆钮一律 `.btn-glass-42 .glass`(Button-Liquid-Glass-Symbol 42),禁手绘;**页头里任何图标圆钮都必须是 `.btn-glass-42 .glass`——禁止用 `surface-secondary` / 纯色圆圈 / 自定尺寸等临时写法顶替,各页页头钮必须彼此一致**;**一级页页头不放返回按钮**;Nav-Center 标题绝对居中,不受右侧动作显隐影响;**页头区(含状态栏)必须包进 `.scroll-edge-top`**(顶部模糊,对应 Figma NavBar 内置 Scroll Edge),内容从其下滚过时正确渐隐。**Scroll Edge 是"半透明磨砂+背景模糊+线性渐隐"图层**(底用 `--feature-nav-background`,**不是**不透明纯白 `--background-base`——用纯白会盖成一条白条、看不到模糊);且**状态栏必须悬浮透明**(`.phone>.statusbar{position:absolute;top:0;background:transparent}`)、`.scroll-edge-top{padding-top:47px}`,内容才滚到状态栏下呈现磨砂渐隐(iOS 沉浸式)。底部 TabBar 的 `.tabbar::before` 同理用磨砂半透明。模板与 components.css 已内置,勿改回不透明纯白。
+- **NavBar / TabBar 默认整套套用模板效果(不需用户点名)**:任何页面只要出现页头或底部导航,一律**默认**直接照搬 `assets/templates/app.html` 里的整套写法与效果——玻璃材质、Scroll Edge(顶部 `.scroll-edge-top` + 底部 `.tabbar::before`)、激活态着色、圆钮规格——**全部照单全收,不是"用户提到才做"**。只有用户明确要求不同效果(例如"不要模糊""去掉 Scroll Edge")时才偏离。
+- **灵动岛(默认必备,见 craft.md §8)**:**每个生成的页面/项目默认都要带灵动岛**,用来在预览里一键切换系统/浅色/深色三态自测。无多状态用 B 型(药丸本身即外观开关),有多状态用 A 型(状态切换器 + 外观图标)。**除非用户明确要求去掉灵动岛(如说"去掉灵动岛"/"不要这个切换器"),否则任何情况下都不得省略**——包括自然语言描述、PRD 转译、"最终交付版"等场景;真正交付时最多去掉 A 型的多状态演示菜单,外观切换本体必须保留。
+- **基线组件自检(交付前必过)**:每页的 NavBar 与 TabBar 逐项对照上面标准——页头 = 四变体之一(`.header-brand`/`.header-tabs`/`.header-nav`/`.header-chat`)+ 玻璃圆钮 `.btn-glass-42 .glass` + 包进 `.scroll-edge-top`;底部 = `.tabbar > .pill.glass` + 有且仅一个 `.active`,且图标全部来自本地 `icons-bundled.json`(不走 CDN,见下「图标铁律」);另加灵动岛是否按规则存在。**这是最基础的规范,任何输入类型(尤其自然语言)都不例外**;凡发现临时手搓的页头钮 / 导航条 / 缺失灵动岛,一律补齐/替换为标准写法后再交付。
 - **Backdrop(遮罩)**:`.backdrop`(--backdrop-base,一般默认)/`.backdrop.strong`(--backdrop-strong,活动运营等强调弹层的特殊场景);纯黑压暗无模糊,弹层底下垫。
 - **组件宽度**:一律「左右边距 + 拉伸」,禁写死 343/360 等画布衍生固定宽(基准规则见 patterns.md)。
-- **图标铁律**:**只用 ZymixUI 图标库**——内置 `icons-bundled.json` 按名内联,库里没有的走 CDN `.zi` mask;**严禁手绘/自造任何图标 SVG**(几何拼凑也算),仅状态栏信号/WiFi/电池等系统 chrome 例外。库里无 wallet→用 credit-card;3D 彩色品牌插画(转盘/礼包等)不在库,用导出的 PNG,不用手绘。
+- **图标铁律**:**只用 ZymixUI 图标库**——内置 `icons-bundled.json` 按名内联,库里没有的走 CDN `.zi` mask;**严禁手绘/自造任何图标 SVG**(几何拼凑也算),仅状态栏信号/WiFi/电池等系统 chrome 例外。库里无 wallet→用 credit-card;3D 彩色品牌插画(转盘/礼包等)不在库,用导出的 PNG,不用手绘。**底部导航(TabBar)图标例外收紧:只许用本地内置 `icons-bundled.json`,不许用 CDN 兜底**——CDN 图标依赖网络、离线/预览卡片场景会缺图,导航是每页常驻元素不能有这个风险;CDN 兜底只留给非导航区域的长尾图标。
 - **配图铁律**:一切"配图/照片"(hero、卡片图、缩略图、封面)都用**免版权图**(`picsum.photos` 每图不同种子 + 容器 `background-image` + `--skeleton-base` 兜底),**严禁用手绘 SVG 插画/线条画当配图**。图标归图标库,照片归 picsum,两者不混。
 - **英文铁律**:**输出页面的一切可见文案一律英文**(面向英国市场)——标题、正文、占位符、按钮、`aria-label`、toast、状态标签、JS 里参与展示的字符串全部英文;示例地点/人名用英国/伦敦语境(如 Shoreditch、Victoria Park)。代码注释可留中文,但**渲染出来的一个中文字都不能有**。
 
 ## 图标库(CDN)
 
-内置 `icons-bundled.json` 没有的图标走 CDN(ZymixUI 图标库 721 个,已发布 jsDelivr)。用 mask 方式按需引、currentColor 上色:
+内置 `icons-bundled.json` 没有的图标走 CDN(ZymixUI 图标库 721 个,已发布 jsDelivr)。**仅用于非 TabBar 区域的长尾图标**——TabBar 底部导航图标一律走本地内置,不适用本节 CDN 方案(见硬规则「TabBar」与「图标铁律」)。用 mask 方式按需引、currentColor 上色:
 ```css
 .zi{display:inline-block;width:24px;height:24px;background:currentColor;
   -webkit-mask:var(--zi) center/contain no-repeat;mask:var(--zi) center/contain no-repeat}

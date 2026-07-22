@@ -111,6 +111,39 @@ subtle 缩放 0.95-0.98,任何可按压元素都该有。
 ### stagger 入场(多元素依次)
 每个比前一个延迟 30-80ms 级联;别太长否则显慢;stagger 是装饰,不能挡交互。
 
+### TabBar 切换:iOS 原生微动效(默认必带)
+底部导航切换 tab 时**默认**带三段克制的 iOS 风格微动效(模板 app.html 已内置,直接复用):
+1. **激活底板滑动(还原 iOS 26 TabBar 选中胶囊,关键)**——激活色块**不是每个 tab 各自 toggle 背景(那样是硬切)**,而是**一个共享的指示条 `.tab-indicator`** 平滑滑到选中 tab。手感**克制**(iOS 26 原生风,不是夸张的橡皮筋横跨):切换时做两段式的**小幅方向性拉伸 + spring 回弹**——第一段前缘先落到目标、后缘略滞后形成一点顺向拉伸(`lean = min(|dist|*0.4, 单宽*0.5)`,与距离挂钩但**封顶**,永不横跨整条),~90ms 后第二段收拢到目标单宽;过渡用带轻微过冲的 spring 曲线 `cubic-bezier(.34,1.3,.64,1)`(`--duration-slow` 300ms),落位自然回弹。`.tab.active` 本身 `background:transparent`,底色只由这个指示条承担。指示条绝对定位在 `.pill` 内(`top/bottom:4px`,圆角 round);**首帧与 resize 用 `.no-anim` 直接落位不动画**。
+2. **图标 pop**——新激活 tab 的面性图标做一次轻弹:`scale .82→1.08→1`,`--duration-moderate`(240ms)、`--ease-out`,近似 iOS SF Symbol `.bounce`。**只在"从别的 tab 切过来"时放一次,重复点当前 tab 不重放**。
+3. **内容淡入**——新屏 `opacity 0→1 + translateY(6px)→0`,`--duration-base`(180ms)`--ease-out`,类似原生页面切换的轻推淡入;切到同一屏不重放。
+```css
+.tab-indicator{position:absolute;top:4px;bottom:4px;left:0;width:0;border-radius:var(--radius-round);background:var(--accent-soft-subtle);transition:transform var(--duration-slow) cubic-bezier(.34,1.3,.64,1),width var(--duration-slow) cubic-bezier(.34,1.3,.64,1);pointer-events:none;z-index:0} /* spring 缓动带回弹 */
+.tab-indicator.no-anim{transition:none}
+.tab{position:relative;z-index:1}
+.tab.active{background:transparent}   /* 底色交给滑动指示条 */
+@keyframes tabPop{0%{transform:scale(.82)}55%{transform:scale(1.08)}100%{transform:scale(1)}}
+.tab.pop .ic-fill{animation:tabPop var(--duration-moderate) var(--ease-out)}
+@keyframes screenEnter{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.phone .screen.is-active.enter{animation:screenEnter var(--duration-base) var(--ease-out)}
+@media (prefers-reduced-motion:reduce){ .tab-indicator{transition:none} .tab.pop .ic-fill{animation:none} .phone .screen.is-active.enter{animation:screenFade var(--duration-base) linear} }
+```
+```js
+// 切 tab:两段式液态拉伸(先跨度桥接,再收拢到目标);首帧/resize 传 noAnim=true 直接落位
+function place(l,w){ ind.style.transform='translateX('+l+'px)'; ind.style.width=w+'px'; }
+function moveInd(noAnim){ var at=document.querySelector('.tab.active'); if(!ind||!at) return;
+  var nl=at.offsetLeft, nw=at.offsetWidth; clearTimeout(indT);
+  if(noAnim||!indInit){ ind.classList.add('no-anim'); place(nl,nw); void ind.offsetWidth; ind.classList.remove('no-anim'); indInit=true; indL=nl; indW=nw; return; }
+  if(nl===indL) return;
+  var dist=nl-indL, lean=Math.min(Math.abs(dist)*0.4, nw*0.5); // 克制拉伸,封顶,不横跨整条
+  place(dist>0 ? nl-lean : nl, nw+lean);             // ① 前缘落到目标、后缘略滞后 → 小幅顺向拉伸
+  indT=setTimeout(function(){ place(nl,nw); }, 90);  // ② 收拢到目标(spring 回弹)
+  indL=nl; indW=nw; }
+```
+```swift
+// iOS: 底板用 matchedGeometryEffect 让选中背景在 tab 间滑动;图标 .symbolEffect(.bounce, value: selected);内容 .transition(.opacity.combined(with:.offset(y:6)))
+```
+底板滑动用**可打断的 transition**(连点也能顺滑重定向,别用 keyframe);pop/淡入用一次性 keyframe(切 tab 偶发)。**只动 transform/opacity/width**(width 在导航条这种小元素上开销可接受),`prefers-reduced-motion` 下三者全关、只保留淡入。除非用户明确要求"无动效/瞬切",否则默认带上。
+
 ---
 
 ## 性能铁律

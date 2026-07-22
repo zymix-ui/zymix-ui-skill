@@ -127,16 +127,23 @@
 底 surface/base 或 surface/secondary；占位 foreground/placeholder；文字 Field 角色（16/24）；圆角 md~lg。
 
 ### 页头 NavBar（透明底 375×58，内容行 42，从状态栏下沿拼页；4 变体）
-① Brand：大标题（Scene 34 Black）+ 可选右侧 42px 玻璃圆钮。② Brand-Tabs：选中 24 Black + 未选中 18 Bold muted，间距 20。③ Nav-Center：左返回 42 + 绝对居中标题 17 Semibold + 右侧 42 常驻占位（保居中，不受动作显隐影响）。④ Nav-Chat：返回 + 头像 36（兜底 surface/secondary）+ 昵称 17 SB + 副标题 13 muted + 右侧 1–2 个 42 圆钮。圆钮一律 Button-Liquid-Glass-Symbol(42)，禁手绘；一级页页头不放返回按钮。
+① Brand：大标题（Scene 34 Black）+ 可选右侧 42px 玻璃圆钮。② Brand-Tabs：选中 24 Black + 未选中 18 Bold muted，间距 20。③ Nav-Center：左返回 42 + 绝对居中标题 17 Semibold + 右侧 42 常驻占位（保居中，不受动作显隐影响）。④ Nav-Chat：返回 + 头像 36（兜底 surface/secondary）+ 昵称 17 SB + 副标题 13 muted + 右侧 1–2 个 42 圆钮。圆钮一律 Button-Liquid-Glass-Symbol(42)，禁手绘；一级页页头不放返回按钮。**Scroll Edge（顶部渐隐模糊）= 半透明磨砂底（feature/nav-background ≈66%）+ backdrop-blur + 向下线性渐隐**，不是不透明纯白；状态栏须悬浮透明、内容滚到其下，才呈现 iOS 沉浸式的"内容从状态栏背后模糊滑过"。
 
 ### 底部导航 TabBar
-玻璃胶囊（Liquid Glass Regular Small；高 62=4+54+4、左右边距 8、圆角 round）；五 tab Chat/Mix/Video/Discover/Me；图标槽 32/字形 24；**激活位单选互斥 = accent/soft-subtle(8%) 底 + accent/base 图标；未激活 = 透明底 + foreground/base 图标**（旧「accent 底白图 / subtle 40%」作废）；带底部文字为特殊场景（10/12，激活字色 accent）；底部模糊用 Scroll Edge Soft(Edge=Bottom)，勿手动叠层。
+玻璃胶囊（Liquid Glass Regular Small；高 62=4+54+4、左右边距 8、圆角 round）；五 tab Chat/Mix/Video/Discover/Me；图标槽 32/字形 24；**激活位单选互斥 = accent/soft-subtle(8%) 底 + accent/base 图标；未激活 = 透明底 + foreground/base 图标**（旧「accent 底白图 / subtle 40%」作废）；带底部文字为特殊场景（10/12，激活字色 accent）；底部模糊用 Scroll Edge Soft(Edge=Bottom)，半透明磨砂底（feature/nav-background）+ backdrop-blur + 向上渐隐，勿手动叠层、勿用不透明纯白。**图标只用本地内置图标库（icons-bundled.json），禁止走 CDN**——底部导航是每页常驻元素，不能有离线/预览缺图的风险，CDN 长尾图标只给非导航区域用。**且只能用图标库里 `nav-` 前缀的专用导航图标**（`nav-chat`/`nav-mix`/`nav-video`/`nav-discover`/`nav-me`/`nav-ai`，各配 `-fill` 面性变体，未激活线性、激活切 fill + accent 着色），**不许拿普通图标（house/comments/person 等）顶替**；除非用户特殊要求，tab 图标只在这组 nav 图标里选。
+
+**默认套用**：任何页面只要有页头或底部导航，NavBar / TabBar 都**默认**直接照搬本规范整套写法与效果（含 Scroll Edge、玻璃材质、激活态着色），不需要用户特别点名要求；只有用户明确要求不同效果时才偏离。
+
+**切换微动效**（默认必带，iOS 原生风，参考 iOS 26）：①**激活底板滑动（还原 iOS 26 TabBar 选中胶囊）**——激活色块用一个共享指示条平滑滑到选中 tab，手感克制：小幅方向性拉伸（前缘先到、后缘略滞后，封顶不横跨整条）+ spring 回弹落位（cubic-bezier(.34,1.3,.64,1)，300ms），**不是每 tab 各自 toggle 背景硬切、也不是夸张橡皮筋横跨**；②图标轻弹 pop（scale .82→1.08→1，近似 SF Symbol bounce）；③新屏轻推淡入（opacity + translateY(6px)，180ms）。跨屏切换时各放一次、同屏不重放，底板滑动可打断，`prefers-reduced-motion` 退化为纯淡入。除非用户要求瞬切才去掉。详见 motion.md。
+
+### 灵动岛 Dynamic Island
+**每个项目默认都要带灵动岛**，作用是让设计师在预览里一键切换系统/浅色/深色三态自测深浅色表现。黑底白字、`position:absolute` 锚在状态栏中间、不占布局。分两型：**A 型**（多状态页，药丸展开成状态切换菜单 + 外观图标）、**B 型**（静态页，药丸本身就是外观开关，点击循环 系统/浅/深）。**除非用户明确要求去掉（如说"去掉灵动岛"），否则任何情况下都不得省略**，包括"最终交付版"——交付时最多去掉 A 型的多状态演示菜单，外观切换本体必须保留。
 
 ### 列表 List / 卡片 Card
 行高 ≥56、图标 24、标题 Body/Lg、右 chevron；组内 0.5px separator/base 左缩进；卡片 surface/base 圆角 lg(16)、无阴影（靠层级色区分）。
 
 ### 图标
-用 ZymixUI 图标库（单色 currentColor，跟随文字色），npm `@zymix-ui/icons` 或 CDN `cdn.jsdelivr.net/gh/zymix-ui/zymix-icons`。禁止手绘不一致的图标。
+用 ZymixUI 图标库（单色 currentColor，跟随文字色），npm `@zymix-ui/icons` 或 CDN `cdn.jsdelivr.net/gh/zymix-ui/zymix-icons`。禁止手绘不一致的图标。**底部导航（TabBar）图标例外：只用本地内置图标，不用 CDN**——CDN 依赖网络，导航是常驻元素不能有缺图风险；CDN 仅用于非导航场景的长尾图标。
 
 ---
 
@@ -188,6 +195,8 @@
 - 分隔线 0.5px，强分隔 1px；触控热区 ≥44。
 - 深浅色只靠语义变量，交付前脑内过一遍深色（不许黑底黑字）。
 - 图片/媒体容器给兜底底色（surface/secondary 或品牌渐变），图挂也不空。
+- 默认给每个项目带上灵动岛（外观切换），除非用户明确要求去掉。
+- NavBar / TabBar 默认整套套用模板效果（含 Scroll Edge），不用等用户点名。
 
 **Don't**
 - ❌ 写死 hex / rgba（除媒体遮罩渐变）。
@@ -195,6 +204,9 @@
 - ❌ 用传统卡片投影堆层级。
 - ❌ Toast 用红绿状态色 / 放页面中部。
 - ❌ 手绘风格不一的图标。
+- ❌ 没有用户明确要求就拿掉灵动岛。
+- ❌ TabBar（底部导航）图标走 CDN——必须用本地内置图标。
+- ❌ TabBar 用普通图标顶替——只用 `nav-` 前缀的专用导航图标（除非用户特殊要求）。
 
 ---
 
