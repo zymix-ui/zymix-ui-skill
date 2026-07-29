@@ -129,7 +129,7 @@
 .bubble{max-width:70%;padding:14px 16px;border-radius:var(--radius-2xl);font-size:17px;font-weight:400}
 .bubble-friend{background:var(--feature-im-bubble-friend);color:var(--feature-im-bubble-friend-foreground)}
 .bubble-stranger{background:var(--feature-im-bubble-stranger);color:var(--feature-im-bubble-stranger-foreground)}
-.bubble-other{background:var(--surface-secondary);color:var(--foreground-base)}
+.bubble-other{background:var(--feature-im-bubble-guest);color:var(--foreground-base)}
 .bubble.pill{border-radius:var(--radius-round)} /* 短消息胶囊形 */
 .read-friend{color:var(--feature-im-read-friend)}.read-stranger{color:var(--feature-im-read-stranger)}
 .input-bar{display:flex;align-items:center;gap:10px;padding:8px 16px;height:60px}

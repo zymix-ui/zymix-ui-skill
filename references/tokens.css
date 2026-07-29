@@ -81,6 +81,7 @@
   --feature-wallet-unverified: #FD7C02;
   --feature-im-bubble-friend: #E1FFBF;
   --feature-im-bubble-stranger: #C9FAFF;
+  --feature-im-bubble-guest: #F5F5F5;
   --feature-im-bubble-friend-foreground: #274700;
   --feature-im-bubble-friend-muted: rgba(0, 0, 0, 0.55);
   --feature-im-bubble-stranger-foreground: #006673;
@@ -283,6 +284,7 @@
   --feature-wallet-unverified: #F79E68;
   --feature-im-bubble-friend: #2E4212;
   --feature-im-bubble-stranger: #123C42;
+  --feature-im-bubble-guest: #232327;
   --feature-im-bubble-friend-foreground: #D7F5B8;
   --feature-im-bubble-friend-muted: rgba(255, 255, 255, 0.55);
   --feature-im-bubble-stranger-foreground: #9FE8F2;
@@ -377,6 +379,7 @@
   --feature-wallet-unverified: #F79E68;
   --feature-im-bubble-friend: #2E4212;
   --feature-im-bubble-stranger: #123C42;
+  --feature-im-bubble-guest: #232327;
   --feature-im-bubble-friend-foreground: #D7F5B8;
   --feature-im-bubble-friend-muted: rgba(255, 255, 255, 0.55);
   --feature-im-bubble-stranger-foreground: #9FE8F2;

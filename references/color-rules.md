@@ -37,6 +37,7 @@ base 主文字(纯黑/白)→emphasis 80% 强调文字(标题副文/强调正文
 ## IM 场景专用色
 好友气泡 --feature-im-bubble-friend + 文字 --feature-im-bubble-friend-foreground(次要信息 bubble-friend-muted);
 非好友气泡 bubble-stranger + bubble-stranger-foreground;非好友 Add 按钮 --feature-im-add-stranger;
+客态气泡(对方消息)--feature-im-bubble-guest(= surface/secondary)+ 文字 --foreground-base;
 已读回执:好友 --feature-im-read-friend,非好友 --feature-im-read-stranger。
 气泡圆角 22px(--radius-2xl)。
 
