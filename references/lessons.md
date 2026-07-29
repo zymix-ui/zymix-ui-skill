@@ -81,6 +81,16 @@
 - **移动端满屏媒体查询的位置**:`@media(max-width:440px){body{padding:0}.phone{width:100vw;height:100dvh;...}}` **必须放在基础 `body{padding:40px}`/`.phone{width:375px}` 之后**(同优先级,靠源码顺序取胜)。写在前面会被后面的基础规则覆盖 → 手机上仍是 375 居中带边框、不满屏。放 `</style>` 前最稳。
 - **编辑陷阱(结构性改动必查配平)**:用正则替换带嵌套 `</div>` 的整块(如换灵动岛 markup),非贪婪很容易匹配到里层的 `</div></div>` 而**漏掉一个闭合标签**,留下孤儿 `</div>` 提前关掉 `.phone`,导致内容整块跑到手机框外。任何结构性替换后,立刻核对 body 内 `<div` 与 `</div>` 数量相等。
 
+## 2026-07-29 · 一级框架改版六屏(Chat/Discover/AI/Mix-Featured/Mix-Video/Me)
+- **五 tab 中央 AI 徽标钮**:AI tab 不带 label,内放 42×42 `radius-md` accent 底 + 白色 `tab-ai`/`tab-ai-fill` 图标的徽标(`.ai-badge`);激活态仍由共享 `.tab-indicator` 胶囊承担,徽标恒绿不变
+- **分段屏归属映射**:Mix tab 下挂两个 `.screen`(featured=`mix`、video 独立 `data-tab="video"`),`show()` 里加 `tabKey(tab){return tab==='video'?'mix':tab}`,video 屏激活时 TabBar 仍高亮 Mix;两屏分段头各自静态写死正确的 `.seg.active`,互切用 `data-go`(非 tab 的 data-go 事件已通用)
+- **全屏深色媒体屏的整机 on-dark chrome**:给 `.phone` 动态加 `.chrome-dark`,状态栏用**变量作用域覆写**(`.phone.chrome-dark .statusbar{--foreground-base:var(--default-white)}`,不改 svg 属性);TabBar 胶囊 `background:var(--backdrop-base)`、未激活 tab 白、`::before` 换深色渐隐配方;home indicator 白。玻璃圆钮同理 `.screen[data-tab="video"] .btn-glass-42.glass{background:var(--backdrop-base)}`
+- **随机配图保底可读性**:全屏媒体底图用多重背景 `linear-gradient(rgba(0,0,0,.18),..),url(picsum)` 轻压一层(rgba 在 linear-gradient 内合规豁免),防止随机图过亮压白 on-dark 文字
+- **头像角标别放 overflow:hidden 的 .avatar 里会被裁**:`.avatar` 覆写 `overflow:visible`(bg-image 仍按 border-radius 裁),角标 absolute 挂角 + `box-shadow:0 0 0 2px var(--background-base)` 描边
+- **会话行分割线缩进** = 行内边距 16 + 头像 56 + 间距 12 = `margin-left:84px`(从文字缘起)
+- **AI Welcome 类绝对布局屏**:`.screen` 内放 `position:relative;height:812px` 的 stage,气泡按 Figma 坐标 absolute;屏本身 `overflow:hidden;padding-bottom:0`
+- **渐变品牌字**:`linear-gradient(...)` + `background-clip:text;color:transparent`,色标全部用 var/color-mix,不写 hex
+
 ## 2026-07-09 · Me 个人主页(异形快捷卡 + 统计)
 - **快捷卡是"异形",不是方卡**:灰圆角矩形(surface-secondary,radius-md)只占卡下部(111×88 卡里灰块 106×66、离顶 22px),**3D 图标探出在灰块上方**(72px 图标 top:0,盖过灰块顶缘),标签 Xs(12) 在灰块底部。做法:卡 position:relative;灰块 absolute top:22;图标 absolute top:0 居中;标签 absolute bottom。别做成"方卡里居中图标+文字"
 - **3D 图标带同色系投影**:filter:drop-shadow(0 4px 16px 色/30%)——Figma 实测统一 #B754FF 30% y4 b16(紫);emoji 占位时按图标色调给投影(转盘紫/勾绿/礼物橙)
