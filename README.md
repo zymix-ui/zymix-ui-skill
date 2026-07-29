@@ -1,6 +1,6 @@
 # ZYMIX-UI 原型技能
 
-**版本 v1.2.2** · tokens + Button/Toast/玻璃材质 + 图标库 + App(多屏外壳,含 Chat 会话列表→对话下钻)
+**版本 v1.3.0** · tokens + Button/Toast/玻璃材质 + 图标库 + App(多屏外壳,含 Chat 会话列表→对话下钻)
 
 > 一句话说清需求，AI 就给你一张**完全符合 ZYMIX 设计规范**的高保真手机页面。
 
