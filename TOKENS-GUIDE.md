@@ -94,7 +94,7 @@ Figma 中的 `组/角色` 斜杠层级,在 CSS 中统一扁平化为连字符,�
 | 成功 success | 6 | `--success-base` |
 | 信息 info | 6 | `--info-base` |
 | 动效时长 duration | 6 | `--duration-*` |
-| 分隔 separator | 5 | `--separator-base` `--separator-strong` |
+| 分割 separator | 5 | `--separator-base` `--separator-strong` |
 | 字重 weight | 4 | `--weight-regular` `--weight-black` |
 | 缓动 ease | 4 | `--ease-*` |
 | 描边 border | 4 | `--border-base` `--border-subtle` |
@@ -114,7 +114,7 @@ Figma 中的 `组/角色` 斜杠层级,在 CSS 中统一扁平化为连字符,�
 | `--foreground-muted` | `rgba(0,0,0,.55)` | `rgba(255,255,255,.55)` | 次要文字 |
 | `--background-base` | `#FFFFFF` | `#0B0B0D` | 页面底 |
 | `--surface-base` | `#FFFFFF` | `#18181B` | 卡片 / 面板 |
-| `--separator-base` | `rgba(0,0,0,.10)` | `rgba(255,255,255,.10)` | 0.5px 发丝分隔线 |
+| `--separator-base` | `rgba(0,0,0,.10)` | `rgba(255,255,255,.10)` | 0.5px 发丝分割线 |
 | `--danger-base` | `#EA4B46` | `#EA4B46` | 危险按钮填充 |
 | `--radius-round` | `9999px` | `9999px` | 胶囊 / 圆 |
 
@@ -145,7 +145,7 @@ Tokens 为原子变量层。组件规范(Button、NavBar、TabBar、Toast、玻�
 | TabBar 底部导航 | `.tabbar` + `.tab`(激活态 `.tab.active`) | 玻璃胶囊,内置 Scroll Edge 底部模糊(`.no-edge` 关闭) |
 | Toast | `.toast`(配 `.glass`) | 顶部胶囊,中性色 |
 | IM 气泡 | `.bubble` + `.bubble-friend` / `-stranger` / `-other`;回执 `.read-friend` / `.read-stranger` | 好友 / 陌生人 / 系统气泡 |
-| 列表 | `.list-row` | 行高 ≥64、头像 48、0.5px 分隔线 |
+| 列表 | `.list-row` | 行高 ≥64、头像 48、0.5px 分割线 |
 | 其它 | `.badge`(未读徽标)、`.input-bar`(输入条)、`.media` + `.scrim-b`(媒体 + 底渐变)、`.phone`(手机骨架)、`.zi`(图标位) | — |
 
 组件的尺寸与用法规则(TabBar 高 62、NavBar 42 圆钮、骨架标配等)见 `references/patterns.md`;视觉语义见 `DESIGN.md`。图标不在 CSS 内,取自图标库 `references/icons-bundled.json`(81 个常用)或完整图标库 [zymix-ui/zymix-icons](https://github.com/zymix-ui/zymix-icons)(721 个)。

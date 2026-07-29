@@ -91,9 +91,29 @@
 - **AI Welcome 类绝对布局屏**:`.screen` 内放 `position:relative;height:812px` 的 stage,气泡按 Figma 坐标 absolute;屏本身 `overflow:hidden;padding-bottom:0`
 - **渐变品牌字**:`linear-gradient(...)` + `background-clip:text;color:transparent`,色标全部用 var/color-mix,不写 hex
 
+## 2026-07-29 · 1:1 图片资产管线(设计稿原图 → base64 内嵌单文件)
+- **导 2x 用 `download_assets(defaultScale:2)`**,`get_screenshot` 的 maxDimension 只降不升(1x 封顶)
+- **实例内部节点(0:x 相对 id)导不了图**:download_assets 只收真实 id;实例内素材从父节点整图导出后按坐标裁(坐标×2),或用 rawImages 拿原始填充图
+- **导出画布 ≠ 节点框**:阴影/贴纸会撑大(absoluteRenderBounds),放 HTML 前先用 use_figma 读 bb vs rb,img 按 rb 偏移定位;rb=null 的节点渲染为空(导出 1×1)
+- **玻璃气泡这类 backdrop-blur 组单独导出会把底色整块烘进矩形**(不透明 245 底),相邻摆放互相盖出方块缝——**改为整帧导出后裁一条整图**,上面叠透明圆形热区做 tap,零接缝且体积更小(JPEG)
+- **临时改稿要能精确还原**:隐藏实例子层(visible=false)后子层 id 会变、findAll 可能拿不到;若 `instance.overrides` 只剩这一条覆写,用 `resetOverrides()` 精确还原。set 后不要在同一脚本读回(节点引用会失效报错)
+- **头像带角标的行,优先整体烘焙导出 Avatar 实例**(角标/描边全带),HTML 里删掉手搓角标 DOM
+- **文案照抄要读 text.characters**(layer 名≠内容;设计稿里 "life it· now"、"3.384/1.104/10/140" 这类都要原样复制),别看截图猜
+- **会话行实测**:cell 80(行 79.5+线 0.5),头像 56 @x16,名 17/19-20 600,预览 14/17 两行截断,分割线 84→359(右缘留 16)
+- **Feed 卡实测**:作者行 33(头像 32、名 13/16 600 + 2px 后 10px 官方徽、@handle 12/16),caption 15/18 四行,图 343×343 xl,点赞条 32(pad 12/8,heart 15.6+4)+gap2+评论块(13/16 四行 + 4px 后 10 Comments),Meta Row 高 40 上下 pad4、四胶囊右对齐 gap8(pad8+icon16+gap4+text 13/16 600)
+
 ## 2026-07-09 · Me 个人主页(异形快捷卡 + 统计)
 - **快捷卡是"异形",不是方卡**:灰圆角矩形(surface-secondary,radius-md)只占卡下部(111×88 卡里灰块 106×66、离顶 22px),**3D 图标探出在灰块上方**(72px 图标 top:0,盖过灰块顶缘),标签 Xs(12) 在灰块底部。做法:卡 position:relative;灰块 absolute top:22;图标 absolute top:0 居中;标签 absolute bottom。别做成"方卡里居中图标+文字"
 - **3D 图标带同色系投影**:filter:drop-shadow(0 4px 16px 色/30%)——Figma 实测统一 #B754FF 30% y4 b16(紫);emoji 占位时按图标色调给投影(转盘紫/勾绿/礼物橙)
 - **统计数字是 Number/Base = 18px Black(900)**,不是 24;别被截图"看起来大"骗了,回 Figma 量样式名。字重 Black=CSS 900
 - **图标 emoji 插画豁免**:用 `font-size:Npx;line-height:1` 标记,合规检查跳过字号校验(文字角色从不用 line-height:1)
 
+
+## 2026-07-29 · Discover 屏补齐(混合管线:整卡烘焙 + DOM 覆层)
+- **被父容器裁掉的实例导不出**:横滑列表里溢出画框的卡(x 超出父宽)`download_assets`/`get_screenshot` 都返回 1×1 或半张(renderBounds 被裁)。解法:`use_figma` 把实例 `clone()` 到页面根(空白处)→ 对克隆导 2x → `remove()` 克隆,零污染原稿
+- **文本字形节点导出是不透明底**(text glyph 24×24 导 PNG 会烘上父底色 F5F5F5,无 alpha):对纯色字形按通道重建 alpha(如绿字形用 B 通道:`a=(245-B)/(245-81)`),输出定色+alpha 的透明 PNG;适合"彩色品牌图标不随 currentColor"的场景(页头 sparkle 钮)
+- **烘焙卡的圆角必须用 CSS 同值裁一遍**:导出 PNG 四角烘的是画布底色(F5F5F5),浅色页看不出、深色模式会露白角。`border-radius:var(--radius-*)`(取 Figma 实测值 12/16)让 CSS 把烘焙角裁掉,深浅两态都干净
+- **卡内装饰图要深色安全就用 rawImages**:白卡上的 3D 装饰(转盘/礼盒)别从卡导出裁(带白底),用 `download_assets` 的 rawImages 拿原始透明 PNG,按 Figma 坐标 absolute 摆进 DOM 白卡(卡走 --surface-base 自动翻深色)
+- **图上叠字的 hero:底图+DOM 覆层时,scrim 按设计稿实测**——逐行算 card/bg 亮度比值拟合渐变(Discover hero ≈ `linear-gradient(to bottom,transparent 10%,rgba(0,0,0,.4) 100%)` 全高);头像堆叠这类复杂小块直接从整卡 2x 裁一条(自带稿内 scrim,叠回同位置零接缝)
+- **Discover 实测**:页底色 = background/tertiary(#F5F5F5);分类 tab 14px(选中 600+3px 下划线=tab 全宽,未选 400 subtle,item 间 gap4、pad 0 8,分割线 1px separator-subtle 全出血);章节头高 40 底对齐(标题 20/24 600 + 右链 12/14 subtle,chevron 用 --foreground-disabled);块间距一律 12;chips h26 pad 0 12(选中 accent 实底白字/未选 surface-tertiary+subtle);hero 图上文字 55%/30% 白用 `color-mix(in srgb,var(--default-white) N%,transparent)`
+- **TabBar AI 徽标(562:8419 定稿)**:40×30 全圆角胶囊 + 22 glyph + 下方 10px "AI" 黑标签(labelled 结构);激活位仍由共享 .tab-indicator 承担

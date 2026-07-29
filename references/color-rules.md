@@ -15,7 +15,7 @@
 元素"让你去做"(按钮/选中/进度/链接)→accent;"告诉你结果"(Toast/校验通过/完成/到账)→success。拿不准用 accent。
 
 ## 恒定深色面上的文字用 foreground/on-dark(不用会翻转的 foreground)
-蒙层、媒体遮罩、深色玻璃、灵动岛这类**表面恒为深**(与 app 主题无关)的地方,文字/线用 `--foreground-on-dark-*`(固定白层级:base/muted/subtle/placeholder/disabled/faint/ghost,对齐 foreground 深色列)。**禁止**用会随主题翻转的 `--foreground-*`(浅色模式下会变黑、在深底上消失),也不要为此把模块单独切深色。需要白色半透明(分隔线等)也用它,别写裸 rgba。
+蒙层、媒体遮罩、深色玻璃、灵动岛这类**表面恒为深**(与 app 主题无关)的地方,文字/线用 `--foreground-on-dark-*`(固定白层级:base/muted/subtle/placeholder/disabled/faint/ghost,对齐 foreground 深色列)。**禁止**用会随主题翻转的 `--foreground-*`(浅色模式下会变黑、在深底上消失),也不要为此把模块单独切深色。需要白色半透明(分割线等)也用它,别写裸 rgba。
 
 ## 红色三分
 点赞爱心→--feature-like-base(情感色);危险按钮填充→--danger-base;危险**文字/图标**→--danger-soft-foreground(danger-base 做文字对比度不达 AA,红色以文字形态出现必须用深红)。
@@ -31,7 +31,7 @@ base 主文字(纯黑/白)→emphasis 80% 强调文字(标题副文/强调正文
 - 消息列表置顶行背景=--surface-secondary,普通行=--surface-base
 
 ## 线
-- 常规分隔线: 0.5px --separator-base(10%);强分隔(统计分栏竖线): 1px --separator-strong(40%)
+- 常规分割线: 0.5px --separator-base(10%);强分割(统计分栏竖线): 1px --separator-strong(40%)
 - 组件描边: 1px --border-base;弱描边 --border-subtle
 
 ## IM 场景专用色
