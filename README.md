@@ -12,6 +12,7 @@
 |---|---|---|
 | 设计师 / 产品 | 用技能做原型、产出高保真页面 | **[PROTOTYPE-GUIDE.md](./PROTOTYPE-GUIDE.md)** — 上手步骤与需求写法 |
 | 技术 / 工程师 | 获取并接入设计变量(Tokens) | **[TOKENS-GUIDE.md](./TOKENS-GUIDE.md)** — 引入、变量表、代码示例、Figma 同步 |
+| 设计系统维护者 | 改规范 / 建组件 / 发新版技能 | **[docs/SOP.md](./docs/SOP.md)** — 从 Figma 设计稿到 skill 的全流程、铁律、API 踩坑清单 |
 | 设计 AI(Stitch 等) | 按规范生成界面 | **[DESIGN.md](./DESIGN.md)** — 设计系统规范文档 |
 
 **两个关键位置:**
@@ -66,6 +67,7 @@
 ```
 SKILL.md              技能总入口(AI 首先读这个)
 PROTOTYPE-GUIDE.md    🎨 设计/产品:怎么用技能做原型
+docs/SOP.md           🔧 维护者:设计系统运作流程(不打进技能包)
 TOKENS-GUIDE.md       🛠 技术:怎么拿 & 接入 tokens
 DESIGN.md             🤖 设计系统规范(Stitch 格式)
 references/           设计规范(真源)
@@ -96,7 +98,7 @@ scripts/
 
 **能偏离规范吗(用非标字号)?** 不能,这是特性——会归到最近规范档,保证团队产出一致。
 
-**规范更新了怎么办?** 技术侧改 Figma → 跑 `check_figma_sync.py` 对账 → `sync_tokens.py` 重新生成 `tokens.css` → 重打包发新版(见 [TOKENS-GUIDE](./TOKENS-GUIDE.md))。
+**规范更新了怎么办?** 顺序是 **先改真源再同步 Figma**:改 `tokens/` 下的 JSON → `python3 scripts/sync_tokens.py` 生成 `tokens.css` → 同步到 Figma 变量/样式 → `check_figma_sync.py` 对账 → `bash scripts/pack.sh` 重打包发新版。完整流程与验收清单见 **[docs/SOP.md](./docs/SOP.md)**;取用方式见 [TOKENS-GUIDE](./TOKENS-GUIDE.md)。
 
 ---
 

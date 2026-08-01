@@ -1,0 +1,239 @@
+# ZymixUI 运作 SOP：从 Figma 设计稿 → 组件规范 → skill
+
+> 本文管**流程与顺序**：谁是真源、按什么次序改、每步怎么验、产出落在哪。
+> 具体规范内容不在这里 —— 色/字/间距看 [`DESIGN.md`](../DESIGN.md)，用色判据看 [`references/color-rules.md`](../references/color-rules.md)，
+> 组件规格看 [`dsv2/components/specs/`](../../components/specs/)，Figma 页面组织看 [`dsv2/docs/03-figma-pages.md`](../../docs/03-figma-pages.md)。
+
+---
+
+## 1. 两条链与唯一真源
+
+系统有两条并行的链，**同一份设计意图在两边各有一套载体**。搞清谁是真源，是不出错的前提。
+
+```
+真源链(代码交付)                          Figma 链(设计协作)
+tokens/*.json  ← 唯一真源 ───同步──→   ① 变量 Variables(4 个集合)
+      │ sync_tokens.py                        │ alias
+      ↓                                       ↓
+references/tokens.css (快照)            ② 颜色/文本/效果样式 Styles
+      │                                       │ 绑定
+      ↓                                       ↓
+原型 HTML / 研发取用                    ③ 组件 Components → ④ 页面
+```
+
+| 层 | 真源在哪 | 谁消费 | 备注 |
+|---|---|---|---|
+| Token 值 | `tokens/*.json` | `sync_tokens.py` → `tokens.css` → 研发/原型 | **JSON 是唯一真源**，`tokens.css` 是生成快照，勿手改 |
+| 语义/描述 | `tokens/*.json` 的 `$description` | 人 + Figma 变量描述 | 快照里没有，只在 JSON 和 Figma |
+| 文本样式组合 | `tokens/styles/text.json` | Figma 文本样式 | 快照只有原子值（size/weight/leading），不表达组合 |
+| 样式名映射 | `tokens/styles/color-styles.json` | Figma 颜色样式 | 85 条「中文双语名 ↔ 变量」，快照里没有 |
+| 组件结构 | **Figma 组件本身** | 设计师 + 规格文档 | 代码侧只有 `components.css` 的近似实现 |
+| 组件规格 | `dsv2/components/specs/*.md` | 人（换对话也能接上） | 决策理由、配方表、踩坑、待定事项 |
+| 原型能力 | `SKILL.md` + `references/` | AI 生成原型 | 打包为 `.skill` |
+
+> ⚠️ `dsv2/components/specs/` 和 `dsv2/DESIGN.md` 目前**在版本控制之外**（只有 `zymix-ui-skill2` 是 git 仓库）。
+
+---
+
+## 2. 六条铁律
+
+按被违反的频率排序，前两条最容易踩。
+
+1. **改 token 先改 JSON，再同步 Figma。** 不要在 Figma 里单向手改 —— Figma 改了 JSON 不会跟上，下次跑 `sync_tokens.py` 会把你的改动冲掉。（2026-07-31 字阶改版就是先改 Figma 才补 JSON，顺序反了。）
+2. **组件颜色绑「颜色样式」，不绑原始变量。** 样式自身 alias 到变量，深浅色照样自动切换；但组件层只认样式，才能在 Figma 面板成组管理、跨文件复用、换配方时批量生效。
+3. **语义层必须 alias 基础层，任何地方禁硬编码色值。** 新增语义色先看能不能 alias 已有的（如 `border/white` → `default/white`）。
+4. **恒定深底用 `default/black`，禁用 `background/inverse` / `surface/inverse`。** inverse 系列的定义就是随主题翻转，深色模式下会翻成白底，叠在上面的恒白描边和 on-dark 文字全部消失。文字同理：恒定深底上用 `foreground/on-dark/*`。
+5. **不发明档位。** 字号只用 `10/12/14/16/20/24/28/36`（数字另有 8），圆角只用 `radius/*`，间距只用 `size/*`。表里没有的就近归入最接近的档。
+6. **每个阶段的产出要留下文档记录**，保证换个对话能接上进度。
+
+---
+
+## 3. 阶段流程
+
+### 阶段 A · 需求输入
+
+**输入形态**（本项目常见三种）：
+
+| 形态 | 处理方式 |
+|---|---|
+| 改版 Figma 稿（另一个文件） | 用 `get_screenshot` 看视觉 + `use_figma` 读结构（fills / textStyle / layout / 变量绑定）。**先确认它用的是不是 ZymixUI 的样式** —— 若设计师已按规范绑定，配方可直接沿用 |
+| 参考截图 / 竞品 | 放 `references/`，只读不改 |
+| 一句话需求 | 直接进阶段 D 或 F（看是改组件还是出原型） |
+
+**读改版稿时必查三件事**：
+
+1. 颜色是绑**样式**还是绑**变量**还是裸值 —— 决定搬过来要不要改绑
+2. 引用的组件是 `remote: true`（来自 Kit 库，可直接用）还是 `remote: false`（对方文件本地组件，**跨文件无法 import，只能按结构重建**）
+3. 有没有「深色模式」这类**手动变体维度** —— ZymixUI 惯例是靠 02 Semantic 的 Dark mode 自动翻转，不做深色变体
+
+### 阶段 B · Token 层改动
+
+```bash
+cd dsv2/zymix-ui-skill2
+# 1. 改 tokens/ 下的 JSON(真源)
+# 2. 生成快照
+python3 scripts/sync_tokens.py
+# 3. 核对 Figma 与本地是否一致(可选)
+python3 scripts/check_figma_sync.py <figma-export.json> tokens
+```
+
+**然后同步到 Figma 变量**（`use_figma`）。改值用 `setValueForMode`，新增用 `createVariable` + **显式设 `scopes`**（默认 ALL_SCOPES 会污染所有属性选择器）。
+
+**清理变量的判据 —— 别只看 Figma。** 「没有样式绑定」不等于「没人用」：`tokens.css` 是另一个消费方。行高变量常因样式用 AUTO 行高而没被绑定，但 CSS 侧一直在输出 `--leading-*`。删之前两边都查。
+
+**验证**：`tokens.css` 逐项比对预期值、该删的确实没了、该留的都在。
+
+### 阶段 C · 样式层（颜色 / 文本 / 效果）
+
+**命名规则**（`color-styles.json` 的 `$rule`）：中文在前、英文+数值在后；纯色显 hex，透明度显 %。
+
+```
+描边 Border/纯白 White #FFFFFF        →  border/white
+文字图标 Text&Icon/次文字 Secondary #000000 55%  →  foreground/muted
+```
+
+> 名字里带 hex 是双刃：设计师查色方便，但**改色值就要改样式名**（85 个样式里带 hex 的都算）。改名对代码侧无影响（研发引用变量），纯粹是设计侧返工。
+
+**同步 `tokens/styles/color-styles.json`** —— 新增/删除样式都要在这里登记，它是「样式名 ↔ 变量」的映射真源。
+
+### 阶段 D · Figma 组件
+
+**开工前先 inspect**：读现有变体、属性、绑定，match 已有约定，不要另起一套。
+
+#### D1. 变体设计的三个判据
+
+| 情况 | 做法 | 理由 |
+|---|---|---|
+| 某档语义错配（如徽标的红叫 danger） | **整档改名 + 改配方** | 改名不碰实例、不丢覆写。新增档要 clone（丢属性引用）+ swap 实例（丢文字覆写），两个坑都得踩 |
+| 某维度只剩一个值（如 variant 只剩 primary） | **移除该维度** | 单值 VARIANT 是面板噪音 |
+| 某维度只对部分 type 有意义（如 Active Tab 只对 tabs 有意义） | **拆成独立组件集** | Figma **无法按 Type 过滤 VARIANT 属性** —— 混在一起会让其他 Type 也显示那个下拉，选了就跳变体。补全矩阵要造大量冗余副本，不可取 |
+
+#### D2. 属性面板整洁（用户最常抱怨的点）
+
+- **关掉嵌套实例的属性冒泡**：`n.isExposedInstance = false`。一个玻璃圆钮会把 `Tinted / Size / icon / BG.State / icon.style / icon.keywords` 六项冒到面板、还带折叠层级。代价是换图标要双击进实例内部。
+- **属性顺序 = 定义顺序，API 只能追加不能插入。** 想重排只能删了重建 —— 而 `combineAsVariants` 本来就会重建属性 key，**拆组件集时是重排的唯一免费时机**。
+- **按对象分组**：`Tab 1 → Show Dot 1 → Tab 2 → Show Dot 2 …`，改哪个 tab 就看哪一段，而不是把所有 Tab 排一起、所有 Show Dot 排一起。
+- **哪些做属性、哪些交给图层**：会反复切换的状态（红点开关）做属性；配置一次的数量（显示几个 tab）交给图层面板隐藏 —— 少 3 个属性。判据是「元素好不好在图层里找」：8×8 的红点难找，整个 tab 好找。
+
+#### D3. 绑定与验收
+
+- 颜色绑样式（铁律 2）、几何绑 `03 Layout`、文字绑文本样式
+- 视觉微调值（2px 指示条厚度、7px 间距）用硬值即可 —— 档位化无意义，但要在规格文档写明
+- **验收**：`node.screenshot()` 看视觉（`get_screenshot` 可能返回缓存旧图）+ 程序审计（零裸 hex、零原始变量绑定、零归档残留、零裸字体）+ Light/Dark 双模式
+
+### 阶段 E · 组件规格文档
+
+落在 `dsv2/components/specs/<组件>.md`，用 [`_template.md`](../../components/specs/_template.md) 起步。**除了配方表，必须写这四类**：
+
+1. **决策理由** —— 为什么这么定（如「徽标没有 danger，因为徽标上的红是通知提醒不是警示」）
+2. **踩过的坑** —— 下次同类操作能绕开
+3. **待定事项** —— 需要谁定、定什么、代价是什么
+4. **出厂检查** —— 勾选式，含未完成项
+
+> 写给「换一个对话的自己」看。判断标准：只读这份文档能不能重现所有决策。
+
+### 阶段 F · skill 同步与打包
+
+改动落到 skill 的**哪些文件**取决于改了什么：
+
+| 改了什么 | 要同步的 skill 文件 |
+|---|---|
+| Token 值 | `references/tokens.css`（跑 `sync_tokens.py`） |
+| 字阶 | `references/typography.md`、`DESIGN.md` 字阶表、**`assets/template.html` 的 `.t-*` 类**、`assets/templates/app.html`（它内嵌了副本！）、`scripts/check_compliance.py` 白名单 |
+| 用色规则 | `references/color-rules.md`、`DESIGN.md` |
+| 组件形态 | `references/components.css`、`references/patterns.md`、`references/spec.md`、`DESIGN.md` 组件节 |
+| 图标 | `references/icons-bundled.json`、`icons.md`、CDN 版本号 |
+
+**易漏点**：`assets/templates/app.html` 内嵌了一份 tokens 和 components CSS 的**副本**（三处重复的 `.t-*` 定义），改 `references/` 不会自动生效。徽标改玫红那次就漏了它。
+
+```bash
+# 合规检查(每个模板 + 生成的页面都要跑)
+python3 scripts/check_compliance.py <page.html>
+# 版本号:README 头部 + CHANGELOG 表 + DESIGN.md 头部
+# 打包(固化了压缩与排除规则,勿手写 zip 命令)
+bash scripts/pack.sh
+```
+
+**提交**：commit message 用中文、分号分隔要点、结尾注明重打包；正文写清「为什么」和「影响面」。
+
+---
+
+## 4. Figma Plugin API 踩坑清单
+
+本项目实测，都造成过静默错误或返工。
+
+| 坑 | 症状 | 对策 |
+|---|---|---|
+| `component.clone()` 不复制 `componentPropertyReferences` | 实例上 `setProperties` 返回成功、`componentProperties` 有值，但**文字不变**，永远显示主组件字面值 | 加完变体逐个子层拷回：`dst.children[i].componentPropertyReferences = src.children[i].componentPropertyReferences` |
+| `instance.swapComponent()` 清掉实例属性覆写 | 文字回落默认值、`showXxx` 布尔失效 | 换主组件前记下覆写，换完 `setProperties` 补回 |
+| `isExposedInstance` **写入会静默失败** | 写完读回仍是 `true`，不报错 | 必须读回校验 + retry（clone 出来的实例尤其容易） |
+| 删组件属性后实例上剩余同类型属性**按位置重映射** | `Show Action` 莫名变 false、按钮消失 | 删属性后逐个复核受影响实例的同类型属性值 |
+| 隐藏 auto-layout 里的文字后 HUG **不收缩** | 纯圆点宽度停在带文字时的值，切换 sizing 也不重算 | 显式 `layoutSizingHorizontal='FIXED'` + `resize()` |
+| GRID 布局的 `gridRowAnchorIndex` **只读**，位置由变体属性笛卡尔积顺序决定 | 矩阵不完整（删了部分组合）时连续填充、整张规范矩阵错行 | 改 `layoutMode='NONE'` 手动设 x/y（手动布局才能留空格） |
+| `getMainComponentAsync()` 在嵌套实例（id 带 `;`）上抛 "Node not found" | 遍历报错中断 | 只遍历顶层：`findAll(n => n.type==='INSTANCE' && !n.id.includes(';'))` + try/catch |
+| `skipInvisibleInstanceChildren` 默认 `true` | 实例内隐藏子层 `findAll` 找不到 | 脚本开头设为 `false` |
+| `setBoundVariable` 报 unloaded font（含无关字体如 Noto Sans JP） | 改字重时抛错 | 把文件里可能用到的字体全部 `loadFontAsync` 后再改 |
+| 继承来的绑定改不动 | 节点层解绑会让文字**脱离文本样式变裸字体**，重新应用又继承回来 | 继承的绑定只能在**源头（样式层）**改：`TextStyle.setBoundVariable(field, null)` |
+| INSTANCE_SWAP 不继承颜色覆写 | 换完图标变默认黑 | swap 后手动把填充指到与文字相同的样式 |
+| `get_screenshot` 可能返回缓存旧图 | 验收看到旧状态 | 用 `node.screenshot()` |
+| `figma.notify()` 抛 "not implemented" | — | 用 `return` 输出 |
+
+**通用姿势**：脚本原子执行（报错则完全不生效，可安全重试）；每步 `return` 受影响的 node id；小步验证而非一次做完。
+
+---
+
+## 5. 验收清单
+
+**Token / 样式层**
+
+- [ ] `tokens.css` 值与 JSON 一致（跑一次 `sync_tokens.py` 应无 diff，即幂等）
+- [ ] `color-styles.json` 条目数 = Figma 颜色样式数；`text.json` = Figma 文本样式数
+- [ ] 无占位键名（`(见Figma双语名)` 这类）
+- [ ] 语义层全部 alias，无硬编码色值
+
+**组件层**
+
+- [ ] 颜色 100% 绑样式，零原始变量绑定、零裸 hex
+- [ ] 几何绑 `03 Layout`，文字绑文本样式，零裸字体
+- [ ] 零 `zz_Archive/*` 归档残留（含经文本样式继承的）
+- [ ] 变体结构同构；矩阵零重叠
+- [ ] 属性面板无冗余折叠分组（嵌套实例已 unexpose）
+- [ ] Light / Dark 双模式截图验证
+- [ ] 触控热区 ≥ 44pt（视觉 < 44 的要补透明热区）
+
+**skill 层**
+
+- [ ] `check_compliance.py` 对所有模板 + 生成页 PASS
+- [ ] `.t-*` 文字角色类与字阶一致（含 `app.html` 内嵌副本）
+- [ ] 版本号三处同步（README 头部、CHANGELOG、DESIGN.md）
+- [ ] `bash scripts/pack.sh` 通过，包内容抽查为新版
+
+---
+
+## 6. 常用命令
+
+```bash
+cd dsv2/zymix-ui-skill2
+
+python3 scripts/sync_tokens.py                          # JSON 真源 → tokens.css
+python3 scripts/check_compliance.py <page.html>          # 原型合规(字号/字重/圆角/裸值)
+python3 scripts/check_figma_sync.py <export.json> tokens # Figma 与本地 token 对账
+bash scripts/pack.sh                                     # 打包 .skill
+python3 tokens/scripts/validate.py                       # token JSON 结构校验
+```
+
+---
+
+## 7. 各文档读者对照
+
+| 文档 | 谁读 | 管什么 |
+|---|---|---|
+| 本文 `docs/SOP.md` | 设计系统维护者 | 流程与顺序 |
+| [`DESIGN.md`](../DESIGN.md) | 设计 AI / 设计师 | 规范事实源（色/字/组件/材质） |
+| [`SKILL.md`](../SKILL.md) | AI（生成原型时） | 原型生成规则与基线组件 |
+| [`README.md`](../README.md) | 所有人 | 总览 + 版本历史 |
+| [`TOKENS-GUIDE.md`](../TOKENS-GUIDE.md) | 研发 | 怎么取用 token |
+| [`PROTOTYPE-GUIDE.md`](../PROTOTYPE-GUIDE.md) | 设计师 / 产品 | 怎么用 skill 出原型 |
+| [`references/*.md`](../references/) | AI | 分模块细则（用色、排版、图案、工艺、动效） |
+| [`dsv2/components/specs/*.md`](../../components/specs/) | 设计系统维护者 | 单个组件的规格与决策记录 |
+| [`dsv2/docs/03-figma-pages.md`](../../docs/03-figma-pages.md) | 设计师 | Figma 文件页面组织规范 |
