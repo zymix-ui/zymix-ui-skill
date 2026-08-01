@@ -1,0 +1,265 @@
+{
+  "$rule": "中文在前,英文+数值在后;纯色显hex,透明度显%。变量值变更时必须同步样式名/描述",
+  "文字图标 Text&Icon/主文字 Primary #000000": {
+    "variable": "foreground.base"
+  },
+  "文字图标 Text&Icon/强调文字 Emphasis 80%": {
+    "variable": "foreground.emphasis"
+  },
+  "文字图标 Text&Icon/辅助文字 Tertiary 40%": {
+    "variable": "foreground.subtle"
+  },
+  "文字图标 Text&Icon/禁用 Disabled 26%": {
+    "variable": "foreground.disabled"
+  },
+  "文字图标 Text&Icon/品牌 Brand #26D93E": {
+    "variable": "foreground.brand"
+  },
+  "纯色 Solid/纯白 White #FFFFFF": {
+    "variable": "foreground.inverse"
+  },
+  "遮罩 Backdrop/强 Strong #000000 60%": {
+    "variable": "backdrop.strong"
+  },
+  "IM 气泡/好友 Friend #E1FFBF": {
+    "variable": "feature.im.bubble-friend"
+  },
+  "IM 气泡/非好友 Stranger #C9FAFF": {
+    "variable": "feature.im.bubble-stranger"
+  },
+  "导航 Nav/渐变遮罩 Fade #FCFCFC→0%": {
+    "gradient": "vertical",
+    "stops": [
+      "feature.nav.fade-solid",
+      "feature.nav.fade-transparent"
+    ]
+  },
+  "文字图标 Text&Icon/次文字 Secondary 55%": {
+    "variable": "foreground.muted"
+  },
+  "文字图标 Text&Icon/占位 Placeholder 30%": {
+    "variable": "foreground.placeholder"
+  },
+  "文字图标 Text&Icon/极弱 Faint 15%": {
+    "variable": "foreground.faint"
+  },
+  "文字图标 Text&Icon/最弱 Ghost 8%": {
+    "variable": "foreground.ghost"
+  },
+  "文字图标 Text&Icon/主文字(深底) Primary On-Dark #FFFFFF": {
+    "variable": "foreground.on-dark.base"
+  },
+  "文字图标 Text&Icon/强调文字(深底) Emphasis On-Dark #FFFFFF 80%": {
+    "variable": "foreground.on-dark.emphasis"
+  },
+  "文字图标 Text&Icon/次文字(深底) Secondary On-Dark #FFFFFF 55%": {
+    "variable": "foreground.on-dark.muted"
+  },
+  "文字图标 Text&Icon/辅助文字(深底) Tertiary On-Dark #FFFFFF 35%": {
+    "variable": "foreground.on-dark.subtle"
+  },
+  "文字图标 Text&Icon/占位(深底) Placeholder On-Dark #FFFFFF 30%": {
+    "variable": "foreground.on-dark.placeholder"
+  },
+  "文字图标 Text&Icon/禁用(深底) Disabled On-Dark #FFFFFF 22%": {
+    "variable": "foreground.on-dark.disabled"
+  },
+  "文字图标 Text&Icon/极弱(深底) Faint On-Dark #FFFFFF 15%": {
+    "variable": "foreground.on-dark.faint"
+  },
+  "文字图标 Text&Icon/最弱(深底) Ghost On-Dark #FFFFFF 8%": {
+    "variable": "foreground.on-dark.ghost"
+  },
+  "主色 Accent/底 Base #26D93E": {
+    "variable": "accent.base"
+  },
+  "主色 Accent/按下 Pressed #1FB432": {
+    "variable": "accent.pressed"
+  },
+  "主色 Accent/浅底 Soft #26D93E 15%": {
+    "variable": "accent.soft"
+  },
+  "主色 Accent/浅底按下 Soft-pressed #26D93E 20%": {
+    "variable": "accent.soft-pressed"
+  },
+  "主色 Accent/最浅底 Soft-subtle #26D93E 8%": {
+    "variable": "accent.soft-subtle"
+  },
+  "主色 Accent/浅底文字 Soft-foreground #0F7A23": {
+    "variable": "accent.soft-foreground"
+  },
+  "中性 Default/底 Base #EBEBEC": {
+    "variable": "default.base"
+  },
+  "中性 Default/按下 Pressed #D4D4D6": {
+    "variable": "default.pressed"
+  },
+  "中性 Default/浅底 Soft #EBEBEC 50%": {
+    "variable": "default.soft"
+  },
+  "中性 Default/浅底按下 Soft-pressed #EBEBEC 65%": {
+    "variable": "default.soft-pressed"
+  },
+  "中性 Default/浅底文字 Soft-foreground #18181B": {
+    "variable": "default.soft-foreground"
+  },
+  "成功 Success/底 Base #26D93E": {
+    "variable": "success.base"
+  },
+  "成功 Success/按下 Pressed #1FB432": {
+    "variable": "success.pressed"
+  },
+  "成功 Success/浅底 Soft #26D93E 15%": {
+    "variable": "success.soft"
+  },
+  "成功 Success/浅底按下 Soft-pressed #26D93E 20%": {
+    "variable": "success.soft-pressed"
+  },
+  "成功 Success/浅底文字 Soft-foreground #0F7A23": {
+    "variable": "success.soft-foreground"
+  },
+  "危险 Danger/底 Base #EA4B46": {
+    "variable": "danger.base"
+  },
+  "危险 Danger/按下 Pressed #C53936": {
+    "variable": "danger.pressed"
+  },
+  "危险 Danger/浅底 Soft #EA4B46 15%": {
+    "variable": "danger.soft"
+  },
+  "危险 Danger/浅底按下 Soft-pressed #EA4B46 20%": {
+    "variable": "danger.soft-pressed"
+  },
+  "危险 Danger/浅底文字 Soft-foreground #AE0800": {
+    "variable": "danger.soft-foreground"
+  },
+  "危险 Danger/最浅底 Soft-subtle #EA4B46 8%": {
+    "variable": "danger.soft-subtle"
+  },
+  "信息 Info/底 Base #007AFF": {
+    "variable": "info.base"
+  },
+  "信息 Info/按下 Pressed #006FE6": {
+    "variable": "info.pressed"
+  },
+  "信息 Info/浅底 Soft #007AFF 15%": {
+    "variable": "info.soft"
+  },
+  "信息 Info/浅底按下 Soft-pressed #007AFF 20%": {
+    "variable": "info.soft-pressed"
+  },
+  "信息 Info/浅底文字 Soft-foreground #0057B8": {
+    "variable": "info.soft-foreground"
+  },
+  "页面背景 Background/底 Base #FFFFFF": {
+    "variable": "background.base"
+  },
+  "页面背景 Background/雪白 Secondary #FCFCFC": {
+    "variable": "background.secondary"
+  },
+  "页面背景 Background/灰 Tertiary #F5F5F5": {
+    "variable": "background.tertiary"
+  },
+  "页面背景 Background/反色 Inverse #18181B": {
+    "variable": "background.inverse"
+  },
+  "容器表面 Surface/底 Base #FFFFFF": {
+    "variable": "surface.base"
+  },
+  "容器表面 Surface/次级 Secondary #F5F5F5": {
+    "variable": "surface.secondary"
+  },
+  "容器表面 Surface/三级 Tertiary #EBEBEB": {
+    "variable": "surface.tertiary"
+  },
+  "容器表面 Surface/按压 Pressed #000000 8%": {
+    "variable": "surface.pressed"
+  },
+  "容器表面 Surface/反色 Inverse #000000": {
+    "variable": "surface.inverse"
+  },
+  "描边 Border/底 Base #DEDEE0": {
+    "variable": "border.base"
+  },
+  "描边 Border/弱 Subtle #EBEBEC": {
+    "variable": "border.subtle"
+  },
+  "描边 Border/纯白 White #FFFFFF": {
+    "variable": "border.white"
+  },
+  "分割线 Separator/底 Base #000000 10%": {
+    "variable": "separator.base"
+  },
+  "分割线 Separator/弱 Subtle #000000 5%": {
+    "variable": "separator.subtle"
+  },
+  "分割线 Separator/强 Strong #000000 40%": {
+    "variable": "separator.strong"
+  },
+  "产品特性 Feature/钱包未验证 Wallet Unverified #FD7C02": {
+    "variable": "feature.wallet.unverified"
+  },
+  "文字图标 Text&Icon/链接 Link #0F7A23": {
+    "variable": "foreground.link"
+  },
+  "主色 Accent/文字 Foreground #FFFFFF": {
+    "variable": "accent.foreground"
+  },
+  "中性 Default/文字 Foreground #000000": {
+    "variable": "default.foreground"
+  },
+  "成功 Success/文字 Foreground #FFFFFF": {
+    "variable": "success.foreground"
+  },
+  "危险 Danger/文字 Foreground #FFFFFF": {
+    "variable": "danger.foreground"
+  },
+  "信息 Info/文字 Foreground #FFFFFF": {
+    "variable": "info.foreground"
+  },
+  "纯色 Solid/固定白 Static White #FFFFFF": {
+    "variable": "default.white"
+  },
+  "纯色 Solid/固定黑 Static Black #000000": {
+    "variable": "default.black"
+  },
+  "容器表面 Surface/玻璃 Glass #FAFAFA 20%": {
+    "variable": "surface.glass"
+  },
+  "遮罩 Backdrop/弱 Base #000000 20%": {
+    "variable": "backdrop.base"
+  },
+  "遮罩 Backdrop/玻璃 Glass #FFFFFF 90%": {
+    "variable": "backdrop.glass"
+  },
+  "骨架屏 Skeleton/底 Base #EBEBEC": {
+    "variable": "skeleton.base"
+  },
+  "骨架屏 Skeleton/高亮 Highlight #F5F5F5": {
+    "variable": "skeleton.highlight"
+  },
+  "产品特性 Feature/点赞 Like #FF3B64": {
+    "variable": "feature.like.base"
+  },
+  "IM 气泡/好友文字 Friend Fg #274700": {
+    "variable": "feature.im.bubble-friend-foreground"
+  },
+  "IM 气泡/好友弱文字 Friend Muted #000000 55%": {
+    "variable": "feature.im.bubble-friend-muted"
+  },
+  "IM 气泡/非好友文字 Stranger Fg #006673": {
+    "variable": "feature.im.bubble-stranger-foreground"
+  },
+  "IM 气泡/客态 Guest #F5F5F5": {
+    "variable": "feature.im.bubble-guest"
+  },
+  "IM 气泡/加好友按钮 Add #26D9F0": {
+    "variable": "feature.im.add-stranger"
+  },
+  "IM 气泡/好友已读 Read Friend #58C138": {
+    "variable": "feature.im.read-friend"
+  },
+  "IM 气泡/非好友已读 Read Stranger #00BAD2": {
+    "variable": "feature.im.read-stranger"
+  }
+}

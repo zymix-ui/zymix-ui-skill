@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""从 ZymixUI tokens 文件夹重新生成 references/tokens.css 快照。
-用法: python3 sync_tokens.py /path/to/dsv2/tokens
-规范更新后运行一次,再重新打包技能。"""
+"""从 ZymixUI tokens 真源重新生成 references/tokens.css 快照。
+用法: python3 scripts/sync_tokens.py            # 默认读本仓库 tokens/(真源已于 2026-08-01 纳入版本控制)
+      python3 scripts/sync_tokens.py <其他路径>  # 指定别处的 tokens 目录
+改 token 的正确顺序:先改 tokens/ 里的 JSON → 跑本脚本 → 再同步到 Figma → 重新打包(scripts/pack.sh)。"""
 import json,sys,os,re
 
 def flat(d,p=''):
@@ -73,4 +74,5 @@ def main(tok):
     print('written',dest,len(css),'bytes')
 
 if __name__=='__main__':
-    main(sys.argv[1] if len(sys.argv)>1 else '.')
+    _default=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','tokens')
+    main(sys.argv[1] if len(sys.argv)>1 else _default)

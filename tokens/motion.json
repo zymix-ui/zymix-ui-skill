@@ -1,0 +1,87 @@
+{
+  "$description": "05 Motion — 平台中立动效 token(唯一数据源)。抽象值:时长 ms、缓动=贝塞尔控制点、弹簧=Apple duration/bounce。各端映射见技能 references/motion.md。",
+  "duration": {
+    "instant": {
+      "$value": "0ms",
+      "$type": "duration",
+      "$description": "高频/键盘触发操作:不做动画(命令面板、快捷键)"
+    },
+    "fast": {
+      "$value": "120ms",
+      "$type": "duration",
+      "$description": "按钮按压反馈、微交互(100-160ms 档)"
+    },
+    "base": {
+      "$value": "180ms",
+      "$type": "duration",
+      "$description": "默认 UI:下拉/选择/tooltip/小弹层"
+    },
+    "moderate": {
+      "$value": "240ms",
+      "$type": "duration",
+      "$description": "稍大过渡,仍属 UI(≤300 铁律内)"
+    },
+    "slow": {
+      "$value": "300ms",
+      "$type": "duration",
+      "$description": "UI 动画上限;超过此值 UI 会显得迟钝"
+    },
+    "drawer": {
+      "$value": "400ms",
+      "$type": "duration",
+      "$description": "抽屉/模态入场(退场应更快,用 base);营销/解释类可更长"
+    }
+  },
+  "ease": {
+    "out": {
+      "$value": [0.23, 1, 0.32, 1],
+      "$type": "cubicBezier",
+      "$description": "强 ease-out:入场/退场默认。起步快=响应感。内建 ease-out 太软,用这条"
+    },
+    "in-out": {
+      "$value": [0.77, 0, 0.175, 1],
+      "$type": "cubicBezier",
+      "$description": "强 ease-in-out:屏内移动/形变(自然加减速)"
+    },
+    "drawer": {
+      "$value": [0.32, 0.72, 0, 1],
+      "$type": "cubicBezier",
+      "$description": "iOS 抽屉曲线(源自 Ionic):抽屉/大面板滑动"
+    },
+    "standard": {
+      "$value": [0.25, 0.1, 0.25, 1],
+      "$type": "cubicBezier",
+      "$description": "CSS ease 等价:hover/颜色过渡等轻量变化。UI 一律禁用 ease-in(起步慢=迟钝)"
+    }
+  },
+  "spring": {
+    "$description": "弹簧(Apple duration/bounce 语义,直接对应 SwiftUI .spring(duration:bounce:))。用于拖拽/可打断手势/需要'活'的元素;bounce 保守 0.1-0.3,多数 UI 不加弹",
+    "default": {
+      "$value": { "duration": 0.5, "bounce": 0.2 },
+      "$type": "spring",
+      "$description": "通用弹簧"
+    },
+    "subtle": {
+      "$value": { "duration": 0.4, "bounce": 0.1 },
+      "$type": "spring",
+      "$description": "克制弹簧:多数 UI 元素"
+    },
+    "playful": {
+      "$value": { "duration": 0.5, "bounce": 0.3 },
+      "$type": "spring",
+      "$description": "俏皮弹簧:拖拽消除、庆祝类"
+    }
+  },
+  "gesture": {
+    "press-scale": {
+      "$value": 0.97,
+      "$type": "number",
+      "$description": "可按压元素 :active/按下时缩放(0.95-0.98 区间),给'被听见'的即时反馈"
+    },
+    "swipe-velocity-dismiss": {
+      "$value": 0.11,
+      "$type": "number",
+      "$description": "滑动消除速度阈值(px/ms):超过即消除,不必拖满距离——快速轻扫即可"
+    }
+  }
+}

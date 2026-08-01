@@ -1,0 +1,215 @@
+{
+  "Focus": {
+    "Ring": {
+      "$type": "effect",
+      "$value": [
+        {
+          "type": "dropShadow",
+          "color": "#26D93E",
+          "offsetX": 0,
+          "offsetY": 0,
+          "blur": 0,
+          "spread": 4
+        },
+        {
+          "type": "dropShadow",
+          "color": "#F5F5F5",
+          "offsetX": 0,
+          "offsetY": 0,
+          "blur": 0,
+          "spread": 2
+        }
+      ],
+      "$description": "聚焦环:accent.base 4px + background.secondary 2px offset"
+    },
+    "Field": {
+      "$type": "effect",
+      "$value": [
+        {
+          "type": "dropShadow",
+          "color": "#26D93E",
+          "offsetX": 0,
+          "offsetY": 0,
+          "blur": 0,
+          "spread": 2
+        }
+      ],
+      "$description": "输入框聚焦:accent.base 2px"
+    }
+  },
+  "zz_Deprecated Shadow": {
+    "Base": {
+      "$type": "effect",
+      "$value": [
+        {
+          "type": "dropShadow",
+          "color": "#0000000F",
+          "offsetX": 0,
+          "offsetY": 0,
+          "blur": 1,
+          "spread": 0
+        },
+        {
+          "type": "dropShadow",
+          "color": "#0000000F",
+          "offsetX": 0,
+          "offsetY": 1,
+          "blur": 2,
+          "spread": 0
+        },
+        {
+          "type": "dropShadow",
+          "color": "#0000000A",
+          "offsetX": 0,
+          "offsetY": 2,
+          "blur": 4,
+          "spread": 0
+        }
+      ],
+      "$deprecated": true
+    },
+    "Floating": {
+      "$type": "effect",
+      "$value": [
+        {
+          "type": "dropShadow",
+          "color": "#00000014",
+          "offsetX": 0,
+          "offsetY": 14,
+          "blur": 28,
+          "spread": 0
+        },
+        {
+          "type": "dropShadow",
+          "color": "#00000008",
+          "offsetX": 0,
+          "offsetY": -6,
+          "blur": 12,
+          "spread": 0
+        },
+        {
+          "type": "dropShadow",
+          "color": "#0000000F",
+          "offsetX": 0,
+          "offsetY": 2,
+          "blur": 8,
+          "spread": 0
+        },
+        {
+          "type": "innerShadow",
+          "color": "#0000001F",
+          "offsetX": 0,
+          "offsetY": 0,
+          "blur": 1,
+          "spread": 0
+        }
+      ],
+      "$deprecated": true
+    },
+    "Thumb": {
+      "$type": "effect",
+      "$value": [
+        {
+          "type": "dropShadow",
+          "color": "#00000005",
+          "offsetX": 0,
+          "offsetY": 0,
+          "blur": 5,
+          "spread": 0
+        },
+        {
+          "type": "dropShadow",
+          "color": "#0000000F",
+          "offsetX": 0,
+          "offsetY": 2,
+          "blur": 10,
+          "spread": 0
+        },
+        {
+          "type": "dropShadow",
+          "color": "#0000004C",
+          "offsetX": 0,
+          "offsetY": 0,
+          "blur": 1,
+          "spread": 0
+        }
+      ],
+      "$deprecated": true
+    },
+    "Subtle": {
+      "$type": "effect",
+      "$value": [
+        {
+          "type": "dropShadow",
+          "color": "#0000000F",
+          "offsetX": 0,
+          "offsetY": 2,
+          "blur": 8,
+          "spread": 0
+        }
+      ],
+      "$deprecated": true
+    },
+    "Inner": {
+      "$type": "effect",
+      "$value": [
+        {
+          "type": "innerShadow",
+          "color": "#0000004C",
+          "offsetX": 0,
+          "offsetY": 0,
+          "blur": 1,
+          "spread": 0
+        }
+      ],
+      "$deprecated": true
+    },
+    "Toast": {
+      "$type": "effect",
+      "$value": [
+        {
+          "type": "dropShadow",
+          "color": "#0000001A",
+          "offsetX": 0,
+          "offsetY": 22,
+          "blur": 64,
+          "spread": 0
+        },
+        {
+          "type": "backgroundBlur",
+          "blur": 15
+        }
+      ],
+      "$deprecated": true
+    }
+  },
+  "Blur": {
+    "Backdrop": {
+      "$type": "effect",
+      "$value": [
+        {
+          "type": "backgroundBlur",
+          "blur": 12
+        }
+      ]
+    }
+  },
+  "Glass": {
+    "Button": {
+      "$type": "effect",
+      "$description": "玻璃按钮:白内光×2+黑5%投影(0,4,20)+GLASS 4",
+      "$value": "见 Figma 样式(GLASS 效果暂无 DTCG 表达)"
+    },
+    "Nav": {
+      "$type": "effect",
+      "$description": "导航容器玻璃:GLASS 15+投影8%(0,2.14,17.15,-4)+白内光×2",
+      "$value": "见 Figma 样式"
+    },
+    "Field": {
+      "$type": "effect",
+      "$description": "输入条玻璃:GLASS 10+灰内影(4D4D4D 25%)×2+黑20%内影+黑16%投影(0,2,25)",
+      "$value": "见 Figma 样式"
+    }
+  },
+  "$materials": "玻璃材质不做效果样式:Materials 页 Liquid Glass 组件(Small/Medium/Large/Clear + Scroll Edge)为唯一源头,组件以嵌套实例引用(Button BG、Toast BG 已接入);GLASS 参数由社区 Liquid Glass 库调参变量驱动,有意保留"
+}

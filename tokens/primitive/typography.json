@@ -1,0 +1,355 @@
+{
+  "family": {
+    "base": {
+      "$value": "-apple-system, BlinkMacSystemFont, \"Helvetica Neue\", \"Segoe UI\", sans-serif",
+      "$type": "fontFamily",
+      "$description": "系统字体栈;Apple 设备(-apple-system / BlinkMacSystemFont)渲染即 SF Pro。CSS 刻意不写字面 SF Pro,避免 claude.ai/design 误报 Missing brand fonts"
+    }
+  },
+  "weight": {
+    "regular": {
+      "$value": "Regular",
+      "$type": "fontWeight",
+      "$description": "正文字重"
+    },
+    "semibold": {
+      "$value": "Semibold",
+      "$type": "fontWeight",
+      "$description": "强调/按钮/小标题字重"
+    },
+    "black": {
+      "$value": "Black",
+      "$type": "fontWeight",
+      "$description": "大标题/数字字重"
+    },
+    "bold": {
+      "$value": "Bold",
+      "$type": "fontWeight",
+      "$description": "场景专属字重(仅限 场景 Scene 排版);通用体系仅 Regular/Semibold/Black"
+    },
+    "heavy": {
+      "$value": "Heavy",
+      "$type": "fontWeight",
+      "$description": "大标题/数字字重"
+    }
+  },
+  "size": {
+    "display": {
+      "$value": 36,
+      "$type": "dimension",
+      "$description": "36px"
+    },
+    "title-lg": {
+      "$value": 28,
+      "$type": "dimension",
+      "$description": "30px"
+    },
+    "title-md": {
+      "$value": 24,
+      "$type": "dimension",
+      "$description": "24px"
+    },
+    "title-sm": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "20px"
+    },
+    "label-base": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "16px"
+    },
+    "label-sm": {
+      "$value": 14,
+      "$type": "dimension",
+      "$description": "14px"
+    },
+    "label-xs": {
+      "$value": 12,
+      "$type": "dimension",
+      "$description": "12px"
+    },
+    "body-base": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "16px"
+    },
+    "body-sm": {
+      "$value": 14,
+      "$type": "dimension",
+      "$description": "14px"
+    },
+    "body-xs": {
+      "$value": 12,
+      "$type": "dimension",
+      "$description": "12px"
+    },
+    "body-2xs": {
+      "$value": 10,
+      "$type": "dimension",
+      "$description": "10px 极小文字——TabBar 底部文字等极小字场景专用,一般情况不用(2026-07-10 由 11 改 10)"
+    },
+    "link-base": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "16px"
+    },
+    "link-sm": {
+      "$value": 14,
+      "$type": "dimension",
+      "$description": "14px"
+    },
+    "field-base": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "16px"
+    },
+    "field-sm": {
+      "$value": 14,
+      "$type": "dimension",
+      "$description": "14px"
+    },
+    "button-base": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "17px"
+    },
+    "button-sm": {
+      "$value": 14,
+      "$type": "dimension",
+      "$description": "14px"
+    },
+    "scene-header-title": {
+      "$value": 28,
+      "$type": "dimension",
+      "$description": "34px 页头大标题(场景专属)"
+    },
+    "title-xs": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "15px 最小标题(列表项标题,auto 行高)"
+    },
+    "scene-list": {
+      "$value": 14,
+      "$type": "dimension",
+      "$description": "14px Profile场景(基准=Me Page)"
+    },
+    "scene-nav-title": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "17px 导航栏标题(iOS惯例,auto 行高)"
+    },
+    "scene-bubble": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "17px IM气泡正文(auto 行高,IM组件阶段复核)"
+    },
+    "number-24": {
+      "$value": 24,
+      "$type": "dimension",
+      "$description": "24px 中号数字(设计师新增)"
+    },
+    "number-8": {
+      "$value": 8,
+      "$type": "dimension",
+      "$description": "24px 中号数字(设计师新增)"
+    },
+    "number-10": {
+      "$value": 10,
+      "$type": "dimension",
+      "$description": "24px 中号数字(设计师新增)"
+    },
+    "number-12": {
+      "$value": 12,
+      "$type": "dimension",
+      "$description": "24px 中号数字(设计师新增)"
+    },
+    "number-14": {
+      "$value": 14,
+      "$type": "dimension",
+      "$description": "24px 中号数字(设计师新增)"
+    },
+    "number-16": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "24px 中号数字(设计师新增)"
+    },
+    "number-20": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "24px 中号数字(设计师新增)"
+    },
+    "number-28": {
+      "$value": 28,
+      "$type": "dimension",
+      "$description": "24px 中号数字(设计师新增)"
+    },
+    "number-36": {
+      "$value": 36,
+      "$type": "dimension",
+      "$description": "24px 中号数字(设计师新增)"
+    },
+    "label-2xs": {
+      "$value": 10,
+      "$type": "dimension",
+      "$description": "12px"
+    }
+  },
+  "leading": {
+    "display": {
+      "$value": 40,
+      "$type": "dimension",
+      "$description": "40px"
+    },
+    "title-lg": {
+      "$value": 34,
+      "$type": "dimension",
+      "$description": "36px"
+    },
+    "title-md": {
+      "$value": 32,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "title-sm": {
+      "$value": 28,
+      "$type": "dimension",
+      "$description": "28px"
+    },
+    "label-base": {
+      "$value": 24,
+      "$type": "dimension",
+      "$description": "24px"
+    },
+    "label-sm": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "20px"
+    },
+    "label-xs": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "16px"
+    },
+    "body-base": {
+      "$value": 24,
+      "$type": "dimension",
+      "$description": "24px"
+    },
+    "body-sm": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "20px"
+    },
+    "body-xs": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "16px"
+    },
+    "link-base": {
+      "$value": 24,
+      "$type": "dimension",
+      "$description": "24px"
+    },
+    "link-sm": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "20px"
+    },
+    "field-base": {
+      "$value": 24,
+      "$type": "dimension",
+      "$description": "24px"
+    },
+    "field-sm": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "20px"
+    },
+    "button-base": {
+      "$value": 22,
+      "$type": "dimension",
+      "$description": "22px"
+    },
+    "button-sm": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "20px"
+    },
+    "scene-header-title": {
+      "$value": 34,
+      "$type": "dimension",
+      "$description": "40px(原auto显式化)"
+    },
+    "scene-list": {
+      "$value": 17,
+      "$type": "dimension",
+      "$description": "17px Profile场景"
+    },
+    "body-2xs": {
+      "$value": 12,
+      "$type": "dimension",
+      "$description": "12px(SF Pro auto 10→12 显式化,1.2;2026-07-10 随字号 11→10 同步)"
+    },
+    "scene-nav-title": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "20px 场景固定行高(行高政策:特殊场景固定,其余 AUTO;2026-07-10)"
+    },
+    "scene-bubble": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "20px 场景固定行高(行高政策:特殊场景固定,其余 AUTO;2026-07-10)"
+    },
+    "number-24": {
+      "$value": 28,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "number-8": {
+      "$value": 10,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "number-10": {
+      "$value": 12,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "number-12": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "number-14": {
+      "$value": 18,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "number-16": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "number-20": {
+      "$value": 24,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "number-28": {
+      "$value": 34,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "number-36": {
+      "$value": 42,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "label-2xs": {
+      "$value": 12,
+      "$type": "dimension",
+      "$description": "16px"
+    }
+  }
+}

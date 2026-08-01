@@ -1,0 +1,324 @@
+{
+  "Display": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{family.base}",
+      "fontWeight": "{weight.heavy}",
+      "fontSize": "{size.display}",
+      "lineHeight": "AUTO"
+    }
+  },
+  "Title": {
+    "Lg": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.title-lg}",
+        "lineHeight": "AUTO"
+      }
+    },
+    "Md": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.title-md}",
+        "lineHeight": "AUTO"
+      }
+    },
+    "Sm": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.title-sm}",
+        "lineHeight": "AUTO"
+      }
+    },
+    "Xs": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.bold}",
+        "fontSize": "{size.title-xs}",
+        "lineHeight": "AUTO"
+      },
+      "$description": "最小标题 15 Semibold/auto(列表项标题)"
+    }
+  },
+  "Label": {
+    "Base": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.semibold}",
+        "fontSize": "{size.label-base}",
+        "lineHeight": "AUTO"
+      }
+    },
+    "Sm": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.semibold}",
+        "fontSize": "{size.label-sm}",
+        "lineHeight": "AUTO"
+      }
+    },
+    "Xs": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.semibold}",
+        "fontSize": "{size.label-xs}",
+        "lineHeight": "AUTO"
+      }
+    },
+    "2xs": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.semibold}",
+        "fontSize": "{size.label-2xs}",
+        "lineHeight": "{leading.label-2xs}"
+      }
+    },
+    "2xs-Bold": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.bold}",
+        "fontSize": "{size.label-2xs}",
+        "lineHeight": "{leading.label-2xs}"
+      }
+    }
+  },
+  "Body": {
+    "Base": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{size.body-base}",
+        "lineHeight": "AUTO"
+      }
+    },
+    "Sm": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{size.body-sm}",
+        "lineHeight": "AUTO"
+      }
+    },
+    "Xs": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{size.body-xs}",
+        "lineHeight": "AUTO"
+      }
+    },
+    "2xs": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{size.body-2xs}",
+        "lineHeight": "{leading.body-2xs}"
+      },
+      "$description": "极小文字 10 Regular/12——TabBar 底部文字等极小字场景专用,一般情况不用(2026-07-10 由 11 改 10)"
+    }
+  },
+  "Link": {
+    "Base": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.semibold}",
+        "fontSize": "{size.link-base}",
+        "lineHeight": "{leading.link-base}"
+      }
+    },
+    "Sm": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.semibold}",
+        "fontSize": "{size.link-sm}",
+        "lineHeight": "{leading.link-sm}"
+      }
+    }
+  },
+  "Field": {
+    "Base": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{size.field-base}",
+        "lineHeight": "{leading.field-base}"
+      }
+    },
+    "Sm": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{size.field-sm}",
+        "lineHeight": "{leading.field-sm}"
+      }
+    }
+  },
+  "Button": {
+    "Base": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.bold}",
+        "fontSize": "{size.button-base}",
+        "lineHeight": "{leading.button-base}"
+      }
+    },
+    "Sm": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.semibold}",
+        "fontSize": "{size.button-sm}",
+        "lineHeight": "{leading.button-sm}"
+      }
+    }
+  },
+  "Number": {
+    "24": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.number-24}",
+        "lineHeight": "{leading.number-24}"
+      },
+      "$description": "中号数字 24 Semibold/32(设计师新增)"
+    },
+    "8": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.bold}",
+        "fontSize": "{size.number-8}",
+        "lineHeight": "{leading.number-8}"
+      }
+    },
+    "10": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.number-10}",
+        "lineHeight": "{leading.number-10}"
+      }
+    },
+    "12": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.number-12}",
+        "lineHeight": "{leading.number-12}"
+      }
+    },
+    "14": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.number-14}",
+        "lineHeight": "{leading.number-14}"
+      }
+    },
+    "16": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.number-16}",
+        "lineHeight": "{leading.number-16}"
+      }
+    },
+    "20": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.number-20}",
+        "lineHeight": "{leading.number-20}"
+      }
+    },
+    "28": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.number-28}",
+        "lineHeight": "{leading.number-28}"
+      }
+    },
+    "36": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.number-36}",
+        "lineHeight": "{leading.number-36}"
+      }
+    }
+  },
+  "Scene": {
+    "Header-Title": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.heavy}",
+        "fontSize": "{size.scene-header-title}",
+        "lineHeight": "{leading.scene-header-title}",
+        "textCase": "TITLE"
+      },
+      "$description": "页头大标题,仅页面头部 · textCase=TITLE(首字大写,设计师设定)"
+    },
+    "List-Item": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.semibold}",
+        "fontSize": "{size.scene-list}",
+        "lineHeight": "{leading.scene-list}",
+        "textCase": "TITLE"
+      },
+      "$description": "Profile场景排版,基准=Me Page · textCase=TITLE(首字大写,与场景组统一)"
+    },
+    "Nav-Title": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.bold}",
+        "fontSize": "{size.scene-nav-title}",
+        "lineHeight": "{leading.scene-nav-title}"
+      },
+      "$description": "导航栏标题 17 Semibold/20(iOS 惯例;原 auto 显式化,零位移)"
+    },
+    "Bubble": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{family.base}",
+        "fontWeight": "{weight.regular}",
+        "fontSize": "{size.scene-bubble}",
+        "lineHeight": "{leading.scene-bubble}"
+      },
+      "$description": "IM气泡正文 17 Regular/20(原 auto 显式化,像素零位移;IM组件阶段可复核密度)"
+    }
+  }
+}

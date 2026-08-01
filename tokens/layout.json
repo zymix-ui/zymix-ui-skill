@@ -1,0 +1,171 @@
+{
+  "radius": {
+    "none": {
+      "$value": 0,
+      "$type": "dimension",
+      "$description": "0"
+    },
+    "xs": {
+      "$value": 6,
+      "$type": "dimension",
+      "$description": "6px"
+    },
+    "sm": {
+      "$value": 8,
+      "$type": "dimension",
+      "$description": "8px"
+    },
+    "md": {
+      "$value": 12,
+      "$type": "dimension",
+      "$description": "12px 默认(输入框等)"
+    },
+    "lg": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "16px"
+    },
+    "xl": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "20px"
+    },
+    "2xl": {
+      "$value": 22,
+      "$type": "dimension",
+      "$description": "22px"
+    },
+    "3xl": {
+      "$value": 24,
+      "$type": "dimension",
+      "$description": "24px"
+    },
+    "4xl": {
+      "$value": 28,
+      "$type": "dimension",
+      "$description": "28px"
+    },
+    "5xl": {
+      "$value": 32,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "6xl": {
+      "$value": 36,
+      "$type": "dimension",
+      "$description": "36px"
+    },
+    "round": {
+      "$value": 9999,
+      "$type": "dimension",
+      "$description": "9999 胶囊/圆形"
+    }
+  },
+  "size": {
+    "0": {
+      "$value": 0,
+      "$type": "dimension",
+      "$description": "0px"
+    },
+    "4": {
+      "$value": 4,
+      "$type": "dimension",
+      "$description": "4px 间距基数"
+    },
+    "6": {
+      "$value": 6,
+      "$type": "dimension",
+      "$description": "6px"
+    },
+    "8": {
+      "$value": 8,
+      "$type": "dimension",
+      "$description": "8px"
+    },
+    "12": {
+      "$value": 12,
+      "$type": "dimension",
+      "$description": "12px"
+    },
+    "16": {
+      "$value": 16,
+      "$type": "dimension",
+      "$description": "16px"
+    },
+    "20": {
+      "$value": 20,
+      "$type": "dimension",
+      "$description": "20px"
+    },
+    "24": {
+      "$value": 24,
+      "$type": "dimension",
+      "$description": "24px"
+    },
+    "28": {
+      "$value": 28,
+      "$type": "dimension",
+      "$description": "28px"
+    },
+    "32": {
+      "$value": 32,
+      "$type": "dimension",
+      "$description": "32px"
+    },
+    "36": {
+      "$value": 36,
+      "$type": "dimension",
+      "$description": "36px"
+    },
+    "40": {
+      "$value": 40,
+      "$type": "dimension",
+      "$description": "40px"
+    },
+    "42": {
+      "$value": 42,
+      "$type": "dimension",
+      "$description": "42px 玻璃圆钮(NavBar 页头 / TabBar 底部导航),产品线上尺寸;2026-07-10 新增"
+    },
+    "44": {
+      "$value": 44,
+      "$type": "dimension",
+      "$description": "44px"
+    },
+    "48": {
+      "$value": 48,
+      "$type": "dimension",
+      "$description": "48px"
+    },
+    "54": {
+      "$value": 54,
+      "$type": "dimension",
+      "$description": "54px TabBar 标签项高度(产品线上尺寸;2026-07-10 新增)"
+    },
+    "56": {
+      "$value": 56,
+      "$type": "dimension",
+      "$description": "56px"
+    },
+    "64": {
+      "$value": 64,
+      "$type": "dimension",
+      "$description": "64px"
+    },
+    "72": {
+      "$value": 72,
+      "$type": "dimension",
+      "$description": "72px"
+    },
+    "96": {
+      "$value": 96,
+      "$type": "dimension",
+      "$description": "96px(大头像/群头像)"
+    },
+    "128": {
+      "$value": 128,
+      "$type": "dimension",
+      "$description": "128px(大头像/群头像)"
+    }
+  }
+}

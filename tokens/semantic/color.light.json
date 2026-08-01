@@ -1,0 +1,467 @@
+{
+  "accent": {
+    "base": {
+      "$value": "{color.brand.500}",
+      "$type": "color",
+      "$description": "品牌绿"
+    },
+    "pressed": {
+      "$value": "#1FB432",
+      "$type": "color"
+    },
+    "foreground": {
+      "$value": "{default.white}",
+      "$type": "color",
+      "$description": "品牌决策:绿底白字(AA例外,限大字号/图标)"
+    },
+    "soft": {
+      "$value": "rgba(38,217,62,0.15)",
+      "$type": "color",
+      "$description": "浅绿底:徽标/选中态"
+    },
+    "soft-pressed": {
+      "$value": "rgba(38,217,62,0.20)",
+      "$type": "color"
+    },
+    "soft-foreground": {
+      "$value": "#0F7A23",
+      "$type": "color"
+    },
+    "soft-subtle": {
+      "$value": "rgba(38,217,62,0.08)",
+      "$type": "color",
+      "$description": "最浅绿底 8%/6%:底部主导航选中tab等"
+    }
+  },
+  "default": {
+    "base": {
+      "$value": "#EBEBEC",
+      "$type": "color",
+      "$description": "中性控件底"
+    },
+    "pressed": {
+      "$value": "#D4D4D6",
+      "$type": "color"
+    },
+    "foreground": {
+      "$value": "{default.black}",
+      "$type": "color"
+    },
+    "soft": {
+      "$value": "rgba(235,235,236,0.50)",
+      "$type": "color"
+    },
+    "soft-pressed": {
+      "$value": "rgba(235,235,236,0.65)",
+      "$type": "color"
+    },
+    "soft-foreground": {
+      "$value": "#18181B",
+      "$type": "color"
+    },
+    "white": {
+      "$value": "{color.white}",
+      "$type": "color",
+      "$description": "固定纯白,双模式不变(绿底白字、logo等);要随模式翻转用 foreground/inverse"
+    },
+    "black": {
+      "$value": "{color.black}",
+      "$type": "color",
+      "$description": "固定纯黑,双模式不变;要随模式翻转用 foreground/base"
+    }
+  },
+  "success": {
+    "base": {
+      "$value": "{accent.base}",
+      "$type": "color",
+      "$description": "alias→accent"
+    },
+    "pressed": {
+      "$value": "{accent.pressed}",
+      "$type": "color"
+    },
+    "foreground": {
+      "$value": "{accent.foreground}",
+      "$type": "color"
+    },
+    "soft": {
+      "$value": "{accent.soft}",
+      "$type": "color"
+    },
+    "soft-pressed": {
+      "$value": "{accent.soft-pressed}",
+      "$type": "color"
+    },
+    "soft-foreground": {
+      "$value": "{accent.soft-foreground}",
+      "$type": "color"
+    }
+  },
+  "danger": {
+    "base": {
+      "$value": "{color.red.500}",
+      "$type": "color"
+    },
+    "pressed": {
+      "$value": "{color.red.600}",
+      "$type": "color"
+    },
+    "foreground": {
+      "$value": "{default.white}",
+      "$type": "color"
+    },
+    "soft": {
+      "$value": "rgba(234,75,70,0.15)",
+      "$type": "color",
+      "$description": "浅红底:危险徽标/浅底提示(=danger.base #EA4B46 @15%)"
+    },
+    "soft-pressed": {
+      "$value": "rgba(234,75,70,0.20)",
+      "$type": "color"
+    },
+    "soft-foreground": {
+      "$value": "#AE0800",
+      "$type": "color"
+    },
+    "soft-subtle": {
+      "$value": "rgba(234,75,70,0.08)",
+      "$type": "color",
+      "$description": "最浅红底 8%/6%(=danger.base #EA4B46),类 accent/soft-subtle,极浅提示场景"
+    }
+  },
+  "info": {
+    "base": {
+      "$value": "{color.blue.500}",
+      "$type": "color"
+    },
+    "pressed": {
+      "$value": "{color.blue.600}",
+      "$type": "color"
+    },
+    "foreground": {
+      "$value": "{default.white}",
+      "$type": "color"
+    },
+    "soft": {
+      "$value": "rgba(0,122,255,0.15)",
+      "$type": "color"
+    },
+    "soft-pressed": {
+      "$value": "rgba(0,122,255,0.20)",
+      "$type": "color"
+    },
+    "soft-foreground": {
+      "$value": "#0057B8",
+      "$type": "color"
+    }
+  },
+  "foreground": {
+    "base": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "主文字 纯黑/纯白(由90%改纯色)"
+    },
+    "emphasis": {
+      "$value": "rgba(0,0,0,0.80)",
+      "$type": "color",
+      "$description": "强调文字 黑80%/白80%(标题副文/强调正文,填补 base↔muted 空档)"
+    },
+    "muted": {
+      "$value": "rgba(0,0,0,0.55)",
+      "$type": "color",
+      "$description": "次文字 黑55%/白55%(折中值,4.7:1 达AA)"
+    },
+    "subtle": {
+      "$value": "{color.alpha.black-3}",
+      "$type": "color",
+      "$description": "辅助文字 黑40%/白35% ⚠️仅限辅助信息,不达AA正文标准"
+    },
+    "disabled": {
+      "$value": "{color.alpha.black-4}",
+      "$type": "color",
+      "$description": "禁用 黑26%/白22%"
+    },
+    "inverse": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "纯白/纯黑反色,inverse 背景上的文字用"
+    },
+    "link": {
+      "$value": "{accent.soft-foreground}",
+      "$type": "color",
+      "$description": "链接色 = accent/soft-foreground(主色系深绿,AA)"
+    },
+    "brand": {
+      "$value": "{accent.base}",
+      "$type": "color",
+      "$description": "品牌绿文字/图标(选中tab、品牌图标)。对比度仅1.9:1,限图标与大字号;正文绿字用 foreground/link"
+    },
+    "placeholder": {
+      "$value": "rgba(0,0,0,0.30)",
+      "$type": "color",
+      "$description": "占位符文字 黑30%/白30%(≈#B3B3B3),深于disabled浅于subtle"
+    },
+    "faint": {
+      "$value": "rgba(0,0,0,0.15)",
+      "$type": "color",
+      "$description": "极弱前景 黑15%/白15%(细线、轻遮罩级)"
+    },
+    "ghost": {
+      "$value": "rgba(0,0,0,0.08)",
+      "$type": "color",
+      "$description": "最弱前景 黑8%/白8%"
+    },
+    "on-dark": {
+      "base": {
+        "$value": "#FFFFFF",
+        "$type": "color",
+        "$description": "恒定深色表面上的主文字与线,固定白100%,不随主题翻转"
+      },
+      "emphasis": {
+        "$value": "rgba(255,255,255,0.80)",
+        "$type": "color",
+        "$description": "恒定深色表面上的强调文字,固定白80%,不随主题翻转"
+      },
+      "muted": {
+        "$value": "rgba(255,255,255,0.55)",
+        "$type": "color",
+        "$description": "恒定深色表面上的次级文字与线,固定白55%,不随主题翻转"
+      },
+      "subtle": {
+        "$value": "rgba(255,255,255,0.35)",
+        "$type": "color",
+        "$description": "恒定深色表面上的辅助文字与线,固定白35%,不随主题翻转"
+      },
+      "placeholder": {
+        "$value": "rgba(255,255,255,0.30)",
+        "$type": "color",
+        "$description": "恒定深色表面上的占位文字,固定白30%,不随主题翻转"
+      },
+      "disabled": {
+        "$value": "rgba(255,255,255,0.22)",
+        "$type": "color",
+        "$description": "恒定深色表面上的禁用前景,固定白22%,不随主题翻转"
+      },
+      "faint": {
+        "$value": "rgba(255,255,255,0.15)",
+        "$type": "color",
+        "$description": "恒定深色表面上的极弱前景,固定白15%,不随主题翻转"
+      },
+      "ghost": {
+        "$value": "rgba(255,255,255,0.08)",
+        "$type": "color",
+        "$description": "恒定深色表面上的最弱前景,固定白8%,不随主题翻转"
+      }
+    }
+  },
+  "background": {
+    "base": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "页面底"
+    },
+    "secondary": {
+      "$value": "#FCFCFC",
+      "$type": "color",
+      "$description": "二级背景 雪白(IM 等场景页面底)"
+    },
+    "tertiary": {
+      "$value": "#F5F5F5",
+      "$type": "color",
+      "$description": "三级背景 浅灰(分组列表等灰底页)"
+    },
+    "inverse": {
+      "$value": "#18181B",
+      "$type": "color"
+    }
+  },
+  "surface": {
+    "base": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "卡片/面板"
+    },
+    "secondary": {
+      "$value": "#F5F5F5",
+      "$type": "color",
+      "$description": "二级表面(梯子第二级:搜索框底/inset 内嵌面)"
+    },
+    "tertiary": {
+      "$value": "#EBEBEB",
+      "$type": "color",
+      "$description": "三级表面(梯子第三级,Light/Dark 单调递进)"
+    },
+    "pressed": {
+      "$value": "rgba(0,0,0,0.08)",
+      "$type": "color",
+      "$description": "列表/卡片按压态 黑8%/白8%"
+    },
+    "inverse": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "反色容器(选中tab药丸等),其上文字用 foreground/inverse"
+    },
+    "glass": {
+      "$value": "rgba(250,250,250,0.20)",
+      "$type": "color",
+      "$description": "玻璃按钮/胶囊底 20%,配 Glass 玻璃/Button 效果(暗色推测待定)"
+    }
+  },
+  "border": {
+    "base": {
+      "$value": "#DEDEE0",
+      "$type": "color"
+    },
+    "subtle": {
+      "$value": "#EBEBEC",
+      "$type": "color"
+    },
+    "white": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "固定纯白描边,双模式不变(深色/彩色/图片底上的描边)"
+    },
+    "width": {
+      "$value": 1,
+      "$type": "number",
+      "$description": "1pt 控件描边"
+    },
+    "width-none": {
+      "$value": 0,
+      "$type": "number",
+      "$description": "0 无描边"
+    }
+  },
+  "separator": {
+    "base": {
+      "$value": "rgba(0,0,0,0.10)",
+      "$type": "color",
+      "$description": "常规分割线颜色,线宽用 separator/width(0.5pt)"
+    },
+    "subtle": {
+      "$value": "rgba(0,0,0,0.05)",
+      "$type": "color"
+    },
+    "strong": {
+      "$value": "rgba(0,0,0,0.40)",
+      "$type": "color"
+    },
+    "width": {
+      "$value": 0.5,
+      "$type": "number",
+      "$description": "0.5pt 常规分割线(列表行之间等)"
+    },
+    "width-strong": {
+      "$value": 1,
+      "$type": "number",
+      "$description": "1pt 强分割(统计分栏竖线等),配色用 separator/strong"
+    }
+  },
+  "backdrop": {
+    "base": {
+      "$value": "rgba(0,0,0,0.20)",
+      "$type": "color",
+      "$description": "普通压暗遮罩(纯黑透明,无模糊)——一般情况用;强调弹层用 strong"
+    },
+    "strong": {
+      "$value": "rgba(0,0,0,0.60)",
+      "$type": "color",
+      "$description": "强调压暗遮罩 60%——特殊场景(活动运营等需强调弹层元素)用;一般情况用 base"
+    },
+    "glass": {
+      "$value": "rgba(255,255,255,0.90)",
+      "$type": "color",
+      "$description": "玻璃遮罩着色层,必须叠加 Effect「Blur/Backdrop」一起用"
+    }
+  },
+  "skeleton": {
+    "base": {
+      "$value": "#EBEBEC",
+      "$type": "color"
+    },
+    "highlight": {
+      "$value": "#F5F5F5",
+      "$type": "color"
+    }
+  },
+  "feature": {
+    "like": {
+      "base": {
+        "$value": "#FF3B64",
+        "$type": "color",
+        "$description": "点赞红,双模式同值"
+      }
+    },
+    "wallet": {
+      "unverified": {
+        "$value": "{color.orange.500}",
+        "$type": "color",
+        "$description": "钱包未验证 Unverified 状态色(=orange.500 #FD7C02),仅钱包/资产场景使用,不参与通用状态色"
+      }
+    },
+    "im": {
+      "bubble-friend": {
+        "$value": "#E1FFBF",
+        "$type": "color",
+        "$description": "好友气泡底(暗色为推测值,可调)"
+      },
+      "bubble-stranger": {
+        "$value": "#C9FAFF",
+        "$type": "color",
+        "$description": "非好友气泡底(暗色为推测值,可调)"
+      },
+      "bubble-guest": {
+        "$value": "{surface.secondary}",
+        "$type": "color",
+        "$description": "客态气泡底(对方消息气泡)= surface/secondary,IM 专用"
+      },
+      "bubble-friend-foreground": {
+        "$value": "#274700",
+        "$type": "color",
+        "$description": "好友气泡上正文(暗色为推测值,可调)"
+      },
+      "bubble-friend-muted": {
+        "$value": "{foreground.muted}",
+        "$type": "color",
+        "$description": "好友气泡上时间戳等弱信息 = foreground/muted"
+      },
+      "bubble-stranger-foreground": {
+        "$value": "#006673",
+        "$type": "color",
+        "$description": "非好友气泡上文字(暗色为推测值,可调)"
+      },
+      "read-friend": {
+        "$value": "#58C138",
+        "$type": "color",
+        "$description": "好友侧已读状态(暗色待定)"
+      },
+      "read-stranger": {
+        "$value": "#00BAD2",
+        "$type": "color",
+        "$description": "非好友侧已读状态(暗色待定)"
+      },
+      "add-stranger": {
+        "$value": "#26D9F0",
+        "$type": "color",
+        "$description": "非好友会话的 Add 按钮青(添加好友,暗色待定)"
+      }
+    },
+    "nav": {
+      "background": {
+        "$value": "rgba(250,250,250,0.66)",
+        "$type": "color",
+        "$description": "底部主导航玻璃底 66%,配 Blur/Backdrop 使用(暗色值为推测,待定稿)"
+      },
+      "fade-solid": {
+        "$value": "{background.secondary}",
+        "$type": "color",
+        "$description": "导航渐变遮罩实色端 = background/secondary"
+      },
+      "fade-transparent": {
+        "$value": "rgba(252,252,252,0)",
+        "$type": "color",
+        "$description": "导航渐变遮罩透明端(同色 alpha0)"
+      }
+    }
+  }
+}

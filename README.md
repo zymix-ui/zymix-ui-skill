@@ -16,7 +16,7 @@
 
 **两个关键位置:**
 
-- **设计变量(Tokens)** 的单一真源为 **[`references/tokens.css`](./references/tokens.css)** —— 200 个变量、含深浅色,由 `sync_tokens.py` 从 Figma 生成,请勿手改。
+- **设计变量(Tokens)** 使用方请引用 **[`references/tokens.css`](./references/tokens.css)** —— 206 个变量、含深浅色,由 `sync_tokens.py` 从本仓库 `tokens/` 的 JSON 真源生成,**请勿手改快照**;改规范请改 `tokens/` 下的 JSON。
 - **组件样式** 位于 **[`references/components.css`](./references/components.css)** —— Button / NavBar / TabBar / Toast / 玻璃材质等,依赖上述变量。
 
 ---

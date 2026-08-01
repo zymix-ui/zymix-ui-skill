@@ -1,0 +1,303 @@
+{
+  "color": {
+    "white": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "纯白"
+    },
+    "black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "纯黑"
+    },
+    "snow": {
+      "$value": "#FCFCFC",
+      "$type": "color",
+      "$description": "近白"
+    },
+    "eclipse": {
+      "$value": "#18181B",
+      "$type": "color",
+      "$description": "近黑(=neutral.900,初版 #1A1A1A 已统一为 #18181B)"
+    },
+    "brand": {
+      "50": {
+        "$value": "#F1FFF0",
+        "$type": "color"
+      },
+      "100": {
+        "$value": "#DDF5DC",
+        "$type": "color"
+      },
+      "200": {
+        "$value": "#C4EDC3",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "#A6E4A5",
+        "$type": "color"
+      },
+      "400": {
+        "$value": "#7CDE7D",
+        "$type": "color"
+      },
+      "500": {
+        "$value": "#26D93E",
+        "$type": "color",
+        "$description": "品牌主色"
+      },
+      "600": {
+        "$value": "#0BB52B",
+        "$type": "color"
+      },
+      "700": {
+        "$value": "#038F1F",
+        "$type": "color"
+      },
+      "800": {
+        "$value": "#086A17",
+        "$type": "color"
+      },
+      "900": {
+        "$value": "#094710",
+        "$type": "color"
+      },
+      "950": {
+        "$value": "#072B09",
+        "$type": "color"
+      }
+    },
+    "red": {
+      "50": {
+        "$value": "#FFF8F8",
+        "$type": "color"
+      },
+      "100": {
+        "$value": "#FEDFDB",
+        "$type": "color"
+      },
+      "200": {
+        "$value": "#F5C3BD",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "#ECA39B",
+        "$type": "color"
+      },
+      "400": {
+        "$value": "#E97E75",
+        "$type": "color"
+      },
+      "500": {
+        "$value": "#EA4B46",
+        "$type": "color"
+      },
+      "600": {
+        "$value": "#C53936",
+        "$type": "color"
+      },
+      "700": {
+        "$value": "#9C2B28",
+        "$type": "color"
+      },
+      "800": {
+        "$value": "#731F1D",
+        "$type": "color"
+      },
+      "900": {
+        "$value": "#4D1412",
+        "$type": "color"
+      },
+      "950": {
+        "$value": "#2E0B09",
+        "$type": "color"
+      }
+    },
+    "orange": {
+      "50": {
+        "$value": "#FFF9F5",
+        "$type": "color"
+      },
+      "100": {
+        "$value": "#FEE5D7",
+        "$type": "color"
+      },
+      "200": {
+        "$value": "#FAD1B9",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "#F5BA97",
+        "$type": "color"
+      },
+      "400": {
+        "$value": "#F79E68",
+        "$type": "color"
+      },
+      "500": {
+        "$value": "#FD7C02",
+        "$type": "color"
+      },
+      "600": {
+        "$value": "#D26603",
+        "$type": "color"
+      },
+      "700": {
+        "$value": "#A64F02",
+        "$type": "color"
+      },
+      "800": {
+        "$value": "#7C3901",
+        "$type": "color"
+      },
+      "900": {
+        "$value": "#542502",
+        "$type": "color"
+      },
+      "950": {
+        "$value": "#331603",
+        "$type": "color"
+      }
+    },
+    "blue": {
+      "50": {
+        "$value": "#F0F8FF",
+        "$type": "color"
+      },
+      "100": {
+        "$value": "#D8ECFF",
+        "$type": "color"
+      },
+      "200": {
+        "$value": "#B9DDFF",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "#8BC8FF",
+        "$type": "color"
+      },
+      "400": {
+        "$value": "#4AAAFF",
+        "$type": "color"
+      },
+      "500": {
+        "$value": "#007AFF",
+        "$type": "color"
+      },
+      "600": {
+        "$value": "#006FE6",
+        "$type": "color"
+      },
+      "700": {
+        "$value": "#005FC4",
+        "$type": "color"
+      },
+      "800": {
+        "$value": "#004A99",
+        "$type": "color"
+      },
+      "900": {
+        "$value": "#00366F",
+        "$type": "color"
+      },
+      "950": {
+        "$value": "#002247",
+        "$type": "color"
+      }
+    },
+    "neutral": {
+      "50": {
+        "$value": "#FAFAFA",
+        "$type": "color"
+      },
+      "100": {
+        "$value": "#F4F4F5",
+        "$type": "color"
+      },
+      "200": {
+        "$value": "#EBEBEC",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "#DEDEE0",
+        "$type": "color"
+      },
+      "400": {
+        "$value": "#AFAFB4",
+        "$type": "color"
+      },
+      "500": {
+        "$value": "#7A7A82",
+        "$type": "color"
+      },
+      "600": {
+        "$value": "#5F5F66",
+        "$type": "color"
+      },
+      "700": {
+        "$value": "#46464C",
+        "$type": "color"
+      },
+      "800": {
+        "$value": "#2F2F34",
+        "$type": "color"
+      },
+      "900": {
+        "$value": "#18181B",
+        "$type": "color"
+      },
+      "950": {
+        "$value": "#0B0B0D",
+        "$type": "color"
+      }
+    },
+    "alpha": {
+      "black-1": {
+        "$value": "rgba(0,0,0,0.90)",
+        "$type": "color",
+        "$description": "1级 文字黑 90%"
+      },
+      "black-2": {
+        "$value": "rgba(0,0,0,0.60)",
+        "$type": "color",
+        "$description": "2级 文字黑 60%"
+      },
+      "black-3": {
+        "$value": "rgba(0,0,0,0.40)",
+        "$type": "color",
+        "$description": "3级 文字黑 40%"
+      },
+      "black-4": {
+        "$value": "rgba(0,0,0,0.26)",
+        "$type": "color",
+        "$description": "4级 文字黑 26%"
+      },
+      "white-1": {
+        "$value": "rgba(255,255,255,0.90)",
+        "$type": "color",
+        "$description": "1级 文字白 90%"
+      },
+      "white-2": {
+        "$value": "rgba(255,255,255,0.55)",
+        "$type": "color",
+        "$description": "2级 文字白 55%"
+      },
+      "white-3": {
+        "$value": "rgba(255,255,255,0.35)",
+        "$type": "color",
+        "$description": "3级 文字白 35%"
+      },
+      "white-4": {
+        "$value": "rgba(255,255,255,0.22)",
+        "$type": "color",
+        "$description": "4级 文字白 22%"
+      }
+    },
+    "transparent": {
+      "$value": "#00000000",
+      "$type": "color",
+      "$description": "完全透明"
+    }
+  },
+  "$description": "参考层:Figma 中保留为 01 Primitive 集合(hiddenFromPublishing,发布/输出忽略),仅供查阅色阶。语义层的 {color.*} alias 在写入 Figma 时解析为硬值,不跨集合引用。"
+}

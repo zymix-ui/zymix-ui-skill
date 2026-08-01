@@ -6,7 +6,7 @@
 
 ## 1. 单一真源
 
-设计变量的唯一真源为 **`references/tokens.css`**。
+设计变量的唯一真源为本仓库 **`tokens/`** 目录(JSON);使用方直接引用它生成的快照 **`references/tokens.css`**。
 
 - 共 **200 个 CSS 变量**,包含 Light / Dark 两套值。
 - 该文件为 **Figma 变量的同步快照**,由 `scripts/sync_tokens.py` 生成,**不应手动修改**(改动会在下次同步时被覆盖)。变量值的调整需在 Figma 完成后重新同步。
@@ -191,7 +191,12 @@ theme: { extend: { colors: {
 
 ## 8. 与 Figma 同步 / 更新
 
-Tokens 的源头为 Figma 变量,`references/tokens.css` 是其快照。规范更新流程:
+Tokens 的**真源是本仓库的 `tokens/` 目录**(JSON,2026-08-01 纳入版本控制),`references/tokens.css` 是由它生成的扁平快照。
+
+> 快照只有变量值;`$description`、`styles/text.json` 的文本样式组合、`styles/color-styles.json` 的样式名↔变量映射**只存在于 JSON 真源**。
+> 铁律:**先改 JSON 真源,再生成快照,最后同步 Figma** —— 不要在 Figma 里单向手改。
+
+规范更新流程:
 
 1. **对账**:导出当前 Figma 变量为 `figma-export.json`,运行
    ```bash
@@ -200,9 +205,9 @@ Tokens 的源头为 Figma 变量,`references/tokens.css` 是其快照。规范�
    报告 Figma 与本地 token 值不一致或缺失的项。
 2. **重新生成**:对齐后运行
    ```bash
-   python3 scripts/sync_tokens.py /path/to/tokens
+   python3 scripts/sync_tokens.py          # 默认读本仓库 tokens/
    ```
-   从 tokens 源重新生成 `references/tokens.css`。
+   从 tokens 真源重新生成 `references/tokens.css`。之后用 `bash scripts/pack.sh` 重新打包(脚本已固化压缩与排除规则)。
 3. 发布更新后的技能包 `zymix-ui-prototype.skill`。
 
 `references/tokens.css` 为生成产物,请勿手动编辑;所有变量调整在 Figma 完成后经上述流程同步。
