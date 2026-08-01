@@ -98,7 +98,7 @@ scripts/
 
 **能偏离规范吗(用非标字号)?** 不能,这是特性——会归到最近规范档,保证团队产出一致。
 
-**规范更新了怎么办?** 顺序是 **先改真源再同步 Figma**:改 `tokens/` 下的 JSON → `python3 scripts/sync_tokens.py` 生成 `tokens.css` → 同步到 Figma 变量/样式 → `check_figma_sync.py` 对账 → `bash scripts/pack.sh` 重打包发新版。完整流程与验收清单见 **[docs/SOP.md](./docs/SOP.md)**;取用方式见 [TOKENS-GUIDE](./TOKENS-GUIDE.md)。
+**规范更新了怎么办?** 日常是 **Figma 先变、本地再同步**(Figma 规范组件由另一位设计师负责,skill 由 AI 设计师维护):对账 Figma 与 `tokens/` → 差异落到 **JSON 真源** → `python3 scripts/sync_tokens.py` 生成 `tokens.css` → 同步 skill 侧受影响文件(字阶还要改模板 `.t-*` 类与合规白名单)→ `bash scripts/pack.sh` 重打包发新版。**切勿手改 `tokens.css`** —— 它是快照,下次生成会被冲掉。完整流程、四层对账与验收清单见 **[docs/SOP.md](./docs/SOP.md)**;取用方式见 [TOKENS-GUIDE](./TOKENS-GUIDE.md)。
 
 ---
 

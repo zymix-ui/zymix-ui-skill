@@ -194,7 +194,8 @@ theme: { extend: { colors: {
 Tokens 的**真源是本仓库的 `tokens/` 目录**(JSON,2026-08-01 纳入版本控制),`references/tokens.css` 是由它生成的扁平快照。
 
 > 快照只有变量值;`$description`、`styles/text.json` 的文本样式组合、`styles/color-styles.json` 的样式名↔变量映射**只存在于 JSON 真源**。
-> 铁律:**先改 JSON 真源,再生成快照,最后同步 Figma** —— 不要在 Figma 里单向手改。
+> 日常次序:**Figma 规范先更新 → 差异落到本仓库 `tokens/` 的 JSON → 生成快照**(Figma 规范组件由专职设计师负责)。
+> 无论哪个方向,**都不要手改 `references/tokens.css`** —— 它是 `sync_tokens.py` 的输出,手改会在下次生成时被冲掉。
 
 规范更新流程:
 

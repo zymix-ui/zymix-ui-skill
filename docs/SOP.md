@@ -1,6 +1,7 @@
 # ZymixUI 运作 SOP：从 Figma 设计稿 → 组件规范 → skill
 
 > 本文管**流程与顺序**：谁是真源、按什么次序改、每步怎么验、产出落在哪。
+> **协作前提**：Figma 规范由另一位设计师负责、skill 由 AI 设计师维护 —— **Figma 先更新，本地再同步**。日常主流程见 [§3 反向同步](#3-反向同步figma-先变时的主流程)。
 > 具体规范内容不在这里 —— 色/字/间距看 [`DESIGN.md`](../DESIGN.md)，用色判据看 [`references/color-rules.md`](../references/color-rules.md)，
 > 组件规格看 [`dsv2/components/specs/`](../../components/specs/)，Figma 页面组织看 [`dsv2/docs/03-figma-pages.md`](../../docs/03-figma-pages.md)。
 
@@ -33,13 +34,32 @@ references/tokens.css (快照)            ② 颜色/文本/效果样式 Styles
 
 > ⚠️ `dsv2/components/specs/` 和 `dsv2/DESIGN.md` 目前**在版本控制之外**（只有 `zymix-ui-skill2` 是 git 仓库）。
 
+### 1.1 两个角色，同步方向是 Figma → 本地
+
+| 角色 | 负责 | 工作位置 |
+|---|---|---|
+| **Figma 规范设计师** | 变量、颜色/文本样式、组件、Kit 文件页面 | Figma Kit 文件 |
+| **AI 设计师**（本仓库维护者） | tokens JSON、skill 包、原型能力 | 本地 git 仓库 |
+
+**现实次序：Figma 先更新，AI 设计师看到后再在本地同步。** 所以真源要分两层看：
+
+| | 设计意图的源头 | 代码交付的真源 |
+|---|---|---|
+| 是谁 | **Figma Kit 文件** | **`tokens/*.json`** |
+| 为什么 | 规范设计师在那里工作、在那里做决定 | 它生成 `tokens.css`，是研发与原型的取用口 |
+| 关系 | — | **单向拉取**：Figma 变了 → 落到 JSON → 生成快照 |
+
+也就是说，**本地 JSON 不是设计决策的发起地，而是 Figma 决策的落地载体**。它仍然是"代码侧唯一真源"（别手改 `tokens.css`），但内容以 Figma 为准。
+
 ---
 
 ## 2. 六条铁律
 
 按被违反的频率排序，前两条最容易踩。
 
-1. **改 token 先改 JSON，再同步 Figma。** 不要在 Figma 里单向手改 —— Figma 改了 JSON 不会跟上，下次跑 `sync_tokens.py` 会把你的改动冲掉。（2026-07-31 字阶改版就是先改 Figma 才补 JSON，顺序反了。）
+1. **`tokens.css` 永不手改；改动必须经过 `tokens/*.json`。** 快照是 `sync_tokens.py` 的输出，手改会在下次生成时被冲掉。
+   - 日常（Figma 规范设计师先改）→ 走 [§3 反向同步](#3-反向同步figma-先变时的主流程)：从 Figma 拉取 → 落到 JSON → 生成快照。
+   - 当你被要求**直接改 Figma**（如整轮字阶改版）→ 改完 Figma 与 JSON **两边都要落地**，并告知规范设计师改了什么，避免他在 Figma 里按旧值继续。
 2. **组件颜色绑「颜色样式」，不绑原始变量。** 样式自身 alias 到变量，深浅色照样自动切换；但组件层只认样式，才能在 Figma 面板成组管理、跨文件复用、换配方时批量生效。
 3. **语义层必须 alias 基础层，任何地方禁硬编码色值。** 新增语义色先看能不能 alias 已有的（如 `border/white` → `default/white`）。
 4. **恒定深底用 `default/black`，禁用 `background/inverse` / `surface/inverse`。** inverse 系列的定义就是随主题翻转，深色模式下会翻成白底，叠在上面的恒白描边和 on-dark 文字全部消失。文字同理：恒定深底上用 `foreground/on-dark/*`。
@@ -48,7 +68,76 @@ references/tokens.css (快照)            ② 颜色/文本/效果样式 Styles
 
 ---
 
-## 3. 阶段流程
+## 3. 反向同步：Figma 先变时的主流程
+
+这是 AI 设计师的**日常主工作模式**（比主动改规范频繁得多）。
+
+### 3.1 怎么知道 Figma 变了
+
+按可靠性排序：
+
+1. **规范设计师主动告知**（最可靠，建议约定为默认动作：改完在群里说一句"改了什么"）
+2. **Kit 文件的「更新日志」页** —— 见 [`dsv2/docs/03-figma-pages.md`](../../docs/03-figma-pages.md) 的页面组织约定
+3. **定期对账**（发版前必做）：见下
+
+> 别指望"看出来"。变量值、样式描述、组件属性这类改动在画布上往往不可见 —— 必须对账。
+
+### 3.2 四层对账
+
+Figma 侧有四层内容，`check_figma_sync.py` 只覆盖第一层，其余靠 MCP 读取后比对：
+
+| 层 | 本地对应 | 怎么对 |
+|---|---|---|
+| ① 变量值 | `tokens/primitive/*.json`、`semantic/color.*.json`、`layout.json` | 导出 → `check_figma_sync.py` |
+| ② 颜色样式 | `tokens/styles/color-styles.json`（85 条名↔变量） | MCP 读 `getLocalPaintStylesAsync()` + 各自 `boundVariables` 后比对条目数与映射 |
+| ③ 文本样式 | `tokens/styles/text.json` | MCP 读 `getLocalTextStylesAsync()`，比对字号/字重/行高/家族的绑定组合 |
+| ④ 组件 | `dsv2/components/specs/*.md` + `references/components.css` | 读组件集变体名/属性/配方，与规格文档核对 |
+
+**可以直接把这段交给 Claude 执行：**
+
+```
+对账 ZymixUI Kit(fileKey dL2XGEOGAeKfXWhMRp7smR)与本地 tokens/：
+1. 用 use_figma 读 4 个变量集合的全部变量(名、各 mode 的值、alias 指向)
+2. 读全部颜色样式与文本样式，以及各自绑定的变量
+3. 与 tokens/ 下的 JSON 逐项比对，只报差异：值不同 / Figma 有本地无 / 本地有 Figma 无
+4. 不要直接改文件，先给我差异清单
+```
+
+拿到清单后再决定哪些落地 —— **不是所有 Figma 改动都要跟**（对方可能在试验中）。
+
+### 3.3 落地
+
+```bash
+cd dsv2/zymix-ui-skill2
+# 1. 差异落到 tokens/ 下的 JSON(真源)——不要直接编辑 tokens.css
+# 2. 生成快照
+python3 scripts/sync_tokens.py
+# 3. 判断影响面(见下表)，同步 skill 侧文件
+# 4. 合规检查 + 打包 + 提交
+python3 scripts/check_compliance.py assets/template.html
+bash scripts/pack.sh
+```
+
+**影响面判断** —— 这一步最容易漏，Figma 改一个值往往牵连多个 skill 文件：
+
+| Figma 改了什么 | 除 tokens.css 外还要改 |
+|---|---|
+| 字号 / 字重 / 行高 | `references/typography.md`、`DESIGN.md` 字阶表、**`assets/template.html` 的 `.t-*` 类**、`assets/templates/app.html`（内嵌副本！）、`scripts/check_compliance.py` 白名单 |
+| 语义色新增 / 改名 | `references/color-rules.md`、`DESIGN.md` 颜色表、`tokens/styles/color-styles.json` |
+| 组件形态（尺寸/配方/变体） | `references/components.css`、`patterns.md`、`spec.md`、`DESIGN.md` 组件节、`dsv2/components/specs/<组件>.md` |
+| 图标 | `references/icons-bundled.json`、`icons.md`、CDN 版本号 |
+
+### 3.4 冲突与回头改 Figma
+
+- **本地已按旧值改过 skill**：以 Figma 为准，重新同步；若认为 Figma 那边不对，**先沟通再改**，别单方面在 Figma 里改回去。
+- **落地时发现 Figma 有问题**（如样式绑错变量、命名不合规、档位缺失）：记进对应的 `components/specs/*.md` 待定事项 + 告知规范设计师，不要默默绕过。本轮就发现过 8 个 specimen 的 sample 绑错样式、`Show Action 2` 布尔没接节点可见性这类问题。
+- **你直接改了 Figma**（用户要求时）：两边都落地 + 告知对方，见铁律 1。
+
+---
+
+## 4. 阶段流程（主动改规范时）
+
+> 当你**直接改 Figma + 本地**时走这套（如整轮字阶改版、新建组件）。日常从 Figma 拉取走 [§3](#3-反向同步figma-先变时的主流程)。
 
 ### 阶段 A · 需求输入
 
@@ -158,7 +247,7 @@ bash scripts/pack.sh
 
 ---
 
-## 4. Figma Plugin API 踩坑清单
+## 5. Figma Plugin API 踩坑清单
 
 本项目实测，都造成过静默错误或返工。
 
@@ -182,7 +271,7 @@ bash scripts/pack.sh
 
 ---
 
-## 5. 验收清单
+## 6. 验收清单
 
 **Token / 样式层**
 
@@ -210,7 +299,7 @@ bash scripts/pack.sh
 
 ---
 
-## 6. 常用命令
+## 7. 常用命令
 
 ```bash
 cd dsv2/zymix-ui-skill2
@@ -224,7 +313,7 @@ python3 tokens/scripts/validate.py                       # token JSON 结构校�
 
 ---
 
-## 7. 各文档读者对照
+## 8. 各文档读者对照
 
 | 文档 | 谁读 | 管什么 |
 |---|---|---|
