@@ -3,13 +3,16 @@
 生成每个页面后必须跑,全部 PASS 才能交付。"""
 import re,sys
 
-ALLOWED_FONT_SIZES={36,34,30,24,20,18,17,16,15,14,13,12,11,10}  # 10 = Body/2xs(2026-07-10)
-ALLOWED_WEIGHTS={400,600,700,900}
+ALLOWED_FONT_SIZES={36,28,24,20,16,14,12,10,8,15}  # 2026-07-31 字阶改版:8=Number/8、10=Body|Label/2xs;
+# 15 仅状态栏时间(iOS 系统 chrome);已废弃 34/30/18/17/13/11 不再放行
+ALLOWED_WEIGHTS={400,600,700,800}  # 800=Heavy(替代旧 900 Black);Black 已退出在用字重
 ALLOWED_RADII={0,6,8,12,16,20,22,24,28,32,36}
 CHROME_HEX={'#8E8E93','#1C1C1E'}  # 模板手机壳装饰,豁免
 
 def strip_token_blocks(css_or_html):
-    s=re.sub(r':root[^{]*\{[^}]*\}','',css_or_html)
+    # 先剥 CSS 注释:配方说明里常写示例 hex(如玻璃材质 #808080),不是实际用色
+    s=re.sub(r'/\*.*?\*/','',css_or_html,flags=re.S)
+    s=re.sub(r':root[^{]*\{[^}]*\}','',s)
     s=re.sub(r'\[data-theme="dark"\][^{]*\{[^}]*\}','',s)
     s=re.sub(r'\[data-theme="dark"\]\s*\.glass[^{]*\{[^}]*\}','',s)
     # 模板手机壳装饰豁免(.phone 54px / .statusbar / .home-indicator 3px)

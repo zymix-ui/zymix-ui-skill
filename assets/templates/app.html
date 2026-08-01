@@ -111,7 +111,7 @@
 }
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font-family:inherit;border-radius:var(--radius-round);position:relative}
 .btn-sm{height:32px;padding:6px 12px;border-radius:var(--radius-lg);font-size:14px;line-height:20px;font-weight:600}
-.btn-lg{height:48px;padding:8px 16px;font-size:17px;line-height:22px;font-weight:600}
+.btn-lg{height:48px;padding:8px 16px;font-size:16px;line-height:22px;font-weight:700}
 .btn-lg.icon-only{width:48px;padding:0}
 .btn-sm::after{content:'';position:absolute;inset:-6px;border-radius:inherit}
 .btn-primary{background:var(--accent-base);color:var(--accent-foreground)}
@@ -152,7 +152,7 @@
 .island-dot{width:7px;height:7px;border-radius:var(--radius-round);background:var(--accent-base);flex-shrink:0}
 .island-menu{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:0 8px 10px;opacity:0;transform:translateY(-6px);transition:opacity .2s ease,transform .3s cubic-bezier(.32,.72,0,1)}
 .island.open .island-menu{opacity:1;transform:none;transition:opacity .26s ease .3s,transform .34s cubic-bezier(.32,.72,0,1) .28s}
-.island-menu button{border:none;cursor:pointer;font-family:inherit;font-size:13px;line-height:16px;font-weight:600;padding:8px 18px;border-radius:var(--radius-round);background:transparent;color:var(--default-white);opacity:.55}
+.island-menu button{border:none;cursor:pointer;font-family:inherit;font-size:12px;line-height:16px;font-weight:600;padding:8px 18px;border-radius:var(--radius-round);background:transparent;color:var(--default-white);opacity:.55}
 .island-menu button.on{background:var(--default-white);color:var(--default-black);opacity:1}
 .island-div{flex-basis:100%;height:1px;background:var(--foreground-on-dark-faint);margin:3px 12px 1px}
 .island-menu .tbtn{padding:5px 14px;font-size:12px;line-height:16px}
@@ -187,13 +187,13 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;backg
   .phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
 }
 
-.t-title-lg{font-size:30px;line-height:36px;font-weight:900}
-.t-title-sm{font-size:20px;line-height:28px;font-weight:600}
-.t-label-base{font-size:16px;line-height:24px;font-weight:600}
-.t-label-sm{font-size:14px;line-height:20px;font-weight:600}
-.t-body-sm{font-size:14px;line-height:20px;font-weight:400}
-.t-body-xs{font-size:12px;line-height:16px;font-weight:400}
-.t-scene-header{font-size:34px;line-height:40px;font-weight:900;text-transform:capitalize}
+.t-title-lg{font-size:28px;line-height:normal;font-weight:800}
+.t-title-sm{font-size:20px;line-height:normal;font-weight:800}
+.t-label-base{font-size:16px;line-height:normal;font-weight:600}
+.t-label-sm{font-size:14px;line-height:normal;font-weight:600}
+.t-body-sm{font-size:14px;line-height:normal;font-weight:400}
+.t-body-xs{font-size:12px;line-height:normal;font-weight:400}
+.t-scene-header{font-size:28px;line-height:34px;font-weight:800;text-transform:capitalize}
 
 .avatar{border-radius:50%;object-fit:cover;background:var(--skeleton-base);flex-shrink:0}
 .cat{flex-shrink:0;width:60px;display:flex;flex-direction:column;align-items:center;gap:8px}
@@ -265,13 +265,13 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;backg
 .home-indicator{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:var(--foreground-base);opacity:.9}
 .ic{display:block;flex-shrink:0}
 /* 文字角色 */
-.t-scene-header{font-size:34px;line-height:40px;font-weight:900}
-.t-title-sm{font-size:20px;line-height:normal;font-weight:600}
-.t-body-md{font-size:15px;line-height:normal;font-weight:400}
+.t-scene-header{font-size:28px;line-height:34px;font-weight:800}
+.t-title-sm{font-size:20px;line-height:normal;font-weight:800}
+.t-body-md{font-size:16px;line-height:normal;font-weight:400}
 .t-body-sm{font-size:14px;line-height:normal;font-weight:400}
-.t-body-xs{font-size:12px;line-height:16px;font-weight:400}
+.t-body-xs{font-size:12px;line-height:normal;font-weight:400}
 .t-label-xs{font-size:12px;line-height:normal;font-weight:600}
-.t-number{font-size:18px;line-height:20px;font-weight:900}
+.t-number{font-size:16px;line-height:20px;font-weight:800}
 .t-scene-list{font-size:14px;line-height:17px;font-weight:600;text-transform:capitalize}
 /* 件 */
 .header-brand{display:flex;align-items:center;padding:8px 16px;min-height:58px}
@@ -431,7 +431,6 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;backg
   --size-label-lg: 18px;
   --size-label-base: 16px;
   --size-label-sm: 14px;
-  --size-label-footnote: 13px;
   --size-label-xs: 12px;
   --size-body-lg: 17px;
   --size-body-base: 16px;
@@ -464,7 +463,6 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;backg
   --leading-label-lg: 28px;
   --leading-label-base: 24px;
   --leading-label-sm: 20px;
-  --leading-label-footnote: 16px;
   --leading-label-xs: 16px;
   --leading-body-lg: 22px;
   --leading-body-base: 24px;
@@ -667,34 +665,34 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;-webk
 }
 
 /* ===== 3. 文字角色 ===== */
-.t-display{font-size:36px;line-height:40px;font-weight:900}
-.t-title-lg{font-size:30px;line-height:36px;font-weight:900}
-.t-title-md{font-size:24px;line-height:32px;font-weight:900}
-.t-title-sm{font-size:20px;line-height:28px;font-weight:600}
-.t-title-xs{font-size:15px;line-height:normal;font-weight:600}
-.t-label-lg{font-size:18px;line-height:28px;font-weight:600}
-.t-label-base{font-size:16px;line-height:24px;font-weight:600}
-.t-label-sm{font-size:14px;line-height:20px;font-weight:600}
-.t-label-caption{font-size:13px;line-height:normal;font-weight:600}
-.t-label-xs{font-size:12px;line-height:16px;font-weight:600}
-.t-body-lg{font-size:17px;line-height:22px;font-weight:400}
-.t-body-base{font-size:16px;line-height:24px;font-weight:400}
-.t-body-md{font-size:15px;line-height:20px;font-weight:400}
-.t-body-sm{font-size:14px;line-height:20px;font-weight:400}
-.t-body-caption{font-size:13px;line-height:normal;font-weight:400}
-.t-body-xs{font-size:12px;line-height:16px;font-weight:400}
+.t-display{font-size:36px;line-height:normal;font-weight:800}
+.t-title-lg{font-size:28px;line-height:normal;font-weight:800}
+.t-title-md{font-size:24px;line-height:normal;font-weight:800}
+.t-title-sm{font-size:20px;line-height:normal;font-weight:800}
+.t-title-xs{font-size:16px;line-height:normal;font-weight:700}
+.t-label-lg{font-size:16px;line-height:normal;font-weight:600}
+.t-label-base{font-size:16px;line-height:normal;font-weight:600}
+.t-label-sm{font-size:14px;line-height:normal;font-weight:600}
+.t-label-caption{font-size:12px;line-height:normal;font-weight:600}
+.t-label-xs{font-size:12px;line-height:normal;font-weight:600}
+.t-body-lg{font-size:16px;line-height:normal;font-weight:400}
+.t-body-base{font-size:16px;line-height:normal;font-weight:400}
+.t-body-md{font-size:16px;line-height:normal;font-weight:400}
+.t-body-sm{font-size:14px;line-height:normal;font-weight:400}
+.t-body-caption{font-size:12px;line-height:normal;font-weight:400}
+.t-body-xs{font-size:12px;line-height:normal;font-weight:400}
 .t-body-2xs{font-size:10px;line-height:12px;font-weight:400}
-.t-button-base{font-size:17px;line-height:22px;font-weight:600}
+.t-button-base{font-size:16px;line-height:22px;font-weight:700}
 .t-button-sm{font-size:14px;line-height:20px;font-weight:600}
-.t-button-text{font-size:15px;line-height:normal;font-weight:600}
-.t-number-base{font-size:18px;line-height:20px;font-weight:900}
-.t-number-md{font-size:24px;line-height:32px;font-weight:600}
-.t-scene-header{font-size:34px;line-height:40px;font-weight:900;text-transform:capitalize}
-.t-scene-tab-active{font-size:24px;line-height:19px;font-weight:900;text-transform:capitalize}
-.t-scene-tab{font-size:18px;line-height:19px;font-weight:700;text-transform:capitalize}
+.t-button-text{font-size:14px;line-height:20px;font-weight:600}
+.t-number-base{font-size:16px;line-height:20px;font-weight:800}
+.t-number-md{font-size:24px;line-height:28px;font-weight:800}
+.t-scene-header{font-size:28px;line-height:34px;font-weight:800;text-transform:capitalize}
+.t-scene-tab-active{font-size:14px;line-height:normal;font-weight:600;text-transform:capitalize}
+.t-scene-tab{font-size:14px;line-height:normal;font-weight:600;text-transform:capitalize}
 .t-scene-list{font-size:14px;line-height:17px;font-weight:600;text-transform:capitalize}
-.t-scene-nav{font-size:17px;line-height:normal;font-weight:600}
-.t-scene-bubble{font-size:17px;line-height:normal;font-weight:400}
+.t-scene-nav{font-size:16px;line-height:20px;font-weight:700}
+.t-scene-bubble{font-size:16px;line-height:20px;font-weight:400}
 
 /* ===== 4. 组件层(整段替换为 references/components.css 内容) ===== */
 /* ===== ZymixUI 组件层(与 Figma 组件一一对应,只用 tokens.css 变量) ===== */
@@ -722,7 +720,7 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;-webk
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font-family:inherit;border-radius:var(--radius-round);position:relative}
 .btn-sm{height:32px;padding:6px 12px;border-radius:var(--radius-lg);font-size:14px;line-height:20px;font-weight:600}
 .btn-md{height:36px;padding:8px 16px;font-size:14px;line-height:20px;font-weight:600}
-.btn-lg{height:48px;padding:8px 16px;font-size:17px;line-height:22px;font-weight:600}
+.btn-lg{height:48px;padding:8px 16px;font-size:16px;line-height:22px;font-weight:700}
 .btn-sm.icon-only{width:32px;padding:0}.btn-md.icon-only{width:36px;padding:0}.btn-lg.icon-only{width:48px;padding:0}
 /* 44pt 热区:视觉高度<44 的按钮用伪元素扩展点击区 */
 .btn-sm::after,.btn-md::after{content:'';position:absolute;inset:-6px;border-radius:inherit}
@@ -742,7 +740,7 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;-webk
 .btn-danger-soft:active{background:var(--danger-soft-pressed)}
 .btn:disabled{opacity:.5;pointer-events:none}
 /* 液态玻璃按钮(Text 85×48 胶囊 / Symbol 48×48 圆) */
-.btn-glass{height:48px;padding:0 20px;font-size:17px;line-height:22px;font-weight:600;color:var(--foreground-base)}
+.btn-glass{height:48px;padding:0 20px;font-size:16px;line-height:22px;font-weight:700;color:var(--foreground-base)}
 .btn-glass.icon-only{width:48px;padding:0}
 .btn-glass.tinted{color:var(--foreground-inverse)}
 /* 页头玻璃圆钮 42px(Zymix 页头右上) */
@@ -782,7 +780,7 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;-webk
 .header-nav .back{position:absolute;left:16px}
 
 /* --- IM 聊天 --- */
-.bubble{max-width:70%;padding:14px 16px;border-radius:var(--radius-2xl);font-size:17px;font-weight:400}
+.bubble{max-width:70%;padding:14px 16px;border-radius:var(--radius-2xl);font-size:16px;line-height:20px;font-weight:400}
 .bubble-friend{background:var(--feature-im-bubble-friend);color:var(--feature-im-bubble-friend-foreground)}
 .bubble-stranger{background:var(--feature-im-bubble-stranger);color:var(--feature-im-bubble-stranger-foreground)}
 .bubble-other{background:var(--surface-secondary);color:var(--foreground-base)}
@@ -798,7 +796,7 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;-webk
 .list-row .title{font-size:14px;line-height:17px;font-weight:600;text-transform:capitalize}
 .list-row .sub{font-size:14px;line-height:20px;font-weight:400;color:var(--foreground-muted)}
 .list-row .trailing{margin-left:auto;font-size:12px;line-height:16px;color:var(--foreground-subtle)}
-.badge{min-width:18px;height:18px;border-radius:var(--radius-round);background:var(--accent-base);color:var(--accent-foreground);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:0 5px}
+.badge{min-width:18px;height:18px;border-radius:var(--radius-round);background:var(--feature-like-base);color:var(--default-white);font-size:10px;line-height:12px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:0 5px}
 
 /* === 骨架标配(2026-07):移动端满屏 + 隐藏原生滚动条 + 去点按高亮 === */
 .screen{scrollbar-width:none}
@@ -845,7 +843,7 @@ html{-webkit-tap-highlight-color:transparent}
 }
 .tab-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--foreground-muted)}
 .tab-empty svg{opacity:.35}
-.tab-empty .t-body-sm{color:var(--foreground-muted)}
+.tab-empty .t-body-sm{font-size:14px;line-height:normal;font-weight:400}
 .island{left:16px;right:16px}   /* 展开的灵动岛两侧留 16px 外边距 */
 
 /* ============================================================
@@ -1348,7 +1346,7 @@ html{-webkit-tap-highlight-color:transparent}
     <div class="chat-list">
       <!-- News(官方账号 + 认证徽标) -->
       <div class="list-row" style="min-height:72px">
-        <span class="avatar" role="img" aria-label="News" style="background:var(--accent-base);display:flex;align-items:center;justify-content:center;color:var(--accent-foreground);font-weight:900;font-size:18px">N</span>
+        <span class="avatar" role="img" aria-label="News" style="background:var(--accent-base);display:flex;align-items:center;justify-content:center;color:var(--accent-foreground);font-weight:800;font-size:16px">N</span>
         <div style="flex:1;min-width:0">
           <div class="title" style="color:var(--foreground-base);display:flex;align-items:center;gap:4px">News
             <svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:var(--foreground-brand);flex-shrink:0"><g transform="translate(-16,-8)"><path fill-rule="evenodd" clip-rule="evenodd" d="M29.5 16C29.5 19.0376 27.0376 21.5 24 21.5C20.9624 21.5 18.5 19.0376 18.5 16C18.5 12.9624 20.9624 10.5 24 10.5C27.0376 10.5 29.5 12.9624 29.5 16ZM31 16C31 19.866 27.866 23 24 23C20.134 23 17 19.866 17 16C17 12.134 20.134 9 24 9C27.866 9 31 12.134 31 16ZM27.1 14.45C27.3485 14.1186 27.2814 13.6485 26.95 13.4C26.6186 13.1515 26.1485 13.2186 25.9 13.55L23.4189 16.8582L22.0303 15.4697C21.7374 15.1768 21.2626 15.1768 20.9697 15.4697C20.6768 15.7626 20.6768 16.2374 20.9697 16.5303L22.9697 18.5303C23.1234 18.6841 23.3363 18.7635 23.5532 18.7481C23.77 18.7327 23.9695 18.6239 24.1 18.45L27.1 14.45Z" fill="currentColor"/></g></svg>

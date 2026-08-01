@@ -28,35 +28,41 @@ body{font-family:-apple-system,"SF Pro","SF Pro Text",system-ui,sans-serif;-webk
   .screen{padding-top:0;padding-bottom:0}
 }
 
-/* ===== 3. 文字角色 ===== */
-.t-display{font-size:36px;line-height:40px;font-weight:900}
-.t-title-lg{font-size:30px;line-height:36px;font-weight:900}
-.t-title-md{font-size:24px;line-height:32px;font-weight:900}
-.t-title-sm{font-size:20px;line-height:28px;font-weight:600}
-.t-title-xs{font-size:15px;line-height:normal;font-weight:600}
-.t-label-lg{font-size:18px;line-height:28px;font-weight:600}
-.t-label-base{font-size:16px;line-height:24px;font-weight:600}
-.t-label-sm{font-size:14px;line-height:20px;font-weight:600}
-.t-label-caption{font-size:13px;line-height:normal;font-weight:600}
-.t-label-xs{font-size:12px;line-height:16px;font-weight:600}
-.t-body-lg{font-size:17px;line-height:22px;font-weight:400}
-.t-body-base{font-size:16px;line-height:24px;font-weight:400}
-.t-body-md{font-size:15px;line-height:20px;font-weight:400}
-.t-body-sm{font-size:14px;line-height:20px;font-weight:400}
-.t-body-caption{font-size:13px;line-height:normal;font-weight:400}
-.t-body-xs{font-size:12px;line-height:16px;font-weight:400}
+/* ===== 3. 文字角色(2026-07-31 字阶改版;Heavy=800,Bold=700,Semibold=600,Regular=400) ===== */
+.t-display{font-size:36px;line-height:normal;font-weight:800}
+.t-title-lg{font-size:28px;line-height:normal;font-weight:800}
+.t-title-md{font-size:24px;line-height:normal;font-weight:800}
+.t-title-sm{font-size:20px;line-height:normal;font-weight:800}
+.t-title-xs{font-size:16px;line-height:normal;font-weight:700}
+.t-label-base{font-size:16px;line-height:normal;font-weight:600}
+.t-label-sm{font-size:14px;line-height:normal;font-weight:600}
+.t-label-xs{font-size:12px;line-height:normal;font-weight:600}
+.t-label-2xs{font-size:10px;line-height:12px;font-weight:600}          /* 徽标与标签 */
+.t-label-2xs-bold{font-size:10px;line-height:12px;font-weight:700}     /* 勋章数字 */
+.t-body-base{font-size:16px;line-height:normal;font-weight:400}
+.t-body-sm{font-size:14px;line-height:normal;font-weight:400}
+.t-body-xs{font-size:12px;line-height:normal;font-weight:400}
 .t-body-2xs{font-size:10px;line-height:12px;font-weight:400}
-.t-button-base{font-size:17px;line-height:22px;font-weight:600}
+.t-link-base{font-size:16px;line-height:24px;font-weight:600}
+.t-link-sm{font-size:14px;line-height:20px;font-weight:600}
+.t-field-base{font-size:16px;line-height:24px;font-weight:400}
+.t-field-sm{font-size:14px;line-height:20px;font-weight:400}
+.t-button-base{font-size:16px;line-height:22px;font-weight:700}
 .t-button-sm{font-size:14px;line-height:20px;font-weight:600}
-.t-button-text{font-size:15px;line-height:normal;font-weight:600}
-.t-number-base{font-size:18px;line-height:20px;font-weight:900}
-.t-number-md{font-size:24px;line-height:32px;font-weight:600}
-.t-scene-header{font-size:34px;line-height:40px;font-weight:900;text-transform:capitalize}
-.t-scene-tab-active{font-size:24px;line-height:19px;font-weight:900;text-transform:capitalize}
-.t-scene-tab{font-size:18px;line-height:19px;font-weight:700;text-transform:capitalize}
+/* 数字阶梯 9 档:计数/金额/统计专用,勿与 Title 混用 */
+.t-number-36{font-size:36px;line-height:42px;font-weight:800}
+.t-number-28{font-size:28px;line-height:34px;font-weight:800}
+.t-number-24{font-size:24px;line-height:28px;font-weight:800}
+.t-number-20{font-size:20px;line-height:24px;font-weight:800}
+.t-number-16{font-size:16px;line-height:20px;font-weight:800}
+.t-number-14{font-size:14px;line-height:18px;font-weight:800}
+.t-number-12{font-size:12px;line-height:16px;font-weight:800}
+.t-number-10{font-size:10px;line-height:12px;font-weight:800}
+.t-number-8{font-size:8px;line-height:10px;font-weight:700}
+.t-scene-header{font-size:28px;line-height:34px;font-weight:800;text-transform:capitalize}
 .t-scene-list{font-size:14px;line-height:17px;font-weight:600;text-transform:capitalize}
-.t-scene-nav{font-size:17px;line-height:normal;font-weight:600}
-.t-scene-bubble{font-size:17px;line-height:normal;font-weight:400}
+.t-scene-nav{font-size:16px;line-height:20px;font-weight:700}
+.t-scene-bubble{font-size:16px;line-height:20px;font-weight:400}
 
 /* ===== 4. 组件层(整段替换为 references/components.css 内容) ===== */
 {{COMPONENTS_CSS}}

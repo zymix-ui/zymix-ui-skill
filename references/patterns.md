@@ -11,7 +11,7 @@ ZYMIX 是 iOS 风格的社交/IM 产品。原型按 iPhone 375×812 画布(设�
 
 ## 页面骨架
 - 状态栏: 9:41 + 信号/WiFi/电池(黑色图标,深色模式白色),高 47px(含刘海区)
-- NavBar 顶部导航(透明底 375×58,内容行 42,从状态栏下沿拼页),4 变体:Brand(34 Black 大标题+可选右侧 42 玻璃圆钮)/ Brand-Tabs(选中24 Black+未选中18 Bold muted,间距20)/ Nav-Center(左返回42+绝对居中17 SB标题+右侧42常驻占位保居中)/ Nav-Chat(返回+头像36+昵称17SB+副标题13 muted+右侧42圆钮)。圆钮=Button-Liquid-Glass-Symbol(42),禁手绘;一级页页头不放返回按钮。顶部模糊:页头本身透明,由页面顶层 `.scroll-edge-top` 统一提供(盖住状态栏+页头整片),渐变绑 `--background-base` 随明暗翻转(浅→白/深→黑)——**HTML 总是整页生成,故用页面层比"内置到组件"更合理;这与 Figma 组件把 Scroll Edge 内置(Show Scroll Edge 默认开)是有意为之的架构差异,视觉结果一致**
+- NavBar 顶部导航(透明底 375×58,内容行 42,从状态栏下沿拼页),4 变体:Brand(28 Heavy 大标题+可选右侧 42 玻璃圆钮)/ Brand-Tabs(左搜索圆钮+居中 tabs+右加号圆钮;tab 统一 14 Semibold,选中=主文字色+下方 24×2 下划线,未选中=muted,间距20;5 槽默认全显示、按需隐藏,超宽两端渐隐截断)/ Nav-Center(左返回42+绝对居中 16 Bold 标题+右侧42常驻占位保居中)/ Nav-Chat(返回+头像36+昵称 16 Bold+副标题 12 muted+右侧42圆钮)。圆钮=Button-Liquid-Glass-Symbol(42),禁手绘;一级页页头不放返回按钮。顶部模糊:页头本身透明,由页面顶层 `.scroll-edge-top` 统一提供(盖住状态栏+页头整片),渐变绑 `--background-base` 随明暗翻转(浅→白/深→黑)——**HTML 总是整页生成,故用页面层比"内置到组件"更合理;这与 Figma 组件把 Scroll Edge 内置(Show Scroll Edge 默认开)是有意为之的架构差异,视觉结果一致**
 - 搜索框: 胶囊形(--radius-round),--surface-secondary 底,占位文字 --foreground-placeholder,内有 16px 放大镜图标
 - Home indicator: 底部 134×5px 圆条 --foreground-base
 
@@ -19,7 +19,7 @@ ZYMIX 是 iOS 风格的社交/IM 产品。原型按 iPhone 375×812 画布(设�
 - 行高 ≥64px,头像 48px 圆形,标题 列表项角色(14 Semibold),副文字 Body/Sm + --foreground-muted
 - 行间分割线 0.5px --separator-base,左缩进对齐文字起点
 - 时间戳/badge 靠右,Body/Xs + --foreground-subtle
-- 未读徽标: --accent-base 圆形,白字 11px
+- 未读徽标: --feature-like-base 玫红圆形,恒白字 10px Semibold(Label/2xs;徽标统一玫红,不用绿色)
 
 ## IM 聊天页
 - 对方消息靠左,自己靠右;气泡 max-width 70%,padding 10px 16px,圆角 22
@@ -28,10 +28,10 @@ ZYMIX 是 iOS 风格的社交/IM 产品。原型按 iPhone 375×812 画布(设�
 - 已读回执: 小对勾 + read-friend/read-stranger 色
 
 ## 按钮
-- 主按钮: 高 48-56px,胶囊(--radius-round),--accent-base 底 --accent-foreground 白字 17 Semibold
+- 主按钮: 高 48-56px,胶囊(--radius-round),--accent-base 底 --accent-foreground 白字 16 Bold
 - 次按钮: --accent-soft 底 --accent-soft-foreground 字
 - 小按钮: 高 36px,14 Semibold
-- 文字按钮: 无底色,15 Semibold,颜色跟场景状态组
+- 文字按钮: 无底色,14 Semibold(Button/Sm;原 15 档已删),颜色跟场景状态组
 
 ## 弹层/卡片
 - 卡片: --surface-base 底,圆角 12-16,无阴影(阴影体系已废弃),靠层级色区分

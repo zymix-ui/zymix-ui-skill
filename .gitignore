@@ -1,2 +1,7 @@
 .DS_Store
 **/.DS_Store
+# 产物与临时目录(原型输出、PDF、抓取素材)
+output/
+tmp/
+# Claude Code 本地配置
+.claude/

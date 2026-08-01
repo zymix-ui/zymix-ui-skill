@@ -55,7 +55,7 @@
 | 上拉加载更多 / 到底 | 底部 loading → "没有更多了" | 否 |
 | 单条删除后变空 | 回落到空态(不是留白) | 是 |
 | 会话列表:置顶行 | 背景 `--surface-secondary` | 否 |
-| 会话列表:未读徽标 | `--accent-base` 圆 + 白字 11px | 否 |
+| 会话列表:未读徽标 | `--feature-like-base` 玫红圆 + 恒白字 10px Semibold(Label/2xs;徽标不用绿色) | 否 |
 
 ### B. 聊天会话页(IM)
 

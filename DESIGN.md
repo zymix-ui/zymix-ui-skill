@@ -1,7 +1,7 @@
 # DESIGN.md — ZymixUI
 
 > ZYMIX 移动端设计系统（iOS 风格社交 / IM 产品）。供 Google Stitch 及各类设计 AI 读取，生成符合规范的界面。
-> 版本 v1.3.1 · 单位默认 px · 目标画布 iPhone 375×812。
+> 版本 v1.4.0 · 单位默认 px · 目标画布 iPhone 375×812。
 
 ---
 
@@ -33,7 +33,8 @@
 | info/base | `#007AFF` | `#007AFF` | 信息提示 |
 
 > **accent vs success 判据**：元素"让你去做"→accent；"告诉你结果"→success。
-> **红色三分**：点赞情感色 `feature/like #FF3B64`；危险按钮填充 danger/base；危险文字 danger/soft-foreground。
+> **红色三分（玫红 vs 正红）**：积极强调用玫红 `feature/like #FF3B64`（点赞爱心、徽标通知红点与计数角标）；警示填充 danger/base（正红）；警示文字 danger/soft-foreground。
+> 判据：**吸引注意但非警示 → 玫红；警示 / 危险 / 错误 → 正红。** 通知红点不是"危险"，不要借用 danger。
 
 ### 中性 / 文字（foreground）
 | 角色 | Light | Dark | 用途 |
@@ -61,6 +62,7 @@
 | foreground/on-dark/ghost | `rgba(255,255,255,.08)` | 深底极弱填充 |
 
 > 判据:文字所在表面**恒定为深**(与 app 主题无关)→用 `foreground/on-dark/*`;文字随主题翻转(普通页面)→用 `foreground/*`。切忌为此给模块单独切深色。
+> **底色同理**:恒定深底用 `default/black`(恒黑),**禁用 `background/inverse` / `surface/inverse`** —— inverse 系列随主题翻转(Light 深 / Dark 白),深色下会翻成白底,叠在上面的恒白描边与 on-dark 文字全部消失。恒白描边用 `border/white`。
 
 ### 层面（background / surface / border / separator）
 | 角色 | Light | Dark | 用途 |
@@ -83,6 +85,7 @@
 
 | 角色 | Light | Dark | 用途 |
 |---|---|---|---|
+| feature/like/base | `#FF3B64` | `#FF3B64` | **积极强调红（玫红）**：点赞爱心、徽标通知红点与计数角标（未读数 / New / 99+）。凡"吸引注意但非警示"都用它。历史命名为 like（原仅点赞用），2026-07-31 语义扩展 |
 | feature/wallet/unverified | `#FD7C02` | `#F79E68` | 钱包/资产「未验证 Unverified」状态色（橙）。**仅钱包/资产场景**，不参与通用状态色 |
 
 ---
@@ -90,19 +93,31 @@
 ## 3. Typography Rules（排版）
 
 - **字体**：`-apple-system, "SF Pro", "SF Pro Text", "SF Pro Display", system-ui, sans-serif`
-- **字重**：全局仅 **Regular 400 / Semibold 600 / Black 900**；Bold 700 仅用于「场景 Scene」页头排版。
-- **不发明字号**：只用下表档位；界面里其他尺寸就近归档。
+- **字重**：**Regular 400 / Semibold 600 / Bold 700 / Heavy 800** 四种。标题与数字用 Heavy，不再用 Black 900。
+- **不发明字号**：只用下表档位（10 / 12 / 14 / 16 / 20 / 24 / 28 / 36，数字另有 8）；界面里其他尺寸就近归档。
+
+> 2026-07-31 字阶改版：Title 转 Heavy、Lg 降 28、Xs 升 16 Bold；Body 删 17/15/13；Label 删 18/13、加 10px 两档；Button 标准改 16 Bold；Scene 页头大标题降 28、导航标题与气泡改 16；Number 重建为 9 档。
 
 | 角色 | 字号/行高 | 字重 | 用途 |
 |---|---|---|---|
-| Display | 36/40 | 900 | 超大标题 |
-| Title/Lg · Md · Sm · Xs | 30/36 · 24/32 · 20/28 · 15/auto | 900 · 900 · 600 · 600 | 标题层级 |
-| Label/Lg · Base · Sm · Caption · Xs | 18/28 · 16/24 · 14/20 · 13/auto · 12/16 | 600 | 强调文字 |
-| Body/Lg · Base · Md · Sm · Caption · Xs · 2xs | 17/22 · 16/24 · 15/20 · 14/20 · 13/auto · 12/16 · 11/auto | 400 | 正文 |
-| Link/Base · Sm | 16/24 · 14/20 | 600 | 链接（色 accent/soft-foreground） |
-| Button/Base · Sm · Text | 17/22 · 14/20 · 15/auto | 600 | 按钮文字 |
-| Number/Base · Md | 18/20 · 24/32 | 900 · 600 | 数字统计 |
-| Scene 页头大标题 | 34/40 | 900 | 页面头部（首字大写） |
+| Display | 36/auto | 800 | 超大标题（一页最多一个） |
+| Title/Lg · Md · Sm | 28/auto · 24/auto · 20/auto | 800 | 标题层级 |
+| Title/Xs | 16/auto | **700** | 最小标题、列表项标题 |
+| Label/Base · Sm · Xs | 16/auto · 14/auto · 12/auto | 600 | 强调文字 |
+| Label/2xs · 2xs Bold | 10/12 · 10/12 | 600 · **700** | 徽标标签 · 勋章数字 |
+| Body/Base · Sm · Xs · 2xs | 16/auto · 14/auto · 12/auto · 10/12 | 400 | 正文 |
+| Link/Base · Sm | 16/24 · 14/20 | 600 | 链接（色 foreground/link） |
+| Field/Base · Sm | 16/24 · 14/20 | 400 | 输入框文字/占位 |
+| Button/Base | 16/22 | **700** | 标准按钮文字 |
+| Button/Sm | 14/20 | 600 | 小按钮、文字按钮 |
+| Number（9 档） | 36/42 · 28/34 · 24/28 · 20/24 · 16/20 · 14/18 · 12/16 · 10/12 | 800 | 计数 / 金额 / 统计 |
+| Number/8 | 8/10 | **700** | 极小角标（最小档） |
+| Scene 页头大标题 | 28/34 | 800 | 页面头部（首字大写） |
+| Scene 导航标题 · 气泡正文 | 16/20 · 16/20 | 700 · 400 | 导航栏居中标题 · IM 气泡 |
+| Scene 列表项 | 14/17 | 600 | 设置/资料页列表项 |
+
+> Number 与 Title 在 20/24/28/36 上字号字重相同但语义不同：**Number 专供数字**，Title 用于文本标题，勿混用。
+> 原「Scene 页头Tab 选中 24 Black / 未选中 18 Bold」已删——NavBar Brand-Tabs 改版后 tab 统一 14 Semibold，选中靠字色 + 下划线。
 
 ---
 
@@ -127,7 +142,7 @@
 底 surface/base 或 surface/secondary；占位 foreground/placeholder；文字 Field 角色（16/24）；圆角 md~lg。
 
 ### 页头 NavBar（透明底 375×58，内容行 42，从状态栏下沿拼页；4 变体）
-① Brand：大标题（Scene 34 Black）+ 可选右侧 42px 玻璃圆钮。② Brand-Tabs：选中 24 Black + 未选中 18 Bold muted，间距 20。③ Nav-Center：左返回 42 + 绝对居中标题 17 Semibold + 右侧 42 常驻占位（保居中，不受动作显隐影响）。④ Nav-Chat：返回 + 头像 36（兜底 surface/secondary）+ 昵称 17 SB + 副标题 13 muted + 右侧 1–2 个 42 圆钮。圆钮一律 Button-Liquid-Glass-Symbol(42)，禁手绘；一级页页头不放返回按钮。**Scroll Edge（顶部渐隐模糊）= 半透明磨砂底（feature/nav-background ≈66%）+ backdrop-blur + 向下线性渐隐**，不是不透明纯白；状态栏须悬浮透明、内容滚到其下，才呈现 iOS 沉浸式的"内容从状态栏背后模糊滑过"。
+① Brand：大标题（Scene 28 Heavy）+ 可选右侧 42px 玻璃圆钮。② Brand-Tabs（2026-07-31 改版）：左搜索圆钮 + 居中 tabs + 右加号圆钮；tab 统一 14 Semibold，选中=主文字色 + 下方 24×2 下划线，未选中=muted，间距 20；5 个 tab 槽默认全显示、用不到的隐藏，超宽时两端渐隐截断。③ Nav-Center：左返回 42 + 绝对居中标题 16 Bold（Scene 导航标题）+ 右侧 42 常驻占位（保居中，不受动作显隐影响）。④ Nav-Chat：返回 + 头像 36（兜底 surface/secondary）+ 昵称 16 Bold + 副标题 12 muted（Body/Xs）+ 右侧 1–2 个 42 圆钮。圆钮一律 Button-Liquid-Glass-Symbol(42)，禁手绘；一级页页头不放返回按钮。**Scroll Edge（顶部渐隐模糊）= 半透明磨砂底（feature/nav-background ≈66%）+ backdrop-blur + 向下线性渐隐**，不是不透明纯白；状态栏须悬浮透明、内容滚到其下，才呈现 iOS 沉浸式的"内容从状态栏背后模糊滑过"。
 
 ### 底部导航 TabBar
 玻璃胶囊（Liquid Glass Regular Small；高 62=4+54+4、左右边距 8、圆角 round）；五 tab Chat/Mix/Video/Discover/Me；图标槽 32/字形 24；**激活位单选互斥 = accent/soft-subtle(8%) 底 + accent/base 图标；未激活 = 透明底 + foreground/base 图标**（旧「accent 底白图 / subtle 40%」作废）；带底部文字为特殊场景（10/12，激活字色 accent）；底部模糊用 Scroll Edge Soft(Edge=Bottom)，半透明磨砂底（feature/nav-background）+ backdrop-blur + 向上渐隐，勿手动叠层、勿用不透明纯白。**图标只用本地内置图标库（icons-bundled.json），禁止走 CDN**——底部导航是每页常驻元素，不能有离线/预览缺图的风险，CDN 长尾图标只给非导航区域用。**且只能用图标库里 `tab-` 前缀的专用标签栏图标**（`tab-chat`/`tab-mix`/`tab-video`/`tab-discover`/`tab-me`/`tab-ai`，各配 `-fill` 面性变体，未激活线性、激活切 fill + accent 着色），**不许拿普通图标（house/comments/person 等）顶替**；除非用户特殊要求，tab 图标只在这组 tab 图标里选。
@@ -140,7 +155,7 @@
 **每个项目默认都要带灵动岛**，作用是让设计师在预览里一键切换系统/浅色/深色三态自测深浅色表现。黑底白字、`position:absolute` 锚在状态栏中间、不占布局。分两型：**A 型**（多状态页，药丸展开成状态切换菜单 + 外观图标）、**B 型**（静态页，药丸本身就是外观开关，点击循环 系统/浅/深）。**除非用户明确要求去掉（如说"去掉灵动岛"），否则任何情况下都不得省略**，包括"最终交付版"——交付时最多去掉 A 型的多状态演示菜单，外观切换本体必须保留。
 
 ### 列表 List / 卡片 Card
-行高 ≥56、图标 24、标题 Body/Lg、右 chevron；组内 0.5px separator/base 左缩进；卡片 surface/base 圆角 lg(16)、无阴影（靠层级色区分）。
+行高 ≥56、图标 24、标题 Label/Base、右 chevron；组内 0.5px separator/base 左缩进；卡片 surface/base 圆角 lg(16)、无阴影（靠层级色区分）。
 
 ### 图标
 用 ZymixUI 图标库（单色 currentColor，跟随文字色），npm `@zymix-ui/icons` 或 CDN `cdn.jsdelivr.net/gh/zymix-ui/zymix-icons`。禁止手绘不一致的图标。**底部导航（TabBar）图标例外：只用本地内置图标，不用 CDN**——CDN 依赖网络，导航是常驻元素不能有缺图风险；CDN 仅用于非导航场景的长尾图标。

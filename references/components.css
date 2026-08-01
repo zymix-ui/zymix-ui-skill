@@ -27,7 +27,7 @@
 @media (prefers-reduced-motion:reduce){.btn{transition:background var(--duration-fast) var(--ease-standard)}.btn:active{transform:none}}
 .btn-sm{height:32px;padding:6px 12px;border-radius:var(--radius-lg);font-size:14px;line-height:20px;font-weight:600}
 .btn-md{height:36px;padding:8px 16px;font-size:14px;line-height:20px;font-weight:600}
-.btn-lg{height:48px;padding:8px 16px;font-size:17px;line-height:22px;font-weight:600}
+.btn-lg{height:48px;padding:8px 16px;font-size:16px;line-height:22px;font-weight:700}
 .btn-sm.icon-only{width:32px;padding:0}.btn-md.icon-only{width:36px;padding:0}.btn-lg.icon-only{width:48px;padding:0}
 /* 44pt 热区:视觉高度<44 的按钮用伪元素扩展点击区 */
 .btn-sm::after,.btn-md::after{content:'';position:absolute;inset:-6px;border-radius:inherit}
@@ -47,7 +47,7 @@
 .btn-danger-soft:active{background:var(--danger-soft-pressed)}
 .btn:disabled{opacity:.5;pointer-events:none}
 /* 液态玻璃按钮(Text 85×48 胶囊 / Symbol 48×48 圆) */
-.btn-glass{height:48px;padding:0 20px;font-size:17px;line-height:22px;font-weight:600;color:var(--foreground-base)}
+.btn-glass{height:48px;padding:0 20px;font-size:16px;line-height:22px;font-weight:700;color:var(--foreground-base)}
 .btn-glass.icon-only{width:48px;padding:0}
 .btn-glass.tinted{color:var(--foreground-inverse)}
 /* 页头玻璃圆钮 42px(Zymix 页头右上) */
@@ -109,16 +109,19 @@
 /* --- NavBar 顶部导航栏(2026-07-10;透明底 375×58,内容行42,从状态栏下沿拼页;4 变体) --- */
 /* 圆钮一律 Button-Liquid-Glass-Symbol(Size=42)= .btn-glass-42 .glass,禁手绘;代码侧 hitSlop≥44 */
 /* ① Brand:大标题左对齐 + 可选右侧 42 圆钮 */
-.header-brand{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;min-height:58px} /* 标题用 .t-scene-header 34 Black */
-/* ② Brand-Tabs:Tab 选中24 Black + 未选中18 Bold muted,间距20,基线对齐 */
-.header-tabs{display:flex;align-items:baseline;gap:20px;padding:8px 16px;min-height:58px}
-.header-tabs .tab-a{font-size:24px;line-height:19px;font-weight:900;color:var(--foreground-base);text-transform:capitalize}
-.header-tabs .tab-i{font-size:18px;line-height:19px;font-weight:700;color:var(--foreground-muted);text-transform:capitalize}
-/* ③ Nav-Center:左返回42 + 绝对居中标题17 SB + 右侧42常驻占位(保居中,不受动作显隐影响) */
+.header-brand{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;min-height:58px} /* 标题用 .t-scene-header 28 Heavy */
+/* ② Brand-Tabs(2026-07-31 改版):Tab 统一 14 Semibold,选中=主文字色 + 下方 24×2 下划线,未选中=muted;间距20
+   左搜索圆钮 + 居中 tabs + 右加号圆钮;tabs 过多时两端渐隐截断(mask-image),见 patterns.md */
+.header-tabs{display:flex;align-items:center;gap:20px;padding:8px 16px;min-height:58px}
+.header-tabs .tab-a{position:relative;font-size:14px;line-height:normal;font-weight:600;color:var(--foreground-base);text-transform:capitalize}
+.header-tabs .tab-a::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-7px;width:24px;height:2px;border-radius:var(--radius-round);background:var(--foreground-base)}
+.header-tabs .tab-i{font-size:14px;line-height:normal;font-weight:600;color:var(--foreground-muted);text-transform:capitalize}
+/* tabs 超出可视宽度时:容器加 mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent) 做两端渐隐截断 */
+/* ③ Nav-Center:左返回42 + 绝对居中标题 16 Bold(.t-scene-nav)+ 右侧42常驻占位(保居中,不受动作显隐影响) */
 .header-nav{display:flex;align-items:center;justify-content:center;position:relative;min-height:58px;padding:8px 16px} /* 标题用 .t-scene-nav */
 .header-nav .back{position:absolute;left:16px}
 .header-nav .action{position:absolute;right:16px}
-/* ④ Nav-Chat:返回 + 头像36圆(兜底 surface/secondary)+ 昵称17SB + 副标题13 muted + 右侧1–2个42圆钮 */
+/* ④ Nav-Chat:返回 + 头像36圆(兜底 surface/secondary)+ 昵称 16 Bold + 副标题 12 muted(.t-body-xs)+ 右侧1–2个42圆钮 */
 .header-chat{display:flex;align-items:center;gap:12px;padding:8px 16px;min-height:58px}
 .header-chat .avatar{width:36px;height:36px;background:var(--surface-secondary)}
 /* 页头背景透明,顶部滚动遮罩由页面层 .scroll-edge-top 统一处理(渐变绑 --background-base,浅→白/深→黑,随明暗自适应);
@@ -126,7 +129,7 @@
    注:Figma 组件把 Scroll Edge 内置进 NavBar(Show Scroll Edge 默认开);skill 因 HTML 总是整页生成,改用页面层覆盖状态栏+页头,视觉一致——有意为之的架构差异,勿"修正"为 .header-*::before */
 
 /* --- IM 聊天 --- */
-.bubble{max-width:70%;padding:14px 16px;border-radius:var(--radius-2xl);font-size:17px;font-weight:400}
+.bubble{max-width:70%;padding:14px 16px;border-radius:var(--radius-2xl);font-size:16px;line-height:20px;font-weight:400}
 .bubble-friend{background:var(--feature-im-bubble-friend);color:var(--feature-im-bubble-friend-foreground)}
 .bubble-stranger{background:var(--feature-im-bubble-stranger);color:var(--feature-im-bubble-stranger-foreground)}
 .bubble-other{background:var(--feature-im-bubble-guest);color:var(--foreground-base)}
@@ -141,7 +144,8 @@
 .list-row .title{font-size:14px;line-height:17px;font-weight:600;text-transform:capitalize}
 .list-row .sub{font-size:14px;line-height:20px;font-weight:400;color:var(--foreground-muted)}
 .list-row .trailing{margin-left:auto;font-size:12px;line-height:16px;color:var(--foreground-subtle)}
-.badge{min-width:18px;height:18px;border-radius:var(--radius-round);background:var(--accent-base);color:var(--accent-foreground);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:0 5px}
+/* 徽标/通知红点:统一玫红 --feature-like-base(不用绿色);字恒白(玫红 Light=Dark 同值) */
+.badge{min-width:18px;height:18px;border-radius:var(--radius-round);background:var(--feature-like-base);color:var(--default-white);font-size:10px;line-height:12px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:0 5px}
 
 /* --- 图标(CDN 长尾,内置 icons-bundled.json 没有的才用) --- */
 /* base: https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.2.0/svgs */

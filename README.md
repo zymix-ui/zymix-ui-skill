@@ -1,6 +1,6 @@
 # ZYMIX-UI 原型技能
 
-**版本 v1.3.1** · tokens + Button/Toast/玻璃材质 + 图标库 + App(多屏外壳,含 Chat 会话列表→对话下钻)
+**版本 v1.4.0** · tokens + Button/Toast/玻璃材质 + 图标库 + App(多屏外壳,含 Chat 会话列表→对话下钻)
 
 > 一句话说清需求，AI 就给你一张**完全符合 ZYMIX 设计规范**的高保真手机页面。
 
@@ -111,4 +111,5 @@ scripts/
 | **v1.2.1** | 2026-07-22 | 系统状态栏统一为一套 iOS 标准(高 47、时间 15/600、信号+WiFi+电池全套图标、跟随主题),多屏 `app.html` 共用;TabBar 采用专用标签栏图标(本地化到 `icons-bundled.json`);灵动岛设为默认必备;补 iOS26 切屏动效;修正 Scroll Edge 渐隐磨砂;DESIGN 版本号同步 |
 | **v1.2.2** | 2026-07-22 | **命名修正**:底部标签栏(TabBar)图标此前误用 `nav-` 前缀(nav 应专指顶部 NavBar),统一改为 `tab-*`(tab-chat/mix/video/discover/me/ai + `-fill`)——含 Figma 图标库组件集 + 分类标签(navigation→tabbar)、`icons-bundled.json`、SKILL/DESIGN/icons.md 约定文本、Claude Design 同步;公开图标库 `zymix-icons` svgs 同步改名 + 重建 React 组件 + 发版 `v1.0.2`(skill CDN 引用升 @v1.0.2)。`feature-nav-*`(顶/底两栏共用的导航层玻璃底/渐隐)非图标、语义无误,保留不变 |
 | **v1.3.0** | 2026-07-29 | **图标 1px 全库同步**:对齐 Figma Kit v0.8.0——全库图标描边 1.5px→1px 重新导出,公开库 `zymix-icons` 发版 **v1.1.0**(714 个更新 + 10 个新增:headset/comment-dots/person-key/lock-simple/paper-plane-fill 等;清理 19 个 Figma 已删图标);`icons-bundled.json` 81 个内联图标全量刷新(share 源→arrow-shape-turn-up-right);CDN 引用升 `@v1.1.0`(SKILL/icons.md/components.css)。注:Figma 端 feature/nav 变量与「导航 Nav」样式已删除(导航玻璃改由 Liquid Glass 材质组件承担),skill 端 `--feature-nav-*` 作为 CSS 实现 token 保留 |
+| **v1.4.0** | 2026-07-31 | **字阶改版 + 徽标玫红定稿**:字重体系 Black→**Heavy**(在用四档 Regular/Semibold/Bold/Heavy)。Title 全档转 Heavy(Lg 30→**28**)、Xs 15 Semibold→**16 Bold**;Body 删 17/15/13(留 16/14/12/10);Label 删 18/13,新增 **10px 两档**(Semibold=徽标与标签、Bold=勋章数字);Button 标准 17 Semibold→**16 Bold**、删文字按钮 15 档;Scene 页头大标题 34→**28 Heavy**、导航标题 17→**16 Bold**、气泡正文 17→**16**、删页头Tab 两档;**Number 重建为 9 档阶梯**(36/42·28/34·24/28·20/24·16/20·14/18·12/16·10/12 全 Heavy + 8/10 Bold)。文本样式 32→33,04 Font 变量 67→71;共 63 个 Figma 节点按最接近字号迁移。**徽标统一玫红**:`.badge` 由 accent 绿改 `--feature-like-base` + 恒白字,字号 11→**10**(Label/2xs);Figma Badge 组件删 danger 档(改名 notice 玫红)、收敛为纯实心 15 变体。**新增 `border/white`** 恒白描边(alias default/white)+「描边 Border/纯白 White」样式。NavBar Brand-Tabs 按「一级框架改版」重做并拆为独立组件集(5 tab 槽 + alpha mask 渐隐截断 + 红点)。同步:tokens 源 JSON、`tokens.css`、`typography.md`(重写)、DESIGN、patterns、spec、components.css、`template.html`/`app.html` 的 `.t-*` 全量文字角色类 |
 | **v1.3.1** | 2026-07-29 | **图标 1.2px 全库同步**:全库描边 1→1.2px(用户定稿规格;tab-* 与纯填充图标不变),公开库 `zymix-icons` 发版 **v1.2.0**(656 个更新);`icons-bundled.json` 81 个内联图标全量刷新;CDN 引用升 `@v1.2.0` |

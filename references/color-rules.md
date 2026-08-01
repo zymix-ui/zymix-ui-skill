@@ -17,8 +17,17 @@
 ## 恒定深色面上的文字用 foreground/on-dark(不用会翻转的 foreground)
 蒙层、媒体遮罩、深色玻璃、灵动岛这类**表面恒为深**(与 app 主题无关)的地方,文字/线用 `--foreground-on-dark-*`(固定白层级:base/muted/subtle/placeholder/disabled/faint/ghost,对齐 foreground 深色列)。**禁止**用会随主题翻转的 `--foreground-*`(浅色模式下会变黑、在深底上消失),也不要为此把模块单独切深色。需要白色半透明(分割线等)也用它,别写裸 rgba。
 
-## 红色三分
-点赞爱心→--feature-like-base(情感色);危险按钮填充→--danger-base;危险**文字/图标**→--danger-soft-foreground(danger-base 做文字对比度不达 AA,红色以文字形态出现必须用深红)。
+**底色同理:恒定深底用 `--default-black`(恒黑),禁止用 `--background-inverse` / `--surface-inverse`** —— inverse 系列的定义就是"随主题翻转"(Light 深 / Dark 白),深色模式下会翻成白底,叠在上面的恒白描边与 on-dark 文字全部消失。描边用 `--border-white`(恒白)。
+
+## 红色三分:玫红管积极,正红管警示
+判据:**吸引注意但非警示→玫红;警示/危险/错误→正红。**
+- 积极强调(玫红 #FF3B64)→`--feature-like-base`:点赞爱心、徽标**通知红点与计数角标**(未读数/New/99+)。通知红点不是"危险",别借用 danger。
+- 警示填充(正红)→`--danger-base`
+- 警示**文字/图标**→`--danger-soft-foreground`(danger-base 做文字对比度不达 AA,红色以文字形态出现必须用深红)
+
+**徽标一律玫红,不用绿色。** 未读数、New、99+、纯红点全部 `--feature-like-base` + 恒白字(`--default-white`,玫红 Light=Dark 同值,不能用会翻转的 foreground)。徽标**没有 danger 语义** —— 徽标上的红是通知提醒,不是错误警示;警示归按钮 / Toast / 表单校验。
+
+`feature/like` 是历史命名(原仅点赞用),2026-07-31 语义已扩展为通用积极强调红。
 
 ## 文字梯子(foreground)
 base 主文字(纯黑/白)→emphasis 80% 强调文字(标题副文/强调正文)→muted 55% 次文字→subtle 40% 辅助(仅限辅助信息)→placeholder 30% 占位→disabled 26% 禁用→faint 15% 极弱→ghost 8% 最弱。
