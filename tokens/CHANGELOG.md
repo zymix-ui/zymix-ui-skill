@@ -164,3 +164,9 @@
 - **Chip 去掉 warning 概念,整档改 info**(与 Badge 同一裁定:体系无通用橙)。12 个变体 `type=warning` → `type=info`,66 处颜色由归档 `intent/warning/{base,foreground,soft,soft-foreground}` 改绑「信息 Info/{底 Base,文字 Foreground,浅底 Soft,浅底文字 Soft-foreground}」;**Chip 组件集归档绑定归零**。改名前记录了 14 处在用 `type=warning` 的实例(Chip 页 8 / Table 4 / Getting Started 2),改完逐个复核 —— Figma 重命名变体值时会自动同步实例属性,14 处全部落在 `info`,无失效。
 - **`foreground/subtle` 的 Dark 值 35% → 40%**,与 `on-dark/subtle` 重新逐档等值(DESIGN 与 color-rules 里「不再等值」的注解已撤回)。`app.html` 六处内嵌副本同步。
 - **补合并式验证码的文档说明**:InputOTP 文档新增「Layouts 两式布局」一节(插在 Composition 之后),含 separated / combined 并排演示与选型说明;Examples 的 Light / Dark 两张卡各补一个合并式实例(3 分离式 + 1 合并式)。
+- **样式体检(颜色 87 / 文本 33)**:
+  - 颜色样式全部绑变量、零归档、无多重填充;**87 语义色变量 ↔ 87 颜色样式 1:1 完全对应**,无缺失、无一变量多样式。
+  - 修 1 处名实不符:「IM 气泡/好友弱文字 Friend Muted」名字写 55% 而实际 60% —— 它 alias `foreground/muted`,随全局次文字档一起加深了,只是名字滞后。已改名并在描述里注明 alias 关系。
+  - **修回归:按钮两档文本样式的绑定被撤销过**。`按钮 Button/标准 Base` 的 `fontStyle` 退回 `weight/semibold`、`按钮 Button/小 Sm` 的 `fontSize` 退回 `size/body-xs`(12),而 `lineHeight` 保留了修正 —— **部分回退**,不像人工整体撤销,更像 `TextStyle.setBoundVariable` 未持久化。已重做并用「改完换一次脚本调用、重新 `getLocalTextStylesAsync` 再读回」的方式验证持久化(比同调用内读回严格)。Button 页文字分布 48 + 28 = 76(原 63 + ink 新增 9 + _Label 4),零裸字体。
+  - 文本样式零归档、零"值与变量不符";11 个 lineHeight 未绑变量的样式经核实**全部是 AUTO 行高**(Title/Label/Body 三族),属设计使然。
+- **ink 四档接上 Primitive alias**(铁律「语义层必须 alias 基础层」):`ink/base`→`color/black`·`color/white`、`ink/foreground`→反向、`ink/soft-foreground`→同 base 向、`ink/pressed`→`color/neutral/800`·`color/neutral/200`。值完全不变,`tokens.css` 输出无差异。只接两个模式都能精确对应的,避免制造「Light alias / Dark 直值」的混合态(全库混合态仍为 0)。

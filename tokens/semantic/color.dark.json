@@ -72,17 +72,17 @@
   },
   "ink": {
     "base": {
-      "$value": "#FFFFFF",
+      "$value": "{color.white}",
       "$type": "color",
       "$description": "墨色实底(最高对比中性实底)。黑色 CTA / 强调实底按钮。**与 default 不同** —— default 是浅灰容器语义,勿混用"
     },
     "pressed": {
-      "$value": "#EBEBEC",
+      "$value": "{color.neutral.200}",
       "$type": "color",
       "$description": "墨色实底按下。纯黑无法更深故提亮一档(neutral/800);深色模式压暗一档(neutral/200)"
     },
     "foreground": {
-      "$value": "#000000",
+      "$value": "{color.black}",
       "$type": "color",
       "$description": "墨色实底上的文字/图标,随 base 翻转以保证可读"
     },
@@ -97,7 +97,7 @@
       "$description": "墨色浅底按下 黑15%/白15%"
     },
     "soft-foreground": {
-      "$value": "#FFFFFF",
+      "$value": "{color.white}",
       "$type": "color",
       "$description": "墨色浅底上的文字"
     }

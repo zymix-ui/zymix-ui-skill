@@ -213,7 +213,7 @@
   "IM 气泡/好友文字 Friend Fg #274700": {
     "variable": "feature.im.bubble-friend-foreground"
   },
-  "IM 气泡/好友弱文字 Friend Muted #000000 55%": {
+  "IM 气泡/好友弱文字 Friend Muted #000000 60%": {
     "variable": "feature.im.bubble-friend-muted"
   },
   "IM 气泡/非好友文字 Stranger Fg #006673": {
