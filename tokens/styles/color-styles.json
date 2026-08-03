@@ -60,16 +60,16 @@
   "主色 Accent/浅底文字 Soft-foreground #0F7A23": {
     "variable": "accent.soft-foreground"
   },
-  "中性 Default/底 Base #EBEBEC": {
+  "中性 Default/底 Base #EBEBEB": {
     "variable": "default.base"
   },
   "中性 Default/按下 Pressed #D4D4D6": {
     "variable": "default.pressed"
   },
-  "中性 Default/浅底 Soft #EBEBEC 50%": {
+  "中性 Default/浅底 Soft #EBEBEB 50%": {
     "variable": "default.soft"
   },
-  "中性 Default/浅底按下 Soft-pressed #EBEBEC 65%": {
+  "中性 Default/浅底按下 Soft-pressed #EBEBEB 65%": {
     "variable": "default.soft-pressed"
   },
   "中性 Default/浅底文字 Soft-foreground #18181B": {
@@ -150,7 +150,7 @@
   "描边 Border/底 Base #DEDEE0": {
     "variable": "border.base"
   },
-  "描边 Border/弱 Subtle #EBEBEC": {
+  "描边 Border/弱 Subtle #EBEBEB": {
     "variable": "border.subtle"
   },
   "描边 Border/纯白 White #FFFFFF": {
@@ -201,7 +201,7 @@
   "遮罩 Backdrop/玻璃 Glass #FFFFFF 90%": {
     "variable": "backdrop.glass"
   },
-  "骨架屏 Skeleton/底 Base #EBEBEC": {
+  "骨架屏 Skeleton/底 Base #EBEBEB": {
     "variable": "skeleton.base"
   },
   "骨架屏 Skeleton/高亮 Highlight #F5F5F5": {

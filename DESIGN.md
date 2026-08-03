@@ -62,7 +62,7 @@
 | ink/soft-pressed | `rgba(0,0,0,.15)` | `rgba(255,255,255,.15)` | 浅底按下 |
 | ink/soft-foreground | `#000000` | `#FFFFFF` | 浅底上的文字 |
 
-> **与「中性 default」严格区分**：`default` 是**浅灰容器**语义（#EBEBEC，表单 secondary 档 / Kbd / Tag 底 / Chip default 都用它）；`ink` 是**黑色强调实底**。别拿 default 当黑底用，也别拿 ink 当浅灰容器用。
+> **与「中性 default」严格区分**：`default` 是**浅灰容器**语义（#EBEBEB，表单 secondary 档 / Kbd / Tag 底 / Chip default 都用它）；`ink` 是**黑色强调实底**。别拿 default 当黑底用，也别拿 ink 当浅灰容器用。
 
 **foreground/on-dark**（固定白前景层级，Light=Dark 同值，**不随主题翻转**）：用于恒定深色表面上的文字/线——蒙层、媒体遮罩、深色玻璃、灵动岛。
 
@@ -159,7 +159,7 @@
 胶囊形（343×66），底为**液态玻璃材质**（见第 6 节），图标+文字一律中性 foreground/base（不用状态色）。位置固定屏幕顶部、距顶 60px 居中；点击触发、显示 3 秒淡入淡出。
 
 ### 输入框 Input / InputGroup / InputOTP / Checkbox（统一形态，2026-08-01 定稿）
-**浅灰底 + 无描边**，适配白色背景：底 `surface/secondary`(#F5F5F5，与搜索框同底)，稍深一档用 `default/base`(#EBEBEC)。
+**浅灰底 + 无描边**，适配白色背景：底 `surface/secondary`(#F5F5F5，与搜索框同底)，稍深一档用 `default/base`(#EBEBEB)。
 高度统一 **48**；圆角 **`radius/3xl`(24)**（2026-08-01 由 12 改；48 高 + 24 圆角 = 胶囊形）；占位 `foreground/placeholder`；文字 Field 角色（16/24）。
 **常态不要描边** —— 之前的「白底 + 浅灰描边」是为灰底页面设计的反差方案，而产品以白色场景为主，白底白框等于看不见。
 描边只表达**状态**：focus 用 `accent/base`、error 用 `danger/base`（1px inset，不挤布局）；disabled 整体 opacity 50%。

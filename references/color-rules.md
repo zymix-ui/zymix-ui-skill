@@ -50,7 +50,7 @@ base 主文字(纯黑/白)→**muted 60%** 次文字→subtle 40% 辅助(仅限�
 | `--ink-soft-pressed` | 15% | 浅底按下 |
 | `--ink-soft-foreground` | 浅 #000 / 深 #FFF | 浅底上的文字 |
 
-**与「中性 Default」严格区分**:Default 是**浅灰容器**语义(#EBEBEC 底,表单 secondary 档、Kbd、Tag 底、Chip default 都用它);Ink 是**黑色强调实底**。别拿 Default 当黑底用,也别拿 Ink 当浅灰容器用。
+**与「中性 Default」严格区分**:Default 是**浅灰容器**语义(#EBEBEB 底,表单 secondary 档、Kbd、Tag 底、Chip default 都用它);Ink 是**黑色强调实底**。别拿 Default 当黑底用,也别拿 Ink 当浅灰容器用。
 
 ## 层面
 - 页面背景: --background-base;灰层 tertiary(#F5F5F5)。**2026-08-01 删掉 --background-secondary(雪白 #FCFCFC)** —— 与 base 太近,页面底一律用 base,要灰底页用 tertiary

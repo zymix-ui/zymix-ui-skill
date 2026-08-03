@@ -7,7 +7,7 @@
   --accent-soft-pressed: rgba(38, 217, 62, 0.20);
   --accent-soft-foreground: #0F7A23;
   --accent-soft-subtle: rgba(38, 217, 62, 0.08);
-  --default-base: #EBEBEC;
+  --default-base: #EBEBEB;
   --default-pressed: #D4D4D6;
   --default-foreground: #000000;
   --default-soft: rgba(235, 235, 236, 0.50);
@@ -66,7 +66,7 @@
   --surface-inverse-secondary: #1C1C1F;
   --surface-inverse-tertiary: #2A2A2E;
   --border-base: #DEDEE0;
-  --border-subtle: #EBEBEC;
+  --border-subtle: #EBEBEB;
   --border-white: #FFFFFF;
   --border-width: 1px;
   --border-width-none: 0px;
@@ -77,7 +77,7 @@
   --backdrop-base: rgba(0, 0, 0, 0.20);
   --backdrop-strong: rgba(0, 0, 0, 0.60);
   --backdrop-glass: rgba(255, 255, 255, 0.90);
-  --skeleton-base: #EBEBEC;
+  --skeleton-base: #EBEBEB;
   --skeleton-highlight: #F5F5F5;
   --feature-like-base: #FF3B64;
   --feature-wallet-unverified: #FD7C02;
