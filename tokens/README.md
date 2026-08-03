@@ -12,7 +12,8 @@
 | `styles/text.json` | Text Styles | — |
 | `styles/effect.json` | Effect Styles | — |
 
-同步规则:写入 Figma 时,`{color.*}` alias 解析为硬值(Figma 无 01 集合);语义层内部 alias(如 `{accent.base}`)保留为 Figma alias。格式:W3C DTCG(`$value` / `$type` / `$description`),alias 写 `{color.brand.500}`(引用 primitive)或 `{accent.base}`(引用语义层同 mode)。
+同步规则:生成 `tokens.css` 时所有 alias 一律解析为最终硬值(CSS 只需要值);写入 Figma 时,语义层内部 alias(如 `{accent.base}`)保留为 Figma alias。
+Figma **现在有 01 Primitive 集合**(68 个变量),但 **02 不要求绑定它 —— 01 只是参考色板**,02 直接写值是允许的(2026-08-03 设计师口径)。格式:W3C DTCG(`$value` / `$type` / `$description`),alias 写 `{color.brand.500}`(引用 primitive)或 `{accent.base}`(引用语义层同 mode)。
 
 **入口架构(v3)**:设计师只用「样式」(中文命名,全覆盖 02 语义色);变量层纯英文与 JSON 同名,供组件绑定与代码同步;中文说明在变量描述。
 

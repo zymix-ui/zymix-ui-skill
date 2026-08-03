@@ -61,7 +61,11 @@ references/tokens.css (快照)            ② 颜色/文本/效果样式 Styles
    - 日常（Figma 规范设计师先改）→ 走 [§3 反向同步](#3-反向同步figma-先变时的主流程)：从 Figma 拉取 → 落到 JSON → 生成快照。
    - 当你被要求**直接改 Figma**（如整轮字阶改版）→ 改完 Figma 与 JSON **两边都要落地**，并告知规范设计师改了什么，避免他在 Figma 里按旧值继续。
 2. **组件颜色绑「颜色样式」，不绑原始变量。** 样式自身 alias 到变量，深浅色照样自动切换；但组件层只认样式，才能在 Figma 面板成组管理、跨文件复用、换配方时批量生效。
-3. **语义层必须 alias 基础层，任何地方禁硬编码色值。** 新增语义色先看能不能 alias 已有的（如 `border/white` → `default/white`）。
+3. **01 Primitive 只是参考色板，02 Semantic 不需要绑定它。**（2026-08-03 设计师明确口径，纠正此前"语义层必须 alias 基础层"的理解）
+   - 02 的值可以直接写死，**不必**为了"能 alias"去补 01 的原子档位 —— 深色中性梯子缺 `#232327`/`#27272A`/`#333338`/`#3A3A40` 等中间值是**正常的**，不用补。
+   - 真正该复用的是 **02 内部的 alias**：`success/*` → `accent/*`、`border/white` → `default/white`、`feature/im/bubble-guest` → `surface/secondary`、`foreground/link` → `accent/soft-foreground`。新增语义色先看能不能引用同层已有的。
+   - ⚠️ 一旦 02 绑了 01，**改 01 会连带改 02**。既然 01 是可自由调整的参考色板，这种耦合要当心（曾把 `neutral/200` 从 #EBEBEC 调成 #EBEBEB，连带改掉了 `ink/pressed` 的深色值）。
+   - 「禁硬编码色值」这条仍然成立，但指的是**页面与组件层**不许写裸 hex，不是要求 02 必须 alias 01。
 4. **恒定深底用 `default/black`，禁用 `background/inverse` / `surface/inverse`。** inverse 系列的定义就是随主题翻转，深色模式下会翻成白底，叠在上面的恒白描边和 on-dark 文字全部消失。文字同理：恒定深底上用 `foreground/on-dark/*`。
 5. **不发明档位。** 字号只用 `10/12/14/16/20/24/28/36`（数字另有 8），圆角只用 `radius/*`，间距只用 `size/*`。表里没有的就近归入最接近的档。
 6. **每个阶段的产出要留下文档记录**，保证换个对话能接上进度。
@@ -291,7 +295,7 @@ bash scripts/pack.sh
 - [ ] `tokens.css` 值与 JSON 一致（跑一次 `sync_tokens.py` 应无 diff，即幂等）
 - [ ] `color-styles.json` 条目数 = Figma 颜色样式数；`text.json` = Figma 文本样式数
 - [ ] 无占位键名（`(见Figma双语名)` 这类）
-- [ ] 语义层全部 alias，无硬编码色值
+- [ ] 组件与页面层零裸 hex（**注意**：02 语义层允许直接写值，不要求 alias 01 —— 01 只是参考色板）
 - [ ] **新建变量已 scope 清零**（COLOR → `[]`；FLOAT 给具体 scope）—— 设计师取色器里只该出现颜色样式，不该出现原始变量
 
 **组件层**

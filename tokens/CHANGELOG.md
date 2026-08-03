@@ -178,3 +178,6 @@
 - **统一 #EBEBEC → #EBEBEB**(承接上一条):`default/base`、`default/soft`(50%)、`default/soft-pressed`(65%)、`border/subtle`、`skeleton/base` 五个语义色的 Light 值改为 #EBEBEB,对应 5 个颜色样式名同步改名。**全库 #EBEBEC 零残留**(Figma 变量 + 本地 JSON + tokens.css + DESIGN/color-rules 文档)。名实一致性复核零不符。
   > **纠正我上一条里的说法**:当时说「统一了这 5 个也能接上 alias」并不准确 —— 它们的 **Dark 值(#27272A / #333338)在 Primitive 里没有原子**,所以整条 alias 仍接不上,只有 Light 侧对得上 `neutral/200`。为不制造「Light alias / Dark 直值」的混合态,这三个非 alpha 档暂仍保持直值(alias 覆盖率仍 38/87,混合态 0)。
   > **根因是 Primitive 的深色中性梯子太粗**:900(#18181B) 直接跳到 800(#2F2F34),而语义层实际用到 #232327、#27272A、#333338、#3A3A40 四个中间值,全都没有原子。**只差 Dark 原子就能整条接上的有 7 个**:default/base、border/base·subtle、background/tertiary、surface/secondary、skeleton/base·highlight。补齐这 4 个中间档(命名如 neutral/850 等)即可,属结构调整,待设计师定。
+- **架构口径纠正:01 Primitive 只是参考色板,02 Semantic 不需要绑定它**(设计师明确)。此前我按 CLAUDE.md 铁律 1 的字面理解一路推 alias 覆盖率,还提议往 01 补深色中性原子来"补齐"—— 方向错了。02 直接写值是允许的,01 的梯子有缺口是正常的;「禁硬编码色值」指的是**页面与组件层**不许写裸 hex。真正该复用的是 **02 内部的 alias**(success→accent、border/white→default/white 等)。`docs/SOP.md` 铁律 3 整条重写、验收清单相应改写,`tokens/README.md` 顺带修掉过时的「Figma 无 01 集合」(现有 68 个 Primitive 变量)。
+  > 遗留:当前 38 个 alias 中有 19 个指向 01(本轮接上的),值全部正确、输出无差异,**未撤回**。若希望 02 完全独立不受 01 调整影响,可把这 19 个改回直值。
+- **Button 说明文档补墨色档**:变体清单「7 种样式」→「8 种」并把 ink 插在 primary 之后(附选型说明);属性面板 `variant` 枚举加 ink;Light / Dark 两张示例卡各加一个墨色按钮(文案 Continue),深色卡自动翻白底黑字。
