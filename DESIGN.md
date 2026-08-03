@@ -41,7 +41,7 @@
 |---|---|---|---|
 | foreground/base | `#000000` | `#FFFFFF` | 主文字/图标 |
 | foreground/muted | `rgba(0,0,0,.60)` | `rgba(255,255,255,.60)` | 次要文字（达 AA；2026-08-01 由 .55 加深） |
-| foreground/subtle | `rgba(0,0,0,.40)` | `rgba(255,255,255,.35)` | 辅助信息（仅小字，AA 豁免） |
+| foreground/subtle | `rgba(0,0,0,.40)` | `rgba(255,255,255,.40)` | 辅助信息（仅小字，AA 豁免；2026-08-03 Dark 由 .35 改 .40） |
 | foreground/placeholder | `rgba(0,0,0,.30)` | `rgba(255,255,255,.30)` | 输入占位 |
 | foreground/disabled | `rgba(0,0,0,.20)` | `rgba(255,255,255,.20)` | 禁用文字（2026-08-01 由 浅.26/深.22 统一 .20） |
 | foreground/inverse | `#FFFFFF` | `#000000` | 反色容器上的文字（随主题翻） |
@@ -66,7 +66,7 @@
 
 **foreground/on-dark**（固定白前景层级，Light=Dark 同值，**不随主题翻转**）：用于恒定深色表面上的文字/线——蒙层、媒体遮罩、深色玻璃、灵动岛。
 
-> 档位**大体**对齐 foreground 深色列，但 2026-08-01 起 `on-dark/subtle` 为 **40%**、而 `foreground/subtle` 的 Dark 值仍是 35% —— 两者已不再逐档等值，按需各自取值。
+> 档位对齐 foreground 深色列（2026-08-03 起 `foreground/subtle` 的 Dark 也改 40%，与 `on-dark/subtle` 重新等值）。
 
 | 角色 | 值(Light=Dark) | 用途 |
 |---|---|---|

@@ -248,7 +248,7 @@
   --info-soft-foreground: #8EC5FF;
   --foreground-base: #FFFFFF;
   --foreground-muted: rgba(255, 255, 255, 0.60);
-  --foreground-subtle: rgba(255, 255, 255, 0.35);
+  --foreground-subtle: rgba(255, 255, 255, 0.40);
   --foreground-disabled: rgba(255, 255, 255, 0.20);
   --foreground-inverse: #000000;
   --foreground-link: #74D88F;
@@ -343,7 +343,7 @@
   --info-soft-foreground: #8EC5FF;
   --foreground-base: #FFFFFF;
   --foreground-muted: rgba(255, 255, 255, 0.60);
-  --foreground-subtle: rgba(255, 255, 255, 0.35);
+  --foreground-subtle: rgba(255, 255, 255, 0.40);
   --foreground-disabled: rgba(255, 255, 255, 0.20);
   --foreground-inverse: #000000;
   --foreground-link: #74D88F;

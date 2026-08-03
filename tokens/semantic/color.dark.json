@@ -199,9 +199,9 @@
       "$description": "次文字 黑60%/白60%(2026-08-01 由 55% 加深)"
     },
     "subtle": {
-      "$value": "{color.alpha.white-3}",
+      "$value": "rgba(255,255,255,0.40)",
       "$type": "color",
-      "$description": "辅助文字 黑40%/白35% ⚠️仅限辅助信息,不达AA正文标准"
+      "$description": "辅助文字 40%(2026-08-03 Dark 由 35% 改,与 on-dark/subtle 对齐)"
     },
     "disabled": {
       "$value": "rgba(255,255,255,0.20)",

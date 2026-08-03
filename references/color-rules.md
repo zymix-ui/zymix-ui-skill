@@ -16,7 +16,7 @@
 元素"让你去做"(按钮/选中/进度/链接)→accent;"告诉你结果"(Toast/校验通过/完成/到账)→success。拿不准用 accent。
 
 ## 恒定深色面上的文字用 foreground/on-dark(不用会翻转的 foreground)
-蒙层、媒体遮罩、深色玻璃、灵动岛这类**表面恒为深**(与 app 主题无关)的地方,文字/线用 `--foreground-on-dark-*`(固定白层级:base/muted/subtle/placeholder/disabled;2026-08-01 已删 emphasis/faint/ghost 三档,且 subtle 改 40% 后与 foreground 深色列的 35% 不再等值)。**禁止**用会随主题翻转的 `--foreground-*`(浅色模式下会变黑、在深底上消失),也不要为此把模块单独切深色。需要白色半透明(分割线等)也用它,别写裸 rgba。
+蒙层、媒体遮罩、深色玻璃、灵动岛这类**表面恒为深**(与 app 主题无关)的地方,文字/线用 `--foreground-on-dark-*`(固定白层级:base/muted/subtle/placeholder/disabled,档位对齐 foreground 深色列;2026-08-01 已删 emphasis/faint/ghost 三档,subtle 两侧均 40%)。**禁止**用会随主题翻转的 `--foreground-*`(浅色模式下会变黑、在深底上消失),也不要为此把模块单独切深色。需要白色半透明(分割线等)也用它,别写裸 rgba。
 
 **底色同理:恒定深底用 `--default-black`(恒黑),禁止用 `--background-inverse` / `--surface-inverse`** —— inverse 系列的定义就是"随主题翻转"(Light 深 / Dark 白),深色模式下会翻成白底,叠在上面的恒白描边与 on-dark 文字全部消失。描边用 `--border-white`(恒白)。
 

@@ -158,3 +158,9 @@
 - **删除「文字图标 Text&Icon/纯白 White #FFFFFF」样式**。删前审计发现它**有 44 处在用,且全是误用**:该样式绑的是 `foreground/inverse`(Light 白 / **Dark 翻黑**),名字却叫「纯白」,于是 Foundations 色板 43 处 + Templates 1 处把它当恒定白,给叠在彩色/深色块上的标签用 —— 深色模式下这些标签全变黑、糊在绿底红底上(已截图证实)。**先把 44 处改绑「纯色 Solid/固定白 Static White」修掉这个深色模式 bug,样式归零后才删。**
   遗留:`foreground/inverse` 现已无对应颜色样式,而 Button 页有 **8 处直绑该变量**(玻璃按钮 tinted 文字),与「每个语义色变量都要有颜色样式」「组件绑样式不绑变量」两条自定规则冲突 —— 若要合规,需补建一个「文字图标 Text&Icon/反色 Inverse #FFFFFF」样式并把那 8 处改绑。
 - **补建「文字图标 Text&Icon/反色 Inverse #FFFFFF」**(= `foreground/inverse`),替代上一条删掉的「纯白 White」。名字如实反映"会随主题翻转",描述里写明与「纯色 Solid/固定白」的分工。Button 页 8 处直绑 `foreground/inverse` 变量的层(玻璃 Symbol 钮图标内部)已改绑该样式 —— **全库零直绑**,`foreground/inverse` 恢复"有对应颜色样式"。那 8 处是图标隐藏 source 层,浅/深双模式截图复验视觉零变化。样式总数 87。
+
+## 2026-08-03
+
+- **Chip 去掉 warning 概念,整档改 info**(与 Badge 同一裁定:体系无通用橙)。12 个变体 `type=warning` → `type=info`,66 处颜色由归档 `intent/warning/{base,foreground,soft,soft-foreground}` 改绑「信息 Info/{底 Base,文字 Foreground,浅底 Soft,浅底文字 Soft-foreground}」;**Chip 组件集归档绑定归零**。改名前记录了 14 处在用 `type=warning` 的实例(Chip 页 8 / Table 4 / Getting Started 2),改完逐个复核 —— Figma 重命名变体值时会自动同步实例属性,14 处全部落在 `info`,无失效。
+- **`foreground/subtle` 的 Dark 值 35% → 40%**,与 `on-dark/subtle` 重新逐档等值(DESIGN 与 color-rules 里「不再等值」的注解已撤回)。`app.html` 六处内嵌副本同步。
+- **补合并式验证码的文档说明**:InputOTP 文档新增「Layouts 两式布局」一节(插在 Composition 之后),含 separated / combined 并排演示与选型说明;Examples 的 Light / Dark 两张卡各补一个合并式实例(3 分离式 + 1 合并式)。
