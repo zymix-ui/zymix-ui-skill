@@ -211,11 +211,11 @@
         "$type": "color"
       },
       "100": {
-        "$value": "#F4F4F5",
+        "$value": "#F5F5F5",
         "$type": "color"
       },
       "200": {
-        "$value": "#EBEBEC",
+        "$value": "#EBEBEB",
         "$type": "color"
       },
       "300": {

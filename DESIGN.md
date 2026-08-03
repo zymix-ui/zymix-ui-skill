@@ -56,7 +56,7 @@
 | 角色 | Light | Dark | 用途 |
 |---|---|---|---|
 | ink/base | `#000000` | `#FFFFFF` | 黑色 CTA、强调实底（随主题翻转） |
-| ink/pressed | `#2F2F34` | `#EBEBEC` | 按下（纯黑无法更深，提亮一档） |
+| ink/pressed | `#2F2F34` | `#EBEBEB` | 按下（纯黑无法更深，提亮一档） |
 | ink/foreground | `#FFFFFF` | `#000000` | 实底上的文字，随 base 翻转 |
 | ink/soft | `rgba(0,0,0,.05)` | `rgba(255,255,255,.05)` | 极淡中性水洗底 |
 | ink/soft-pressed | `rgba(0,0,0,.15)` | `rgba(255,255,255,.15)` | 浅底按下 |

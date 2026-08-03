@@ -222,7 +222,7 @@
   --default-white: #FFFFFF;
   --default-black: #000000;
   --ink-base: #FFFFFF;
-  --ink-pressed: #EBEBEC;
+  --ink-pressed: #EBEBEB;
   --ink-foreground: #000000;
   --ink-soft: rgba(255, 255, 255, 0.05);
   --ink-soft-pressed: rgba(255, 255, 255, 0.15);
@@ -317,7 +317,7 @@
   --default-white: #FFFFFF;
   --default-black: #000000;
   --ink-base: #FFFFFF;
-  --ink-pressed: #EBEBEC;
+  --ink-pressed: #EBEBEB;
   --ink-foreground: #000000;
   --ink-soft: rgba(255, 255, 255, 0.05);
   --ink-soft-pressed: rgba(255, 255, 255, 0.15);

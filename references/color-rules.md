@@ -44,7 +44,7 @@ base 主文字(纯黑/白)→**muted 60%** 次文字→subtle 40% 辅助(仅限�
 | token | 值 | 用途 |
 |---|---|---|
 | `--ink-base` | 浅 #000 / 深 #FFF | 黑色 CTA、强调实底(随模式翻转) |
-| `--ink-pressed` | 浅 #2F2F34 / 深 #EBEBEC | 纯黑无法更深,按下提亮一档 |
+| `--ink-pressed` | 浅 #2F2F34 / 深 #EBEBEB | 纯黑无法更深,按下提亮一档 |
 | `--ink-foreground` | 浅 #FFF / 深 #000 | 实底上的文字,随 base 翻转 |
 | `--ink-soft` | 5% | 极淡中性水洗底 |
 | `--ink-soft-pressed` | 15% | 浅底按下 |
