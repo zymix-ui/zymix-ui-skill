@@ -1,7 +1,7 @@
 # DESIGN.md — ZymixUI
 
 > ZYMIX 移动端设计系统（iOS 风格社交 / IM 产品）。供 Google Stitch 及各类设计 AI 读取，生成符合规范的界面。
-> 版本 v1.4.0 · 单位默认 px · 目标画布 iPhone 375×812。
+> 版本 v1.5.0 · 单位默认 px · 目标画布 iPhone 375×812。
 
 ---
 
@@ -40,26 +40,41 @@
 | 角色 | Light | Dark | 用途 |
 |---|---|---|---|
 | foreground/base | `#000000` | `#FFFFFF` | 主文字/图标 |
-| foreground/emphasis | `rgba(0,0,0,.80)` | `rgba(255,255,255,.80)` | 强调文字 / 标题副文（次强，填补 100↔55） |
-| foreground/muted | `rgba(0,0,0,.55)` | `rgba(255,255,255,.55)` | 次要文字（达 AA） |
+| foreground/muted | `rgba(0,0,0,.60)` | `rgba(255,255,255,.60)` | 次要文字（达 AA；2026-08-01 由 .55 加深） |
 | foreground/subtle | `rgba(0,0,0,.40)` | `rgba(255,255,255,.35)` | 辅助信息（仅小字，AA 豁免） |
 | foreground/placeholder | `rgba(0,0,0,.30)` | `rgba(255,255,255,.30)` | 输入占位 |
-| foreground/disabled | `rgba(0,0,0,.26)` | `rgba(255,255,255,.22)` | 禁用文字 |
+| foreground/disabled | `rgba(0,0,0,.20)` | `rgba(255,255,255,.20)` | 禁用文字（2026-08-01 由 浅.26/深.22 统一 .20） |
 | foreground/inverse | `#FFFFFF` | `#000000` | 反色容器上的文字（随主题翻） |
-| default/white | `#FFFFFF` | `#FFFFFF` | 恒白（图上叠字，不随主题翻） |
+| default/white | `#FFFFFF` | `#FFFFFF` | 恒白（图上叠字，不随主题翻）。样式 =「纯色 Solid/固定白 Static White」 |
 
-**foreground/on-dark**（固定白前景层级，Light=Dark 同值，**不随主题翻转**）：档位对齐 foreground 深色列，用于恒定深色表面上的文字/线——蒙层、媒体遮罩、深色玻璃、灵动岛。
+> **2026-08-01「文字图标 Text&Icon/纯白 White」改名重建为「文字图标 Text&Icon/反色 Inverse #FFFFFF」**：它绑 `foreground/inverse`（Light 白 / **Dark 翻黑**），原名叫「纯白」有误导性 —— 曾导致 Foundations 色板 43 处 + Templates 1 处把它当恒定白用，深色模式下那些叠在彩色块上的标签全变黑（已全部改绑「纯色 Solid/固定白」）。
+> **判据**：反色容器（黑底药丸、tinted 玻璃钮）上的文字 → `foreground/inverse`（会翻转）；彩色块 / 恒定深色块上的白字 → `default/white`（固定白）。两者不可互换。
+
+> **2026-08-01 精简**：删掉 `foreground/emphasis`(.80)、`foreground/faint`(.15)、`foreground/ghost`(.08) 三档（含 on-dark 对应档）——梯子过密。需要极淡装饰线/遮罩块改用 `separator/base`(10%) 或 `ink/soft`·`ink/soft-pressed`(5%/15%)。
+
+### 墨色 Ink（2026-08-01 新增）：黑色 CTA 与强调实底
+| 角色 | Light | Dark | 用途 |
+|---|---|---|---|
+| ink/base | `#000000` | `#FFFFFF` | 黑色 CTA、强调实底（随主题翻转） |
+| ink/pressed | `#2F2F34` | `#EBEBEC` | 按下（纯黑无法更深，提亮一档） |
+| ink/foreground | `#FFFFFF` | `#000000` | 实底上的文字，随 base 翻转 |
+| ink/soft | `rgba(0,0,0,.05)` | `rgba(255,255,255,.05)` | 极淡中性水洗底 |
+| ink/soft-pressed | `rgba(0,0,0,.15)` | `rgba(255,255,255,.15)` | 浅底按下 |
+| ink/soft-foreground | `#000000` | `#FFFFFF` | 浅底上的文字 |
+
+> **与「中性 default」严格区分**：`default` 是**浅灰容器**语义（#EBEBEC，表单 secondary 档 / Kbd / Tag 底 / Chip default 都用它）；`ink` 是**黑色强调实底**。别拿 default 当黑底用，也别拿 ink 当浅灰容器用。
+
+**foreground/on-dark**（固定白前景层级，Light=Dark 同值，**不随主题翻转**）：用于恒定深色表面上的文字/线——蒙层、媒体遮罩、深色玻璃、灵动岛。
+
+> 档位**大体**对齐 foreground 深色列，但 2026-08-01 起 `on-dark/subtle` 为 **40%**、而 `foreground/subtle` 的 Dark 值仍是 35% —— 两者已不再逐档等值，按需各自取值。
 
 | 角色 | 值(Light=Dark) | 用途 |
 |---|---|---|
 | foreground/on-dark/base | `#FFFFFF` | 深底主文字 |
-| foreground/on-dark/emphasis | `rgba(255,255,255,.80)` | 深底强调文字 |
-| foreground/on-dark/muted | `rgba(255,255,255,.55)` | 深底次要文字 |
-| foreground/on-dark/subtle | `rgba(255,255,255,.35)` | 深底辅助信息 |
+| foreground/on-dark/muted | `rgba(255,255,255,.60)` | 深底次要文字 |
+| foreground/on-dark/subtle | `rgba(255,255,255,.40)` | 深底辅助信息（2026-08-01 由 .35 改） |
 | foreground/on-dark/placeholder | `rgba(255,255,255,.30)` | 深底占位 |
-| foreground/on-dark/disabled | `rgba(255,255,255,.22)` | 深底禁用 |
-| foreground/on-dark/faint | `rgba(255,255,255,.15)` | 深底分割线/描边 |
-| foreground/on-dark/ghost | `rgba(255,255,255,.08)` | 深底极弱填充 |
+| foreground/on-dark/disabled | `rgba(255,255,255,.20)` | 深底禁用 |
 
 > 判据:文字所在表面**恒定为深**(与 app 主题无关)→用 `foreground/on-dark/*`;文字随主题翻转(普通页面)→用 `foreground/*`。切忌为此给模块单独切深色。
 > **底色同理**:恒定深底用 `default/black`(恒黑),**禁用 `background/inverse` / `surface/inverse`** —— inverse 系列随主题翻转(Light 深 / Dark 白),深色下会翻成白底,叠在上面的恒白描边与 on-dark 文字全部消失。恒白描边用 `border/white`。
@@ -68,15 +83,18 @@
 | 角色 | Light | Dark | 用途 |
 |---|---|---|---|
 | background/base | `#FFFFFF` | `#0B0B0D` | 页面底 |
-| background/secondary | `#FCFCFC` | `#09090B` | 雪白列表页底 |
 | background/tertiary | `#F5F5F5` | `#060607` | 灰底 |
+| background/inverse | `#000000` | `#FFFFFF` | 页面级反色底（2026-08-01 由 #18181B 改纯黑） |
+| background/inverse-tertiary | `#18181B` | `#F5F5F5` | 反色页面的第二层 |
 | surface/base | `#FFFFFF` | `#18181B` | 卡片/面板 |
 | surface/secondary | `#F5F5F5` | `#232327` | 搜索框底 / 内嵌面 |
 | surface/tertiary | `#EBEBEB` | `#2F2F34` | 三级面 |
+| surface/inverse · inverse-secondary · inverse-tertiary | `#000000` · `#1C1C1F` · `#2A2A2E` | `#FFFFFF` · `#F5F5F5` · `#EBEBEB` | **反色容器三级梯子**，主要用于浅色模式下深色容器的多层级（2026-08-01 扩到三级） |
 | surface/pressed | `rgba(0,0,0,.08)` | `rgba(255,255,255,.08)` | 列表/卡片按压态 |
 | border/base | `#DEDEE0` | `#3A3A40` | 组件描边（1px） |
+| border/avatar | `rgba(0,0,0,.03)` | `rgba(255,255,255,.05)` | **头像描边**（2026-08-01 新增）：极淡，避免白色头像糊在白底上 |
 | separator/base | `rgba(0,0,0,.10)` | `rgba(255,255,255,.10)` | 常规分割线（0.5px） |
-| separator/strong | `rgba(0,0,0,.40)` | `rgba(255,255,255,.40)` | 强分割（1px，统计分栏竖线） |
+| separator/subtle | `rgba(0,0,0,.05)` | `rgba(255,255,255,.05)` | 弱分割线 |
 | backdrop/base | `rgba(0,0,0,.20)` | `rgba(0,0,0,.60)` | 普通压暗遮罩 |
 | backdrop/strong | `rgba(0,0,0,.60)` | `rgba(0,0,0,.75)` | 强压暗遮罩 |
 
@@ -110,7 +128,8 @@
 | Field/Base · Sm | 16/24 · 14/20 | 400 | 输入框文字/占位 |
 | Button/Base | 16/22 | **700** | 标准按钮文字 |
 | Button/Sm | 14/20 | 600 | 小按钮、文字按钮 |
-| Number（9 档） | 36/42 · 28/34 · 24/28 · 20/24 · 16/20 · 14/18 · 12/16 · 10/12 | 800 | 计数 / 金额 / 统计 |
+| Number（9 档） | 36/42 · 28/34 · 20/24 · 16/20 · 14/18 · 12/16 · 10/12 | 800 | 计数 / 金额 / 统计 |
+| Number/24 | 24/28 | **700** | 卡片内金额与计数、验证码数字位（2026-08-01 由 800 改 700） |
 | Number/8 | 8/10 | **700** | 极小角标（最小档） |
 | Scene 页头大标题 | 28/34 | 800 | 页面头部（首字大写） |
 | Scene 导航标题 · 气泡正文 | 16/20 · 16/20 | 700 · 400 | 导航栏居中标题 · IM 气泡 |
@@ -123,7 +142,7 @@
 
 ## 4. Component Stylings（组件 · 含状态）
 
-### 按钮 Button（7 变体 × 3 尺寸）
+### 按钮 Button（8 变体 × 3 尺寸）
 - 尺寸：sm 高 32 圆角 16 / md 高 36 圆角 round / lg 高 48 圆角 round；文字 Button 角色。
 - 变体（底色 + 文字，**必须同状态组配对，换底色文字联动**）：
   - primary：accent/base + accent/foreground(白)
@@ -133,13 +152,19 @@
   - ghost：透明 + default/foreground
   - danger：danger/base + 白字
   - dangerSoft：灰底(default/soft) + danger/soft-foreground(深红字)
+  - **ink（2026-08-01 新增）：ink/base 黑底 + ink/foreground 白字**；按下 ink/pressed。深色模式自动翻成白底黑字。用于需要比 primary 更中性、比 tertiary 更强的黑色 CTA
 - 状态：default / pressed（换 *-pressed 底）/ disabled（整体 opacity .5）。移动端无 hover。触控热区 ≥44。
 
 ### Toast
 胶囊形（343×66），底为**液态玻璃材质**（见第 6 节），图标+文字一律中性 foreground/base（不用状态色）。位置固定屏幕顶部、距顶 60px 居中；点击触发、显示 3 秒淡入淡出。
 
-### 输入框 Input
-底 surface/base 或 surface/secondary；占位 foreground/placeholder；文字 Field 角色（16/24）；圆角 md~lg。
+### 输入框 Input / InputGroup / InputOTP / Checkbox（统一形态，2026-08-01 定稿）
+**浅灰底 + 无描边**，适配白色背景：底 `surface/secondary`(#F5F5F5，与搜索框同底)，稍深一档用 `default/base`(#EBEBEC)。
+高度统一 **48**；圆角 **`radius/3xl`(24)**（2026-08-01 由 12 改；48 高 + 24 圆角 = 胶囊形）；占位 `foreground/placeholder`；文字 Field 角色（16/24）。
+**常态不要描边** —— 之前的「白底 + 浅灰描边」是为灰底页面设计的反差方案，而产品以白色场景为主，白底白框等于看不见。
+描边只表达**状态**：focus 用 `accent/base`、error 用 `danger/base`（1px inset，不挤布局）；disabled 整体 opacity 50%。
+前后缀与输入区**同底**，靠 `separator/base` 竖线分隔，不用色块区分。多选框同为浅灰底无描边（16×16，勾选转 `accent/base`）。
+**验证码 InputOTP 两式**：① **分离式**（六格并排）单格 46×48、**圆角仍为 `radius/md`(12)**（24 圆角会把 46×48 的格子吃成圆形，是有意的例外），**空格灰底无描边，一有内容就翻白底 `surface/base` + 1px 描边**（filled 用 `border/base`、focus 用 `accent/base` 加发光环、error 用 `danger/base`）——"已填 / 未填"用底色区分比用描边直观，这是刻意与其他控件不同。② **合并式**（单框）一个灰底容器高 48、圆角 **`radius/3xl`(24)**、左右内距 24、槽距 8，内含 6 个 16 宽居中槽位：已输入=数字 24 Bold `foreground/base`，未输入=**12×2px 短线** `foreground/placeholder`（用线，不用「–」字形——字形在 24px 下太粗；线宽取 `border/width-strong`=2，1px 显细）；**容器恒灰底不翻白**，只有 focus（`accent/base`）/ error（`danger/base`）上 1px 描边。配系统数字键盘、不需要逐格点选时用。
 
 ### 页头 NavBar（透明底 375×58，内容行 42，从状态栏下沿拼页；4 变体）
 ① Brand：大标题（Scene 28 Heavy）+ 可选右侧 42px 玻璃圆钮。② Brand-Tabs（2026-07-31 改版）：左搜索圆钮 + 居中 tabs + 右加号圆钮；tab 统一 14 Semibold，选中=主文字色 + 下方 24×2 下划线，未选中=muted，间距 20；5 个 tab 槽默认全显示、用不到的隐藏，超宽时两端渐隐截断。③ Nav-Center：左返回 42 + 绝对居中标题 16 Bold（Scene 导航标题）+ 右侧 42 常驻占位（保居中，不受动作显隐影响）。④ Nav-Chat：返回 + 头像 36（兜底 surface/secondary）+ 昵称 16 Bold + 副标题 12 muted（Body/Xs）+ 右侧 1–2 个 42 圆钮。圆钮一律 Button-Liquid-Glass-Symbol(42)，禁手绘；一级页页头不放返回按钮。**Scroll Edge（顶部渐隐模糊）= 半透明磨砂底（feature/nav-background ≈66%）+ backdrop-blur + 向下线性渐隐**，不是不透明纯白；状态栏须悬浮透明、内容滚到其下，才呈现 iOS 沉浸式的"内容从状态栏背后模糊滑过"。

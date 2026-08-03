@@ -2,15 +2,14 @@
   "$description": "命名架构 v3:变量层纯英文(与 tokens JSON 完全同名,无需映射);中文只存在于两处——颜色/文字/效果样式名(设计师入口)和变量描述。",
   "styles": {
     "$rule": "样式命名:中文在前,英文在后;颜色样式带值——纯色显 hex,带透明度显「hex + 百分比」;文字样式不带数值;02 Semantic 每个颜色变量必须有对应颜色样式(fade 渐变端点豁免);变量值变更时同步脚本必须同步样式名与描述;状态色组内的「文字 Foreground」样式与同组「底 Base」配对使用(按钮字色随按钮组取,不与正文混用);按钮上的文字颜色一律用所在状态组的「文字 Foreground」样式,禁止用文字图标/中性等其他颜色",
-    "Text&Icon/*": "文字图标 Text&Icon/{主文字 Primary #000000|次文字 Secondary #000000 55%|辅助文字 Tertiary #000000 40%|占位 Placeholder #000000 30%|禁用 Disabled #000000 26%|极弱 Faint #000000 15%|最弱 Ghost #000000 8%|品牌 Brand #26D93E}",
+    "Text&Icon/*": "文字图标 Text&Icon/{主文字 Primary #000000|次文字 Secondary #000000 60%|辅助文字 Tertiary #000000 40%|占位 Placeholder #000000 30%|禁用 Disabled #000000 20%|链接 Link #0F7A23|品牌 Brand #26D93E|**反色 Inverse #FFFFFF**}+(深底) On-Dark 恒定白同名档(subtle 为 40%)。2026-08-01:删 强调文字 Emphasis / 极弱 Faint / 最弱 Ghost 三档(含 on-dark);次文字 55%→60%、禁用统一 20%;「纯白 White」改名重建为「反色 Inverse」(= foreground/inverse,会随主题翻转;彩色块上的恒白字改用 纯色 Solid/固定白)",
     "Solid/White": "纯色 Solid/纯白 White #FFFFFF",
     "IM/*": "IM 气泡/{好友 Friend #E1FFBF|非好友 Stranger #C9FAFF}",
-    "Feature/*": "产品特性 Feature/{点赞 Like #FF3B64|钱包未验证 Wallet Unverified #FD7C02}(钱包色仅钱包/资产场景,暗色微调 orange.400 #F79E68)",
-    "Nav/Fade": "导航 Nav/渐变遮罩 Fade #FCFCFC→0%",
+    "Feature/*": "产品特性 Feature/{积极强调 Positive #FF3B64|钱包未验证 Wallet Unverified #FD7C02}(钱包色仅钱包/资产场景,暗色微调 orange.400 #F79E68)",
     "Text/*": "超大标题 Display;标题 Title/大 中 小 最小(15/auto);强调 Label/大 标准 小 较小(13/auto) 脚注 最小;正文 Body/大 标准 中 小 较小(13/auto) 最小 极小(11/auto);链接 Link;输入 Field;按钮 Button/标准 小 文字(15/auto);数字 Number/标准 中(24-32)",
     "Effect/*": "聚焦 Focus/聚焦环 Ring·输入框 Field;模糊 Blur/背景模糊 Backdrop;玻璃 Glass/按钮 Button·导航 Nav·输入 Field(旧配方,逐步被 Materials 材质实例取代)",
-    "状态色/*": "主色 Accent·中性 Default·成功 Success·危险 Danger·信息 Info/{底 Base|按下 Pressed|浅底 Soft|浅底按下 Soft-pressed|浅底文字 Soft-foreground}(+主色 最浅底 Soft-subtle)",
-    "层面/*": "页面背景 Background/{底|雪白|灰|反色};容器表面 Surface/{底|次级|三级|按压|反色};描边 Border/{底|弱};分割线 Separator/{底|弱|强}",
+    "状态色/*": "主色 Accent·中性 Default·成功 Success·危险 Danger·信息 Info·墨色 Ink/{底 Base|按下 Pressed|文字 Foreground|浅底 Soft|浅底按下 Soft-pressed|浅底文字 Soft-foreground}(+主色/危险 最浅底 Soft-subtle)。**墨色 Ink 为 2026-08-01 新增**:黑色 CTA / 强调实底(底 浅黑深白翻转、文字随之翻转、浅底 5%/15%),与「中性 Default」的浅灰容器语义区分,勿混用",
+    "层面/*": "页面背景 Background/{底|灰|反色(纯黑)|反色三级};容器表面 Surface/{底|次级|三级|按压|反色|反色次级|反色三级};描边 Border/{底|弱|纯白|头像};分割线 Separator/{底|弱}。2026-08-01:删 背景雪白 Secondary、分割线强 Strong;背景反色 #18181B→纯黑;Surface 反色扩到三级(浅色模式下深色容器的多层级);新增 描边头像 Avatar(浅黑3%/深白5%)",
     "Scene/*": "场景 Scene/{页头大标题|页头Tab选中|页头Tab未选中|列表项 List Item 14-17(textCase=TITLE)|导航标题 Nav Title 17 Semibold/auto|气泡正文 Bubble 17 Regular/auto}(资料区5样式已由设计师精简,改绑通用角色)"
   }
 }

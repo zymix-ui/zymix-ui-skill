@@ -70,6 +70,38 @@
       "$description": "固定纯黑,双模式不变;要随模式翻转用 foreground/base"
     }
   },
+  "ink": {
+    "base": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "墨色实底(最高对比中性实底)。黑色 CTA / 强调实底按钮。**与 default 不同** —— default 是浅灰容器语义,勿混用"
+    },
+    "pressed": {
+      "$value": "#2F2F34",
+      "$type": "color",
+      "$description": "墨色实底按下。纯黑无法更深故提亮一档(neutral/800);深色模式压暗一档(neutral/200)"
+    },
+    "foreground": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "墨色实底上的文字/图标,随 base 翻转以保证可读"
+    },
+    "soft": {
+      "$value": "rgba(0,0,0,0.05)",
+      "$type": "color",
+      "$description": "墨色浅底 黑5%/白5% 极淡水洗底"
+    },
+    "soft-pressed": {
+      "$value": "rgba(0,0,0,0.15)",
+      "$type": "color",
+      "$description": "墨色浅底按下 黑15%/白15%"
+    },
+    "soft-foreground": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "墨色浅底上的文字"
+    }
+  },
   "success": {
     "base": {
       "$value": "{accent.base}",
@@ -161,15 +193,10 @@
       "$type": "color",
       "$description": "主文字 纯黑/纯白(由90%改纯色)"
     },
-    "emphasis": {
-      "$value": "rgba(0,0,0,0.80)",
-      "$type": "color",
-      "$description": "强调文字 黑80%/白80%(标题副文/强调正文,填补 base↔muted 空档)"
-    },
     "muted": {
-      "$value": "rgba(0,0,0,0.55)",
+      "$value": "rgba(0,0,0,0.60)",
       "$type": "color",
-      "$description": "次文字 黑55%/白55%(折中值,4.7:1 达AA)"
+      "$description": "次文字 黑60%/白60%(2026-08-01 由 55% 加深)"
     },
     "subtle": {
       "$value": "{color.alpha.black-3}",
@@ -177,9 +204,9 @@
       "$description": "辅助文字 黑40%/白35% ⚠️仅限辅助信息,不达AA正文标准"
     },
     "disabled": {
-      "$value": "{color.alpha.black-4}",
+      "$value": "rgba(0,0,0,0.20)",
       "$type": "color",
-      "$description": "禁用 黑26%/白22%"
+      "$description": "禁用 黑20%/白20%(2026-08-01 由 浅26%/深22% 统一为 20%)"
     },
     "inverse": {
       "$value": "#FFFFFF",
@@ -201,36 +228,21 @@
       "$type": "color",
       "$description": "占位符文字 黑30%/白30%(≈#B3B3B3),深于disabled浅于subtle"
     },
-    "faint": {
-      "$value": "rgba(0,0,0,0.15)",
-      "$type": "color",
-      "$description": "极弱前景 黑15%/白15%(细线、轻遮罩级)"
-    },
-    "ghost": {
-      "$value": "rgba(0,0,0,0.08)",
-      "$type": "color",
-      "$description": "最弱前景 黑8%/白8%"
-    },
     "on-dark": {
       "base": {
         "$value": "#FFFFFF",
         "$type": "color",
         "$description": "恒定深色表面上的主文字与线,固定白100%,不随主题翻转"
       },
-      "emphasis": {
-        "$value": "rgba(255,255,255,0.80)",
-        "$type": "color",
-        "$description": "恒定深色表面上的强调文字,固定白80%,不随主题翻转"
-      },
       "muted": {
-        "$value": "rgba(255,255,255,0.55)",
+        "$value": "rgba(255,255,255,0.60)",
         "$type": "color",
-        "$description": "恒定深色表面上的次级文字与线,固定白55%,不随主题翻转"
+        "$description": "恒定白 次文字 60%(2026-08-01 由 55% 加深)"
       },
       "subtle": {
-        "$value": "rgba(255,255,255,0.35)",
+        "$value": "rgba(255,255,255,0.40)",
         "$type": "color",
-        "$description": "恒定深色表面上的辅助文字与线,固定白35%,不随主题翻转"
+        "$description": "恒定白 辅助文字 40%(2026-08-01 由 35% 改)"
       },
       "placeholder": {
         "$value": "rgba(255,255,255,0.30)",
@@ -238,19 +250,9 @@
         "$description": "恒定深色表面上的占位文字,固定白30%,不随主题翻转"
       },
       "disabled": {
-        "$value": "rgba(255,255,255,0.22)",
+        "$value": "rgba(255,255,255,0.20)",
         "$type": "color",
-        "$description": "恒定深色表面上的禁用前景,固定白22%,不随主题翻转"
-      },
-      "faint": {
-        "$value": "rgba(255,255,255,0.15)",
-        "$type": "color",
-        "$description": "恒定深色表面上的极弱前景,固定白15%,不随主题翻转"
-      },
-      "ghost": {
-        "$value": "rgba(255,255,255,0.08)",
-        "$type": "color",
-        "$description": "恒定深色表面上的最弱前景,固定白8%,不随主题翻转"
+        "$description": "恒定白 禁用 20%(2026-08-01 由 22% 改)"
       }
     }
   },
@@ -260,19 +262,20 @@
       "$type": "color",
       "$description": "页面底"
     },
-    "secondary": {
-      "$value": "#FCFCFC",
-      "$type": "color",
-      "$description": "二级背景 雪白(IM 等场景页面底)"
-    },
     "tertiary": {
       "$value": "#F5F5F5",
       "$type": "color",
       "$description": "三级背景 浅灰(分组列表等灰底页)"
     },
     "inverse": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "页面级反色底 浅色纯黑/深色纯白(2026-08-01 由 #18181B 改纯黑)"
+    },
+    "inverse-tertiary": {
       "$value": "#18181B",
-      "$type": "color"
+      "$type": "color",
+      "$description": "反色页面的第二层(对应 background.tertiary 的反色)"
     }
   },
   "surface": {
@@ -305,6 +308,16 @@
       "$value": "rgba(250,250,250,0.20)",
       "$type": "color",
       "$description": "玻璃按钮/胶囊底 20%,配 Glass 玻璃/Button 效果(暗色推测待定)"
+    },
+    "inverse-secondary": {
+      "$value": "#1C1C1F",
+      "$type": "color",
+      "$description": "反色容器第二层。主要用于浅色模式下深色容器的多层级(反色 底→次级→三级)"
+    },
+    "inverse-tertiary": {
+      "$value": "#2A2A2E",
+      "$type": "color",
+      "$description": "反色容器第三层"
     }
   },
   "border": {
@@ -330,6 +343,11 @@
       "$value": 0,
       "$type": "number",
       "$description": "0 无描边"
+    },
+    "avatar": {
+      "$value": "rgba(0,0,0,0.03)",
+      "$type": "color",
+      "$description": "头像描边 浅色黑3%/深色白5%。极淡,避免白色头像糊在白底上"
     }
   },
   "separator": {
@@ -342,19 +360,10 @@
       "$value": "rgba(0,0,0,0.05)",
       "$type": "color"
     },
-    "strong": {
-      "$value": "rgba(0,0,0,0.40)",
-      "$type": "color"
-    },
     "width": {
       "$value": 0.5,
       "$type": "number",
       "$description": "0.5pt 常规分割线(列表行之间等)"
-    },
-    "width-strong": {
-      "$value": 1,
-      "$type": "number",
-      "$description": "1pt 强分割(统计分栏竖线等),配色用 separator/strong"
     }
   },
   "backdrop": {
@@ -450,17 +459,7 @@
       "background": {
         "$value": "rgba(250,250,250,0.66)",
         "$type": "color",
-        "$description": "底部主导航玻璃底 66%,配 Blur/Backdrop 使用(暗色值为推测,待定稿)"
-      },
-      "fade-solid": {
-        "$value": "{background.secondary}",
-        "$type": "color",
-        "$description": "导航渐变遮罩实色端 = background/secondary"
-      },
-      "fade-transparent": {
-        "$value": "rgba(252,252,252,0)",
-        "$type": "color",
-        "$description": "导航渐变遮罩透明端(同色 alpha0)"
+        "$description": "底部主导航玻璃底 66%,配 Blur/Backdrop 使用。⚠️ Figma 侧无对应变量 —— 玻璃材质在 Figma 走 Materials 页的 Liquid Glass 组件,不做变量;此 token 仅供 skill 原型层的 CSS 近似还原。"
       }
     }
   }

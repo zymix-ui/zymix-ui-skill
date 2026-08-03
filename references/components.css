@@ -45,6 +45,9 @@
 .btn-danger:active{background:var(--danger-pressed)}
 .btn-danger-soft{background:var(--danger-soft);color:var(--danger-soft-foreground)}
 .btn-danger-soft:active{background:var(--danger-soft-pressed)}
+/* 黑底白字 CTA（墨色 Ink）：深色模式自动翻成白底黑字。别拿 --default-* 凑，那是浅灰容器语义 */
+.btn-ink{background:var(--ink-base);color:var(--ink-foreground)}
+.btn-ink:active{background:var(--ink-pressed)}
 .btn:disabled{opacity:.5;pointer-events:none}
 /* 液态玻璃按钮(Text 85×48 胶囊 / Symbol 48×48 圆) */
 .btn-glass{height:48px;padding:0 20px;font-size:16px;line-height:22px;font-weight:700;color:var(--foreground-base)}
@@ -136,7 +139,7 @@
 .bubble.pill{border-radius:var(--radius-round)} /* 短消息胶囊形 */
 .read-friend{color:var(--feature-im-read-friend)}.read-stranger{color:var(--feature-im-read-stranger)}
 .input-bar{display:flex;align-items:center;gap:10px;padding:8px 16px;height:60px}
-.input-bar .input-field{flex:1;height:40px;border-radius:var(--radius-round);padding:0 12px;display:flex;align-items:center;font-size:14px;color:var(--foreground-placeholder)}
+.input-bar .input-field{flex:1;height:40px;border-radius:var(--radius-round);padding:0 12px;display:flex;align-items:center;font-size:14px;background:var(--surface-secondary);color:var(--foreground-placeholder)}
 
 /* --- 列表 --- */
 .list-row{display:flex;align-items:center;gap:12px;min-height:64px;padding:0 16px}
@@ -146,6 +149,44 @@
 .list-row .trailing{margin-left:auto;font-size:12px;line-height:16px;color:var(--foreground-subtle)}
 /* 徽标/通知红点:统一玫红 --feature-like-base(不用绿色);字恒白(玫红 Light=Dark 同值) */
 .badge{min-width:18px;height:18px;border-radius:var(--radius-round);background:var(--feature-like-base);color:var(--default-white);font-size:10px;line-height:12px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:0 5px}
+
+/* --- 输入框(表单)：浅灰底 + 无描边 + 48 高，适配白色背景(2026-08-01 定稿) ---
+   之前是白底+描边，那是为灰底页面设计的反差方案；产品以白色场景为主，白底白框等于看不见。
+   常态一律无描边，描边只在 focus/error 出现；灰一档 .field-alt 用于本身已是浅灰的背景。 */
+.field{height:48px;border-radius:var(--radius-3xl);padding:0 12px;display:flex;align-items:center;gap:8px;
+  background:var(--surface-secondary);color:var(--foreground-base);font-size:16px;line-height:24px}
+.field-alt{background:var(--default-base)}                      /* 稍深一档 */
+.field .placeholder{color:var(--foreground-placeholder)}
+.field .affix{color:var(--foreground-muted);flex-shrink:0}      /* 前后缀，与输入区同底，靠竖线分隔 */
+.field .affix-divider{width:1px;align-self:stretch;margin:8px 0;background:var(--separator-base)}
+.field.is-focus{box-shadow:inset 0 0 0 1px var(--accent-base)}  /* 状态描边用 inset，不挤布局 */
+.field.is-error{box-shadow:inset 0 0 0 1px var(--danger-base)}
+.field.is-disabled{opacity:.5}
+/* 验证码 OTP：单格 46×48。空格灰底无描边；一有内容就翻白底+描边（填过/聚焦/报错都算）
+   ⚠️ 圆角保持 --radius-md(12)：46×48 的格子上 24 圆角会被吃成圆形，与「输入框统一 24」是有意的例外 */
+.otp{display:flex;gap:8px}
+.otp .otp-cell{width:46px;height:48px;border-radius:var(--radius-md);background:var(--surface-secondary);
+  display:flex;align-items:center;justify-content:center;font-size:24px;line-height:28px;font-weight:700;color:var(--foreground-base)}
+.otp .otp-cell.is-filled{background:var(--surface-base);box-shadow:inset 0 0 0 1px var(--border-base)}
+.otp .otp-cell.is-focus{background:var(--surface-base);box-shadow:inset 0 0 0 1px var(--accent-base)}
+.otp .otp-cell.is-error{background:var(--surface-base);box-shadow:inset 0 0 0 1px var(--danger-base)}
+/* 3+3 分组的中间分隔：一条 1px 线，别用两条叠 */
+.otp .otp-sep{width:12px;height:1px;background:var(--separator-base);align-self:center;flex-shrink:0}
+/* 验证码 · 合并式：单个灰底容器，已输入=数字、未输入=1px 短线。配系统数字键盘的场景用 */
+.otp-single{height:48px;border-radius:var(--radius-3xl);padding:0 24px;display:inline-flex;align-items:center;gap:8px;
+  background:var(--surface-secondary)}
+.otp-single .slot{width:16px;text-align:center;font-size:24px;line-height:28px;font-weight:700;color:var(--foreground-base)}
+/* 未输入位用线而不是「–」字形——字形在 24px 下太粗；线宽 2px（1px 显细） */
+.otp-single .slot.is-empty{display:flex;align-items:center;justify-content:center}
+.otp-single .slot.is-empty::before{content:"";width:12px;height:2px;border-radius:1px;background:var(--foreground-placeholder)}
+.otp-single.is-focus{box-shadow:inset 0 0 0 1px var(--accent-base)}
+.otp-single.is-error{box-shadow:inset 0 0 0 1px var(--danger-base)}
+.otp-single.is-disabled{opacity:.5}
+/* 多选框：同为浅灰底无描边，16×16，勾选转品牌绿 */
+.checkbox{width:16px;height:16px;border-radius:var(--radius-xs);background:var(--surface-secondary);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center}
+.checkbox.is-checked{background:var(--accent-base)}
+.checkbox.is-disabled{opacity:.5}
 
 /* --- 图标(CDN 长尾,内置 icons-bundled.json 没有的才用) --- */
 /* base: https://cdn.jsdelivr.net/gh/zymix-ui/zymix-icons@v1.2.0/svgs */

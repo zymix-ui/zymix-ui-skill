@@ -13,6 +13,7 @@ ZYMIX 是 iOS 风格的社交/IM 产品。原型按 iPhone 375×812 画布(设�
 - 状态栏: 9:41 + 信号/WiFi/电池(黑色图标,深色模式白色),高 47px(含刘海区)
 - NavBar 顶部导航(透明底 375×58,内容行 42,从状态栏下沿拼页),4 变体:Brand(28 Heavy 大标题+可选右侧 42 玻璃圆钮)/ Brand-Tabs(左搜索圆钮+居中 tabs+右加号圆钮;tab 统一 14 Semibold,选中=主文字色+下方 24×2 下划线,未选中=muted,间距20;5 槽默认全显示、按需隐藏,超宽两端渐隐截断)/ Nav-Center(左返回42+绝对居中 16 Bold 标题+右侧42常驻占位保居中)/ Nav-Chat(返回+头像36+昵称 16 Bold+副标题 12 muted+右侧42圆钮)。圆钮=Button-Liquid-Glass-Symbol(42),禁手绘;一级页页头不放返回按钮。顶部模糊:页头本身透明,由页面顶层 `.scroll-edge-top` 统一提供(盖住状态栏+页头整片),渐变绑 `--background-base` 随明暗翻转(浅→白/深→黑)——**HTML 总是整页生成,故用页面层比"内置到组件"更合理;这与 Figma 组件把 Scroll Edge 内置(Show Scroll Edge 默认开)是有意为之的架构差异,视觉结果一致**
 - 搜索框: 胶囊形(--radius-round),--surface-secondary 底,占位文字 --foreground-placeholder,内有 16px 放大镜图标
+- 输入框(表单): `.field` —— **浅灰底 --surface-secondary + 无描边**,高 48,圆角 **--radius-3xl(24,胶囊形)**;常态无描边(白底白框会看不见),focus/error 才用 1px inset 描边;前后缀与输入区同底靠竖线分隔。验证码两式:分离式 `.otp`(单格 46×48,**圆角保持 12** —— 24 会吃成圆形;**空格灰底无描边,一有内容就翻白底 + 1px 浅灰描边** —— `.is-filled` / `.is-focus` 主色描边 / `.is-error` 红描边);合并式 `.otp-single`(**一个灰底容器**高 48、圆角 24、内含 6 个 `.slot`,已输入=数字 24 Bold 主文字色、未输入=**12×2px 短线**占位色〔用线不用「–」字形:字形在 24px 下太粗;线宽 2px,1px 显细〕,容器恒灰底、focus/error 才上描边);分组中间的分隔用 `.otp-sep` —— **一条 1px 线,别用两条带透明度的线叠**—— 配系统数字键盘、不需要逐格点选时用,多选框 `.checkbox`(16×16 同底,勾选转绿)
 - Home indicator: 底部 134×5px 圆条 --foreground-base
 
 ## 列表
@@ -30,6 +31,7 @@ ZYMIX 是 iOS 风格的社交/IM 产品。原型按 iPhone 375×812 画布(设�
 ## 按钮
 - 主按钮: 高 48-56px,胶囊(--radius-round),--accent-base 底 --accent-foreground 白字 16 Bold
 - 次按钮: --accent-soft 底 --accent-soft-foreground 字
+- 黑色 CTA(`.btn-ink`): --ink-base 底 --ink-foreground 字,深色模式自动翻白底黑字。需要"比主色更中性、比灰底更强"时用
 - 小按钮: 高 36px,14 Semibold
 - 文字按钮: 无底色,14 Semibold(Button/Sm;原 15 档已删),颜色跟场景状态组
 

@@ -126,3 +126,35 @@
 - 定位:不止 HTML 原型,值设计为**多端消费**——Web 出 `--duration-*`/`--ease-*` CSS 变量,iOS 出 SwiftUI `.timingCurve`/`.spring`/`.scaleEffect` 映射
 - 技能侧:sync_tokens.py 注入 motion 变量;新增 references/motion.md(决策框架+双端映射+组件写法+性能/无障碍);components.css 按钮加 press-scale + reduced-motion;check_compliance.py 加动效规则(transition:all / UI ease-in → FAIL;scale(0) 入场、时长>400ms → WARN);SKILL.md/DESIGN.md 同步;打包 v6.5
 - Figma 侧:motion 暂不建变量(Figma 变量不原生存贝塞尔/弹簧),以本地 motion.json 为唯一源
+
+## 2026-08-01
+
+- **效果样式**:新建两个 Figma 效果样式「聚焦 Focus/焦点环 Ring」(accent/base spread 4 + separator/base spread 2)与「聚焦 Focus/输入聚焦 Field」(accent/base spread 2),内部绑变量(效果颜色只能绑变量,不能绑颜色样式)。Checkbox focus 六档、InputOTP focus 两档已改绑;Foundations 页的 Ring/Field 示例块也改绑,规范页自身成为样式实例。`effect.json` 的 Focus/Ring 第二层原记为 `background.secondary #F5F5F5`,与 Figma 实测不符,按实测校正为 `separator.base`。
+- **Foundations 页 Shadows 一节改写为「已废弃」**并删掉 Base/Subtle/Floating/Thumb/Inner 五个示例块 —— 阴影体系 2026-07 已废弃、Figma 无对应效果样式、本地已归入 `zz_Deprecated Shadow`,只有该页说明文字未同步,造成"规范写了但样式库没有"的错觉。总述文案同步去掉"优先使用 Shadow"。
+- **颜色样式改名**:`产品特性 Feature/点赞 Like #FF3B64` → `产品特性 Feature/积极强调 Positive #FF3B64`。语义早已扩展为通用积极强调红(点赞 + 徽标通知红点/计数角标,与 danger 区分),仅样式名滞后。变量名 `feature/like/base` 保留(历史命名,描述中已注明),故 `--feature-like-base` 与所有 CSS 不受影响。
+- **`color-styles.json` 按 Figma 校正**:7 条键名补回 `#000000`(如 `次文字 Secondary 55%` → `次文字 Secondary #000000 55%`);补 `文字图标 Text&Icon/纯白 White #FFFFFF`;删 Figma 已无的 `导航 Nav/渐变遮罩 Fade`(Scroll Edge 改用 ProgressiveBlur)与 `纯色 Solid/纯白 White`(Figma 用「固定白 Static White」)。校正后 85 条,与 Figma 一致。
+- **按钮文字样式归位**:Figma 的「按钮 Button/标准 Base」`fontStyle` 原绑 `weight/semibold` → 改绑 `weight/bold`;「按钮 Button/小 Sm」`fontSize`/`lineHeight` 原绑 `size/body-xs`(12)/`leading/label-xs`(16) → 改绑 `size/button-sm`(14)/`leading/button-sm`(20)。变量值本来就对,是样式绑错了变量,属 2026-07-31 字阶改版遗漏。修完把 Button 组件集 63 处标签改绑(lg→标准 Base ×21、sm/md→小 Sm ×42),另 `_Label - Text - Preferred|Default` 4 处裸 SF Pro Medium 17 也改绑标准 Base(17 Medium→16 Bold,真实视觉变化,方向与 Liquid Glass Text 一致)。**本地 text.json / typography.md / components.css 一直是对的,本次是 Figma 单边落后 —— 字阶层对账要双向比对,不能只信 Figma。**
+
+## 2026-08-01 · 颜色体系调整(设计师批量指令)
+
+**text&icon(foreground)**:删 `emphasis`(80%)、`faint`(15%)、`ghost`(8%) 三档 + 对应 on-dark 档(共 6 变量 / 6 样式);`muted` 55%→**60%**;`disabled` 浅26%/深22% → 统一 **20%**(on-dark 同改)。梯子由 8 档精简为 5 档。
+**background**:删 `secondary`(雪白 #FCFCFC,与 base 太近);`inverse` #18181B → **纯黑**;新增 `inverse-tertiary`(反色页面第二层)。
+**surface**:反色扩到三级 —— 新增 `inverse-secondary` #1C1C1F、`inverse-tertiary` #2A2A2E(深色列为 #F5F5F5 / #EBEBEB),用于浅色模式下深色容器的多层级。
+**separator**:删 `strong`(40%)与 `width-strong`。
+**border**:新增 `avatar`(浅黑3%/深白5%),头像描边,避免白色头像糊在白底上。
+**新增「墨色 Ink」族 6 档**(base/pressed/foreground/soft/soft-pressed/soft-foreground)= 原指令里「base #000 + foreground #fff + soft 5%/15%」那套黑色强调实底。**没有改动「中性 Default」** —— 审计发现 Default/底 Base 仅前 40 页就有 359 处在用(Button tertiary、Chip default、Kbd、Tag 底,以及刚定稿的表单 secondary 档),改纯黑会与「表单浅灰底」定稿冲突,故按设计师裁决另立新族。
+
+**删除前的重映射**(避免破绑定):Templates 的 faint 描边/`strong` 竖线 → `separator/base`;Templates 三个页面底 + Brand 白 logo → `background/base` / `纯色 Solid/固定白`;Materials 三个玻璃组件集的描边 → `分割线 Separator/底 Base`;输入类 11 页文档卡底 12 处 → `页面背景 Background/灰 Tertiary`;Foundations Radius 示例 20 处 → 刻度数字改「辅助文字 Tertiary」(同为 40%,零视觉变化)、预览方块描边改「描边 Border/底 Base」;Foundations 色板里被删档位的 12 张示例卡直接删除。
+**Separator 组件删 `variant=strong` 两个变体**(横/竖)+ 文档展示实例,variant 收敛为 base/subtle。
+删除前分两批全库复核零残留(含 `separator/width-strong`)。
+
+**顺带清掉的本地 drift**:`feature/nav/fade-solid`·`fade-transparent` —— Figma 根本没有 `feature/nav/*` 变量,`.nav-fade` 机制早已作废(改 Scroll Edge / ProgressiveBlur),本地残留已删;`feature/nav/background` 保留但加注「Figma 无对应变量,仅供 skill 原型层近似还原」。`figma-display-names.json` 的 `Nav/Fade` 条目同步删除。
+**`assets/templates/app.html` 内嵌三份 token 副本已同步**:删 9 处废变量定义 ×11 类、改 alpha、`background-inverse` 改纯黑、每处补 10 个新变量;消费端 `.island-div`→`on-dark-disabled`、`.scroll-ind`→`ink-soft-pressed`(与旧 faint 同值同翻转)、`.chev`→`foreground-disabled`、分栏竖线与会话页底改绑、`.nav-fade` 规则删除。两模板合规 PASS,浏览器渲染无报错。
+- **Button 新增 `variant=ink` 黑底白字档**(18 变体,总数 126→144):底/按下/文字绑「墨色 Ink」三档,深色模式自动翻白底黑字。由 primary 克隆并**逐层拷回 `componentPropertyReferences`**(5 个非变体属性:label/prefix/suffix/showPrefix/showSuffix,clone 会丢),18 个变体引用数逐一比对一致;组件集为手动布局,按列步进 872 手动排位、集宽 6136→6968、页面 bg 扩到 7329 并补 ink/sm/md/lg 标注。skill 侧新增 `.btn-ink`。
+- **修回归:Button 文档的玻璃按钮被染坏**(设计师报)。前一轮「给图标补文字色」的批量对齐,兜底分支「两边都没样式 → 按同实例文字色补」把**主组件是裸色值**的层也染了:玻璃材质 `Fill + Shadow` #FFFFFF@65% / `Tint + Shadow` / `Glass Effect` #808080@90% 变成文字色 → Light 黑底黑字、Dark 白底白字,文字与药丸全部消失;同批还染坏页眉页脚品牌 logo 的 #1A1A1A / #FFFFFF 层与 Chip 图标 source 层。共 32 处已按主组件还原(清样式 + 拷回 paints,单纯解绑不会回落)。SOP §5 已补正判据:**主组件是裸色值的层一律不动**。
+- **input 系列圆角 12 → 24**:`Input`(6 变体)、`InputGroup`(36)、`_InputOTPCombinedField`(12)的外框圆角由绑 `radius/md`(12) 改绑 **`radius/3xl`(24)**,共 216 处角(每变体 4 角)。48 高 + 24 圆角 = 胶囊形。`TextField` / `TextArea` / `NumberField` / `SearchField` 四个壳内部的 Input/InputGroup 实例是**继承绑定而非覆写**,本体一改自动跟随(扫描时看到实例有 boundVariables 别误判成覆写)。**`_InputOTPField`(分离式单格)保持 12 —— 46×48 的格子在 24 圆角下会被吃成圆形**,已试改后回退,属有意例外。skill 侧 `.field` / `.otp-single` 改 `--radius-3xl`,`.otp-cell` 保持 `--radius-md` 并加注。
+- **新增变量 scope 清零**(设计师发现遗漏):`createVariable()` 默认 `scopes=["ALL_SCOPES"]`,会让原始变量暴露在设计师取色器里,违反「绑样式不绑变量」。本次新增的 10 个 COLOR 变量(ink 六档 + background/inverse-tertiary + surface/inverse-secondary·tertiary + border/avatar)已全部 `scopes=[]`,与 02 Semantic 既有 77 个 COLOR 变量一致。顺带修正 03 Layout 的历史遗漏 `size/42`·`size/54`(`["ALL_SCOPES"]` → `["WIDTH_HEIGHT","GAP"]`,与同集合 size/* 对齐)。**分类型**:`[]` 对 COLOR 合法、对 BOOLEAN 非法(`mode/is-*` 保持原样);FLOAT 按用途给具体 scope。全库 scope 分布已复核一致。
+- **`foreground/on-dark/subtle` 35% → 40%**(设计师指定),样式改名「辅助文字(深底) Tertiary On-Dark #FFFFFF 40%」。注意:此后它与 `foreground/subtle` 的 Dark 值(35%)不再逐档等值,DESIGN.md 里「档位对齐 foreground 深色列」那句已改为「大体对齐」。
+- **删除「文字图标 Text&Icon/纯白 White #FFFFFF」样式**。删前审计发现它**有 44 处在用,且全是误用**:该样式绑的是 `foreground/inverse`(Light 白 / **Dark 翻黑**),名字却叫「纯白」,于是 Foundations 色板 43 处 + Templates 1 处把它当恒定白,给叠在彩色/深色块上的标签用 —— 深色模式下这些标签全变黑、糊在绿底红底上(已截图证实)。**先把 44 处改绑「纯色 Solid/固定白 Static White」修掉这个深色模式 bug,样式归零后才删。**
+  遗留:`foreground/inverse` 现已无对应颜色样式,而 Button 页有 **8 处直绑该变量**(玻璃按钮 tinted 文字),与「每个语义色变量都要有颜色样式」「组件绑样式不绑变量」两条自定规则冲突 —— 若要合规,需补建一个「文字图标 Text&Icon/反色 Inverse #FFFFFF」样式并把那 8 处改绑。
+- **补建「文字图标 Text&Icon/反色 Inverse #FFFFFF」**(= `foreground/inverse`),替代上一条删掉的「纯白 White」。名字如实反映"会随主题翻转",描述里写明与「纯色 Solid/固定白」的分工。Button 页 8 处直绑 `foreground/inverse` 变量的层(玻璃 Symbol 钮图标内部)已改绑该样式 —— **全库零直绑**,`foreground/inverse` 恢复"有对应颜色样式"。那 8 处是图标隐藏 source 层,浅/深双模式截图复验视觉零变化。样式总数 87。

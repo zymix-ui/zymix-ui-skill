@@ -266,6 +266,19 @@ bash scripts/pack.sh
 | INSTANCE_SWAP 不继承颜色覆写 | 换完图标变默认黑 | swap 后手动把填充指到与文字相同的样式 |
 | `get_screenshot` 可能返回缓存旧图 | 验收看到旧状态 | 用 `node.screenshot()` |
 | `figma.notify()` 抛 "not implemented" | — | 用 `return` 输出 |
+| 模式覆写指向**已删除的 collection**，等于没设 | 文档页那张「Dark」演示卡里全按 Light 解析：黑底黑字、白方框；肉眼像是"组件深色模式坏了"，其实是卡片没真的切到 Dark | 校验 `node.explicitVariableModes` 的每个 key 是否还在 `getLocalVariableCollectionsAsync()` 里；**补**上 `02 Semantic → Dark` 的覆写（旧 key 留着无害，别删——可能还有僵存的归档变量靠它解析） |
+| 页面 `bg` 衬底 / 文档演示卡是裸灰 `#F5F5F5` | 与浅灰底控件同色 → 控件在自己的规范页上看不见 | 衬底绑「页面背景 Background/底 Base」，文档演示卡绑「容器表面 Surface/底 Base」，都是白 |
+| **说明文档模板自己绑原始变量** | `Information` 卡的正文/边框/卡底几乎整片绑归档变量 → 文档页本身深色模式就是坏的，且违反「绑样式」铁律 | 文档层与页面标注层一律改绑颜色样式；**嵌套实例内部的层要回源头组件改**（Chip / Tag / Kbd / Link / Spinner / _HeaderDocs / _FooterDocs），在实例上改只会堆覆写 |
+| 删阴影时把聚焦光环一起删了 | focus 态失去反馈 | 按 `spread` 区分：老微阴影 = `spread 0` + `alpha ≤ 0.06`（blur 0.5/1/2/4）；聚焦光环 = `spread 2/4`、alpha 1.00。只删前者 |
+| 状态描边绑错档（`hover` 拿到 accent、`focus` 拿到透明变量） | 聚焦态**从来没有描边**，而移动端根本没有 hover；因为透明所以肉眼看不出绑错 | 治理时逐档打印 `state → fill/stroke 样式名`对照表，别只看有没有归档残留 |
+| 壳组件自己画状态样式 | 同一状态在「壳」和「本体」两处实现，改本体时壳不跟 | 优先让本体（Input）提供 state，壳只透传；做不到时在规格文档里写明状态由壳覆写 |
+| 拿「带文字的 OR 分隔线」组件当小短横用 | 该组件是 `Line + 文字 + Line`；压窄到几 px 后中间文字一隐藏，**两条线并排挤在一起**，渲染出来像 bug | 小短横直接用一条 `LINE`。替换实例时把原实例的 `componentPropertyReferences` 转到新节点上，否则控制显隐的布尔属性直接失效 |
+| **新建变量默认 `scopes = ["ALL_SCOPES"]`，会暴露在设计师的取色器里** | 设计师本该只看到「颜色样式」，却在变量列表里看到 `ink/base` 这类原始变量，容易被直接选用（违反「绑样式不绑变量」铁律） | 建完变量立刻 **scope 清零**：`v.scopes = []`。这是本项目的既有约定 —— 02 Semantic / 01 Primitive 的**所有 COLOR 变量都是 `[]`**。<br>**注意分类型**：`[]` 对 COLOR 合法，对 **BOOLEAN 非法**（会抛 `Invalid scope for this variable type`）；FLOAT 按用途给具体 scope（描边宽 `["STROKE_FLOAT"]`、圆角 `["CORNER_RADIUS"]`、尺寸/间距 `["WIDTH_HEIGHT","GAP"]`、字号 `["FONT_SIZE"]`、行高 `["LINE_HEIGHT"]`）。别无脑全清 |
+| 跨语义族混搭（底绑 A 族、文字绑 B 族） | 两族解析值相同时**完全看不出来**（Button 的 `secondary` 底绑「成功 Success/浅底」、文字绑「主色 Accent/浅底文字」，都是 `#26D93E @15%`） | 审计时按"同一元素的底/文字/描边是否同族"对照，别只看有没有归档残留。改绑前后逐一比对解析值确认视觉零变化 |
+| 文档实例上的游离颜色覆写 | 同一 variant 在两张示例卡里颜色不一样；或文档绑了原始变量而组件绑的是样式 | 与主组件逐层对照后对齐，规则见下一条 —— **对齐时必须把「主组件是裸色值」的层排除在外** |
+| **「给图标补文字色」的批量对齐把材质层一起染了**（本项目真实事故） | 玻璃按钮在文档里变成纯黑药丸 + 看不见的文字（Light 黑底黑字 / Dark 白底白字）；品牌 logo 的 `#FFFFFF` 层被染成会翻转的「主文字 Primary」 | 批量对齐的兜底分支（两边都没样式 → 按同实例文字色补）**只对图标可见层成立**。**判据：主组件对应层是「裸色值」（既无样式也无变量）→ 一律不动**，那是玻璃材质（`Fill + Shadow`/`Tint + Shadow`/`Glass Effect`）、品牌 logo、图标内部 source 层。主组件绑变量的层改成样式属升级，可以做。<br>还原方法：清掉实例样式后**再把主组件的 paints 拷回来** —— 单纯 `setFillStyleIdAsync('')` 只解绑、颜色会停在被染后的值，不会自动回落 |
+| 用「–」字形当占位短横 | 笔画粗细跟着字号字重走（24 Bold 下约 2.4px），比正文数字还抢眼 | 用 `LINE` + `border/width`，粗细独立可控 |
+| **图标不跟文字变色** | 文字每档都绑对了 foreground 样式，但图标实例没有填充样式、内部 `VECTOR:icon` 绑着 `foreground/base` → 图标永远黑（实心彩底档最明显：白字黑图标）。`foreground/base` 是**现存**变量、深浅也正常跟随，**审计报告看起来完全清白** | 把图标实例的填充指到**该变体文字用的同一个样式**（在图标实例上设样式是正当覆写）。检查方法：逐变体对比「文字样式 vs 图标样式」，别只看有没有归档残留。已修 Chip / Tag |
 
 **通用姿势**：脚本原子执行（报错则完全不生效，可安全重试）；每步 `return` 受影响的 node id；小步验证而非一次做完。
 
@@ -279,6 +292,7 @@ bash scripts/pack.sh
 - [ ] `color-styles.json` 条目数 = Figma 颜色样式数；`text.json` = Figma 文本样式数
 - [ ] 无占位键名（`(见Figma双语名)` 这类）
 - [ ] 语义层全部 alias，无硬编码色值
+- [ ] **新建变量已 scope 清零**（COLOR → `[]`；FLOAT 给具体 scope）—— 设计师取色器里只该出现颜色样式，不该出现原始变量
 
 **组件层**
 
@@ -289,6 +303,11 @@ bash scripts/pack.sh
 - [ ] 属性面板无冗余折叠分组（嵌套实例已 unexpose）
 - [ ] Light / Dark 双模式截图验证
 - [ ] 触控热区 ≥ 44pt（视觉 < 44 的要补透明热区）
+- [ ] 规范页自身干净：`bg` 衬底为白、文档演示卡为白、Dark 演示卡的模式覆写指向**现存**的 `02 Semantic`
+- [ ] **说明文档与页面标注层也绑样式**（`Information` 卡正文/边框/卡底、变体矩阵旁的小灰字与分区线）
+- [ ] 逐档核对 `state → fill/stroke 样式名`，确认 focus/error 的描边没绑错档
+- [ ] **带图标的组件：逐变体对比「文字样式 vs 图标样式」是否一致**（图标绑 `foreground/base` 时审计看不出问题）
+- [ ] 删阴影后 focus 光环仍在（按 `spread` 区分，别一刀切）
 
 **skill 层**
 

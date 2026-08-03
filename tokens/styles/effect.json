@@ -5,7 +5,7 @@
       "$value": [
         {
           "type": "dropShadow",
-          "color": "#26D93E",
+          "color": "{accent.base}",
           "offsetX": 0,
           "offsetY": 0,
           "blur": 0,
@@ -13,31 +13,35 @@
         },
         {
           "type": "dropShadow",
-          "color": "#F5F5F5",
+          "color": "{separator.base}",
           "offsetX": 0,
           "offsetY": 0,
           "blur": 0,
           "spread": 2
         }
       ],
-      "$description": "聚焦环:accent.base 4px + background.secondary 2px offset"
+      "$figmaStyle": "聚焦 Focus/焦点环 Ring",
+      "$description": "通用焦点环:accent/base spread 4 外环 + separator/base spread 2 内环(内环制造留白)。2026-08-01 已在 Figma 建为效果样式并绑变量;Checkbox 的 focus 六档已绑。原记录第二层写 background.secondary #F5F5F5,与 Figma 实测不符,按实测(separator/base 黑 10%)校正。"
     },
     "Field": {
       "$type": "effect",
       "$value": [
         {
           "type": "dropShadow",
-          "color": "#26D93E",
+          "color": "{accent.base}",
           "offsetX": 0,
           "offsetY": 0,
           "blur": 0,
           "spread": 2
         }
       ],
-      "$description": "输入框聚焦:accent.base 2px"
-    }
+      "$figmaStyle": "聚焦 Focus/输入聚焦 Field",
+      "$description": "输入类控件聚焦:accent/base spread 2 单环,不带内环留白(输入框本身已有描边)。2026-08-01 已在 Figma 建为效果样式并绑变量;InputOTP 的 focus 两档已绑。"
+    },
+    "$note": "效果颜色只能绑变量、不能绑颜色样式(Figma 限制),所以这两个效果样式内部绑的是 accent/base 与 separator/base 变量。"
   },
   "zz_Deprecated Shadow": {
+    "$note": "阴影体系已于 2026-07 废弃,Figma 侧无对应效果样式,仅保留配方供追溯,勿再引用。层级改用容器表面层级色区分(Surface/底 Base → 次级 Secondary → 三级 Tertiary)。2026-08-01 Foundations 页的 Shadows 一节已同步改写为「已废弃」并删掉五个示例块 —— 此前该页仍在描述这五档,与样式库不符。",
     "Base": {
       "$type": "effect",
       "$value": [

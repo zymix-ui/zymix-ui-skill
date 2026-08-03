@@ -198,11 +198,11 @@
       "$type": "typography",
       "$value": {
         "fontFamily": "{family.base}",
-        "fontWeight": "{weight.heavy}",
+        "fontWeight": "{weight.bold}",
         "fontSize": "{size.number-24}",
         "lineHeight": "{leading.number-24}"
       },
-      "$description": "中号数字 24 Semibold/32(设计师新增)"
+      "$description": "中号数字 24 Bold/28。用于卡片内金额与计数、验证码输入的数字位。2026-08-01 由 Heavy 改 Bold(Heavy 在 24px 下过粗)"
     },
     "8": {
       "$type": "typography",

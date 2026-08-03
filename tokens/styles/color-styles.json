@@ -3,20 +3,14 @@
   "文字图标 Text&Icon/主文字 Primary #000000": {
     "variable": "foreground.base"
   },
-  "文字图标 Text&Icon/强调文字 Emphasis 80%": {
-    "variable": "foreground.emphasis"
-  },
-  "文字图标 Text&Icon/辅助文字 Tertiary 40%": {
+  "文字图标 Text&Icon/辅助文字 Tertiary #000000 40%": {
     "variable": "foreground.subtle"
   },
-  "文字图标 Text&Icon/禁用 Disabled 26%": {
+  "文字图标 Text&Icon/禁用 Disabled #000000 20%": {
     "variable": "foreground.disabled"
   },
   "文字图标 Text&Icon/品牌 Brand #26D93E": {
     "variable": "foreground.brand"
-  },
-  "纯色 Solid/纯白 White #FFFFFF": {
-    "variable": "foreground.inverse"
   },
   "遮罩 Backdrop/强 Strong #000000 60%": {
     "variable": "backdrop.strong"
@@ -27,48 +21,26 @@
   "IM 气泡/非好友 Stranger #C9FAFF": {
     "variable": "feature.im.bubble-stranger"
   },
-  "导航 Nav/渐变遮罩 Fade #FCFCFC→0%": {
-    "gradient": "vertical",
-    "stops": [
-      "feature.nav.fade-solid",
-      "feature.nav.fade-transparent"
-    ]
-  },
-  "文字图标 Text&Icon/次文字 Secondary 55%": {
+  "文字图标 Text&Icon/次文字 Secondary #000000 60%": {
     "variable": "foreground.muted"
   },
-  "文字图标 Text&Icon/占位 Placeholder 30%": {
+  "文字图标 Text&Icon/占位 Placeholder #000000 30%": {
     "variable": "foreground.placeholder"
-  },
-  "文字图标 Text&Icon/极弱 Faint 15%": {
-    "variable": "foreground.faint"
-  },
-  "文字图标 Text&Icon/最弱 Ghost 8%": {
-    "variable": "foreground.ghost"
   },
   "文字图标 Text&Icon/主文字(深底) Primary On-Dark #FFFFFF": {
     "variable": "foreground.on-dark.base"
   },
-  "文字图标 Text&Icon/强调文字(深底) Emphasis On-Dark #FFFFFF 80%": {
-    "variable": "foreground.on-dark.emphasis"
-  },
-  "文字图标 Text&Icon/次文字(深底) Secondary On-Dark #FFFFFF 55%": {
+  "文字图标 Text&Icon/次文字(深底) Secondary On-Dark #FFFFFF 60%": {
     "variable": "foreground.on-dark.muted"
   },
-  "文字图标 Text&Icon/辅助文字(深底) Tertiary On-Dark #FFFFFF 35%": {
+  "文字图标 Text&Icon/辅助文字(深底) Tertiary On-Dark #FFFFFF 40%": {
     "variable": "foreground.on-dark.subtle"
   },
   "文字图标 Text&Icon/占位(深底) Placeholder On-Dark #FFFFFF 30%": {
     "variable": "foreground.on-dark.placeholder"
   },
-  "文字图标 Text&Icon/禁用(深底) Disabled On-Dark #FFFFFF 22%": {
+  "文字图标 Text&Icon/禁用(深底) Disabled On-Dark #FFFFFF 20%": {
     "variable": "foreground.on-dark.disabled"
-  },
-  "文字图标 Text&Icon/极弱(深底) Faint On-Dark #FFFFFF 15%": {
-    "variable": "foreground.on-dark.faint"
-  },
-  "文字图标 Text&Icon/最弱(深底) Ghost On-Dark #FFFFFF 8%": {
-    "variable": "foreground.on-dark.ghost"
   },
   "主色 Accent/底 Base #26D93E": {
     "variable": "accent.base"
@@ -154,13 +126,10 @@
   "页面背景 Background/底 Base #FFFFFF": {
     "variable": "background.base"
   },
-  "页面背景 Background/雪白 Secondary #FCFCFC": {
-    "variable": "background.secondary"
-  },
   "页面背景 Background/灰 Tertiary #F5F5F5": {
     "variable": "background.tertiary"
   },
-  "页面背景 Background/反色 Inverse #18181B": {
+  "页面背景 Background/反色 Inverse #000000": {
     "variable": "background.inverse"
   },
   "容器表面 Surface/底 Base #FFFFFF": {
@@ -193,14 +162,14 @@
   "分割线 Separator/弱 Subtle #000000 5%": {
     "variable": "separator.subtle"
   },
-  "分割线 Separator/强 Strong #000000 40%": {
-    "variable": "separator.strong"
-  },
   "产品特性 Feature/钱包未验证 Wallet Unverified #FD7C02": {
     "variable": "feature.wallet.unverified"
   },
   "文字图标 Text&Icon/链接 Link #0F7A23": {
     "variable": "foreground.link"
+  },
+  "文字图标 Text&Icon/反色 Inverse #FFFFFF": {
+    "variable": "foreground.inverse"
   },
   "主色 Accent/文字 Foreground #FFFFFF": {
     "variable": "accent.foreground"
@@ -238,7 +207,7 @@
   "骨架屏 Skeleton/高亮 Highlight #F5F5F5": {
     "variable": "skeleton.highlight"
   },
-  "产品特性 Feature/点赞 Like #FF3B64": {
+  "产品特性 Feature/积极强调 Positive #FF3B64": {
     "variable": "feature.like.base"
   },
   "IM 气泡/好友文字 Friend Fg #274700": {
@@ -261,5 +230,35 @@
   },
   "IM 气泡/非好友已读 Read Stranger #00BAD2": {
     "variable": "feature.im.read-stranger"
+  },
+  "墨色 Ink/底 Base #000000": {
+    "variable": "ink.base"
+  },
+  "墨色 Ink/按下 Pressed #2F2F34": {
+    "variable": "ink.pressed"
+  },
+  "墨色 Ink/文字 Foreground #FFFFFF": {
+    "variable": "ink.foreground"
+  },
+  "墨色 Ink/浅底 Soft #000000 5%": {
+    "variable": "ink.soft"
+  },
+  "墨色 Ink/浅底按下 Soft-pressed #000000 15%": {
+    "variable": "ink.soft-pressed"
+  },
+  "墨色 Ink/浅底文字 Soft-foreground #000000": {
+    "variable": "ink.soft-foreground"
+  },
+  "页面背景 Background/反色三级 Inverse Tertiary #18181B": {
+    "variable": "background.inverse-tertiary"
+  },
+  "容器表面 Surface/反色次级 Inverse Secondary #1C1C1F": {
+    "variable": "surface.inverse-secondary"
+  },
+  "容器表面 Surface/反色三级 Inverse Tertiary #2A2A2E": {
+    "variable": "surface.inverse-tertiary"
+  },
+  "描边 Border/头像 Avatar #000000 3%": {
+    "variable": "border.avatar"
   }
 }
