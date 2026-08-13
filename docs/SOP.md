@@ -100,7 +100,7 @@ Figma 侧有四层内容，`check_figma_sync.py` 只覆盖第一层，其余靠 
 **可以直接把这段交给 Claude 执行：**
 
 ```
-对账 ZymixUI Kit(fileKey dL2XGEOGAeKfXWhMRp7smR)与本地 tokens/：
+对账 ZymixUI Kit(fileKey NxaWnZYT4ZidZuTs0UU44U)与本地 tokens/：
 1. 用 use_figma 读 4 个变量集合的全部变量(名、各 mode 的值、alias 指向)
 2. 读全部颜色样式与文本样式，以及各自绑定的变量
 3. 与 tokens/ 下的 JSON 逐项比对，只报差异：值不同 / Figma 有本地无 / 本地有 Figma 无
