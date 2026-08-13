@@ -142,7 +142,7 @@ Tokens 为原子变量层。组件规范(Button、NavBar、TabBar、Toast、玻�
 | 玻璃圆钮 | `.btn-glass-42`(配 `.glass`) | NavBar / TabBar 专用 42px 液态玻璃圆钮 |
 | 液态玻璃材质 | `.glass` / `.glass-clear` / `.glass-primary` | 导航、悬浮、Toast 底材 |
 | NavBar 页头 | `.header-brand` / `.header-nav` / `.header-tabs` / `.header-chat` | 4 变体:品牌大标题 / 居中标题+返回 / 标签栏 / 聊天页头 |
-| TabBar 底部导航 | `.tabbar` + `.tab`(激活态 `.tab.active`) | 玻璃胶囊,内置 Scroll Edge 底部模糊(`.no-edge` 关闭) |
+| TabBar 底部导航 | `.tabbar` + `.tab`(激活态 `.tab.active`;AI 徽章 `.ai-badge`) | 玻璃胶囊,tab 顺序 Chat/Discover/AI/Mix/Me 恒带文字,内置 Scroll Edge 底部模糊(`.no-edge` 关闭) |
 | Toast | `.toast`(配 `.glass`) | 顶部胶囊,中性色 |
 | IM 气泡 | `.bubble` + `.bubble-friend` / `-stranger` / `-other`;回执 `.read-friend` / `.read-stranger` | 好友 / 陌生人 / 系统气泡 |
 | 列表 | `.list-row` | 行高 ≥64、头像 48、0.5px 分割线 |

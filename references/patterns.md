@@ -38,7 +38,7 @@ ZYMIX 是 iOS 风格的社交/IM 产品。原型按 iPhone 375×812 画布(设�
 ## 弹层/卡片
 - 卡片: --surface-base 底,圆角 12-16,无阴影(阴影体系已废弃),靠层级色区分
 - 模态: 遮罩 .backdrop(--backdrop-base 默认;活动运营强调弹层用 .strong=--backdrop-strong),面板 --surface-base 圆角 24+ 顶部圆角
-- 底部 TabBar: 玻璃胶囊(高 62=4+54+4,左右边距 8,圆角 round),五 tab Chat/Mix/Video/Discover/Me,图标槽 32/字形 24;激活位单选互斥 = accent/soft-subtle(8%)底 + accent/base 图标,未激活 = 透明底 + foreground/base 图标(旧「accent 底白图/subtle 40%」作废);底部模糊已内置 .tabbar::before(等效 Show Scroll Edge;.no-edge 关),勿再叠 .nav-fade(已删);挂载为 .phone 底部 .tabbar-dock 悬浮层(绝对定位贴底,勿放进滚动容器 .screen),内容容器留 padding-bottom≈100px 供滚动穿过
+- 底部 TabBar: 玻璃胶囊(高 62=4+54+4,左右边距 8,圆角 round),五 tab Chat/Discover/AI/Mix/Me(恒带底部文字;AI 位=40×30 绿胶囊徽章 `.ai-badge` 恒绿,不走线/面切换),图标槽 32/字形 24;激活位单选互斥 = accent/soft-subtle(8%)底 + accent/base 图标,未激活 = 透明底 + foreground/base 图标(旧「accent 底白图/subtle 40%」作废);底部模糊已内置 .tabbar::before(等效 Show Scroll Edge;.no-edge 关),勿再叠 .nav-fade(已删);挂载为 .phone 底部 .tabbar-dock 悬浮层(绝对定位贴底,勿放进滚动容器 .screen),内容容器留 padding-bottom≈100px 供滚动穿过
 
 ## 图标
 **只用 ZymixUI 图标库**(`references/icons-bundled.json` / Figma 导出),内联为 SVG,用 currentColor 继承文字色。**严禁手绘 / 几何拼凑自造任何图标 SVG**(仅状态栏系统 chrome:信号/WiFi/电池例外)。库里没有的图标,回报缺失、勿硬造。
