@@ -51,9 +51,18 @@ def main(exp_path,tok):
             if ref in prim:v=prim[ref]
             else:break
         return v
+    # 有意差异白名单(勿报):family/base 本地刻意用系统字体栈(防 claude.ai 字体误报);
+    # mode/is-* 是 Figma 专用布尔(绑玻璃图层可见性,不进 JSON/CSS);
+    # feature/nav/background 是 skill 原型层专用 CSS token(Figma 走 Materials 材质,无对应变量)。
+    SKIP_KEYS={'04 Font|Value|family/base'}
+    SKIP_FIG_ONLY={'02 Semantic|Light|mode/is-light','02 Semantic|Dark|mode/is-light','02 Semantic|Light|mode/is-dark','02 Semantic|Dark|mode/is-dark'}
+    SKIP_LOC_ONLY={'02 Semantic|Light|feature/nav/background','02 Semantic|Dark|feature/nav/background'}
     mism=[];only_fig=[];only_loc=[]
     for k,fv in fig.items():
-        if k not in local:only_fig.append(k);continue
+        if k in SKIP_KEYS:continue
+        if k not in local:
+            if k not in SKIP_FIG_ONLY:only_fig.append(k)
+            continue
         lv=local[k]
         # 语义层内部 alias(如 {accent/base}):两边都应是 alias,比较名字
         lv_r=resolve_prim(lv)
@@ -63,6 +72,7 @@ def main(exp_path,tok):
         if a!=b:
             mism.append((k,fv,lv))
     for k in local:
+        if k in SKIP_KEYS or k in SKIP_LOC_ONLY:continue
         if k not in fig:only_loc.append(k)
     print(f'对账: Figma {len(fig)} 项 / 本地 {len(local)} 项')
     if mism:

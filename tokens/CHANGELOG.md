@@ -1,5 +1,12 @@
 # Tokens 变更记录
 
+## 2026-08-13
+- 与 Figma(NxaWnZYT… 新基准文件)全量对账后归零:
+  - 修 `default/soft`、`default/soft-pressed` 浅色基色 235,235,236 → **235,235,235**(此前 #EBEBEC→#EBEBEB 统一时遗漏的两处 rgba)
+  - 补录 `size/2`、`size/14`(03 Layout 2026-08 新增)、`border/width-strong`(=2)
+  - `border/white` 由硬值 #FFFFFF 改 alias `{default.white}`,与 Figma 对齐
+  - `check_figma_sync.py` 增设有意差异白名单:`family/base`(系统字体栈)、`mode/is-*`(Figma 专用布尔)、`feature/nav/background`(skill 原型层专用)
+
 ## 2026-07-29 · v0.8.0 配套:IM 客态气泡 + on-dark 纠错 + nav 清理
 
 - **新增** `feature/im/bubble-guest`:客态气泡底(对方消息气泡),alias → `surface/secondary`(Light #F5F5F5 / Dark #232327),IM 专用;同步新增颜色样式「IM 气泡/客态 Guest」。

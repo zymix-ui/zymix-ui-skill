@@ -67,6 +67,11 @@
       "$type": "dimension",
       "$description": "0px"
     },
+    "2": {
+      "$value": 2,
+      "$type": "dimension",
+      "$description": "2px 最小间距(2026-08 新增)"
+    },
     "4": {
       "$value": 4,
       "$type": "dimension",
@@ -86,6 +91,11 @@
       "$value": 12,
       "$type": "dimension",
       "$description": "12px"
+    },
+    "14": {
+      "$value": 14,
+      "$type": "dimension",
+      "$description": "14px(2026-08 新增)"
     },
     "16": {
       "$value": 16,

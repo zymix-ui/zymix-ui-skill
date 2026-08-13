@@ -10,8 +10,8 @@
   --default-base: #EBEBEB;
   --default-pressed: #D4D4D6;
   --default-foreground: #000000;
-  --default-soft: rgba(235, 235, 236, 0.50);
-  --default-soft-pressed: rgba(235, 235, 236, 0.65);
+  --default-soft: rgba(235, 235, 235, 0.50);
+  --default-soft-pressed: rgba(235, 235, 235, 0.65);
   --default-soft-foreground: #18181B;
   --default-white: #FFFFFF;
   --default-black: #000000;
@@ -70,6 +70,7 @@
   --border-white: #FFFFFF;
   --border-width: 1px;
   --border-width-none: 0px;
+  --border-width-strong: 2px;
   --border-avatar: rgba(0, 0, 0, 0.03);
   --separator-base: rgba(0, 0, 0, 0.10);
   --separator-subtle: rgba(0, 0, 0, 0.05);
@@ -104,10 +105,12 @@
   --radius-6xl: 36px;
   --radius-round: 9999px;
   --size-0: 0px;
+  --size-2: 2px;
   --size-4: 4px;
   --size-6: 6px;
   --size-8: 8px;
   --size-12: 12px;
+  --size-14: 14px;
   --size-16: 16px;
   --size-20: 20px;
   --size-24: 24px;
@@ -275,6 +278,7 @@
   --border-white: #FFFFFF;
   --border-width: 1px;
   --border-width-none: 0px;
+  --border-width-strong: 2px;
   --border-avatar: rgba(255, 255, 255, 0.05);
   --separator-base: rgba(255, 255, 255, 0.10);
   --separator-subtle: rgba(255, 255, 255, 0.05);
@@ -370,6 +374,7 @@
   --border-white: #FFFFFF;
   --border-width: 1px;
   --border-width-none: 0px;
+  --border-width-strong: 2px;
   --border-avatar: rgba(255, 255, 255, 0.05);
   --separator-base: rgba(255, 255, 255, 0.10);
   --separator-subtle: rgba(255, 255, 255, 0.05);

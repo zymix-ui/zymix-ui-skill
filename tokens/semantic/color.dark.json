@@ -330,9 +330,9 @@
       "$type": "color"
     },
     "white": {
-      "$value": "#FFFFFF",
+      "$value": "{default.white}",
       "$type": "color",
-      "$description": "固定纯白描边,双模式不变(深色/彩色/图片底上的描边)"
+      "$description": "固定纯白描边,双模式不变(深色/彩色/图片底上的描边);alias default/white,与 Figma 对齐(2026-08-13)"
     },
     "width": {
       "$value": 1,
@@ -343,6 +343,11 @@
       "$value": 0,
       "$type": "number",
       "$description": "0 无描边"
+    },
+    "width-strong": {
+      "$value": 2,
+      "$type": "number",
+      "$description": "2pt 强描边(Figma border/width-strong,2026-08-13 补录)"
     },
     "avatar": {
       "$value": "rgba(255,255,255,0.05)",
