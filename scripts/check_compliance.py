@@ -67,6 +67,29 @@ def main(path):
     for d in re.findall(r'(?:transition|animation)[^;{}]*?(\d+(?:\.\d+)?)(m?s)\b',body):
         val=float(d[0])*(1000 if d[1]=='s' else 1)
         if val>400:warnings.append(f'过渡时长 {d[0]}{d[1]}(>400ms):UI 动画应 ≤300ms,收一下(营销/解释类可忽略)');break
+    # 8) 内嵌 token 块 vs references/tokens.css 对账
+    #    单文件原型必须自带一份 token 副本,副本会随规范改版而漂移 —— 而上面的检查全都先 strip 掉
+    #    :root 块,天生看不见这类问题。2026-08-13 就是这样漏了 22 处旧值(v1.4 字阶 + v1.5 颜色)
+    #    和 16 个已删档位(--size-body-lg 等),文件却一路 PASS。
+    import os
+    ref=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','references','tokens.css')
+    if os.path.exists(ref):
+        def defs(t):
+            d={}
+            for m in re.finditer(r'(--[a-z0-9-]+)\s*:\s*([^;}\n]+)',t):
+                d.setdefault(m.group(1),set()).add(m.group(2).strip().rstrip(';').strip())
+            return d
+        norm=lambda v:re.sub(r'\s+','',v).replace('0.','.').upper()
+        src=defs(open(ref,encoding='utf-8').read())
+        legit={k:{norm(x) for x in v} for k,v in src.items()}
+        fams={k.split('-')[2] for k in src if k.count('-')>=2}|{k[2:].split('-')[0] for k in src}
+        for k,vals in sorted(defs(html).items()):
+            if k in legit:
+                for v in sorted(vals):
+                    if norm(v) not in legit[k]:
+                        errors.append(f'token 值漂移 {k}: {v} → tokens.css 是 {" / ".join(sorted(src[k]))}')
+            elif k[2:].split('-')[0] in fams:   # 族在规范里、这个档位不在 = 已删档位
+                errors.append(f'已删除的 token {k}:该族存在于 tokens.css,但此档位已废弃')
     if warnings and not errors:
         print('⚠ WARN',path)
         for w in warnings:print('  -',w)

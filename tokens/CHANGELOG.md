@@ -191,3 +191,10 @@
   同步五处:Figma 变量、`tokens/primitive/typography.json`、`references/tokens.css`(重新生成)、`assets/templates/app.html` 内嵌 token 副本、`TOKENS-GUIDE.md` 示例(`--weight-black`→`--weight-heavy`)。全库零残留,tokens.css 幂等已验,模板合规 PASS。
   > 顺带修两个过时描述:`weight/bold` 原写「场景专属字重(仅限 场景 Scene 排版);通用体系仅 Regular/Semibold/**Black**」—— 早就不对了,Bold 现在是 Title/Xs、Button/Base、Number/24·8、Scene 导航标题的字重;`weight/heavy` 补注它替代了废弃的 Black 900。
   > 另发现 **10 处裸用 SF Pro Black 字重的文字**(硬写 fontName、不经变量),全在「备份」与「Navbar 案例收集」两个归档页,不受本次删除影响,但本身违反「绑样式」规则。优先级低,未处理。
+- **修 skill 主模板 `assets/templates/app.html` 的 token 副本严重脱节**(用户提醒同步 skill 时查出,是本轮最大的漏)。单文件原型必须自带 token 副本,而这份副本停在 **v1.4 字阶改版与 v1.5 颜色重构之前**:
+  - **22 处值漂移**:`--size-title-lg` 30→28、`--size-title-xs` 15→16、`--size-button-base` 17→16、`--size-scene-header-title` 34→28、`--size-scene-nav-title`·`--size-scene-bubble` 17→16、`--size-body-2xs` 11→10、`--leading-title-lg` 36→34、`--leading-scene-header-title` 40→34、`--backdrop-base` .40→.20、`--background-tertiary` #161619→#060607、`--family-base` "SF Pro"→系统字体栈、`--feature-im-bubble-friend-muted` .55→.60、`--danger-soft`·`--danger-soft-pressed` 旧灰底配方→玫红 alpha、以及 13 处 `#EBEBEC`→`#EBEBEB`(default-base / border-subtle / skeleton-base / ink-pressed)。
+  - **16 个已删档位仍在定义**:`--size-body-lg`·`--size-body-md`·`--size-label-lg`·`--size-number-base`·`--leading-scene-tab` 等,全是字阶改版删掉的档,且**无一处被引用**,已全部删除。
+  - 结构真相:该文件把**三代 token 块层叠**在一个 `<style>` 里(旧 `:root` / 紧凑版 / 最新 `[data-theme]` 版),后者在级联里覆盖前者。**没删前两代** —— 块① 是 9 个 `--duration-*`·`--ease-*` 与 5 个 `--foreground-on-dark-*` 的**唯一来源**,删了会断。
+  - 复查:值漂移 0、幽灵 token 0、内嵌 token 170 个。
+- **检查器补第 8 条:内嵌 token 块 vs `references/tokens.css` 对账**。上面这些问题此前一路 PASS,根因是 `strip_token_blocks()` 会先把 `:root{...}` 整块剥掉(为免误报配方里的示例 hex),导致 token 定义区**天生在检查盲区**。新规则:值不匹配 → 报「token 值漂移」;**族在 tokens.css 里但档位不在 → 报「已删除的 token」**(精准命中废弃档,又不会误伤 `--vh` 这类模板本地变量,因为 `vh` 不是 tokens.css 的族)。已用注入测试验证三类问题都能抓到。
+- **修 `references/lessons.md` 两条失效经验**:①「页头 Tab 双标题(选中 24 Black / 未选中 18 Bold)」—— 该两档随字阶改版删除,改写为 Brand-Tabs 现行做法(tab 统一 `Label/Sm` 14 Semibold + 下划线);②「统计数字是 Number/Base = 18px Black(900)」—— 既无 Base 档也无 Black 字重,改为 Number 9 档、卡片内金额用 `Number/24`。这类经验条会被原型 AI 当规范读,过期即误导。

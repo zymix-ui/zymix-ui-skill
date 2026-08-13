@@ -39,7 +39,7 @@
 - **点赞条**:↑ 上箭头图标(不是爱心!) + 人名 Label/较小 Caption 半粗
 - **评论预览**:纯文本 Body/较小 Caption,人名不加粗;"N Comments ›" muted + 小箭头
 - **作者行**:头像 32 倒角方形(radius-md 近似 squircle);昵称+官方绿标(五瓣星形 accent/base + surface/base 对勾);@handle·时间 muted;隐私锁图标;Follow 胶囊 = surface/secondary 底 + default/foreground 14 Semibold
-- **页头**:Tab 双标题(选中 24 Black/未选中 18 Bold muted);右侧玻璃圆钮=编辑笔
+- **页头**:NavBar Brand-Tabs —— tab 统一 `Label/Sm`(14 Semibold),选中=主文字色+下方 24×2 下划线,未选中 muted;右侧玻璃圆钮=编辑笔。(原「选中 24 Black/未选中 18 Bold」两档已随字阶改版删除)
 - **Scroll Edge Effect - Soft(渐隐磨砂层,配方对齐 ZYMIX Discover)**:`::before` 铺满容器宽,**顶部(NavBar)102px / 底部(TabBar)82px**。**渐隐感的关键是"背景本身是竖向渐变(顶实→底透)",不是靠强模糊或硬遮罩**——三件套:①`background:linear-gradient(to bottom,rgba(255,255,255,.72) 0%,rgba(255,255,255,.35) 60%,transparent)`(暗色 `rgba(11,11,13,.78)→.4→transparent`);②**适度** `backdrop-filter:blur(14px) saturate(1.6)`(别用 26/36 那种重模糊,会糊成硬块);③柔和遮罩 `mask-image:linear-gradient(#000 30%,rgba(0,0,0,.55) 70%,transparent)`。底部同一套、方向 `to top`。`opacity:1` 常驻(内容滚到其下就一直渐隐,别用"仅 .scrolled 时显")。⚠**踩过的坑(2026-07-22)**:(a) 用不透明纯白 `--background-base` 当底 → backdrop-blur 被盖死,渲染成纯白硬条;(b) 改用纯色 `--feature-nav-background` 只靠遮罩渐隐 → 模糊弱时透字、模糊强时像硬块、没渐隐感。**正解=渐变底 + 中等模糊(14px) + 柔和遮罩三者叠加**。底部 TabBar 用 `.tabbar-dock` 绝对定位悬浮贴底(勿放进滚动容器),内容留 `padding-bottom≈100px` 穿过
 - **状态栏必须悬浮、内容滚到其下(2026-07-22)**:要让状态栏区域也呈现磨砂渐隐(内容从"9:41"背后模糊滑过),状态栏必须 `.phone>.statusbar{position:absolute;top:0;background:transparent;z-index:55}`(脱离流、透明底),`.screen` 内容才铺到 y=0、滚到状态栏下;吸顶页头 `.scroll-edge-top{padding-top:47px}` 空出状态栏高度,压缩标题落其下。若状态栏是不透明白条留在 flex 流里,内容永远到不了它下方 → 状态栏永远纯白无模糊(这是 iOS 沉浸式与"顶部固定白条"的本质区别)
 
@@ -105,7 +105,7 @@
 ## 2026-07-09 · Me 个人主页(异形快捷卡 + 统计)
 - **快捷卡是"异形",不是方卡**:灰圆角矩形(surface-secondary,radius-md)只占卡下部(111×88 卡里灰块 106×66、离顶 22px),**3D 图标探出在灰块上方**(72px 图标 top:0,盖过灰块顶缘),标签 Xs(12) 在灰块底部。做法:卡 position:relative;灰块 absolute top:22;图标 absolute top:0 居中;标签 absolute bottom。别做成"方卡里居中图标+文字"
 - **3D 图标带同色系投影**:filter:drop-shadow(0 4px 16px 色/30%)——Figma 实测统一 #B754FF 30% y4 b16(紫);emoji 占位时按图标色调给投影(转盘紫/勾绿/礼物橙)
-- **统计数字是 Number/Base = 18px Black(900)**,不是 24;别被截图"看起来大"骗了,回 Figma 量样式名。字重 Black=CSS 900
+- **统计数字回 Figma 量样式名**,别被截图"看起来大"骗了 —— Number 档位现为 9 档(36/28/24/20/16/14/12/10/8),卡片内金额与计数用 `Number/24`(24 Bold)。(原写「Number/Base = 18px Black(900)」已随字阶改版失效:既无 Base 档也无 Black 字重)
 - **图标 emoji 插画豁免**:用 `font-size:Npx;line-height:1` 标记,合规检查跳过字号校验(文字角色从不用 line-height:1)
 
 
