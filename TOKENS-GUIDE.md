@@ -95,7 +95,7 @@ Figma 中的 `组/角色` 斜杠层级,在 CSS 中统一扁平化为连字符,�
 | 信息 info | 6 | `--info-base` |
 | 动效时长 duration | 6 | `--duration-*` |
 | 分割 separator | 5 | `--separator-base` `--separator-strong` |
-| 字重 weight | 4 | `--weight-regular` `--weight-black` |
+| 字重 weight | 4 | `--weight-regular` `--weight-heavy` |
 | 缓动 ease | 4 | `--ease-*` |
 | 描边 border | 4 | `--border-base` `--border-subtle` |
 | 背景 background | 4 | `--background-base` `--background-secondary` |

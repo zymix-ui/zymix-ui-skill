@@ -186,3 +186,8 @@
   > `letterSpacing`/`paragraphSpacing` 0/33 绑定是**正常的** —— 正是此前"20 个样式绑到 zz_Archive"那个 bug 修好后的样子(现走 Figma 默认值)。`lineHeight` 11/33 未绑也正常 —— 未绑的恰好是全部 11 个 AUTO 行高档,Figma 的 AUTO 行高绑不了数值变量。
   > 「孤立变量」多数是**误报,别删**:03 Layout 全部 35 个由组件直接绑(Figma 无间距样式)、01 Primitive 51 个是参考色板用不到的档、04 Font 10 个 `leading/*` 对应 AUTO 行高档(只被 tokens.css 消费)、`mode/is-light·is-dark` 绑玻璃图层可见性。
   > **唯一真残留:`weight/black`** —— 字阶改版已废 Black 900 改 Heavy,DESIGN.md 也写明"不再用 Black 900",但 04 Font 里该变量还在、零文本样式绑它,`tokens.css` 仍输出 `--weight-black: "Black"`。建议删(或在文档标注保留不用),待定。
+- **删除已废字重档 `weight/black`**(体检发现的唯一真残留)。2026-07-31 字阶改版已把 Black 900 换成 Heavy 800,但该变量一直留在 **04 Font**(不是 01 参考层,是文本样式实际绑定的层),且 `tokens.css` 仍输出 `--weight-black: "Black"` —— **与 DESIGN.md「四档 Regular/Semibold/Bold/Heavy,不再用 Black 900」直接矛盾,而原型 AI 是把 tokens.css 当规范读的**,属会自己发作的坑,不是单纯占地方。
+  删前验证:零文本样式绑定、零 alias 引用、**全库 99 页 16809 个 TEXT 节点零绑定** → 删除零风险。04 Font 69→68,剩 regular/semibold/bold/heavy 四档(与 DESIGN.md 一致)。
+  同步五处:Figma 变量、`tokens/primitive/typography.json`、`references/tokens.css`(重新生成)、`assets/templates/app.html` 内嵌 token 副本、`TOKENS-GUIDE.md` 示例(`--weight-black`→`--weight-heavy`)。全库零残留,tokens.css 幂等已验,模板合规 PASS。
+  > 顺带修两个过时描述:`weight/bold` 原写「场景专属字重(仅限 场景 Scene 排版);通用体系仅 Regular/Semibold/**Black**」—— 早就不对了,Bold 现在是 Title/Xs、Button/Base、Number/24·8、Scene 导航标题的字重;`weight/heavy` 补注它替代了废弃的 Black 900。
+  > 另发现 **10 处裸用 SF Pro Black 字重的文字**(硬写 fontName、不经变量),全在「备份」与「Navbar 案例收集」两个归档页,不受本次删除影响,但本身违反「绑样式」规则。优先级低,未处理。

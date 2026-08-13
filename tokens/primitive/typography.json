@@ -17,20 +17,15 @@
       "$type": "fontWeight",
       "$description": "强调/按钮/小标题字重"
     },
-    "black": {
-      "$value": "Black",
-      "$type": "fontWeight",
-      "$description": "大标题/数字字重"
-    },
     "bold": {
       "$value": "Bold",
       "$type": "fontWeight",
-      "$description": "场景专属字重(仅限 场景 Scene 排版);通用体系仅 Regular/Semibold/Black"
+      "$description": "标题最小档/按钮标准/数字 24·8/场景导航标题字重"
     },
     "heavy": {
       "$value": "Heavy",
       "$type": "fontWeight",
-      "$description": "大标题/数字字重"
+      "$description": "大标题(Title/Display)与数字主档字重(2026-07-31 起替代已废弃的 Black 900)"
     }
   },
   "size": {
