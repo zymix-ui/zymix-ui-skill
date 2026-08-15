@@ -184,6 +184,23 @@
 ### 列表 List / 卡片 Card
 行高 ≥56、图标 24、标题 Label/Base、右 chevron；组内 0.5px separator/base 左缩进；卡片 surface/base 圆角 lg(16)、无阴影（靠层级色区分）。
 
+### 头像 Avatar（2026-08-15 改版：圆形 → squircle）
+**头像一律 squircle（连续圆角方形），不再用圆形。** Figma 侧 = 圆角绑 `radius/md`(12) + `cornerSmoothing 0.5`（36×36 基准，`12 × 1.5 = 18` 恰为半边长，即四角连续、无平直段）。
+
+**圆角随尺寸走「≈ 尺寸 ÷ 3」，就近归入 `radius/*` 档**（不发明档位）：
+
+| 头像尺寸 | 圆角 | 档位 |
+|---|---|---|
+| 24 / 26 | 8 | `radius/sm` |
+| 32 / 36 | 12 | `radius/md` |
+| 48 | 16 | `radius/lg` |
+| 56 | 20 | `radius/xl` |
+| 68 | 22 | `radius/2xl` |
+
+> CSS 没有 `cornerSmoothing`，网页侧用 `border-radius` 近似即可（视觉差 ~1px，可接受）；只有 Figma 侧要设平滑度。
+> **例外：Button 不跟这条。** 圆形加号按钮（如 AvatarGroup 末尾的「+」）是 Button 组件，按钮规范就是 `round`，不要为了和头像一致去改它。
+> 描边用 `border/avatar`（极淡），避免白色头像糊在白底上。
+
 ### 图标
 用 ZymixUI 图标库（单色 currentColor，跟随文字色），npm `@zymix-ui/icons` 或 CDN `cdn.jsdelivr.net/gh/zymix-ui/zymix-icons`。禁止手绘不一致的图标。**底部导航（TabBar）图标例外：只用本地内置图标，不用 CDN**——CDN 依赖网络，导航是常驻元素不能有缺图风险；CDN 仅用于非导航场景的长尾图标。
 

@@ -124,7 +124,7 @@
 .header-nav{display:flex;align-items:center;justify-content:center;position:relative;min-height:58px;padding:8px 16px} /* 标题用 .t-scene-nav */
 .header-nav .back{position:absolute;left:16px}
 .header-nav .action{position:absolute;right:16px}
-/* ④ Nav-Chat:返回 + 头像36圆(兜底 surface/secondary)+ 昵称 16 Bold + 副标题 12 muted(.t-body-xs)+ 右侧1–2个42圆钮 */
+/* ④ Nav-Chat:返回 + 头像36 squircle(radius-md 12;兜底 surface/secondary)+ 昵称 16 Bold + 副标题 12 muted(.t-body-xs)+ 右侧1–2个42圆钮 */
 .header-chat{display:flex;align-items:center;gap:12px;padding:8px 16px;min-height:58px}
 .header-chat .avatar{width:36px;height:36px;background:var(--surface-secondary)}
 /* 页头背景透明,顶部滚动遮罩由页面层 .scroll-edge-top 统一处理(渐变绑 --background-base,浅→白/深→黑,随明暗自适应);

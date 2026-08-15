@@ -17,7 +17,7 @@ ZYMIX 是 iOS 风格的社交/IM 产品。原型按 iPhone 375×812 画布(设�
 - Home indicator: 底部 134×5px 圆条 --foreground-base
 
 ## 列表
-- 行高 ≥64px,头像 48px 圆形,标题 列表项角色(14 Semibold),副文字 Body/Sm + --foreground-muted
+- 行高 ≥64px,头像 48px **squircle**(radius-lg 16 = 尺寸 1/3),标题 列表项角色(14 Semibold),副文字 Body/Sm + --foreground-muted
 - 行间分割线 0.5px --separator-base,左缩进对齐文字起点
 - 时间戳/badge 靠右,Body/Xs + --foreground-subtle
 - 未读徽标: --feature-like-base 玫红圆形,恒白字 10px Semibold(Label/2xs;徽标统一玫红,不用绿色)

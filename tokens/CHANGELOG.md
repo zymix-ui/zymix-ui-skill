@@ -205,3 +205,8 @@
   - 复查:值漂移 0、幽灵 token 0、内嵌 token 170 个。
 - **检查器补第 8 条:内嵌 token 块 vs `references/tokens.css` 对账**。上面这些问题此前一路 PASS,根因是 `strip_token_blocks()` 会先把 `:root{...}` 整块剥掉(为免误报配方里的示例 hex),导致 token 定义区**天生在检查盲区**。新规则:值不匹配 → 报「token 值漂移」;**族在 tokens.css 里但档位不在 → 报「已删除的 token」**(精准命中废弃档,又不会误伤 `--vh` 这类模板本地变量,因为 `vh` 不是 tokens.css 的族)。已用注入测试验证三类问题都能抓到。
 - **修 `references/lessons.md` 两条失效经验**:①「页头 Tab 双标题(选中 24 Black / 未选中 18 Bold)」—— 该两档随字阶改版删除,改写为 Brand-Tabs 现行做法(tab 统一 `Label/Sm` 14 Semibold + 下划线);②「统计数字是 Number/Base = 18px Black(900)」—— 既无 Base 档也无 Black 字重,改为 Number 9 档、卡片内金额用 `Number/24`。这类经验条会被原型 AI 当规范读,过期即误导。
+- **头像形状改版:圆形 → squircle**(设计师给参考形状 `21179:1106`)。定参数用了几何反推 + 拟合:参考路径只有 13 顶点、顶边 y=0 仅在 x=18 一点 → **无平直段**,曲线自边中点起弯,即 `r(1+s)=18`(半边长)。归一化极坐标径向签名拟合的最优解是 r=13/s=0.4(最大偏差 0.83px),但 **13 不是 radius 档位**(铁律 5),故选 **`radius/md`(12) + `cornerSmoothing 0.5`** —— `12×1.5=18` 精确满足约束、用现有档位可绑变量,最大偏差 1.24px(36px 下约 3%)。
+  尺寸规则:**圆角 ≈ 尺寸 ÷ 3,就近归 `radius/*`** —— 24/26→sm、32/36→md、48→lg、56→xl、68→2xl。
+  Figma 侧改到位(全库残留圆形头像归零):Avatar 组件集 25 变体(**要改两处**:`base` 矩形 + 组件根节点,根节点 r=9999 会裁剪子层;`variant=img` 那 5 个无子节点,只能改根)、AvatarGroup(另有 `Avatar multiple` 实例自身的 r=9999 覆写要单独改)、NavBar `Type=Nav-Chat` 的裸 ELLIPSE(ELLIPSE 设不了圆角,**换成 RECTANGLE**;坑:3 个实例有 IMAGE 覆写,先存 fills 换完再补回)。
+  > **例外:AvatarGroup 末尾的「+」保持圆形** —— 它是 Button 实例(secondary/md/iconOnly),按钮规范就是 round,不为了跟头像一致去改。
+  > skill 侧同步:`DESIGN.md` 新增「头像 Avatar」节(尺寸→档位对照表 + CSS 无 cornerSmoothing 的说明)、`app.html` 13 处圆角改档(`.avatar` 基类 50%/round → radius-md,32px→md,56px 会话列表 3xl→xl,68px 3xl→2xl,圆形归零)、`patterns.md`「48px 圆形」、`components.css`「头像36圆」、`lessons.md`「32 倒角方形」描述统一。
