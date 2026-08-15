@@ -210,3 +210,10 @@
   Figma 侧改到位(全库残留圆形头像归零):Avatar 组件集 25 变体(**要改两处**:`base` 矩形 + 组件根节点,根节点 r=9999 会裁剪子层;`variant=img` 那 5 个无子节点,只能改根)、AvatarGroup(另有 `Avatar multiple` 实例自身的 r=9999 覆写要单独改)、NavBar `Type=Nav-Chat` 的裸 ELLIPSE(ELLIPSE 设不了圆角,**换成 RECTANGLE**;坑:3 个实例有 IMAGE 覆写,先存 fills 换完再补回)。
   > **例外:AvatarGroup 末尾的「+」保持圆形** —— 它是 Button 实例(secondary/md/iconOnly),按钮规范就是 round,不为了跟头像一致去改。
   > skill 侧同步:`DESIGN.md` 新增「头像 Avatar」节(尺寸→档位对照表 + CSS 无 cornerSmoothing 的说明)、`app.html` 13 处圆角改档(`.avatar` 基类 50%/round → radius-md,32px→md,56px 会话列表 3xl→xl,68px 3xl→2xl,圆形归零)、`patterns.md`「48px 圆形」、`components.css`「头像36圆」、`lessons.md`「32 倒角方形」描述统一。
+- **修正上一条:头像不是 squircle,是普通圆角矩形**(用户看出"不像")。我误把参考形状当 iOS squircle,用了 `radius/md`(12)+`cornerSmoothing 0.5` —— 圆角偏小(33%)、又多加了平滑度,corner 性格完全不对。
+  **实测方法(可复用)**:把 vectorPath 每段三次贝塞尔采样 200+ 点、算各角度半径,实测 0°=18 / 45°=19.243;代入圆角矩形公式 `(18−r)·√2 + r = 19.243` 解出 **r=15**,再逐角度回验(20° 理论 18.737 / 实测 18.740)完全吻合 → **标准圆角矩形 r=15、平滑度 0**。叠加渲染复核:r=15 与参考完全重合无边缘,r=16 有黑边、r=12 有明显外溢。
+  > 两个早期误判记下来:①"归一化极坐标签名"拟合曾反推出超椭圆 n≈2.477,是**数值巧合**;②以为 `figma.flatten()` 不保留 cornerSmoothing,其实**保留**,当时是路径起点不同导致比对错位。
+  **定稿(用户拍板)**:圆角绑 **`radius/lg`(16)**、`cornerSmoothing = 0`。基准 36px 实测 15,但阶梯 12→16 之间是空的,取最近的 16(45° 差 0.4px 肉眼不可辨);**用户明确否决新增 15 档**。
+  尺寸规则改为 **≈ 尺寸 × 5/12(41.7%)** 就近归档:24/26/32→md(12)、36→lg(16)、48→xl(20)、56→3xl(24)、68→4xl(28)。
+  Figma 25 变体(base + 组件根)、AvatarGroup、NavBar 全部改绑 `radius/lg`、平滑 0,零例外。skill 侧同步:`DESIGN.md` 头像节重写(去掉 squircle 说法与 cornerSmoothing)、`app.html` 各尺寸改档并补上漏掉的 `.cv-av` 聊天气泡头像(32px round → md),头像圆形归零;`patterns.md`/`components.css`/`lessons.md` 措辞统一为「大圆角方形」。
+  > 顺带确认这些**不是头像、不要改**:`.badge`(18)、玻璃按钮(40)、灵动岛圆点(7) 保持 round,`.photo`(52) 是列表缩略图。
